@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 18:47:13 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:26:43 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,50 @@ void	dealloc_shapes(t_scene **scenes, int i)
 	}
 }
 
+void	init_spheres(t_scene *scene)
+{
+	int	i;
+
+	i = -1;
+	while (++i < scene->n_spheres)
+	{
+		scene->sphs[i].id = 0;	// important so that we can find the latest
+		set_vector(scene->sphs[i].center, "0,0,20");
+		scene->sphs[i].diamtr = 20.0;
+		scene->sphs[i].color = 0x424242;
+	}
+}
+
+void	init_planes(t_scene *scene)
+{
+	int	i;
+
+	i = -1;
+	while (++i < scene->n_planes)
+	{
+		scene->plns[i].id = 0;	// important so that we can find the latest
+		set_vector(scene->plns[i].anch, "0,0,-10");
+		set_vector(scene->plns[i].norm, "0,0,1");
+		scene->plns[i].color = 0x424242;
+	}
+}
+
+void	init_cylinders(t_scene *scene)
+{
+	int	i;
+
+	i = -1;
+	while (++i < scene->n_cylinders)
+	{
+		scene->cyls[i].id = 0;	// important so that we can find the latest
+		set_vector(scene->cyls[i].center, "0,0,20");
+		set_vector(scene->cyls[i].axis, "0,0,20");
+		scene->cyls[i].diamtr = 14.2;
+		scene->cyls[i].height = 21.42;
+		scene->cyls[i].color = 0x424242;
+	}
+}
+
 int	alloc_shapes(t_scene **scenes, int n_scenes)
 {
 	int	i;
@@ -122,17 +166,20 @@ int	alloc_shapes(t_scene **scenes, int n_scenes)
 	i = -1;
 	while (++i < n_scenes)
 	{
-		scenes[i]->cyls = malloc(sizeof(t_cylinder) * scenes[i]->n_cylinders);
-		scenes[i]->plns = malloc(sizeof(t_plane) * scenes[i]->n_planes);
 		scenes[i]->sphs = malloc(sizeof(t_sphere) * scenes[i]->n_spheres);
-		if (scenes[i]->cyls == NULL
+		scenes[i]->plns = malloc(sizeof(t_plane) * scenes[i]->n_planes);
+		scenes[i]->cyls = malloc(sizeof(t_cylinder) * scenes[i]->n_cylinders);
+		if (scenes[i]->sphs == NULL
 			|| scenes[i]->plns == NULL
-			|| scenes[i]->sphs == NULL)
+			|| scenes[i]->cyls == NULL)
 		{
 			printf("Error: failure to malloc shapes");
 			dealloc_shapes(scenes, i);
 			return (1);
 		}
+		init_spheres(scenes[i]);
+		init_planes(scenes[i]);
+		init_cylinders(scenes[i]);
 	}
 	return (0);
 }

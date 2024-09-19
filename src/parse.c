@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:57:21 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 18:46:19 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:55:13 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	set_colors(char *input) // assumes csv RGB
 
 	color = 0;
 	items = NULL;
-	if (!input || !*input)
+	if (!input || !input[0] || !input[1] || !input[2])
 		return (0);
 	items = ft_split(input, ',');
 	color += ft_atoi(items[0]) << 16;
@@ -138,41 +138,91 @@ void	parse_light(char *input, t_scene *scene)
 	}
 }
 
-void	parse_plane(char *input, t_scene *scene)
+void	parse_sphere(char *input, t_scene *scene)
 {
-	char		**items;
+	char	**items;
+	int		i;
 
+	i = 0;
 	if (!input || !*input)
 		printf("Error: NULL string passed to parse_plane, init to default\n");
 	else
 	{
+		while (scene->sphs[i].id) //	get to the most recent sphere
+			i++;
 		items = ft_split(input, ' ');
-		set_vector(scene->light.point, items[1]);
-		scene->light.lum = ft_atof(items[2]);
-		scene->light.hue = set_colors(items[3]);
+		scene->sphs[i].id = i;
+		set_vector(scene->sphs[i].center, items[1]);
+		scene->sphs[i].diamtr = ft_atof(items[2]);
+		scene->sphs[i].color = set_colors(items[3]);
+		ft_free_string_list(items);
+	}
+	if (DEBUGMODE && scene->valid)
+	{
+		printf("->Sphere %d:", scene->sphs->id);
+		print_vector("\tcenter: ", scene->sphs->center);
+		printf("\t\tdiameter: %.2f", scene->sphs->diamtr);
+		printf("\t\tcolor: %d\n", scene->sphs->color);
+	}
+}
+
+void	parse_plane(char *input, t_scene *scene)
+{
+	char	**items;
+	int		i;
+
+	i = 0;
+	if (!input || !*input)
+		printf("Error: NULL string passed to parse_plane, init to default\n");
+	else
+	{
+		while (scene->sphs[i].id)
+			i++;
+		items = ft_split(input, ' ');
+		scene->plns[i].id = i;
+		set_vector(scene->plns[i].anch, items[1]);
+		set_vector(scene->plns[i].norm, items[2]);
+		scene->plns[i].color = set_colors(items[3]);
 		ft_free_string_list(items);
 		if (DEBUGMODE && scene->valid)
 		{
-			printf("->Light:");
-			print_vector("\tpoint:\t\t", scene->light.point);
-			printf("\tbrightness:\t%.2f", scene->light.lum);
-			printf("\t\thue:\t%d\n", scene->light.hue);
+			printf("->Plane %d:", scene->plns[i].id);
+			print_vector("\tpoint: ", scene->light.point);
+			printf("\tbrightness: %.2f", scene->light.lum);
+			printf("\thue: %d\n", scene->light.hue);
 		}
 	}
 }
 
-void	parse_sphere(char *input, t_scene *scene)
-{
-	(void) scene;
-	(void) input;
-	printf("\t->Unimplemented parse SPHERE\n");
-}
-
 void	parse_cylinder(char *input, t_scene *scene)
 {
-	(void) scene;
-	(void) input;
-	printf("\t->Unimplemented parse CYLINDER\n");
+	char	**items;
+	int		i;
+
+	i = 0;
+	if (!input || !*input)
+		printf("Error: NULL string passed to parse_plane, init to default\n");
+	else
+	{
+		while (scene->cyls[i].id)
+			i++;
+		items = ft_split(input, ' ');
+		scene->plns[i].id = i;
+		set_vector(scene->cyls[i].center, items[1]);
+		set_vector(scene->cyls[i].axis, items[2]);
+		scene->cyls[i].diamtr = ft_atof(items[3]);
+		scene->cyls[i].height = ft_atof(items[4]);
+		ft_free_string_list(items);
+		if (DEBUGMODE && scene->valid)
+		{
+			printf("->cylinder %d:", scene->cyls[i].id );
+			print_vector("\tcenter: ", scene->cyls[i].center);
+			print_vector("\taxis: ", scene->cyls[i].axis);
+			printf("\tdiameter:%.2f", scene->cyls[i].diamtr);
+			printf("\theight: %.2f", scene->cyls[i].height);
+			printf("\tcolor: %d", scene->cyls[i].color);
+		}
+	}
 }
 
 void	parse_select(char *line, t_scene *scene)
@@ -189,15 +239,12 @@ void	parse_select(char *line, t_scene *scene)
 		parse_plane(line, scene);
 	else if (!ft_strncmp(line, "cy", 2))
 		parse_cylinder(line, scene);
-	else if (*line)
-		printf("\t*** Unrecognised parse type warning ***\n");
 }
 
 void	parse_file(int fd, t_scene *scene)
 {
 	char	*line;
 
-	(void) scene;
 	line = NULL;
 	line = get_next_line(fd);
 	while (line)
@@ -215,7 +262,7 @@ void	parse(int *fd, int argc, t_scene **scenes)
 	i = -1;
 	while (++i < argc - 1)
 	{
-		printf("\nFile %d (%s) input:\n", i, scenes[i]->fname);
+		printf("\n\nFile %d (%s) input:\n", i, scenes[i]->fname);
 		printf("Scene %d: spheres: %d, planes: %d, cylinders: %d\n", \
 				scenes[i]->id, scenes[i]->n_spheres, \
 				scenes[i]->n_planes, scenes[i]->n_cylinders);

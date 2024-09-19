@@ -6,7 +6,7 @@
 /*   By: jcummins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 19:03:56 by jcummins          #+#    #+#             */
-/*   Updated: 2023/10/30 16:56:01 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:29:57 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	ft_atoi(const char *nptr)
 	i = 0;
 	result = 0;
 	sign = 1;
+	if(!nptr || !*nptr)
+		return 0;
 	while (is_whitespace(nptr[i]))
 		i++;
 	if (nptr[i] == '-' || nptr[i] == '+')
