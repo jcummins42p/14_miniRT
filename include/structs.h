@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 14:05:58 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/19 17:57:08 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ typedef int		t_color;
 
 typedef struct	s_ambient
 {
+	bool		lock;
 	float		lum;
 	t_color		hue;
 }				t_ambient;
 
 typedef struct	s_camera
 {
+	bool		lock;
 	t_vector	point;
 	t_vector	dir;
 	int			fov;
@@ -33,6 +35,7 @@ typedef struct	s_camera
 
 typedef struct	s_light
 {
+	bool		lock;
 	t_vector	point;
 	float		lum;
 	t_color		hue;
@@ -68,12 +71,15 @@ typedef struct	s_scene
 {
 	t_ambient	amb;
 	t_camera	cam;
-	t_light		lite;
+	t_light		light;
 	t_cylinder	*cyls;
 	t_plane		*plns;
 	t_sphere	*sphs;
 	int			id;
-	t_color		bkgrnd;
+	int			n_cylinders;
+	int			n_planes;
+	int			n_spheres;
+	t_color		sky;
 }				t_scene;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:57:21 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 14:35:16 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:08:10 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,38 +29,124 @@ int	set_colors(char *input) // assumes csv RGB
 	return (color);
 }
 
+void		zero_vector(t_vector vec)
+{
+	int i;
+
+	i = 0;
+	while (i < 3)
+		vec[i++] = 0.0;
+}
+
+void	print_vector(char *message, t_vector vec)
+{
+	printf("%s", message);
+	printf("%.2f,%.2f,%.2f", vec[0], vec[1], vec[2]);
+}
+
+void	set_vector(t_vector vec, char *input)
+{
+	char		**items;
+	int			i;
+
+	i = -1;
+	items = NULL;
+	if (!input || !*input)
+		return ;
+	items = ft_split(input, ',');
+	while (++i < 3)
+		vec[i] = ft_atof(items[i]);
+	ft_free_string_list(items);
+}
+
 void	parse_ambient(char *input, t_scene *scene)
 {
-	static int	lock;
 	char	**items;
 
-	if (lock++)
-		exit_error("Error :multiple ambient definitions", ERR_PARSE);
-	items = ft_split(input, ' ');
-	scene->amb.lum = ft_atof(items[1]);
-	scene->amb.hue = set_colors(items[2]);
-	printf("ambient: luminosity: %f\thue: %d\n", scene->amb.lum, scene->amb.hue);
+	if (scene->amb.lock++)
+		exit_error("Error :multiple ambient definitions\n", ERR_PARSE);
+	if (!input || !*input)
+		printf("Error: NULL string passed to parse_ambient, init to default\n");
+	else
+	{
+		items = ft_split(input, ' ');
+		scene->amb.lum = ft_atof(items[1]);
+		scene->amb.hue = set_colors(items[2]);
+		ft_free_string_list(items);
+		if (DEBUGMODE)
+			printf("->Ambient:\tluminosity:\t%f\t\thue:\t\t%d\n", scene->amb.lum, scene->amb.hue);
+	}
 }
 
 void	parse_camera(char *input, t_scene *scene)
 {
-	(void) scene;
-	(void) input;
-	printf("\t->Unimplemented parse CAMERA\n");
+	char		**items;
+
+	if (scene->cam.lock++)
+		exit_error("Error :multiple camera definitions\n", ERR_PARSE);
+	if (!input || !*input)
+		printf("Error: NULL string passed to parse_camera, init to default\n");
+	else
+	{
+		items = ft_split(input, ' ');
+		set_vector(scene->cam.point, items[1]);
+		set_vector(scene->cam.dir, items[2]);
+		scene->cam.fov = ft_atoi(items[3]);
+		ft_free_string_list(items);
+		if (DEBUGMODE)
+		{
+			printf("->Camera:");
+			print_vector("\tviewpoint:\t", scene->cam.point);
+			print_vector("\torientation:\t", scene->cam.dir);
+			printf("\tfov:\t%d\n", scene->cam.fov);
+		}
+	}
 }
 
 void	parse_light(char *input, t_scene *scene)
 {
-	(void) scene;
-	(void) input;
-	printf("\t->Unimplemented parse LIGHT\n");
+	char		**items;
+
+	if (scene->light.lock++)
+		exit_error("Error: multiple camera definitions\n", ERR_PARSE);
+	if (!input || !*input)
+		printf("Error: NULL string passed to parse_light, init to default\n");
+	else
+	{
+		items = ft_split(input, ' ');
+		set_vector(scene->light.point, items[1]);
+		scene->light.lum = ft_atof(items[2]);
+		scene->light.hue = set_colors(items[3]);
+		if (DEBUGMODE)
+		{
+			printf("->Light:");
+			print_vector("\tpoint:\t\t", scene->light.point);
+			printf("\tbrightness:\t%.2f", scene->light.lum);
+			printf("\t\thue:\t%d\n", scene->light.hue);
+		}
+	}
 }
 
 void	parse_plane(char *input, t_scene *scene)
 {
-	(void) scene;
-	(void) input;
-	printf("\t->Unimplemented parse PLANE\n");
+	char		**items;
+
+	if (!input || !*input)
+		printf("Error: NULL string passed to parse_plane, init to default\n");
+	else
+	{
+		items = ft_split(input, ' ');
+		set_vector(scene->light.point, items[1]);
+		scene->light.lum = ft_atof(items[2]);
+		scene->light.hue = set_colors(items[3]);
+		if (DEBUGMODE)
+		{
+			printf("->Light:");
+			print_vector("\tpoint:\t\t", scene->light.point);
+			printf("\tbrightness:\t%.2f", scene->light.lum);
+			printf("\t\thue:\t%d\n", scene->light.hue);
+		}
+	}
 }
 
 void	parse_sphere(char *input, t_scene *scene)
@@ -114,7 +200,10 @@ void	parse(int *fd, int argc, t_scene **scenes)
 	int	i;
 
 	i = -1;
-	printf("Parsing input\n");
 	while (++i < argc - 1)
+	{
+		printf("\nFile %d input:\n", i);
+		printf("Scene %d: spheres: %d, planes: %d, cylinders: %d\n", scenes[i]->id, scenes[i]->n_spheres, scenes[i]->n_planes, scenes[i]->n_cylinders);
 		parse_file(fd[i], scenes[i]);
+	}
 }
