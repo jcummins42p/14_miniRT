@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enums.h                                            :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 11:05:00 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 14:00:23 by jcummins         ###   ########.fr       */
+/*   Created: 2023/12/07 10:27:43 by jcummins          #+#    #+#             */
+/*   Updated: 2024/05/22 17:58:47 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUMS_H
-# define ENUMS_H
+#include "get_next_line_bonus.h"
 
-enum e_errcode
+int	is_complete(char *str)
 {
-	SUCCESS,
-	ERR_MALLOC,
-	ERR_ARGC,
-	ERR_ARGV,
-	ERR_PARSE,
-	ERR_OTHER
-};
+	size_t	i;
 
-#endif
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+	{
+		if (str[i++] == '\n')
+			return (i);
+	}
+	return (0);
+}

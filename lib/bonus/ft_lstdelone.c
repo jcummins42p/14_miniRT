@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enums.h                                            :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: jcummins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 11:05:00 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 14:00:23 by jcummins         ###   ########.fr       */
+/*   Created: 2023/10/26 16:58:31 by jcummins          #+#    #+#             */
+/*   Updated: 2023/11/21 15:19:54 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUMS_H
-# define ENUMS_H
+#include "libft.h"
 
-enum e_errcode
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	SUCCESS,
-	ERR_MALLOC,
-	ERR_ARGC,
-	ERR_ARGV,
-	ERR_PARSE,
-	ERR_OTHER
-};
-
-#endif
+	if (!lst || !del)
+		return ;
+	del(lst->content);
+	free(lst);
+}

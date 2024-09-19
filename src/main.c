@@ -6,25 +6,34 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 11:49:28 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/19 14:53:45 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	init_scenes(t_scene **scenes, int argc)
+t_scene **alloc_scenes(int n_scenes)
 {
-	int	n_scenes;
 	int	i;
+	t_scene	**scenes;
 
-	n_scenes = argc - 1;
 	i = 0;
-	scenes = malloc(sizeof(t_scene *) * n_scenes);
+	scenes = malloc(n_scenes * sizeof(t_scene *));
 	if (!scenes)
-		exit_error("Malloc error", ERR_MALLOC);
+		return (NULL);
 	while (i < n_scenes)
-		scenes[i++] = NULL;
-	return (0);
+	{
+		scenes[i] = malloc(sizeof(t_scene));
+		if (!scenes[i])
+		{
+			while (i-- > 0)
+				free(scenes[i]);
+			free(scenes);
+			return (NULL);
+		}
+		i++;
+	}
+	return (scenes);
 }
 
 int	open_scenes(int fd[], int argc, char **argv)
@@ -47,11 +56,10 @@ int	main(int argc, char **argv)
 	int			fd[argc - 1];
 	int			errcode;
 
-	scenes = NULL;
 	errcode = 0;
 	if (argc < 2)
 		exit_error("Wrong number of arguments", 1);
-	errcode = init_scenes(scenes, argc);
+	scenes = alloc_scenes(argc - 1);
 	errcode = open_scenes(fd, argc, argv);
 	parse(fd, argc, scenes);
 	return (0);

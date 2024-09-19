@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enums.h                                            :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: jcummins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 11:05:00 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 14:00:23 by jcummins         ###   ########.fr       */
+/*   Created: 2023/10/26 16:58:31 by jcummins          #+#    #+#             */
+/*   Updated: 2023/11/21 15:29:16 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUMS_H
-# define ENUMS_H
+#include "libft.h"
 
-enum e_errcode
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	SUCCESS,
-	ERR_MALLOC,
-	ERR_ARGC,
-	ERR_ARGV,
-	ERR_PARSE,
-	ERR_OTHER
-};
+	t_list	*swap;
 
-#endif
+	if (!lst || !del)
+		return ;
+	while (*lst != NULL)
+	{
+		swap = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		(*lst) = swap;
+	}
+}

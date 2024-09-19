@@ -6,22 +6,40 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:57:21 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 12:45:21 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/19 14:35:16 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
+int	set_colors(char *input) // assumes csv RGB
+{
+	char	**items;
+	int		color;
+
+	color = 0;
+	items = NULL;
+	if (!input || !*input)
+		return (0);
+	items = ft_split(input, ',');
+	color += ft_atoi(items[0]) << 16;
+	color += ft_atoi(items[1]) << 8;
+	color += ft_atoi(items[2]);
+	ft_free_string_list(items);
+	return (color);
+}
+
 void	parse_ambient(char *input, t_scene *scene)
 {
-	int		i = 0;
+	static int	lock;
 	char	**items;
 
-	(void)scene;
+	if (lock++)
+		exit_error("Error :multiple ambient definitions", ERR_PARSE);
 	items = ft_split(input, ' ');
-	while (*items)
-		ft_printf("%d: %s\n", i++, *items++);
-	/*printf("\t->Unimplemented parse AMBIENT\n");*/
+	scene->amb.lum = ft_atof(items[1]);
+	scene->amb.hue = set_colors(items[2]);
+	printf("ambient: luminosity: %f\thue: %d\n", scene->amb.lum, scene->amb.hue);
 }
 
 void	parse_camera(char *input, t_scene *scene)

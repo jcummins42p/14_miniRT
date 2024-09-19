@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enums.h                                            :+:      :+:    :+:   */
+/*   ft_printf_cformats.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: jcummins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 11:05:00 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 14:00:23 by jcummins         ###   ########.fr       */
+/*   Created: 2023/12/11 16:59:21 by jcummins          #+#    #+#             */
+/*   Updated: 2023/12/15 19:29:03 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUMS_H
-# define ENUMS_H
+#include "ft_printf.h"
 
-enum e_errcode
+int	print_str(char *str)
 {
-	SUCCESS,
-	ERR_MALLOC,
-	ERR_ARGC,
-	ERR_ARGV,
-	ERR_PARSE,
-	ERR_OTHER
-};
+	int	i;
 
-#endif
+	i = 0;
+	if (str == NULL)
+		i = print_str("(null)");
+	else
+		while (str[i])
+			write (1, &str[i++], 1);
+	return (i);
+}
+
+int	print_char(char chr)
+{
+	write (1, &chr, 1);
+	return (1);
+}

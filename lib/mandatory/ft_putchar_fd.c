@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enums.h                                            :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: jcummins <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 11:05:00 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 14:00:23 by jcummins         ###   ########.fr       */
+/*   Created: 2023/10/25 15:48:45 by jcummins          #+#    #+#             */
+/*   Updated: 2023/11/16 17:39:21 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUMS_H
-# define ENUMS_H
+#include "libft.h"
 
-enum e_errcode
+void	ft_putchar_fd(char c, int fd)
 {
-	SUCCESS,
-	ERR_MALLOC,
-	ERR_ARGC,
-	ERR_ARGV,
-	ERR_PARSE,
-	ERR_OTHER
-};
+	write(fd, &c, 1);
+}
 
-#endif
+/*int	main(void)*/
+/*{*/
+	/*ft_putchar_fd('f', 1);*/
+	/*return (0);*/
+/*}*/
