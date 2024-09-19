@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:57:21 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 18:08:10 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:32:19 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void	parse_light(char *input, t_scene *scene)
 		set_vector(scene->light.point, items[1]);
 		scene->light.lum = ft_atof(items[2]);
 		scene->light.hue = set_colors(items[3]);
+		ft_free_string_list(items);
 		if (DEBUGMODE)
 		{
 			printf("->Light:");
@@ -139,6 +140,7 @@ void	parse_plane(char *input, t_scene *scene)
 		set_vector(scene->light.point, items[1]);
 		scene->light.lum = ft_atof(items[2]);
 		scene->light.hue = set_colors(items[3]);
+		ft_free_string_list(items);
 		if (DEBUGMODE)
 		{
 			printf("->Light:");
@@ -191,6 +193,7 @@ void	parse_file(int fd, t_scene *scene)
 	while (line)
 	{
 		parse_select(line, scene);
+		free (line);
 		line = get_next_line(fd);
 	}
 }
@@ -202,7 +205,7 @@ void	parse(int *fd, int argc, t_scene **scenes)
 	i = -1;
 	while (++i < argc - 1)
 	{
-		printf("\nFile %d input:\n", i);
+		printf("\nFile %d (%s) input:\n", i, scenes[i]->fname);
 		printf("Scene %d: spheres: %d, planes: %d, cylinders: %d\n", scenes[i]->id, scenes[i]->n_spheres, scenes[i]->n_planes, scenes[i]->n_cylinders);
 		parse_file(fd[i], scenes[i]);
 	}

@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 17:57:08 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:21:35 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct	s_cylinder
 
 typedef struct	s_scene
 {
+	char		*fname;
 	t_ambient	amb;
 	t_camera	cam;
 	t_light		light;
@@ -80,6 +81,7 @@ typedef struct	s_scene
 	int			n_planes;
 	int			n_spheres;
 	t_color		sky;
+	bool		valid;
 }				t_scene;
 
 #endif

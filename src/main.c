@@ -6,14 +6,33 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 18:14:46 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:31:04 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	init_scene(t_scene *scene, int id)
+void	free_scene(t_scene *scene)
 {
+	free (scene->fname);
+	free (scene->cyls);
+	free (scene->plns);
+	free (scene->sphs);
+	free (scene);
+}
+
+void	free_scenes(t_scene **scenes, int n_scenes)
+{
+	int	i;
+
+	i = 0;
+	while (i < n_scenes)
+		free_scene(scenes[i++]);
+}
+
+void	init_scene(t_scene *scene, char *filename, int id)
+{
+	scene->fname = ft_strdup(filename);
 	scene->id = id;
 	scene->n_cylinders = 0;
 	scene->n_planes = 0;
@@ -35,13 +54,13 @@ void	init_scene(t_scene *scene, int id)
 	scene->sphs = NULL;
 }
 
-void	init_scenes(t_scene **scenes, int n_scenes)
+void	init_scenes(t_scene **scenes, char **argv, int n_scenes)
 {
 	int	i;
 
 	i = -1;
 	while (++i < n_scenes)
-		init_scene(scenes[i], i);
+		init_scene(scenes[i], argv[i + 1], i);
 }
 
 t_scene	**alloc_scenes(int n_scenes)
@@ -130,6 +149,7 @@ void	preparse(int fd[], t_scene **scenes, int n_scenes)
 		while (line)
 		{
 			preparse_select(line, scenes[i]);
+			free (line);
 			line = get_next_line(fd[i]);
 		}
 	}
@@ -166,7 +186,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		exit_error("Error: Wrong number of arguments", ERR_ARGC);
 	scenes = alloc_scenes(argc - 1);
-	init_scenes(scenes, argc - 1);
+	init_scenes(scenes, argv, argc - 1);
 	if (!scenes)
 		exit_error("Error: Failure to malloc scenes", ERR_MALLOC);
 	if (open_scenes(fd, argc - 1, argv))
@@ -175,5 +195,6 @@ int	main(int argc, char **argv)
 	alloc_shapes(scenes, argc - 1);
 	open_scenes(fd, argc - 1, argv);
 	parse(fd, argc, scenes);
+	free_scenes(scenes, argc - 1);
 	return (0);
 }
