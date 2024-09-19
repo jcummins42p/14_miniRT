@@ -6,26 +6,26 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 19:18:38 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/19 21:13:48 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-#include "miniRT.h"
+# include "miniRT.h"
 
 typedef float	t_vector[3];
 typedef int		t_color;
 
-typedef struct	s_ambient
+typedef struct s_ambient
 {
 	bool		lock;
 	float		lum;
 	t_color		hue;
 }				t_ambient;
 
-typedef struct	s_camera
+typedef struct s_camera
 {
 	bool		lock;
 	t_vector	point;
@@ -33,7 +33,7 @@ typedef struct	s_camera
 	int			fov;
 }				t_camera;
 
-typedef struct	s_light
+typedef struct s_light
 {
 	bool		lock;
 	t_vector	point;
@@ -41,7 +41,7 @@ typedef struct	s_light
 	t_color		hue;
 }				t_light;
 
-typedef struct	s_sphere
+typedef struct s_sphere
 {
 	t_vector	center;
 	float		diamtr;
@@ -49,7 +49,7 @@ typedef struct	s_sphere
 	t_color		color;
 }				t_sphere;
 
-typedef struct	s_plane
+typedef struct s_plane
 {
 	t_vector	anch;
 	t_vector	norm;
@@ -57,7 +57,7 @@ typedef struct	s_plane
 	t_color		color;
 }				t_plane;
 
-typedef struct	s_cylinder
+typedef struct s_cylinder
 {
 	t_vector	center;
 	t_vector	axis;
@@ -67,7 +67,7 @@ typedef struct	s_cylinder
 	t_color		color;
 }				t_cylinder;
 
-typedef struct	s_scene
+typedef struct s_scene
 {
 	char		*fname;
 	t_ambient	amb;
