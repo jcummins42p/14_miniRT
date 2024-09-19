@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 18:31:04 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:47:13 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ void	free_scenes(t_scene **scenes, int n_scenes)
 	i = 0;
 	while (i < n_scenes)
 		free_scene(scenes[i++]);
+	free (scenes);
 }
 
 void	init_scene(t_scene *scene, char *filename, int id)
 {
 	scene->fname = ft_strdup(filename);
 	scene->id = id;
+	scene->valid = true;
 	scene->n_cylinders = 0;
 	scene->n_planes = 0;
 	scene->n_spheres = 0;
@@ -196,5 +198,6 @@ int	main(int argc, char **argv)
 	open_scenes(fd, argc - 1, argv);
 	parse(fd, argc, scenes);
 	free_scenes(scenes, argc - 1);
+	free(fd);
 	return (0);
 }

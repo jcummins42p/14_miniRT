@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:57:21 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 18:32:19 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:46:19 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	set_colors(char *input) // assumes csv RGB
 	return (color);
 }
 
-void		zero_vector(t_vector vec)
+void	zero_vector(t_vector vec)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 3)
@@ -64,7 +64,10 @@ void	parse_ambient(char *input, t_scene *scene)
 	char	**items;
 
 	if (scene->amb.lock++)
-		exit_error("Error :multiple ambient definitions\n", ERR_PARSE);
+	{
+		scene->valid = false;
+		printf("Error : file contains multiple ambient definitions\n");
+	}
 	if (!input || !*input)
 		printf("Error: NULL string passed to parse_ambient, init to default\n");
 	else
@@ -73,8 +76,9 @@ void	parse_ambient(char *input, t_scene *scene)
 		scene->amb.lum = ft_atof(items[1]);
 		scene->amb.hue = set_colors(items[2]);
 		ft_free_string_list(items);
-		if (DEBUGMODE)
-			printf("->Ambient:\tluminosity:\t%f\t\thue:\t\t%d\n", scene->amb.lum, scene->amb.hue);
+		if (DEBUGMODE && scene->valid)
+			printf("->Ambient:\tluminosity:\t%f\t\thue:\t\t%d\n", \
+					scene->amb.lum, scene->amb.hue);
 	}
 }
 
@@ -83,7 +87,10 @@ void	parse_camera(char *input, t_scene *scene)
 	char		**items;
 
 	if (scene->cam.lock++)
-		exit_error("Error :multiple camera definitions\n", ERR_PARSE);
+	{
+		scene->valid = false;
+		printf("Error: file contains multiple camera definitions\n");
+	}
 	if (!input || !*input)
 		printf("Error: NULL string passed to parse_camera, init to default\n");
 	else
@@ -93,7 +100,7 @@ void	parse_camera(char *input, t_scene *scene)
 		set_vector(scene->cam.dir, items[2]);
 		scene->cam.fov = ft_atoi(items[3]);
 		ft_free_string_list(items);
-		if (DEBUGMODE)
+		if (DEBUGMODE && scene->valid)
 		{
 			printf("->Camera:");
 			print_vector("\tviewpoint:\t", scene->cam.point);
@@ -108,7 +115,10 @@ void	parse_light(char *input, t_scene *scene)
 	char		**items;
 
 	if (scene->light.lock++)
-		exit_error("Error: multiple camera definitions\n", ERR_PARSE);
+	{
+		scene->valid = false;
+		exit_error("Error: multiple light definitions\n", ERR_PARSE);
+	}
 	if (!input || !*input)
 		printf("Error: NULL string passed to parse_light, init to default\n");
 	else
@@ -118,7 +128,7 @@ void	parse_light(char *input, t_scene *scene)
 		scene->light.lum = ft_atof(items[2]);
 		scene->light.hue = set_colors(items[3]);
 		ft_free_string_list(items);
-		if (DEBUGMODE)
+		if (DEBUGMODE && scene->valid)
 		{
 			printf("->Light:");
 			print_vector("\tpoint:\t\t", scene->light.point);
@@ -141,7 +151,7 @@ void	parse_plane(char *input, t_scene *scene)
 		scene->light.lum = ft_atof(items[2]);
 		scene->light.hue = set_colors(items[3]);
 		ft_free_string_list(items);
-		if (DEBUGMODE)
+		if (DEBUGMODE && scene->valid)
 		{
 			printf("->Light:");
 			print_vector("\tpoint:\t\t", scene->light.point);
@@ -206,7 +216,9 @@ void	parse(int *fd, int argc, t_scene **scenes)
 	while (++i < argc - 1)
 	{
 		printf("\nFile %d (%s) input:\n", i, scenes[i]->fname);
-		printf("Scene %d: spheres: %d, planes: %d, cylinders: %d\n", scenes[i]->id, scenes[i]->n_spheres, scenes[i]->n_planes, scenes[i]->n_cylinders);
+		printf("Scene %d: spheres: %d, planes: %d, cylinders: %d\n", \
+				scenes[i]->id, scenes[i]->n_spheres, \
+				scenes[i]->n_planes, scenes[i]->n_cylinders);
 		parse_file(fd[i], scenes[i]);
 	}
 }
