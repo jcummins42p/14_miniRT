@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 21:10:16 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 15:52:29 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 //	parse_attributes.c
 int		set_colors(char *input);
 void	zero_vector(t_vector vec);
+void	print_color(char *pre, char *mid, char *post, int color);
 void	set_vector(t_vector vec, char *input);
 void	print_vector(char *message, t_vector vec);
 
@@ -24,10 +25,22 @@ void	parse_ambient(char *input, t_scene *scene);
 void	parse_camera(char *input, t_scene *scene);
 void	parse_light(char *input, t_scene *scene);
 
+//	print_uniqs.c
+void	print_ambient(t_ambient ambient);
+void	print_camera(t_camera camera);
+void	print_light(t_light light);
+void	print_uniqs(t_scene *scene);
+
 //	print_shapes.c
 void	print_sphere(t_sphere sphere);
 void	print_plane(t_plane plane);
 void	print_cylinder(t_cylinder cylinder);
+void	print_shapes(t_scene *scene);
+
+//	print_scene.c
+void	print_meta(t_scene *scene);
+void	print_scene(t_scene *scene);
+void	print_scenes(t_scene **scene, int n_scenes);
 
 //	parse_shapes.c
 void	parse_sphere(char *input, t_scene *scene);

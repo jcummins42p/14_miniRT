@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:45:11 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 21:03:43 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:13:01 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	parse_sphere(char *input, t_scene *scene)
 		printf("Error: NULL string passed to parse_plane, init to default\n");
 	else
 	{
-		while (scene->sphs[i].id)
+		while (scene->sphs[i].id >= 0)
 			i++;
 		items = ft_split(input, ' ');
 		scene->sphs[i].id = i;
@@ -31,8 +31,6 @@ void	parse_sphere(char *input, t_scene *scene)
 		scene->sphs[i].color = set_colors(items[3]);
 		ft_free_string_list(items);
 	}
-	if (DEBUGMODE && scene->valid)
-		print_sphere(scene->sphs[i]);
 }
 
 void	parse_plane(char *input, t_scene *scene)
@@ -45,7 +43,7 @@ void	parse_plane(char *input, t_scene *scene)
 		printf("Error: NULL string passed to parse_plane, init to default\n");
 	else
 	{
-		while (scene->sphs[i].id)
+		while (scene->plns[i].id >= 0)
 			i++;
 		items = ft_split(input, ' ');
 		scene->plns[i].id = i;
@@ -54,8 +52,6 @@ void	parse_plane(char *input, t_scene *scene)
 		scene->plns[i].color = set_colors(items[3]);
 		ft_free_string_list(items);
 	}
-	if (DEBUGMODE && scene->valid)
-		print_plane(scene->plns[i]);
 }
 
 void	parse_cylinder(char *input, t_scene *scene)
@@ -68,16 +64,15 @@ void	parse_cylinder(char *input, t_scene *scene)
 		printf("Error: NULL string passed to parse_plane, init to default\n");
 	else
 	{
-		while (scene->cyls[i].id)
+		while (scene->cyls[i].id >= 0)
 			i++;
 		items = ft_split(input, ' ');
-		scene->plns[i].id = i;
+		scene->cyls[i].id = i;
 		set_vector(scene->cyls[i].center, items[1]);
 		set_vector(scene->cyls[i].axis, items[2]);
 		scene->cyls[i].diamtr = ft_atof(items[3]);
 		scene->cyls[i].height = ft_atof(items[4]);
+		scene->cyls[i].color = set_colors(items[5]);
 		ft_free_string_list(items);
 	}
-	if (DEBUGMODE && scene->valid)
-		print_cylinder(scene->cyls[i]);
 }

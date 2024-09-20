@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:04:53 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 20:09:26 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 15:18:55 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	preparse(int fd[], t_scene **scenes, int n_scenes)
 	int		i;
 
 	i = -1;
-	printf("Pre-parsing input to set number of shapes\n");
 	while (++i < n_scenes)
 	{
 		line = NULL;

@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 20:38:55 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:04:00 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	main(int argc, char **argv)
 	alloc_shapes(scenes, argc - 1);
 	open_scenes(fd, argc - 1, argv);
 	parse(fd, argc, scenes);
+	print_scenes(scenes, argc - 1);
 	free_scenes(scenes, argc - 1);
 	free(fd);
 	return (0);

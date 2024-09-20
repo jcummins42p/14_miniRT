@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:57:21 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 20:50:58 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:06:56 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,5 @@ void	parse(int *fd, int argc, t_scene **scenes)
 
 	i = -1;
 	while (++i < argc - 1)
-	{
-		printf("\n\nFile %d (%s) input:\n", i, scenes[i]->fname);
-		printf("Scene %d: spheres: %d, planes: %d, cylinders: %d\n", \
-				scenes[i]->id, scenes[i]->n_spheres, \
-				scenes[i]->n_planes, scenes[i]->n_cylinders);
 		parse_file(fd[i], scenes[i]);
-	}
 }

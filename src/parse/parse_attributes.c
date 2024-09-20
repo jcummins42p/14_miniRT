@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 20:50:45 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 15:57:50 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@ void	zero_vector(t_vector vec)
 	i = 0;
 	while (i < 3)
 		vec[i++] = 0.0;
-}
-
-void	print_vector(char *message, t_vector vec)
-{
-	printf("%s", message);
-	printf("%.2f,%.2f,%.2f", vec[0], vec[1], vec[2]);
 }
 
 void	set_vector(t_vector vec, char *input)
