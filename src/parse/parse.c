@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:57:21 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 14:06:56 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 16:40:38 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ void	parse_file(int fd, t_scene *scene)
 	}
 }
 
-void	parse(int *fd, int argc, t_scene **scenes)
+void	parse(t_rt *rt)
 {
 	int	i;
 
 	i = -1;
-	while (++i < argc - 1)
-		parse_file(fd[i], scenes[i]);
+	while (++i < rt->n_scenes)
+		parse_file(rt->fd[i], rt->scenes[i]);
 }

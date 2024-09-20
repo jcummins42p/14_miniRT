@@ -6,18 +6,20 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:24:31 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 20:43:18 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 16:36:21 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	alloc_shapes(t_scene **scenes, int n_scenes)
+int	alloc_shapes(t_rt *rt)
 {
-	int	i;
+	t_scene	**scenes;
+	int		i;
 
+	scenes = rt->scenes;
 	i = -1;
-	while (++i < n_scenes)
+	while (++i < rt->n_scenes)
 	{
 		scenes[i]->sphs = malloc(sizeof(t_sphere) * scenes[i]->n_spheres);
 		scenes[i]->plns = malloc(sizeof(t_plane) * scenes[i]->n_planes);

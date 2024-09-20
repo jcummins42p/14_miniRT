@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:57:37 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 15:18:28 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 16:44:00 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	print_scene(t_scene *scene)
 	print_shapes(scene);
 }
 
-void	print_scenes(t_scene **scenes, int n_scenes)
+void	print_scenes(t_rt *rt)
 {
 	int	i;
 
 	i = 0;
-	while (i < n_scenes)
-		print_scene(scenes[i++]);
+	while (i < rt->n_scenes)
+		print_scene(rt->scenes[i++]);
 }

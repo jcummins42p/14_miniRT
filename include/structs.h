@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 21:13:48 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 19:54:39 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,19 @@ typedef struct s_cylinder
 	t_color		color;
 }				t_cylinder;
 
+typedef struct s_img
+{
+	void	*img;
+	char 	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_img;
+
 typedef struct s_scene
 {
 	char		*fname;
+	t_img		*img;
 	t_ambient	amb;
 	t_camera	cam;
 	t_light		light;
@@ -83,5 +93,21 @@ typedef struct s_scene
 	t_color		sky;
 	bool		valid;
 }				t_scene;
+
+typedef struct s_rt
+{
+	t_scene	**scenes;
+	int		*fd;
+	int		curr_scene;
+	int		n_scenes;
+	int		errcode;
+}				t_rt;
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	t_rt	*rt;
+}				t_mlx;
 
 #endif

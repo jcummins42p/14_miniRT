@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:32:54 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/19 20:37:07 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 19:48:00 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,21 @@
 void	free_scene(t_scene *scene)
 {
 	free (scene->fname);
+	free (scene->img);
 	free (scene->cyls);
 	free (scene->plns);
 	free (scene->sphs);
 	free (scene);
 }
 
-void	free_scenes(t_scene **scenes, int n_scenes)
+void	free_scenes(t_rt *rt)
 {
 	int	i;
 
 	i = 0;
-	while (i < n_scenes)
-		free_scene(scenes[i++]);
-	free (scenes);
+	while (i < rt->n_scenes)
+		free_scene(rt->scenes[i++]);
+	free (rt->scenes);
 }
 
 void	dealloc_shapes(t_scene **scenes, int i)

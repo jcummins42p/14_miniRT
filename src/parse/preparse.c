@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:04:53 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 15:18:55 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 16:28:04 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,23 @@ void	preparse_select(char *line, t_scene *scene)
 		scene->n_cylinders++;
 }
 
-void	preparse(int fd[], t_scene **scenes, int n_scenes)
+void	preparse(t_rt *rt)
 {
 	char	*line;
 	int		i;
 
 	i = -1;
-	while (++i < n_scenes)
+	while (++i < rt->n_scenes)
 	{
 		line = NULL;
-		line = get_next_line(fd[i]);
+		line = get_next_line(rt->fd[i]);
 		while (line)
 		{
-			preparse_select(line, scenes[i]);
+			preparse_select(line, rt->scenes[i]);
 			free (line);
-			line = get_next_line(fd[i]);
+			line = get_next_line(rt->fd[i]);
 		}
 	}
 	while (--i >= 0)
-		close (fd[i]);
+		close (rt->fd[i]);
 }
