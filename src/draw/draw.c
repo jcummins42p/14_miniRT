@@ -6,13 +6,13 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 20:16:33 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 20:32:50 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	pixel_put(t_img *img, int x, int y, int color)
+void	pixel_put_img(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
@@ -20,18 +20,20 @@ void	pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	cast_ray(t_scene *scene, int x, int y)
+void	cast_ray(t_mlx * mlx, t_scene *scene, int x, int y)
 {
-	pixel_put(scene->img, x, y, scene->sky);
+	(void)mlx;
+	/*mlx_pixel_put(mlx->mlx, mlx->win, x, y, scene->sky);*/
+	pixel_put_img(scene->img, x, y, scene->sky);
 }
 
-void	render_row(t_scene *scene, int y)
+void	render_row(t_mlx *mlx, t_scene *scene, int y)
 {
 	int	x;
 
 	x = 0;
 	while (x < RES_W)
-		cast_ray(scene, x++, y);
+		cast_ray(mlx, scene, x++, y);
 }
 
 int	img_init(t_mlx *mlx, t_img *img)
@@ -55,7 +57,7 @@ void	render_scene(t_mlx *mlx, t_scene *scene)
 	if (img_init(mlx, scene->img))
 		return ;
 	while (y < RES_H)
-		render_row(scene, y++);
+		render_row(mlx, scene, y++);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, scene->img->img, 0, 0);
 	mlx_destroy_image(mlx->mlx, scene->img->img);
 }
