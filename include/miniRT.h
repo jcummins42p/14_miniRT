@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:58:24 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 14:17:00 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 22:14:21 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <mlx.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <X11/XKBlib.h>
 
 # include "defines.h"
 # include "enums.h"

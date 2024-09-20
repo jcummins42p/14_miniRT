@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:38:24 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 19:47:30 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 21:59:38 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	init_scene(t_scene *scene, char *filename, int id)
 	scene->img = malloc(sizeof(t_img));
 	scene->id = id;
 	scene->valid = true;
+	scene->rend.scan = false;
+	scene->rend.res = RES_FULL;
 	scene->n_cylinders = 0;
 	scene->n_planes = 0;
 	scene->n_spheres = 0;
@@ -44,7 +46,7 @@ void	init_scenes(t_rt *rt, char **argv)
 
 	i = -1;
 	while (++i < rt->n_scenes)
-		init_scene(rt->scenes[i], argv[i + 1], rt->n_scenes);
+		init_scene(rt->scenes[i], argv[i + 1], i);
 }
 
 void	init_spheres(t_scene *scene)

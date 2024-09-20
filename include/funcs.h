@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 19:38:17 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 21:17:13 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void	render_scene(t_mlx *mlx, t_scene *scene);
 
 //	hud.c
-void	display_hud(t_mlx *mlx);
+void	display_hud(t_mlx *mlx, t_scene *scene);
 
 //	hookhandle_mouse.c
 int		b_no_event(void *vars);

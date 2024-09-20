@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:05:00 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 17:54:40 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 20:45:38 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ enum e_errcode
 	ERR_OTHER
 };
 
-enum
+enum e_keypress
 {
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
@@ -34,6 +34,15 @@ enum
 	ON_MOUSEMOVE = 6,
 	ON_EXPOSE = 12,
 	ON_DESTROY = 17
+};
+
+enum e_rescode
+{
+	RES_FULL = 1,
+	RES_HALF,
+	RES_QUART,
+	RES_EIGHTH,
+	RES_SIXNTH,
 };
 
 #endif

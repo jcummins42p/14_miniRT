@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 19:54:39 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 20:48:15 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,17 @@ typedef struct s_img
 	int		endian;
 }				t_img;
 
+typedef struct s_render
+{
+	int		res;
+	bool	scan;
+}				t_render;
+
 typedef struct s_scene
 {
 	char		*fname;
 	t_img		*img;
+	t_render	rend;
 	t_ambient	amb;
 	t_camera	cam;
 	t_light		light;

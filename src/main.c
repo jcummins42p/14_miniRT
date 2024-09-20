@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 19:38:44 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 22:06:40 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ int	set_mlx(t_mlx *mlx, t_rt *rt)
 	if (mlx->win == NULL)
 		return (3);
 	mlx->rt = rt;
-	mlx_hook(mlx->win, KeyPress, KeyPressMask, &k_press, mlx);
-	mlx_hook(mlx->win, KeyRelease, KeyReleaseMask, &k_release, mlx);
-	mlx_hook(mlx->win, ButtonPress, ButtonPressMask, &b_press, mlx);
-	mlx_hook(mlx->win, ButtonRelease, ButtonReleaseMask, &b_release, mlx);
-	mlx_hook(mlx->win, ON_DESTROY, ButtonPressMask, &handle_destroy, mlx);
+	mlx_hook(mlx->win, KeyPress, KeyPressMask, k_press, mlx);
+	mlx_hook(mlx->win, KeyRelease, KeyReleaseMask, k_release, mlx);
+	mlx_hook(mlx->win, ButtonPress, ButtonPressMask, b_press, mlx);
+	mlx_hook(mlx->win, ButtonRelease, ButtonReleaseMask, b_release, mlx);
+	mlx_hook(mlx->win, ON_DESTROY, ButtonPressMask, handle_destroy, mlx);
 	return (0);
 }
 
@@ -104,7 +104,7 @@ int	main(int argc, char **argv)
 	parse(&rt);
 	print_scenes(&rt);
 	render_scene(&mlx, rt.scenes[0]);
-	display_hud(&mlx);
+	/*display_hud(&mlx);*/
 	mlx_loop(mlx.mlx);
 	cleanup_mlx(&mlx);
 	free_scenes(&rt);

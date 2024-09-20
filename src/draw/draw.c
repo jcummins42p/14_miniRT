@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 20:32:50 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/20 21:51:10 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@ void	pixel_put_img(t_img *img, int x, int y, int color)
 void	cast_ray(t_mlx * mlx, t_scene *scene, int x, int y)
 {
 	(void)mlx;
-	/*mlx_pixel_put(mlx->mlx, mlx->win, x, y, scene->sky);*/
-	pixel_put_img(scene->img, x, y, scene->sky);
+	if (!scene->valid)
+		return ;
+	if (scene->rend.scan)
+		mlx_pixel_put(mlx->mlx, mlx->win, x, y, scene->sky);
+	else
+		pixel_put_img(scene->img, x, y, scene->sky);
 }
 
 void	render_row(t_mlx *mlx, t_scene *scene, int y)
@@ -58,6 +62,9 @@ void	render_scene(t_mlx *mlx, t_scene *scene)
 		return ;
 	while (y < RES_H)
 		render_row(mlx, scene, y++);
-	mlx_put_image_to_window(mlx->mlx, mlx->win, scene->img->img, 0, 0);
-	mlx_destroy_image(mlx->mlx, scene->img->img);
+	if (!scene->rend.scan)
+	{
+		mlx_put_image_to_window(mlx->mlx, mlx->win, scene->img->img, 0, 0);
+		mlx_destroy_image(mlx->mlx, scene->img->img);
+	}
 }
