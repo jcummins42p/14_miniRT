@@ -6,12 +6,18 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:05:00 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 20:45:38 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/21 17:30:29 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENUMS_H
 # define ENUMS_H
+
+enum e_lock
+{
+	UNLOCKED,
+	LOCKED
+};
 
 enum e_errcode
 {

@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 22:30:26 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/21 17:33:10 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,25 @@ int	keysym_translate(int keysym)
 	int	output;
 
 	output = -1;
-	if (keysym == 233)
+	if (keysym == XK_0)
 		output = 0;
-	else if (keysym == 43)
+	else if (keysym == XK_1)
 		output = 1;
-	else if (keysym == 492)
+	else if (keysym == XK_2)
 		output = 2;
-	else if (keysym == 441)
+	else if (keysym == XK_3)
 		output = 3;
-	else if (keysym == 488)
+	else if (keysym == XK_4)
 		output = 4;
-	else if (keysym == 504)
+	else if (keysym == XK_5)
 		output = 5;
-	else if (keysym == 446)
+	else if (keysym == XK_6)
 		output = 6;
-	else if (keysym == 253)
+	else if (keysym == XK_7)
 		output = 7;
-	else if (keysym == 225)
+	else if (keysym == XK_8)
 		output = 8;
-	else if (keysym == 237)
+	else if (keysym == XK_9)
 		output = 9;
 	printf("Pressed numkey %d\n", output);
 	return (output);
