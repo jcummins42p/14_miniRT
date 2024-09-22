@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 21:17:13 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/22 09:52:43 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		k_release(int keysym, void *vars);
 int		k_press(int keysym, t_mlx *mlx);
 
 //	parse_attributes.c
-int		set_colors(char *input);
+int		set_color(char *input);
 void	zero_vector(t_vector vec);
 void	print_color(char *pre, char *mid, char *post, int color);
 void	set_vector(t_vector vec, char *input);
@@ -85,7 +85,7 @@ t_scene	**alloc_scenes(int n_scenes);
 
 //	utils_free.c
 void	free_scene(t_scene *scene);
-void	free_scenes(t_rt *rt);
+void	free_rt(t_rt *rt);
 void	dealloc_shapes(t_scene **scenes, int i);
 
 #endif

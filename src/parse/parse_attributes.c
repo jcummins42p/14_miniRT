@@ -6,13 +6,13 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 15:57:50 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/22 09:52:18 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	set_colors(char *input) // assumes csv RGB
+int	set_color(char *input) // assumes csv RGB
 {
 	char	**items;
 	int		color;

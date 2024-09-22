@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:57:21 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 16:40:38 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/22 09:45:02 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ void	parse_file(int fd, t_scene *scene)
 		free (line);
 		line = get_next_line(fd);
 	}
+	if (!scene->amb.lock || !scene->cam.lock || !scene->light.lock
+		|| !(scene->n_cylinders + scene->n_planes + scene->n_spheres))
+		scene->valid = false;
 }
 
 void	parse(t_rt *rt)

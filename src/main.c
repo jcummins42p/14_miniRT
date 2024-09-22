@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 22:06:40 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/22 09:32:15 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,8 @@ int	main(int argc, char **argv)
 	open_scenes(&rt, argv);
 	parse(&rt);
 	print_scenes(&rt);
-	render_scene(&mlx, rt.scenes[0]);
-	/*display_hud(&mlx);*/
 	mlx_loop(mlx.mlx);
 	cleanup_mlx(&mlx);
-	free_scenes(&rt);
-	free(rt.fd);
+	free_rt(&rt);
 	return (0);
 }

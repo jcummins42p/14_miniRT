@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:45:11 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 14:13:01 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/22 09:54:00 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	parse_sphere(char *input, t_scene *scene)
 		scene->sphs[i].id = i;
 		set_vector(scene->sphs[i].center, items[1]);
 		scene->sphs[i].diamtr = ft_atof(items[2]);
-		scene->sphs[i].color = set_colors(items[3]);
+		scene->sphs[i].color = set_color(items[3]);
 		ft_free_string_list(items);
 	}
 }
@@ -49,7 +49,7 @@ void	parse_plane(char *input, t_scene *scene)
 		scene->plns[i].id = i;
 		set_vector(scene->plns[i].anch, items[1]);
 		set_vector(scene->plns[i].norm, items[2]);
-		scene->plns[i].color = set_colors(items[3]);
+		scene->plns[i].color = set_color(items[3]);
 		ft_free_string_list(items);
 	}
 }
@@ -72,7 +72,7 @@ void	parse_cylinder(char *input, t_scene *scene)
 		set_vector(scene->cyls[i].axis, items[2]);
 		scene->cyls[i].diamtr = ft_atof(items[3]);
 		scene->cyls[i].height = ft_atof(items[4]);
-		scene->cyls[i].color = set_colors(items[5]);
+		scene->cyls[i].color = set_color(items[5]);
 		ft_free_string_list(items);
 	}
 }

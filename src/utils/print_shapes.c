@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:59:15 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 15:53:49 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/22 09:51:40 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_sphere(t_sphere sphere)
 {
-	printf("  Sph.%3d:", sphere.id);
+	printf("  Sph.%-2d:", sphere.id);
 	print_vector(" center: ", sphere.center);
 	printf("\tdiameter: %9.2f", sphere.diamtr);
 	print_color("\tcolor: ", "", "\n", sphere.color);
@@ -22,7 +22,7 @@ void	print_sphere(t_sphere sphere)
 
 void	print_plane(t_plane plane)
 {
-	printf("  Pln.%3d:", plane.id);
+	printf("  Pln.%-2d:", plane.id);
 	print_vector(" anchor: ", plane.anch);
 	print_vector("\tnorm: ", plane.anch);
 	print_color("\tcolor: ", "", "\n", plane.color);
@@ -30,7 +30,7 @@ void	print_plane(t_plane plane)
 
 void	print_cylinder(t_cylinder cylinder)
 {
-	printf("  Cyl.%3d:", cylinder.id);
+	printf("  Cyl.%-2d:", cylinder.id);
 	print_vector(" center: ", cylinder.center);
 	print_vector("\taxis: ", cylinder.axis);
 	printf("\tdiameter: %.2f", cylinder.diamtr);

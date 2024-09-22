@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:47:58 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 22:33:01 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/22 09:53:16 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	parse_ambient(char *input, t_scene *scene)
 	{
 		items = ft_split(input, ' ');
 		scene->amb.lum = ft_atof(items[1]);
-		scene->amb.hue = set_colors(items[2]);
+		scene->amb.hue = set_color(items[2]);
 		scene->sky = scene->amb.hue;
 		ft_free_string_list(items);
 	}
@@ -61,7 +61,7 @@ void	parse_light(char *input, t_scene *scene)
 		items = ft_split(input, ' ');
 		set_vector(scene->light.point, items[1]);
 		scene->light.lum = ft_atof(items[2]);
-		scene->light.hue = set_colors(items[3]);
+		scene->light.hue = set_color(items[3]);
 		ft_free_string_list(items);
 	}
 }
