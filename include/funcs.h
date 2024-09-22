@@ -6,12 +6,16 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/22 09:52:43 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/22 12:04:15 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCS_H
 # define FUNCS_H
+
+//	bounding_aa.c
+void	aa_bound_sphere(t_sphere *sphere);
+void	aa_bound_capsule(t_cylinder *cylinder);
 
 //	draw.c
 void	render_scene(t_mlx *mlx, t_scene *scene);

@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:59:15 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/22 09:51:40 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/22 10:48:42 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	print_sphere(t_sphere sphere)
 	print_vector(" center: ", sphere.center);
 	printf("\tdiameter: %9.2f", sphere.diamtr);
 	print_color("\tcolor: ", "", "\n", sphere.color);
+	print_vector("    ->bb: min: ", sphere.bounds.min);
+	print_vector("\tbb_max: ", sphere.bounds.max);
+	printf("\n");
 }
 
 void	print_plane(t_plane plane)

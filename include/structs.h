@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/21 17:29:55 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/22 10:21:37 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,15 @@ typedef struct s_light
 	t_color		hue;
 }				t_light;
 
+typedef struct s_bbox
+{
+	t_vector	min;
+	t_vector	max;
+}				t_bbox;
+
 typedef struct s_sphere
 {
+	t_bbox		bounds;
 	t_vector	center;
 	float		diamtr;
 	int			id;
@@ -51,6 +58,7 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
+	t_bbox		bounds;
 	t_vector	anch;
 	t_vector	norm;
 	int			id;
@@ -59,6 +67,7 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
+	t_bbox		bounds;
 	t_vector	center;
 	t_vector	axis;
 	float		diamtr;
