@@ -6,11 +6,23 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:45:11 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/22 12:04:04 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/22 12:37:05 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+int		ft_listcount(char **list)
+{
+	int count;
+
+	count = 0;
+	if (!list)
+		return (count);
+	while (list[count])
+		count++;
+	return (count);
+}
 
 void	parse_sphere(char *input, t_scene *scene)
 {
@@ -25,6 +37,11 @@ void	parse_sphere(char *input, t_scene *scene)
 		while (scene->sphs[i].id >= 0)
 			i++;
 		items = ft_split(input, ' ');
+		if (!items || ft_listcount(items) != 4)
+		{
+			scene->valid = false;
+			return ;
+		}
 		scene->sphs[i].id = i;
 		set_vector(scene->sphs[i].center, items[1]);
 		scene->sphs[i].diamtr = ft_atof(items[2]);
@@ -47,6 +64,11 @@ void	parse_plane(char *input, t_scene *scene)
 		while (scene->plns[i].id >= 0)
 			i++;
 		items = ft_split(input, ' ');
+		if (!items || ft_listcount(items) != 4)
+		{
+			scene->valid = false;
+			return ;
+		}
 		scene->plns[i].id = i;
 		set_vector(scene->plns[i].anch, items[1]);
 		set_vector(scene->plns[i].norm, items[2]);
@@ -68,6 +90,11 @@ void	parse_cylinder(char *input, t_scene *scene)
 		while (scene->cyls[i].id >= 0)
 			i++;
 		items = ft_split(input, ' ');
+		if (!items || ft_listcount(items) != 6)
+		{
+			scene->valid = false;
+			return ;
+		}
 		scene->cyls[i].id = i;
 		set_vector(scene->cyls[i].center, items[1]);
 		set_vector(scene->cyls[i].axis, items[2]);
