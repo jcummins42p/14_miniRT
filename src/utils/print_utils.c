@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 15:57:27 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/22 10:49:56 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/22 12:11:08 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void	print_color(char *pre, char *mid, char *post, int color)
 void	print_vector(char *message, t_vector vec)
 {
 	printf("%s", message);
-	printf("%.1f,%.1f,%.1f", vec[0], vec[1], vec[2]);
+	printf("%.1f,%.1f,%-8.1f", vec[0], vec[1], vec[2]);
 }
