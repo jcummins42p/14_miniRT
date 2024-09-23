@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 21:51:10 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:47:29 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,20 @@ void	pixel_put_img(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void	init_ray
+
 void	cast_ray(t_mlx * mlx, t_scene *scene, int x, int y)
 {
-	(void)mlx;
+	t_ray	ray;
+	float	ndc_x;	//	normalized device co-ordinates -1 to 1 , the left and right sides of the screen
+	float	ndc_y;	//	-1 to 1, bottom to top of screen
+
+	ray.origin = scene->cam.point;
+
+	ndc_x = (2.0 * x) / RES_W - 1.0;
+	ndc_y = 1.0 - (2.0 * y) / RES_H;
+
+
 	if (!scene->valid)
 		return ;
 	if (scene->rend.scan)

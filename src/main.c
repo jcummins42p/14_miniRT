@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/23 09:54:19 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:46:57 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,8 @@ void	init_rt(t_rt *rt, int argc)
 	rt->scenes = alloc_scenes(rt->n_scenes);
 }
 
-int	handle_destroy(void *params)
+int	handle_destroy(t_mlx *mlx)
 {
-	t_mlx	*mlx;
-
-	mlx = params;
 	k_press(0xff1b, mlx);
 	return (0);
 }
@@ -55,6 +52,7 @@ int	set_mlx(t_mlx *mlx, t_rt *rt)
 	if (mlx->win == NULL)
 		return (3);
 	mlx->rt = rt;
+	mlx->aspect_ratio = RES_W / RES_H;
 	mlx_hook(mlx->win, KeyPress, KeyPressMask, k_press, mlx);
 	mlx_hook(mlx->win, KeyRelease, KeyReleaseMask, k_release, mlx);
 	mlx_hook(mlx->win, ButtonPress, ButtonPressMask, b_press, mlx);
@@ -103,5 +101,5 @@ int	main(int argc, char **argv)
 	print_scenes(&rt);
 	mlx_loop(mlx.mlx);
 	cleanup_mlx(&mlx);
-	return (0);
+	return (rt.errcode);
 }

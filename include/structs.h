@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/22 10:21:37 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:46:27 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 
 typedef float	t_vector[3];
 typedef int		t_color;
+
+typedef struct s_ray
+{
+	t_vector	*origin;
+	t_vector	*dir;
+	t_vector	*udir;
+}				t_ray;
 
 typedef struct s_ambient
 {
@@ -124,6 +131,7 @@ typedef struct s_mlx
 	void	*mlx;
 	void	*win;
 	t_rt	*rt;
+	float	aspect_ratio;
 }				t_mlx;
 
 #endif
