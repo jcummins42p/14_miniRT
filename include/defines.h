@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:16:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/23 13:09:48 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:20:40 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define DEFINES_H
 
 # define DEBUGMODE 1
+# define EPSILON 0.00001
 
 # define KDEF "\x1B[0m"
 # define KRED "\x1B[31m"

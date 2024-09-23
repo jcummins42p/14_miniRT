@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:05:00 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/21 17:30:29 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:35:52 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ enum e_lock
 {
 	UNLOCKED,
 	LOCKED
+};
+
+enum e_coords
+{
+	_X,
+	_Y,
+	_Z
 };
 
 enum e_errcode

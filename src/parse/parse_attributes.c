@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/23 14:43:21 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:21:58 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,14 @@ void	set_vector(t_vector vec, char *input)
 
 int	set_unit_vector(t_vector vec, char *input)
 {
+	float	error;
+
+	error = 1;
 	set_vector(vec, input);
-	if (vector_length(vec) != 1)
+	error = fl_abs(1 - vector_length(vec));
+	if (error > EPSILON)
 	{
-		printf("Vector should be a unit vector but doesn't equal 1\n");
+		printf("Error: Invalid unit vector input\n");
 		return (1);
 	}
 	return (0);

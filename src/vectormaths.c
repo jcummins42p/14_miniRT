@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/23 14:45:58 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:39:24 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,23 @@ float	fl_abs(float f)
 	return (f);
 }
 
+float	dot(t_vector a, t_vector b)
+{
+	return (a[_X] * b[_X] + a[_Y] * b[_Y] + a[_Z] * b[_Z]);
+}
+
+void	vector_scaleize(t_vector scalar, t_vector unit, float magnitude)
+{
+	scalar[_X] = unit[_X] * magnitude;
+	scalar[_Y] = unit[_Y] * magnitude;
+	scalar[_Z] = unit[_Z] * magnitude;
+}
+
 float	vector_length(t_vector vec)
 {
-	return (sqrtf((vec[0] * vec[0])
-			+ (vec[1] * vec[1])
-			+ (vec[2] * vec[2])));
+	return (sqrtf((vec[_X] * vec[_X])
+			+ (vec[_Y] * vec[_Y])
+			+ (vec[_Z] * vec[_Z])));
 }
 
 //	stores the unit vector of 'direction' in 'unit'
@@ -34,8 +46,8 @@ void	vector_normalize(t_vector unit, t_vector direction)
 	v_len = vector_length(direction);
 	if (v_len != 0)
 	{
-		unit[0] = direction[0] / v_len;
-		unit[1] = direction[1] / v_len;
-		unit[2] = direction[2] / v_len;
+		unit[_X] = direction[_X] / v_len;
+		unit[_Y] = direction[_Y] / v_len;
+		unit[_Z] = direction[_Z] / v_len;
 	}
 }
