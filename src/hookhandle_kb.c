@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/21 17:33:10 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:20:22 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,44 @@ int	keysym_translate(int keysym)
 	return (output);
 }
 
+void	kp_scene_select(int keysym, t_mlx *mlx)
+{
+	t_rt	*rt;
+
+	rt = mlx->rt;
+	if (keysym == XK_KP_Add)
+	{
+		if (rt->curr_scene < (rt->n_scenes - 1))
+			rt->curr_scene += 1;
+	}
+	else if (keysym == XK_KP_Subtract)
+	{
+		if (rt->curr_scene > 0)
+			rt->curr_scene -= 1;
+	}
+	print_scene(mlx->rt->scenes[mlx->rt->curr_scene]);
+	display_hud(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
+}
+
+void	kp_scene_change(t_mlx *mlx)
+{
+	if (mlx->rt->scenes[mlx->rt->curr_scene]->valid)
+		render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
+	else
+		printf("Unable to render invalid scene\n");
+}
+
 int	k_select(int keysym, t_mlx *mlx)
 {
 	int newscene;
 
 	newscene = -1;
 	newscene = keysym_translate(keysym);
-	if (newscene >= 0 && newscene < mlx->rt->n_scenes)
+	if (keysym == XK_KP_Add || keysym == XK_KP_Subtract)
+		kp_scene_select(keysym, mlx);
+	else if (keysym == XK_KP_Enter)
+		kp_scene_change(mlx);
+	else if (newscene >= 0 && newscene < mlx->rt->n_scenes)
 	{
 		printf("Acessing scene %d\n", newscene);
 		mlx->rt->curr_scene = newscene;

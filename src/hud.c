@@ -6,26 +6,42 @@
 /*   By: jcummins <jcummins@student.42prague.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:41:50 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/21 16:52:33 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:33:18 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
+void	display_hud_background(t_mlx *mlx)
+{
+	int	x;
+	int	y;
+
+	x = 25;
+	y = 25;
+	while (y++ < 120)
+	{
+		x = 25;
+		while (x < 340)
+			mlx_pixel_put(mlx->mlx, mlx->win, x++, y, 0x000000);
+	}
+}
+
 void	display_hud(t_mlx *mlx, t_scene *scene)
 {
-	int		xi;
-	int		x[20] = {50, 70, 90, 110, 130, 150, 170, 190, 210, 230, 250};
-	int		y = 50;
+	int		yi;
+	int		y[20] = {60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260};
+	int		x = 50;
 	char	*id;
 
-	xi = 0;
+	yi = 0;
 	id = ft_itoa(scene->id);
-	mlx_string_put(mlx->mlx, mlx->win, y, x[xi], 0x777777, "Scene #");
-	mlx_string_put(mlx->mlx, mlx->win, y + 45, x[xi], 0x777777, id);
-	mlx_string_put(mlx->mlx, mlx->win, y + 55, x[xi++], 0x777777, scene->fname);
+	display_hud_background(mlx);
+	mlx_string_put(mlx->mlx, mlx->win, x, y[yi], 0xFFFFFF, "Scene #");
+	mlx_string_put(mlx->mlx, mlx->win, x + 45, y[yi++], 0xFFFFFF, id);
+	mlx_string_put(mlx->mlx, mlx->win, x, y[yi++], 0xFFFFFF, scene->fname);
 	if (!scene->valid)
-		mlx_string_put(mlx->mlx, mlx->win, y, x[xi++], 0x771111, \
+		mlx_string_put(mlx->mlx, mlx->win, x, y[yi++], 0xFF1111, \
 				"*** INPUT SCENE INVALID: CANNOT RENDER***");
 	free(id);
 }
