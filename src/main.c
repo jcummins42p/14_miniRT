@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/22 09:32:15 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:37:18 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	open_scenes(t_rt *rt, char **argv)
 	{
 		rt->fd[i] = open(argv[i + 1], O_RDONLY);
 		if (rt->fd[i] < 0)
-			return (i);
+			return (1);
 	}
 	return (0);
 }
@@ -33,16 +33,6 @@ void	init_rt(t_rt *rt, int argc)
 	rt->n_scenes = argc - 1;
 	rt->fd = malloc(sizeof(int) * rt->n_scenes);
 	rt->scenes = alloc_scenes(rt->n_scenes);
-}
-
-void	free_mlx(t_mlx *mlx)
-{
-	if (!mlx)
-		return ;
-	if (mlx->mlx)
-		free (mlx->mlx);
-	if (mlx->win)
-		free (mlx->win);
 }
 
 int	handle_destroy(void *params)
@@ -73,11 +63,32 @@ int	set_mlx(t_mlx *mlx, t_rt *rt)
 	return (0);
 }
 
+int	set_rt(int argc, char **argv, t_rt *rt)
+{
+	init_rt(rt, argc);
+	init_scenes(rt, argv);
+	if (!rt->scenes)
+		return (1);
+	if (open_scenes(rt, argv))
+		return (1);
+	preparse(rt);
+	alloc_shapes(rt);
+	open_scenes(rt, argv);
+	parse(rt);
+	return (0);
+}
+
 void	cleanup_mlx(t_mlx *mlx)
 {
+	if (!mlx)
+		return ;
+	free_rt(mlx->rt);
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	mlx_destroy_display(mlx->mlx);
-	free(mlx->mlx);
+	if (mlx->mlx)
+		free (mlx->mlx);
+	/*if (mlx->win)*/
+		/*free (mlx->win);*/
 }
 
 int	main(int argc, char **argv)
@@ -86,25 +97,13 @@ int	main(int argc, char **argv)
 	t_rt	rt;
 
 	if (argc < 2)
-		exit_error("Error: Wrong number of arguments", ERR_ARGC);
+		exit_error(NULL, "Error: Wrong number of arguments\n", ERR_ARGC);
 	if (set_mlx(&mlx, &rt))
-	{
-		free_mlx(&mlx);
-		return (ERR_MLX);
-	}
-	init_rt(&rt, argc);
-	init_scenes(&rt, argv);
-	if (!rt.scenes)
-		exit_error("Error: Failure to malloc scenes", ERR_MALLOC);
-	if (open_scenes(&rt, argv))
-		exit_error("Error: Failure to open files", ERR_ARGV);
-	preparse(&rt);
-	alloc_shapes(&rt);
-	open_scenes(&rt, argv);
-	parse(&rt);
+		exit_error(&mlx, "Error: Failure to initialize mlx\n", ERR_ARGC);
+	if (set_rt(argc, argv, &rt))
+		exit_error(&mlx, "Error: Failure to parse input files\n", ERR_ARGC);
 	print_scenes(&rt);
 	mlx_loop(mlx.mlx);
 	cleanup_mlx(&mlx);
-	free_rt(&rt);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:45:11 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/22 12:37:05 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:28:51 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	parse_sphere(char *input, t_scene *scene)
 		if (!items || ft_listcount(items) != 4)
 		{
 			scene->valid = false;
+			ft_free_string_list(items);
 			return ;
 		}
 		scene->sphs[i].id = i;
@@ -67,6 +68,7 @@ void	parse_plane(char *input, t_scene *scene)
 		if (!items || ft_listcount(items) != 4)
 		{
 			scene->valid = false;
+			ft_free_string_list(items);
 			return ;
 		}
 		scene->plns[i].id = i;

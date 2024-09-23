@@ -6,12 +6,14 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/22 12:04:15 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:23:20 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCS_H
 # define FUNCS_H
+
+void	cleanup_mlx(t_mlx *mlx);
 
 //	bounding_aa.c
 void	aa_bound_sphere(t_sphere *sphere);
@@ -81,7 +83,7 @@ void	init_planes(t_scene *scene);
 void	init_cylinders(t_scene *scene);
 
 //	error.c
-void	exit_error(char *message, int errcode);
+void	exit_error(t_mlx *mlx, char *message, int errcode);
 
 //	utils_alloc.c
 int		alloc_shapes(t_rt *rt);
