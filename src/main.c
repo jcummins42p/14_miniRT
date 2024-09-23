@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/23 09:37:18 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:54:19 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ void	cleanup_mlx(t_mlx *mlx)
 	mlx_destroy_display(mlx->mlx);
 	if (mlx->mlx)
 		free (mlx->mlx);
-	/*if (mlx->win)*/
-		/*free (mlx->win);*/
 }
 
 int	main(int argc, char **argv)
