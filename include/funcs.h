@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/23 09:23:20 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:48:55 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 # define FUNCS_H
 
 void	cleanup_mlx(t_mlx *mlx);
+
+//	vectormaths.c
+float	fl_abs(float f);
+float	vector_length(t_vector vec);
+void	vector_normalize(t_vector unit, t_vector direction);
 
 //	bounding_aa.c
 void	aa_bound_sphere(t_sphere *sphere);
@@ -40,6 +45,7 @@ int		set_color(char *input);
 void	zero_vector(t_vector vec);
 void	print_color(char *pre, char *mid, char *post, int color);
 void	set_vector(t_vector vec, char *input);
+int		set_unit_vector(t_vector vec, char *input);
 void	print_vector(char *message, t_vector vec);
 
 //	parse_uniqs.c

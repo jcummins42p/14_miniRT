@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:47:58 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/22 09:53:16 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:53:53 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	parse_camera(char *input, t_scene *scene)
 	{
 		items = ft_split(input, ' ');
 		set_vector(scene->cam.point, items[1]);
-		set_vector(scene->cam.dir, items[2]);
+		if (set_unit_vector(scene->cam.dir, items[2]))
+			scene->valid = false;
 		scene->cam.fov = ft_atoi(items[3]);
 		ft_free_string_list(items);
 	}

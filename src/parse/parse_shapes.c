@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:45:11 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/23 09:28:51 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:54:51 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	parse_plane(char *input, t_scene *scene)
 		}
 		scene->plns[i].id = i;
 		set_vector(scene->plns[i].anch, items[1]);
-		set_vector(scene->plns[i].norm, items[2]);
+		if (set_unit_vector(scene->plns[i].norm, items[2]))
+			scene->valid = false;
 		scene->plns[i].color = set_color(items[3]);
 		ft_free_string_list(items);
 	}
@@ -99,7 +100,8 @@ void	parse_cylinder(char *input, t_scene *scene)
 		}
 		scene->cyls[i].id = i;
 		set_vector(scene->cyls[i].center, items[1]);
-		set_vector(scene->cyls[i].axis, items[2]);
+		if (set_unit_vector(scene->cyls[i].axis, items[2]))
+			scene->valid = false;
 		scene->cyls[i].diamtr = ft_atof(items[3]);
 		scene->cyls[i].height = ft_atof(items[4]);
 		scene->cyls[i].color = set_color(items[5]);
