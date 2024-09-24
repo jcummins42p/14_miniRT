@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:59:15 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/22 10:48:42 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:04:41 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_plane(t_plane plane)
 {
 	printf("  Pln.%-2d:", plane.id);
 	print_vector(" anchor: ", plane.anch);
-	print_vector("\tnorm: ", plane.anch);
+	print_vector("\tnorm: ", plane.norm);
 	print_color("\tcolor: ", "", "\n", plane.color);
 }
 

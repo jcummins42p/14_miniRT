@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:32:54 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/23 09:49:06 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:59:44 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,8 @@ void	free_scene(t_scene *scene)
 	free (scene);
 }
 
-void	free_rt(t_rt *rt)
-{
-	int	i;
-
-	i = 0;
-	while (i < rt->n_scenes)
-		free_scene(rt->scenes[i++]);
-	free (rt->scenes);
-	i = 0;
-	while (i < rt->n_scenes)
-	{
-		if (rt->fd[i] < 0)
-			break ;
-		close (rt->fd[i++]);
-	}
-	free (rt->fd);
-}
-
 void	dealloc_shapes(t_scene **scenes, int i)
 {
-	printf("Deallocating shapes from memory due to error\n");
 	while (i >= 0)
 	{
 		if (!scenes || !scenes[i])

@@ -6,17 +6,28 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/23 14:48:55 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 16:35:14 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCS_H
 # define FUNCS_H
 
+//	intersections.c
+int		intersect_planes(t_scene *scene, t_ray *ray, float *t);
+
+//	utils_mlx.c
+int		set_mlx(t_mlx *mlx, t_rt *rt);
 void	cleanup_mlx(t_mlx *mlx);
+
+//	utils_rt.c
+int		set_rt(int argc, char **argv, t_rt *rt);
+void	cleanup_rt(t_rt *rt);
 
 //	vectormaths.c
 float	fl_abs(float f);
+void	cross_product(t_vector product, t_vector a, t_vector b);
+float	dot_product(t_vector a, t_vector b);
 float	vector_length(t_vector vec);
 void	vector_normalize(t_vector unit, t_vector direction);
 

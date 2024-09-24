@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/23 16:39:24 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 13:56:28 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,14 @@ float	fl_abs(float f)
 	return (f);
 }
 
-float	dot(t_vector a, t_vector b)
+void	cross_product(t_vector product, t_vector a, t_vector b)
+{
+	product[_X] = a[_Y] * b[_Z] - a[_Z] * b[_Y];
+	product[_Y] = a[_Z] * b[_X] - a[_X] * b[_Z];
+	product[_Z] = a[_X] * b[_Y] - a[_Y] * b[_X];
+}
+
+float	dot_product(t_vector a, t_vector b)
 {
 	return (a[_X] * b[_X] + a[_Y] * b[_Y] + a[_Z] * b[_Z]);
 }

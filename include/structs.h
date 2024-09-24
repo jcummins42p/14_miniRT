@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/23 18:46:27 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:25:16 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ typedef int		t_color;
 typedef struct s_ray
 {
 	t_vector	*origin;
-	t_vector	*dir;
-	t_vector	*udir;
+	t_vector	dir;
+	t_vector	udir;
 }				t_ray;
 
 typedef struct s_ambient
@@ -36,7 +36,9 @@ typedef struct s_camera
 {
 	int			lock;
 	t_vector	point;
-	t_vector	dir;
+	t_vector	dir;	//	unit vector pointing out of the camera
+	t_vector	right;	//	unit vector pointing up relative to the camera
+	t_vector	up;		//	unit vector pointing right relative to the camera
 	int			fov;
 }				t_camera;
 
@@ -109,6 +111,7 @@ typedef struct s_scene
 	t_sphere	*sphs;
 	t_plane		*plns;
 	t_cylinder	*cyls;
+	t_vector	project;	//	used as 2d coordinates of projection plane
 	int			id;
 	int			n_cylinders;
 	int			n_planes;

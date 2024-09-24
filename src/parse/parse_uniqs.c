@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:47:58 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/23 14:53:53 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:37:34 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ void	parse_ambient(char *input, t_scene *scene)
 void	parse_camera(char *input, t_scene *scene)
 {
 	char		**items;
+	t_vector	world_up;
 
+	set_vector(world_up, "0,1,0");
 	if (scene->cam.lock++)
 		scene->valid = false;
 	if (!input || !*input)
@@ -46,6 +48,10 @@ void	parse_camera(char *input, t_scene *scene)
 			scene->valid = false;
 		scene->cam.fov = ft_atoi(items[3]);
 		ft_free_string_list(items);
+		cross_product(scene->cam.right, world_up, scene->cam.dir);
+		vector_normalize(scene->cam.right, scene->cam.right);
+		cross_product(scene->cam.up, scene->cam.dir, scene->cam.right);
+		vector_normalize(scene->cam.up, scene->cam.up);
 	}
 }
 
