@@ -1,0 +1,66 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+alloc_scenes	utils/utils_alloc.c	/^t_scene	**alloc_scenes(int n_scenes)$/;"	f
+alloc_shapes	utils/utils_alloc.c	/^int	alloc_shapes(t_rt *rt)$/;"	f
+b_no_event	hookhandle_mouse.c	/^int	b_no_event(void *vars)$/;"	f
+b_press	hookhandle_mouse.c	/^int	b_press(int button, int x, int y, t_mlx *mlx)$/;"	f
+b_release	hookhandle_mouse.c	/^int	b_release(int button, void *vars)$/;"	f
+cast_ray	draw/draw.c	/^void	cast_ray(t_mlx * mlx, t_scene *scene, int x, int y)$/;"	f
+cleanup_mlx	main.c	/^void	cleanup_mlx(t_mlx *mlx)$/;"	f
+dealloc_shapes	utils/utils_free.c	/^void	dealloc_shapes(t_scene **scenes, int i)$/;"	f
+display_hud	hud.c	/^void	display_hud(t_mlx *mlx, t_scene *scene)$/;"	f
+exit_error	error.c	/^void	exit_error(char *message, int errcode)$/;"	f
+free_mlx	main.c	/^void	free_mlx(t_mlx *mlx)$/;"	f
+free_scene	utils/utils_free.c	/^void	free_scene(t_scene *scene)$/;"	f
+free_scenes	utils/utils_free.c	/^void	free_scenes(t_rt *rt)$/;"	f
+handle_destroy	main.c	/^int	handle_destroy(void *params)$/;"	f
+img_init	draw/draw.c	/^int	img_init(t_mlx *mlx, t_img *img)$/;"	f
+init_cylinders	parse/init.c	/^void	init_cylinders(t_scene *scene)$/;"	f
+init_planes	parse/init.c	/^void	init_planes(t_scene *scene)$/;"	f
+init_rt	main.c	/^void	init_rt(t_rt *rt, int argc)$/;"	f
+init_scene	parse/init.c	/^void	init_scene(t_scene *scene, char *filename, int id)$/;"	f
+init_scenes	parse/init.c	/^void	init_scenes(t_rt *rt, char **argv)$/;"	f
+init_spheres	parse/init.c	/^void	init_spheres(t_scene *scene)$/;"	f
+k_no_event	hookhandle_kb.c	/^int	k_no_event(void *vars)$/;"	f
+k_press	hookhandle_kb.c	/^int	k_press(int keysym, t_mlx *mlx)$/;"	f
+k_release	hookhandle_kb.c	/^int	k_release(int keysym, void *vars)$/;"	f
+k_select	hookhandle_kb.c	/^int	k_select(int keysym, t_mlx *mlx)$/;"	f
+keysym_translate	hookhandle_kb.c	/^int	keysym_translate(int keysym)$/;"	f
+main	main.c	/^int	main(int argc, char **argv)$/;"	f
+open_scenes	main.c	/^int	open_scenes(t_rt *rt, char **argv)$/;"	f
+parse	parse/parse.c	/^void	parse(t_rt *rt)$/;"	f
+parse_ambient	parse/parse_uniqs.c	/^void	parse_ambient(char *input, t_scene *scene)$/;"	f
+parse_camera	parse/parse_uniqs.c	/^void	parse_camera(char *input, t_scene *scene)$/;"	f
+parse_cylinder	parse/parse_shapes.c	/^void	parse_cylinder(char *input, t_scene *scene)$/;"	f
+parse_file	parse/parse.c	/^void	parse_file(int fd, t_scene *scene)$/;"	f
+parse_light	parse/parse_uniqs.c	/^void	parse_light(char *input, t_scene *scene)$/;"	f
+parse_plane	parse/parse_shapes.c	/^void	parse_plane(char *input, t_scene *scene)$/;"	f
+parse_select	parse/parse.c	/^void	parse_select(char *line, t_scene *scene)$/;"	f
+parse_sphere	parse/parse_shapes.c	/^void	parse_sphere(char *input, t_scene *scene)$/;"	f
+pixel_put_img	draw/draw.c	/^void	pixel_put_img(t_img *img, int x, int y, int color)$/;"	f
+preparse	parse/preparse.c	/^void	preparse(t_rt *rt)$/;"	f
+preparse_select	parse/preparse.c	/^void	preparse_select(char *line, t_scene *scene)$/;"	f
+print_ambient	utils/print_uniqs.c	/^void	print_ambient(t_ambient ambient)$/;"	f
+print_camera	utils/print_uniqs.c	/^void	print_camera(t_camera camera)$/;"	f
+print_color	utils/print_utils.c	/^void	print_color(char *pre, char *mid, char *post, int color)$/;"	f
+print_cylinder	utils/print_shapes.c	/^void	print_cylinder(t_cylinder cylinder)$/;"	f
+print_light	utils/print_uniqs.c	/^void	print_light(t_light light)$/;"	f
+print_meta	utils/print_scene.c	/^void	print_meta(t_scene *scene)$/;"	f
+print_plane	utils/print_shapes.c	/^void	print_plane(t_plane plane)$/;"	f
+print_scene	utils/print_scene.c	/^void	print_scene(t_scene *scene)$/;"	f
+print_scenes	utils/print_scene.c	/^void	print_scenes(t_rt *rt)$/;"	f
+print_shapes	utils/print_shapes.c	/^void	print_shapes(t_scene *scene)$/;"	f
+print_sphere	utils/print_shapes.c	/^void	print_sphere(t_sphere sphere)$/;"	f
+print_uniqs	utils/print_uniqs.c	/^void	print_uniqs(t_scene	*scene)$/;"	f
+print_vector	utils/print_utils.c	/^void	print_vector(char *message, t_vector vec)$/;"	f
+render_row	draw/draw.c	/^void	render_row(t_mlx *mlx, t_scene *scene, int y)$/;"	f
+render_scene	draw/draw.c	/^void	render_scene(t_mlx *mlx, t_scene *scene)$/;"	f
+set_colors	parse/parse_attributes.c	/^int	set_colors(char *input) \/\/ assumes csv RGB$/;"	f
+set_mlx	main.c	/^int	set_mlx(t_mlx *mlx, t_rt *rt)$/;"	f
+set_vector	parse/parse_attributes.c	/^void	set_vector(t_vector vec, char *input)$/;"	f
+toggle_scan	hookhandle_kb.c	/^void	toggle_scan(t_mlx *mlx)$/;"	f
+zero_vector	parse/parse_attributes.c	/^void	zero_vector(t_vector vec)$/;"	f

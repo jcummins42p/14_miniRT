@@ -6,12 +6,17 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 20:32:23 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 21:09:03 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCS_H
 # define FUNCS_H
+
+//	draw_color.c
+void	color_int_to_vector(t_rgb rgb, t_color color);
+int		color_vector_to_int(t_rgb rgb);
+t_color	color_gradient(t_color original, t_color target, float ratio);
 
 //	intersections.c
 int		intersect_planes(t_scene *scene, t_ray *ray, float *t);
@@ -26,10 +31,15 @@ void	cleanup_rt(t_rt *rt);
 
 //	vectormaths.c
 float	fl_abs(float f);
+
+//	vector_products.c
 void	cross_product(t_vec3 product, t_vec3 a, t_vec3 b);
 float	dot_product(t_vec3 a, t_vec3 b);
+
+//
 float	vector_length(t_vec3 vec);
 void	vector_normalize(t_vec3 unit, t_vec3 direction);
+void	vector_scaleize(t_vec3 scalar, t_vec3 unit, float magnitude);
 
 //	bounding_aa.c
 void	aa_bound_sphere(t_sphere *sphere);
