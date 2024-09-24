@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 17:28:10 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 18:19:12 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,30 +46,47 @@ void	set_ray_direction(t_vector dir, t_vector plane, t_camera cam)
 	dir[_Z] = cam.dir[_Z] + cam.right[_Z] * plane[_X] + cam.up[_Z] * plane[_Y];
 }
 
-
-
-
-
-
-t_color	color_modify(t_color original, t_color target, float ratio)
+void	color_int_to_vector(t_rgb rgb, t_color color)
 {
-	t_color	rgb[3];
-	t_color	output;
+	rgb[0] = (color >> 16) & 0xFF;
+	rgb[1] = (color >> 8) & 0xFF;
+	rgb[2] = (color) & 0xFF;
+}
 
-	rgb[0] = fmin(fmax(0, (original >> 16) - (modifier >> 16)), 255);
-	rgb[1] = fmin(fmax(0, (original >> 8 && 0xFF) - (modifier >> 8 && 0xFF)), 255);
-	rgb[2] = fmin(fmax(0, (original && 0xFF) - (modifier && 0xFF)), 255);
-	output = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+int	color_vector_to_int(t_rgb rgb)
+{
+	int		color;
 
-	return (output);
+	color = 0;
+	color += rgb[0] << 16;
+	color += rgb[1] << 8;
+	color += rgb[2];
+	return (color);
+}
+
+//	shifts 'original' to 'target' by a ratio: 0 is all original, 1 is all target
+t_color	color_gradient(t_color original, t_color target, float ratio)
+{
+	t_rgb	start;
+	t_rgb	end;
+	t_rgb	out;
+
+	if (ratio < 0)
+		return (original);
+	if (ratio > 1)
+		return (target);
+	color_int_to_vector(start, original);
+	color_int_to_vector(end, target);
+	out[0] = fmin(fmax(0, (start[0] + round((end[0] - start[0]) * ratio))), 255);
+	out[1] = fmin(fmax(0, (start[1] + round((end[1] - start[1]) * ratio))), 255);
+	out[2] = fmin(fmax(0, (start[2] + round((end[2] - start[2]) * ratio))), 255);
+
+	return (color_vector_to_int(out));
 }
 
 void	shade_pixel(t_color *pixel_color, float distance)
 {
-	*pixel_color = *pixel_color - round(distance);
-
-	if (*pixel_color < 0)
-		*pixel_color = 0;
+	*pixel_color = color_gradient(*pixel_color, 0x000000, distance);
 }
 
 t_color	cast_ray(t_scene *scene, t_ray *ray)
@@ -88,18 +105,6 @@ t_color	cast_ray(t_scene *scene, t_ray *ray)
 		closest_t = temp_t;
 		pixel_color = temp_color;
 	}
-	/*temp_color = intersect_spheres(scene, ray, &rt);*/
-	/*if (t < closest_t)*/
-	/*{*/
-		/*closest_t = t;*/
-		/*pixel_color = temp_color;*/
-	/*}*/
-	/*temp_color = intersect_cylinders(scene, ray, &rt);*/
-	/*if (t < closest_t)*/
-	/*{*/
-		/*closest_t = t;*/
-		/*pixel_color = temp_color;*/
-	/*}*/
 	shade_pixel(&pixel_color, closest_t);
 	return (pixel_color);
 }

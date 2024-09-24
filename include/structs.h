@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 14:25:16 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:58:46 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 typedef float	t_vector[3];
 typedef int		t_color;
+
+typedef int		t_rgb[3];
 
 typedef struct s_ray
 {

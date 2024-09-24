@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:24:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 16:54:16 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:14:08 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,11 @@ t_color	intersect_plane(t_plane *plane, t_ray *ray, float *t)
 	float		denom;
 
 	denom = dot_product(ray->dir, plane->norm);
-	if (fl_abs(denom) > EPSILON)
-	{
-		p0l0[_X] = plane->anch[_X] - (*ray->origin)[_X];
-		p0l0[_Y] = plane->anch[_Y] - (*ray->origin)[_Y];
-		p0l0[_Z] = plane->anch[_Z] - (*ray->origin)[_Z];
-	}
+	if (fl_abs(denom) < EPSILON)
+		return (-1);
+	p0l0[_X] = plane->anch[_X] - (*ray->origin)[_X];
+	p0l0[_Y] = plane->anch[_Y] - (*ray->origin)[_Y];
+	p0l0[_Z] = plane->anch[_Z] - (*ray->origin)[_Z];
 	*t = dot_product(p0l0, plane->norm) / denom;
 	return (plane->color);
 }
@@ -36,16 +35,18 @@ t_color	intersect_planes(t_scene *scene, t_ray *ray, float *t)
 	int		i;
 
 	i = -1;
+	temp_color = -1;
 	pixel_color = -1;
 	temp_t = *t;
 	while (++i < scene->n_planes)
 	{
-		temp_color = intersect_plane(&scene->plns[i++], ray, &temp_t);
-		if (temp_t < *t)
+		temp_color = intersect_plane(&scene->plns[i], ray, &temp_t);
+		if ((temp_color >= 0) && temp_t < *t)
 		{
 			pixel_color = temp_color;
 			*t = temp_t;
 		}
+		temp_color = -1;
 	}
 	return (pixel_color);
 }
