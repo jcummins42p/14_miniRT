@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:38:24 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 14:31:19 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 20:28:57 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	init_scene(t_scene *scene, char *filename, int id)
 	scene->amb.lum = 0.42;
 	scene->amb.hue = 0x424242;
 	scene->cam.lock = false;
-	set_vector(scene->cam.point, "-42,0,42");
-	set_vector(scene->cam.dir, "-42,0,42");
+	set_vec3(scene->cam.point, "-42,0,42");
+	set_vec3(scene->cam.dir, "-42,0,42");
 	scene->cam.fov = 42;
 	scene->light.lock = false;
-	set_vector(scene->light.point, "-42,42,0");
+	set_vec3(scene->light.point, "-42,42,0");
 	scene->light.lum = 0.42;
 	scene->light.hue = 0x424242;
 	scene->cyls = NULL;
@@ -57,7 +57,7 @@ void	init_spheres(t_scene *scene)
 	while (++i < scene->n_spheres)
 	{
 		scene->sphs[i].id = -1;
-		set_vector(scene->sphs[i].center, "0,0,42");
+		set_vec3(scene->sphs[i].center, "0,0,42");
 		scene->sphs[i].diamtr = 42.0;
 		scene->sphs[i].color = 0x424242;
 	}
@@ -71,8 +71,8 @@ void	init_planes(t_scene *scene)
 	while (++i < scene->n_planes)
 	{
 		scene->plns[i].id = -1;
-		set_vector(scene->plns[i].anch, "0,0,-42");
-		set_vector(scene->plns[i].norm, "0,0,0.42");
+		set_vec3(scene->plns[i].anch, "0,0,-42");
+		set_vec3(scene->plns[i].norm, "0,0,0.42");
 		scene->plns[i].color = 0x424242;
 	}
 }
@@ -85,8 +85,8 @@ void	init_cylinders(t_scene *scene)
 	while (++i < scene->n_cylinders)
 	{
 		scene->cyls[i].id = -1;
-		set_vector(scene->cyls[i].center, "0,0,42");
-		set_vector(scene->cyls[i].axis, "0,0,0.42");
+		set_vec3(scene->cyls[i].center, "0,0,42");
+		set_vec3(scene->cyls[i].axis, "0,0,0.42");
 		scene->cyls[i].diamtr = 0.42;
 		scene->cyls[i].height = 0.42;
 		scene->cyls[i].color = 0x424242;

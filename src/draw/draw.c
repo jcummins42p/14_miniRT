@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 18:19:12 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 20:50:55 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,21 @@ void	pixel_put_img(t_img *img, int x, int y, int color)
 //	sets a 2d normalized device vector for that co-ordinate's relative position
 //	on the virtual screen between -1,-1 (top left) and 1,1 (bottom right) going
 //	through 0,0 (center of screen)
-void	norm_device_coords(t_vector ndc, int x, int y)
+void	norm_device_coords(t_vec2 ndc, int x, int y)
 {
 	ndc[_X] = (2.0 * x) / RES_W - 1.0;
 	ndc[_Y] = 1.0 - (2.0 * y) / RES_H;
-	ndc[_Z] = 0;
 }
 
 //	uses the ndc vector to generate co-ordinate for that x,y on the virtual
 //	screen.
-void	project_coords(t_vector project, t_vector ndc, int fov, float aspect)
+void	project_viewport(t_vec2 project, t_vec2 ndc, int fov, float aspect)
 {
 	project[_X] = ndc[_X] * aspect * tan(fov / 2.0);
 	project[_Y] = ndc[_Y] * tan(fov / 2.0);
-	project[_Z] = 0;
 }
 
-void	set_ray_direction(t_vector dir, t_vector plane, t_camera cam)
+void	set_ray_direction(t_vec3 dir, t_vec2 plane, t_camera cam)
 {
 	dir[_X] = cam.dir[_X] + cam.right[_X] * plane[_X] + cam.up[_X] * plane[_Y];
 	dir[_Y] = cam.dir[_Y] + cam.right[_Y] * plane[_X] + cam.up[_Y] * plane[_Y];
@@ -77,9 +75,9 @@ t_color	color_gradient(t_color original, t_color target, float ratio)
 		return (target);
 	color_int_to_vector(start, original);
 	color_int_to_vector(end, target);
-	out[0] = fmin(fmax(0, (start[0] + round((end[0] - start[0]) * ratio))), 255);
-	out[1] = fmin(fmax(0, (start[1] + round((end[1] - start[1]) * ratio))), 255);
-	out[2] = fmin(fmax(0, (start[2] + round((end[2] - start[2]) * ratio))), 255);
+	out[0] = fmin(fmax(0, (start[0] + (int)((end[0] - start[0]) * ratio))), 255);
+	out[1] = fmin(fmax(0, (start[1] + (int)((end[1] - start[1]) * ratio))), 255);
+	out[2] = fmin(fmax(0, (start[2] + (int)((end[2] - start[2]) * ratio))), 255);
 
 	return (color_vector_to_int(out));
 }
@@ -104,8 +102,8 @@ t_color	cast_ray(t_scene *scene, t_ray *ray)
 	{
 		closest_t = temp_t;
 		pixel_color = temp_color;
+		shade_pixel(&pixel_color, closest_t);
 	}
-	shade_pixel(&pixel_color, closest_t);
 	return (pixel_color);
 }
 
@@ -113,13 +111,13 @@ void	prep_ray(t_mlx *mlx, t_scene *scene, int x, int y)
 {
 	t_color		pixel_color;
 	t_ray		ray;
-	t_vector	ndc;
-	t_vector	plane;
+	t_vec2		ndc;
+	t_vec2		viewport;
 
 	ray.origin = &scene->cam.point;
 	norm_device_coords(ndc, x, y);
-	project_coords(plane, ndc, scene->cam.fov, mlx->aspect_ratio);
-	set_ray_direction(ray.dir, plane, scene->cam);
+	project_viewport(viewport, ndc, scene->cam.fov, mlx->aspect_ratio);
+	set_ray_direction(ray.dir, viewport, scene->cam);
 	vector_normalize(ray.dir, ray.dir);
 
 	pixel_color = cast_ray(scene, &ray);
@@ -161,7 +159,6 @@ void	render_scene(t_mlx *mlx, t_scene *scene)
 		render_row(mlx, scene, y++);
 	if (!scene->rend.scan)
 	{
-		/*printf("Finished rendering image\n");*/
 		mlx_put_image_to_window(mlx->mlx, mlx->win, scene->img->img, 0, 0);
 		mlx_destroy_image(mlx->mlx, scene->img->img);
 	}

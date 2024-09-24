@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 16:35:14 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 20:32:23 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	cleanup_rt(t_rt *rt);
 
 //	vectormaths.c
 float	fl_abs(float f);
-void	cross_product(t_vector product, t_vector a, t_vector b);
-float	dot_product(t_vector a, t_vector b);
-float	vector_length(t_vector vec);
-void	vector_normalize(t_vector unit, t_vector direction);
+void	cross_product(t_vec3 product, t_vec3 a, t_vec3 b);
+float	dot_product(t_vec3 a, t_vec3 b);
+float	vector_length(t_vec3 vec);
+void	vector_normalize(t_vec3 unit, t_vec3 direction);
 
 //	bounding_aa.c
 void	aa_bound_sphere(t_sphere *sphere);
@@ -53,11 +53,11 @@ int		k_press(int keysym, t_mlx *mlx);
 
 //	parse_attributes.c
 int		set_color(char *input);
-void	zero_vector(t_vector vec);
+void	zero_vector(t_vec3 vec);
 void	print_color(char *pre, char *mid, char *post, int color);
-void	set_vector(t_vector vec, char *input);
-int		set_unit_vector(t_vector vec, char *input);
-void	print_vector(char *message, t_vector vec);
+void	set_vec3(t_vec3 vec, char *input);
+int		set_unit_vec3(t_vec3 vec, char *input);
+void	print_vec3(char *message, t_vec3 vec);
 
 //	parse_uniqs.c
 void	parse_ambient(char *input, t_scene *scene);

@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 11:47:10 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/20 15:55:49 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 20:29:49 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	print_ambient(t_ambient ambient)
 void	print_camera(t_camera camera)
 {
 	printf("->Camera:\n");
-	print_vector("\tviewpoint:\t", camera.point);
-	print_vector("\torientation:\t", camera.dir);
+	print_vec3("\tviewpoint:\t", camera.point);
+	print_vec3("\torientation:\t", camera.dir);
 	printf("\t\tfov:\t%d\n", camera.fov);
 }
 
 void	print_light(t_light light)
 {
 	printf("->Light:\n");
-	print_vector("\tpoint:\t\t", light.point);
+	print_vec3("\tpoint:\t\t", light.point);
 	printf("\tbrightness:\t%.2f", light.lum);
 	print_color("\t\t\thue:\t", "", "\n", light.hue);
 }

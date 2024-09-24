@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:47:58 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 14:37:34 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 20:28:27 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	parse_ambient(char *input, t_scene *scene)
 void	parse_camera(char *input, t_scene *scene)
 {
 	char		**items;
-	t_vector	world_up;
+	t_vec3	world_up;
 
-	set_vector(world_up, "0,1,0");
+	set_vec3(world_up, "0,1,0");
 	if (scene->cam.lock++)
 		scene->valid = false;
 	if (!input || !*input)
@@ -43,8 +43,8 @@ void	parse_camera(char *input, t_scene *scene)
 	else
 	{
 		items = ft_split(input, ' ');
-		set_vector(scene->cam.point, items[1]);
-		if (set_unit_vector(scene->cam.dir, items[2]))
+		set_vec3(scene->cam.point, items[1]);
+		if (set_unit_vec3(scene->cam.dir, items[2]))
 			scene->valid = false;
 		scene->cam.fov = ft_atoi(items[3]);
 		ft_free_string_list(items);
@@ -66,7 +66,7 @@ void	parse_light(char *input, t_scene *scene)
 	else
 	{
 		items = ft_split(input, ' ');
-		set_vector(scene->light.point, items[1]);
+		set_vec3(scene->light.point, items[1]);
 		scene->light.lum = ft_atof(items[2]);
 		scene->light.hue = set_color(items[3]);
 		ft_free_string_list(items);

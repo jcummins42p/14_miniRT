@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:59:15 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 17:04:41 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 20:29:35 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,27 @@
 void	print_sphere(t_sphere sphere)
 {
 	printf("  Sph.%-2d:", sphere.id);
-	print_vector(" center: ", sphere.center);
+	print_vec3(" center: ", sphere.center);
 	printf("\tdiameter: %9.2f", sphere.diamtr);
 	print_color("\tcolor: ", "", "\n", sphere.color);
-	print_vector("    ->bb: min: ", sphere.bounds.min);
-	print_vector("\tbb_max: ", sphere.bounds.max);
+	print_vec3("    ->bb: min: ", sphere.bounds.min);
+	print_vec3("\tbb_max: ", sphere.bounds.max);
 	printf("\n");
 }
 
 void	print_plane(t_plane plane)
 {
 	printf("  Pln.%-2d:", plane.id);
-	print_vector(" anchor: ", plane.anch);
-	print_vector("\tnorm: ", plane.norm);
+	print_vec3(" anchor: ", plane.anch);
+	print_vec3("\tnorm: ", plane.norm);
 	print_color("\tcolor: ", "", "\n", plane.color);
 }
 
 void	print_cylinder(t_cylinder cylinder)
 {
 	printf("  Cyl.%-2d:", cylinder.id);
-	print_vector(" center: ", cylinder.center);
-	print_vector("\taxis: ", cylinder.axis);
+	print_vec3(" center: ", cylinder.center);
+	print_vec3("\taxis: ", cylinder.axis);
 	printf("\tdiameter: %.2f", cylinder.diamtr);
 	printf("\theight: %.2f", cylinder.height);
 	print_color("\tcolor: ", "", "\n", cylinder.color);

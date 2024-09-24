@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:24:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 19:14:08 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 20:37:05 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 t_color	intersect_plane(t_plane *plane, t_ray *ray, float *t)
 {
-	t_vector	p0l0;	//	points from cam origin to a known point on the plane
+	t_vec3		p0l0;	//	points from cam origin to a known point on the plane
 	float		denom;
 
 	denom = dot_product(ray->dir, plane->norm);
-	if (fl_abs(denom) < EPSILON)
+	if (fl_abs(denom) < 0.2)
 		return (-1);
 	p0l0[_X] = plane->anch[_X] - (*ray->origin)[_X];
 	p0l0[_Y] = plane->anch[_Y] - (*ray->origin)[_Y];

@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:45:11 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/23 14:54:51 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 20:28:14 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	parse_sphere(char *input, t_scene *scene)
 			return ;
 		}
 		scene->sphs[i].id = i;
-		set_vector(scene->sphs[i].center, items[1]);
+		set_vec3(scene->sphs[i].center, items[1]);
 		scene->sphs[i].diamtr = ft_atof(items[2]);
 		scene->sphs[i].color = set_color(items[3]);
 		aa_bound_sphere(&scene->sphs[i]);
@@ -72,8 +72,8 @@ void	parse_plane(char *input, t_scene *scene)
 			return ;
 		}
 		scene->plns[i].id = i;
-		set_vector(scene->plns[i].anch, items[1]);
-		if (set_unit_vector(scene->plns[i].norm, items[2]))
+		set_vec3(scene->plns[i].anch, items[1]);
+		if (set_unit_vec3(scene->plns[i].norm, items[2]))
 			scene->valid = false;
 		scene->plns[i].color = set_color(items[3]);
 		ft_free_string_list(items);
@@ -99,8 +99,8 @@ void	parse_cylinder(char *input, t_scene *scene)
 			return ;
 		}
 		scene->cyls[i].id = i;
-		set_vector(scene->cyls[i].center, items[1]);
-		if (set_unit_vector(scene->cyls[i].axis, items[2]))
+		set_vec3(scene->cyls[i].center, items[1]);
+		if (set_unit_vec3(scene->cyls[i].axis, items[2]))
 			scene->valid = false;
 		scene->cyls[i].diamtr = ft_atof(items[3]);
 		scene->cyls[i].height = ft_atof(items[4]);

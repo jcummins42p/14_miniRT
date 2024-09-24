@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/23 15:21:58 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 20:27:57 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	set_color(char *input) // assumes csv RGB
 	return (color);
 }
 
-void	zero_vector(t_vector vec)
+void	zero_vector(t_vec3 vec)
 {
 	int	i;
 
@@ -38,7 +38,7 @@ void	zero_vector(t_vector vec)
 		vec[i++] = 0.0;
 }
 
-void	set_vector(t_vector vec, char *input)
+void	set_vec3(t_vec3 vec, char *input)
 {
 	char		**items;
 	int			i;
@@ -53,12 +53,12 @@ void	set_vector(t_vector vec, char *input)
 	ft_free_string_list(items);
 }
 
-int	set_unit_vector(t_vector vec, char *input)
+int	set_unit_vec3(t_vec3 vec, char *input)
 {
 	float	error;
 
 	error = 1;
-	set_vector(vec, input);
+	set_vec3(vec, input);
 	error = fl_abs(1 - vector_length(vec));
 	if (error > EPSILON)
 	{

@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 17:58:46 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/24 20:37:46 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 
 # include "miniRT.h"
 
-typedef float	t_vector[3];
+typedef float	t_vec3[3];
+typedef float	t_vec2[2];
 typedef int		t_color;
-
 typedef int		t_rgb[3];
 
 typedef struct s_ray
 {
-	t_vector	*origin;
-	t_vector	dir;
-	t_vector	udir;
+	t_vec3		*origin;
+	t_vec3		dir;
+	t_vec3		udir;
 }				t_ray;
 
 typedef struct s_ambient
@@ -37,31 +37,31 @@ typedef struct s_ambient
 typedef struct s_camera
 {
 	int			lock;
-	t_vector	point;
-	t_vector	dir;	//	unit vector pointing out of the camera
-	t_vector	right;	//	unit vector pointing up relative to the camera
-	t_vector	up;		//	unit vector pointing right relative to the camera
+	t_vec3		point;
+	t_vec3		dir;	//	unit vector pointing out of the camera
+	t_vec3		right;	//	unit vector pointing up relative to the camera
+	t_vec3		up;		//	unit vector pointing right relative to the camera
 	int			fov;
 }				t_camera;
 
 typedef struct s_light
 {
 	int			lock;
-	t_vector	point;
+	t_vec3		point;
 	float		lum;
 	t_color		hue;
 }				t_light;
 
 typedef struct s_bbox
 {
-	t_vector	min;
-	t_vector	max;
+	t_vec3		min;
+	t_vec3		max;
 }				t_bbox;
 
 typedef struct s_sphere
 {
 	t_bbox		bounds;
-	t_vector	center;
+	t_vec3		center;
 	float		diamtr;
 	int			id;
 	t_color		color;
@@ -70,8 +70,8 @@ typedef struct s_sphere
 typedef struct s_plane
 {
 	t_bbox		bounds;
-	t_vector	anch;
-	t_vector	norm;
+	t_vec3		anch;
+	t_vec3		norm;
 	int			id;
 	t_color		color;
 }				t_plane;
@@ -79,8 +79,8 @@ typedef struct s_plane
 typedef struct s_cylinder
 {
 	t_bbox		bounds;
-	t_vector	center;
-	t_vector	axis;
+	t_vec3		center;
+	t_vec3		axis;
 	float		diamtr;
 	float		height;
 	int			id;
@@ -113,7 +113,7 @@ typedef struct s_scene
 	t_sphere	*sphs;
 	t_plane		*plns;
 	t_cylinder	*cyls;
-	t_vector	project;	//	used as 2d coordinates of projection plane
+	t_vec3		project;	//	used as 2d coordinates of projection plane
 	int			id;
 	int			n_cylinders;
 	int			n_planes;
