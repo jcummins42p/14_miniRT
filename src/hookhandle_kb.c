@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/25 10:50:49 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:29:54 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,14 @@ void	toggle_scan(t_mlx *mlx)
 int	k_cam_move(int keysym, t_mlx *mlx)
 {
 	printf("k_cam_move %d\n", keysym);
-	if (keysym == 65361)
+	if (keysym == 65362)
+		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Y] += 1;
+	else if (keysym == 65364)
 		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Y] -= 1;
 	else if (keysym == 65363)
-		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Y] += 1;
-	else if (keysym == 65362)
-		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Z] -= 1;
-	else if (keysym == 65364)
-		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Z] += 1;
+		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_X] -= 1;
+	else if (keysym == 65361)
+		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_X] += 1;
 	return (1);
 }
 

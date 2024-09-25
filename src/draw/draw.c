@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/25 10:06:59 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:26:42 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	pixel_put_img(t_img *img, int x, int y, int color)
 //	through 0,0 (center of screen)
 void	norm_device_coords(t_vec2 ndc, int x, int y)
 {
-	ndc[_X] = (2.0 * x) / RES_W - 1.0;
-	ndc[_Y] = 1.0 - (2.0 * y) / RES_H;
+	ndc[_X] = ((2.0 * x) / RES_W) - 1.0;
+	ndc[_Y] = (1.0 - (2.0 * y)) / RES_H;
 }
 
 //	uses the ndc vector to generate co-ordinate for that x,y on the virtual
