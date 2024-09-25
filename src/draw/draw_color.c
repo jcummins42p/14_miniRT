@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:55:57 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 20:56:31 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:35:36 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	color_int_to_vector(t_rgb rgb, t_color color)
 {
-	rgb[0] = (color >> 16) & 0xFF;
-	rgb[1] = (color >> 8) & 0xFF;
-	rgb[2] = (color) & 0xFF;
+	rgb[_R] = (color >> 16) & 0xFF;
+	rgb[_G] = (color >> 8) & 0xFF;
+	rgb[_B] = (color) & 0xFF;
 }
 
 int	color_vector_to_int(t_rgb rgb)
@@ -24,9 +24,9 @@ int	color_vector_to_int(t_rgb rgb)
 	int		color;
 
 	color = 0;
-	color += rgb[0] << 16;
-	color += rgb[1] << 8;
-	color += rgb[2];
+	color += rgb[_R] << 16;
+	color += rgb[_G] << 8;
+	color += rgb[_B];
 	return (color);
 }
 
@@ -43,9 +43,9 @@ t_color	color_gradient(t_color original, t_color target, float ratio)
 		return (target);
 	color_int_to_vector(ori, original);
 	color_int_to_vector(end, target);
-	out[0] = fmin(fmax(0, (ori[0] + (int)((end[0] - ori[0]) * ratio))), 255);
-	out[1] = fmin(fmax(0, (ori[1] + (int)((end[1] - ori[1]) * ratio))), 255);
-	out[2] = fmin(fmax(0, (ori[2] + (int)((end[2] - ori[2]) * ratio))), 255);
+	out[_R] = fmin(fmax(0, (ori[0] + (int)((end[_R] - ori[_R]) * ratio))), 255);
+	out[_G] = fmin(fmax(0, (ori[1] + (int)((end[_G] - ori[_G]) * ratio))), 255);
+	out[_B] = fmin(fmax(0, (ori[2] + (int)((end[_B] - ori[_B]) * ratio))), 255);
 
 	return (color_vector_to_int(out));
 }
