@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/25 11:29:54 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 12:11:05 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	k_release(int keysym, void *vars)
 	return (0);
 }
 
-int	kp_scene_select(int keysym, t_mlx *mlx, int	newscene)
+int	kp_scene_select(int keysym, t_mlx *mlx, int newscene)
 {
 	t_rt	*rt;
 
@@ -41,15 +41,18 @@ int	kp_scene_select(int keysym, t_mlx *mlx, int	newscene)
 		if (newscene > 0)
 			newscene--;
 	}
-	print_scene(mlx->rt->scenes[newscene]);
 	display_hud(mlx, mlx->rt->scenes[newscene]);
 	return (newscene);
 }
 
 void	kp_scene_change(t_mlx *mlx, int newscene)
 {
+	printf("Attempting to change to scene %d\n", newscene);
 	if (mlx->rt->scenes[newscene]->valid)
+	{
+		mlx->rt->curr_scene = newscene;
 		render_scene(mlx, mlx->rt->scenes[newscene]);
+	}
 	else
 		printf("Unable to render invalid scene\n");
 }
@@ -95,6 +98,8 @@ int	k_cam_move(int keysym, t_mlx *mlx)
 		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_X] -= 1;
 	else if (keysym == 65361)
 		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_X] += 1;
+	else
+		return (0);
 	return (1);
 }
 
@@ -116,7 +121,7 @@ int	k_press(int keysym, t_mlx *mlx)
 		mlx_loop_end(mlx->mlx);
 	else if (keysym >= 65361 && keysym <= 65364)
 		redraw = k_cam_move(keysym, mlx);
-	else
+	else if (keysym == XK_KP_Add || keysym == XK_KP_Subtract || keysym == XK_KP_Enter)
 		redraw = k_select(keysym, mlx);
 	if (redraw)
 		k_redraw(mlx, redraw);

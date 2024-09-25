@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/25 11:26:42 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:42:06 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_color	cast_ray(t_scene *scene, t_ray *ray)
 	{
 		closest_t = temp_t;
 		pixel_color = temp_color;
-		shade_pixel(&pixel_color, closest_t / 100);
+		shade_pixel(&pixel_color, closest_t / (100 * scene->amb.lum));
 	}
 	return (pixel_color);
 }
