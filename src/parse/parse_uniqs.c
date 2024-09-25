@@ -6,12 +6,13 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:47:58 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 20:28:27 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 09:39:45 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
+//	These elements of need to be parsed once and only once! Hence the lock
 void	parse_ambient(char *input, t_scene *scene)
 {
 	char	**items;

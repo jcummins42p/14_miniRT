@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 21:17:38 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 10:06:59 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ t_color	cast_ray(t_scene *scene, t_ray *ray)
 	if (temp_t < closest_t)
 	{
 		closest_t = temp_t;
-		printf("%.3f ", closest_t);
 		pixel_color = temp_color;
 		shade_pixel(&pixel_color, closest_t / 100);
 	}
@@ -95,7 +94,6 @@ void	render_row(t_mlx *mlx, t_scene *scene, int y)
 	x = 0;
 	while (x < RES_W)
 		prep_ray(mlx, scene, x++, y);
-	printf("\n");
 }
 
 int	img_init(t_mlx *mlx, t_img *img)

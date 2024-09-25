@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 21:09:03 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 10:34:29 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ void	parse_camera(char *input, t_scene *scene);
 void	parse_light(char *input, t_scene *scene);
 
 //	print_uniqs.c
-void	print_ambient(t_ambient ambient);
-void	print_camera(t_camera camera);
-void	print_light(t_light light);
+void	print_ambient(t_ambient *ambient);
+void	print_camera(t_camera *camera);
+void	print_light(t_light *light);
 void	print_uniqs(t_scene *scene);
 
 //	print_shapes.c
