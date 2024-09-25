@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/25 11:42:06 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 15:00:17 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,14 @@ void	set_ray_direction(t_vec3 dir, t_vec2 plane, t_camera cam)
 	dir[_Z] = cam.dir[_Z] + cam.right[_Z] * plane[_X] + cam.up[_Z] * plane[_Y];
 }
 
-void	shade_pixel(t_color *pixel_color, float distance)
+void	shade_pixel_distance(t_color *pixel_color, float distance)
 {
 	*pixel_color = color_gradient(*pixel_color, 0x000000, distance);
+}
+
+void	shade_pixel_ambient(t_color *pixel_color, t_scene *scene)
+{
+	*pixel_color = color_gradient(*pixel_color, scene->amb.hue, scene->amb.lum);
 }
 
 t_color	cast_ray(t_scene *scene, t_ray *ray)
@@ -58,15 +63,27 @@ t_color	cast_ray(t_scene *scene, t_ray *ray)
 
 	closest_t = INFINITY;
 	temp_t = INFINITY;
-	/*pixel_color = scene->sky;*/
-	pixel_color = 0x000000;
+	pixel_color = -1;
+	/*pixel_color = 0x000000;*/
 	temp_color = intersect_planes(scene, ray, &temp_t);
 	if (temp_t < closest_t)
 	{
 		closest_t = temp_t;
 		pixel_color = temp_color;
-		shade_pixel(&pixel_color, closest_t / (100 * scene->amb.lum));
 	}
+	temp_color = intersect_spheres(scene, ray, &temp_t);
+	if (temp_t < closest_t)
+	{
+		closest_t = temp_t;
+		pixel_color = temp_color;
+	}
+	if (pixel_color >= 0)
+	{
+		shade_pixel_distance(&pixel_color, closest_t / (100));
+		shade_pixel_ambient(&pixel_color, scene);
+	}
+	else
+		pixel_color = 0x000000;
 	return (pixel_color);
 }
 
@@ -81,7 +98,7 @@ void	prep_ray(t_mlx *mlx, t_scene *scene, int x, int y)
 	norm_device_coords(ndc, x, y);
 	project_viewport(viewport, ndc, scene->cam.fov, mlx->aspect_ratio);
 	set_ray_direction(ray.dir, viewport, scene->cam);
-	vector_normalize(ray.dir, ray.dir);
+	vec3_normalize(ray.dir, ray.dir);
 
 	pixel_color = cast_ray(scene, &ray);
 	pixel_put_img(scene->img, x, y, pixel_color);

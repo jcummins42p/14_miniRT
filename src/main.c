@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 11:54:10 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:05:52 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	if (set_rt(argc, argv, &rt))
 		exit_error(&mlx, "Error: Failure to parse input files\n", ERR_ARGC);
 	print_scenes(&rt);
+	/*render_scene(mlx.mlx, rt.scenes[0]);*/
 	mlx_loop(mlx.mlx);
 	cleanup_mlx(&mlx);
 	return (rt.errcode);

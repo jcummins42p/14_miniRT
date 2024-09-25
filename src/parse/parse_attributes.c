@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 20:27:57 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 12:26:31 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	set_unit_vec3(t_vec3 vec, char *input)
 
 	error = 1;
 	set_vec3(vec, input);
-	error = fl_abs(1 - vector_length(vec));
+	error = fl_abs(1 - vec3_length(vec));
 	if (error > EPSILON)
 	{
 		printf("Error: Invalid unit vector input\n");

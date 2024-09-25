@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/25 10:34:29 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:29:07 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ void	color_int_to_vector(t_rgb rgb, t_color color);
 int		color_vector_to_int(t_rgb rgb);
 t_color	color_gradient(t_color original, t_color target, float ratio);
 
-//	intersections.c
+//	intersections_planes.c
 int		intersect_planes(t_scene *scene, t_ray *ray, float *t);
+int		intersect_spheres(t_scene *scene, t_ray *ray, float *t);
+
+//	intersections_spheres.c
 
 //	utils_mlx.c
 int		set_mlx(t_mlx *mlx, t_rt *rt);
@@ -37,9 +40,10 @@ void	cross_product(t_vec3 product, t_vec3 a, t_vec3 b);
 float	dot_product(t_vec3 a, t_vec3 b);
 
 //
-float	vector_length(t_vec3 vec);
-void	vector_normalize(t_vec3 unit, t_vec3 direction);
-void	vector_scaleize(t_vec3 scalar, t_vec3 unit, float magnitude);
+void	vec3_a_to_b(t_vec3 dir_out, t_vec3 point_a, t_vec3 point_b);
+float	vec3_length(t_vec3 vec);
+void	vec3_normalize(t_vec3 unit, t_vec3 direction);
+void	vec3_scaleize(t_vec3 scalar, t_vec3 unit, float magnitude);
 
 //	bounding_aa.c
 void	aa_bound_sphere(t_sphere *sphere);

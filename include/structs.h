@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 20:37:46 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 13:46:31 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ typedef float	t_vec3[3];
 typedef float	t_vec2[2];
 typedef int		t_color;
 typedef int		t_rgb[3];
+
+typedef struct s_quadratic
+{
+	float		discriminant;
+	float		a;
+	float		b;
+	float		c;
+}				t_quadratic;
 
 typedef struct s_ray
 {
@@ -63,6 +71,7 @@ typedef struct s_sphere
 	t_bbox		bounds;
 	t_vec3		center;
 	float		diamtr;
+	float		radius;
 	int			id;
 	t_color		color;
 }				t_sphere;

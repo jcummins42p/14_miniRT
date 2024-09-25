@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:47:58 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/25 09:39:45 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 12:27:05 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	parse_ambient(char *input, t_scene *scene)
 
 void	parse_camera(char *input, t_scene *scene)
 {
-	char		**items;
+	char	**items;
 	t_vec3	world_up;
 
 	set_vec3(world_up, "0,1,0");
@@ -50,9 +50,9 @@ void	parse_camera(char *input, t_scene *scene)
 		scene->cam.fov = ft_atoi(items[3]);
 		ft_free_string_list(items);
 		cross_product(scene->cam.right, world_up, scene->cam.dir);
-		vector_normalize(scene->cam.right, scene->cam.right);
+		vec3_normalize(scene->cam.right, scene->cam.right);
 		cross_product(scene->cam.up, scene->cam.dir, scene->cam.right);
-		vector_normalize(scene->cam.up, scene->cam.up);
+		vec3_normalize(scene->cam.up, scene->cam.up);
 	}
 }
 

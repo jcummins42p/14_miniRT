@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vectormaths.c                                      :+:      :+:    :+:   */
+/*   vector_maths.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcummins <jcummins@student.42prague.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 21:04:43 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 13:34:10 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	vector_scaleize(t_vec3 scalar, t_vec3 unit, float magnitude)
+void	vec3_a_to_b(t_vec3 dir_out, t_vec3 point_a, t_vec3 point_b)
+{
+	dir_out[_X] = point_b[_X] - point_a[_X];
+	dir_out[_Y] = point_b[_Y] - point_a[_Y];
+	dir_out[_Z] = point_b[_Z] - point_a[_Z];
+}
+
+void	vec3_scaleize(t_vec3 scalar, t_vec3 unit, float magnitude)
 {
 	scalar[_X] = unit[_X] * magnitude;
 	scalar[_Y] = unit[_Y] * magnitude;
 	scalar[_Z] = unit[_Z] * magnitude;
 }
 
-float	vector_length(t_vec3 vec)
+float	vec3_length(t_vec3 vec)
 {
 	return (sqrtf((vec[_X] * vec[_X])
 			+ (vec[_Y] * vec[_Y])
@@ -27,11 +34,11 @@ float	vector_length(t_vec3 vec)
 }
 
 //	stores the unit vector of 'direction' in 'unit'
-void	vector_normalize(t_vec3 unit, t_vec3 direction)
+void	vec3_normalize(t_vec3 unit, t_vec3 direction)
 {
 	float		v_len;
 
-	v_len = vector_length(direction);
+	v_len = vec3_length(direction);
 	if (v_len != 0)
 	{
 		unit[_X] = direction[_X] / v_len;

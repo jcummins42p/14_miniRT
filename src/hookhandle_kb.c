@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/25 12:11:05 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 12:28:13 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ int	kp_scene_select(int keysym, t_mlx *mlx, int newscene)
 
 void	kp_scene_change(t_mlx *mlx, int newscene)
 {
-	printf("Attempting to change to scene %d\n", newscene);
 	if (mlx->rt->scenes[newscene]->valid)
 	{
 		mlx->rt->curr_scene = newscene;
 		render_scene(mlx, mlx->rt->scenes[newscene]);
+		print_scene(mlx->rt->scenes[newscene]);
 	}
 	else
 		printf("Unable to render invalid scene\n");

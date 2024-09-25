@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:45:11 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 20:28:14 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/25 13:47:18 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	parse_sphere(char *input, t_scene *scene)
 		scene->sphs[i].id = i;
 		set_vec3(scene->sphs[i].center, items[1]);
 		scene->sphs[i].diamtr = ft_atof(items[2]);
+		scene->sphs[i].radius = scene->sphs[i].diamtr / 2;
 		scene->sphs[i].color = set_color(items[3]);
 		aa_bound_sphere(&scene->sphs[i]);
 		ft_free_string_list(items);
