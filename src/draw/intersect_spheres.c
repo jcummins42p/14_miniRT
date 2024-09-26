@@ -6,14 +6,14 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:56:52 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 15:39:07 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:10:57 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
 //	there was a bug with the line
-//	temp_t = (-eq.b + sqrt(eq.discriminant)) / (2 * eq.a);
+//	temp_t = (eq.b + sqrt(eq.discriminant)) / (2 * eq.a);
 //	because we need the negative square root - positive root
 //	results in rendering the far side of the sphere.
 t_color	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t)
@@ -29,7 +29,7 @@ t_color	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t)
 	eq.discriminant = eq.b * eq.b - 4 * eq.a * eq.c;
 	if (eq.discriminant < 0)
 		return (-1);
-	temp_t = (-eq.b - sqrt(eq.discriminant)) / (2 * eq.a);
+	temp_t = (eq.b - sqrt(eq.discriminant)) / (2 * eq.a);
 	if (temp_t > 0.001 && temp_t < *t)
 	{
 		*t = temp_t;

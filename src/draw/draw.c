@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 15:05:37 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:02:22 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	norm_device_coords(t_vec2 ndc, int x, int y)
 //	screen.
 void	project_viewport(t_vec2 project, t_vec2 ndc, int fov, float aspect)
 {
-	project[_X] = ndc[_X] * aspect * tan(fov / 2.0);
-	project[_Y] = ndc[_Y] * tan(fov / 2.0);
+	project[_X] = 0 - (ndc[_X] * aspect * tan(fov / 2.0));
+	project[_Y] = 0 - (ndc[_Y] * tan(fov / 2.0));
 }
 
 void	set_ray_direction(t_vec3 dir, t_vec2 plane, t_camera cam)
