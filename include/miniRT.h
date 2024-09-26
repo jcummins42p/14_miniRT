@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:58:24 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/23 13:13:34 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:27:58 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <X11/keysymdef.h>
 # include <X11/X.h>
 # include <X11/XKBlib.h>
+
+// forbidden threading functions - remove before evaluation!
+# include <pthread.h>
 
 # include "defines.h"
 # include "enums.h"

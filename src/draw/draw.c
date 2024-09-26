@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 17:43:45 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:34:25 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int	img_init(t_mlx *mlx, t_img *img)
 
 void	render_scene(t_mlx *mlx, t_scene *scene)
 {
-	int	y;
+	int			y;
 
 	y = 0;
 	if (!scene->valid)
