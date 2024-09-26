@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:47:58 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/25 12:27:05 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:33:47 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,20 @@ void	parse_ambient(char *input, t_scene *scene)
 	}
 }
 
-void	parse_camera(char *input, t_scene *scene)
+void	orient_camera(t_camera *cam)
 {
-	char	**items;
 	t_vec3	world_up;
 
 	set_vec3(world_up, "0,1,0");
+	cross_product(cam->right, world_up, cam->dir);
+	vec3_normalize(cam->right, cam->right);
+	cross_product(cam->up, cam->dir, cam->right);
+	vec3_normalize(cam->up, cam->up);
+}
+
+void	parse_camera(char *input, t_scene *scene)
+{
+	char	**items;
 	if (scene->cam.lock++)
 		scene->valid = false;
 	if (!input || !*input)
@@ -45,14 +53,11 @@ void	parse_camera(char *input, t_scene *scene)
 	{
 		items = ft_split(input, ' ');
 		set_vec3(scene->cam.point, items[1]);
+		scene->cam.fov = ft_atoi(items[3]);
 		if (set_unit_vec3(scene->cam.dir, items[2]))
 			scene->valid = false;
-		scene->cam.fov = ft_atoi(items[3]);
 		ft_free_string_list(items);
-		cross_product(scene->cam.right, world_up, scene->cam.dir);
-		vec3_normalize(scene->cam.right, scene->cam.right);
-		cross_product(scene->cam.up, scene->cam.dir, scene->cam.right);
-		vec3_normalize(scene->cam.up, scene->cam.up);
+		orient_camera(&scene->cam);
 	}
 }
 

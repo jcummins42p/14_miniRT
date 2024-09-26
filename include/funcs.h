@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/25 14:29:07 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:35:18 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int		set_unit_vec3(t_vec3 vec, char *input);
 void	print_vec3(char *message, t_vec3 vec);
 
 //	parse_uniqs.c
+void	orient_camera(t_camera *camera);
 void	parse_ambient(char *input, t_scene *scene);
 void	parse_camera(char *input, t_scene *scene);
 void	parse_light(char *input, t_scene *scene);
