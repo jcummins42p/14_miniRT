@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/25 12:28:13 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:44:50 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ int	k_cam_move(int keysym, t_mlx *mlx)
 	else if (keysym == 65364)
 		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Y] -= 1;
 	else if (keysym == 65363)
-		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_X] -= 1;
-	else if (keysym == 65361)
 		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_X] += 1;
+	else if (keysym == 65361)
+		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_X] -= 1;
 	else
 		return (0);
 	return (1);
