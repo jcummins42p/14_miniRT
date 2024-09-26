@@ -6,27 +6,35 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:24:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 12:48:10 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:57:31 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
+//	the dot (or scalar) product of two vectors perpendicular to each other
+//	always equals ZERO. a.b = ||a|| x ||b|| x cosΘ
+//	if the ray is perpendicular with the plane it:
+//		a) won't be hit by the ray and
+//		b) would result in a division by 0 anyway
+//			: so we need to exit at that point.
+//
 t_color	intersect_plane(t_plane *plane, t_ray *ray, float *t)
 {
 	float		temp_t;
-	t_vec3		cam_to_anch;	//	points from cam origin to a known point on the plane
+	t_vec3		cam_to_anch;
 	float		denominator;
 
 	denominator = dot_product(ray->dir, plane->norm);
-	if (fl_abs(denominator) < EPSILON)
-		return (-1);
-	vec3_a_to_b(cam_to_anch, *ray->origin, plane->anch);
-	temp_t = dot_product(cam_to_anch, plane->norm) / (0 - denominator);
-	if (temp_t > 0.001 && temp_t < *t)
+	if (fl_abs(denominator) > EPSILON)
 	{
-		*t = temp_t;
-		return (plane->color);
+		vec3_a_to_b(cam_to_anch, *ray->origin, plane->anch);
+		temp_t = dot_product(cam_to_anch, plane->norm) / (denominator);
+		if (temp_t > 0.001 && temp_t < *t)
+		{
+			*t = temp_t;
+			return (plane->color);
+		}
 	}
 	return (-1);
 }

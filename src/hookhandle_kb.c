@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 12:44:50 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:27:21 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void	toggle_scan(t_mlx *mlx)
 
 int	k_cam_move(int keysym, t_mlx *mlx)
 {
-	printf("k_cam_move %d\n", keysym);
 	if (keysym == 65362)
 		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Y] += 1;
 	else if (keysym == 65364)
@@ -112,15 +111,39 @@ void	k_redraw(t_mlx *mlx, int redraw)
 		display_hud(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
+int	k_cam_pan(int keysym, t_mlx *mlx)
+{
+	if (keysym == 65431)
+	{
+		printf("Pointing camera forwards: ");
+		printf("Old camera z: %f", mlx->rt->scenes[mlx->rt->curr_scene]->cam.dir[_Z]);
+		mlx->rt->scenes[mlx->rt->curr_scene]->cam.dir[_Z] = 1.0;
+		printf("New camera z: %f\n", mlx->rt->scenes[mlx->rt->curr_scene]->cam.dir[_Z]);
+	}
+	else if (keysym == 65433)
+	{
+		printf("Pointing camera backwards:");
+		printf("Old camera z: %f", mlx->rt->scenes[mlx->rt->curr_scene]->cam.dir[_Z]);
+		mlx->rt->scenes[mlx->rt->curr_scene]->cam.dir[_Z] = -1.0;
+		printf("New camera z: %f\n", mlx->rt->scenes[mlx->rt->curr_scene]->cam.dir[_Z]);
+	}
+	else
+		return (0);
+	return (1);
+}
+
 int	k_press(int keysym, t_mlx *mlx)
 {
 	int	redraw;
 
 	redraw = 0;
+	printf("k_press %d\n", keysym);
 	if (keysym == XK_Escape)
 		mlx_loop_end(mlx->mlx);
 	else if (keysym >= 65361 && keysym <= 65364)
 		redraw = k_cam_move(keysym, mlx);
+	else if (keysym >= 65429 && keysym <= 65436)
+		redraw = k_cam_pan(keysym, mlx);
 	else if (keysym == XK_KP_Add || keysym == XK_KP_Subtract || keysym == XK_KP_Enter)
 		redraw = k_select(keysym, mlx);
 	if (redraw)

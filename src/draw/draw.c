@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/25 16:33:48 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:05:37 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ t_color	cast_ray(t_scene *scene, t_ray *ray)
 	closest_t = INFINITY;
 	temp_t = INFINITY;
 	pixel_color = -1;
-	/*pixel_color = 0x000000;*/
 	temp_color = intersect_planes(scene, ray, &temp_t);
 	if (temp_t < closest_t)
 	{
