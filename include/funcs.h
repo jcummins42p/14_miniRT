@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 16:35:18 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:26:00 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 //	draw_color.c
 void	color_int_to_vector(t_rgb rgb, t_color color);
 int		color_vector_to_int(t_rgb rgb);
-t_color	color_gradient(t_color original, t_color target, float ratio);
+int		color_invert(t_color original);
+t_color	color_addition(t_color original, t_color target, float ratio);
+t_color	color_subtract(t_color original, t_color target, float ratio);
 
 //	intersections_planes.c
 int		intersect_planes(t_scene *scene, t_ray *ray, float *t);

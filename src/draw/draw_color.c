@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:55:57 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/25 17:35:36 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:25:21 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,39 @@ int	color_vector_to_int(t_rgb rgb)
 	return (color);
 }
 
+t_color color_invert(t_color original)
+{
+	t_rgb	ori;
+	t_rgb	inv;
+
+	color_int_to_vector(ori, original);
+	inv[_R] = 255 - ori[_R];
+	inv[_G] = 255 - ori[_G];
+	inv[_B] = 255 - ori[_B];
+	return (color_vector_to_int(inv));
+}
+
+t_color	color_subtract(t_color original, t_color target, float ratio)
+{
+	t_rgb	ori;
+	t_rgb	end;
+	t_rgb	out;
+
+	if (ratio < 0)
+		return (original);
+	if (ratio > 1)
+		return (target);
+	color_int_to_vector(ori, original);
+	color_int_to_vector(end, target);
+	out[_R] = fmin(fmax(0, (ori[0] - (int)((end[_R] - ori[_R]) * ratio))), 255);
+	out[_G] = fmin(fmax(0, (ori[1] - (int)((end[_G] - ori[_G]) * ratio))), 255);
+	out[_B] = fmin(fmax(0, (ori[2] - (int)((end[_B] - ori[_B]) * ratio))), 255);
+
+	return (color_vector_to_int(out));
+}
+
 //	shifts 'original' to 'target' by a ratio: 0 is all original, 1 is all target
-t_color	color_gradient(t_color original, t_color target, float ratio)
+t_color	color_addition(t_color original, t_color target, float ratio)
 {
 	t_rgb	ori;
 	t_rgb	end;

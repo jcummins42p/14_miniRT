@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 16:02:22 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:43:45 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,13 @@ void	set_ray_direction(t_vec3 dir, t_vec2 plane, t_camera cam)
 
 void	shade_pixel_distance(t_color *pixel_color, float distance)
 {
-	*pixel_color = color_gradient(*pixel_color, 0x000000, distance);
+	*pixel_color = color_addition(*pixel_color, 0x000000, distance);
 }
 
 void	shade_pixel_ambient(t_color *pixel_color, t_scene *scene)
 {
-	*pixel_color = color_gradient(*pixel_color, scene->amb.hue, scene->amb.lum);
+	*pixel_color = color_subtract(*pixel_color, color_invert(scene->amb.hue), scene->amb.lum);
+	/**pixel_color = color_addition(*pixel_color, scene->amb.hue, scene->amb.lum);*/
 }
 
 t_color	cast_ray(t_scene *scene, t_ray *ray)
@@ -78,7 +79,7 @@ t_color	cast_ray(t_scene *scene, t_ray *ray)
 	}
 	if (pixel_color >= 0)
 	{
-		shade_pixel_distance(&pixel_color, closest_t / (100));
+		shade_pixel_distance(&pixel_color, log(closest_t / (scene->amb.lum * 300)));
 		shade_pixel_ambient(&pixel_color, scene);
 	}
 	else
