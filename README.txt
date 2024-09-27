@@ -23,14 +23,14 @@ needed to change normal vectors require some complex numbers and I have not yet
 looked closely into them. This is also required for the shape transformations.
 
 Controls:
-	camera left	=	cam.point[_X]-- = arrow left
-	camera right =	cam.point[_X]++ = arrow right
-	camera down	=	cam.point[_Y]-- = arrow down
-	camera up	=	cam.point[_Y]++ = arrow up
-	camera forward	cam.point[_Z](++ or -- depending on the direction of view)
-	camera back		cam.point[_Z](++ or -- depending on the direction of view)
+	camera left	=	cam.point[_X]-- 	= numpad 4
+	camera right =	cam.point[_X]++		= numpad 6
 	camera forward	com.dir[_Z] = 1		= numpad 8
 	camera backward	com.dir[_Z] = -1	= numpad 2
+	camera turn 90 degrees left			= numpad 7
+	camera turn 90 degrees right		= numpad 9
+	camera down	=	cam.point[_Y]-- 	= arrow down
+	camera up	=	cam.point[_Y]++ 	= arrow up
 
 Currently there is only a single ray being drawn for each pixel, returning the
 colour and distance of the first shape it meets. This is then shaded for ambient
