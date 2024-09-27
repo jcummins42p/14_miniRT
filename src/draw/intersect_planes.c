@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:24:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 13:57:31 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:21:09 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_color	intersect_plane(t_plane *plane, t_ray *ray, float *t)
 	t_vec3		cam_to_anch;
 	float		denominator;
 
-	denominator = dot_product(ray->dir, plane->norm);
+	denominator = dot_product(ray->udir, plane->norm);
 	if (fl_abs(denominator) > EPSILON)
 	{
 		vec3_a_to_b(cam_to_anch, *ray->origin, plane->anch);

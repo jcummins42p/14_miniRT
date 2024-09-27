@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 18:34:28 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:50:49 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_quadratic
 typedef struct s_ray
 {
 	t_vec3		*origin;
+	t_vec3		bounce;
 	t_vec3		dir;
 	t_vec3		udir;
 }				t_ray;
@@ -49,6 +50,8 @@ typedef struct s_camera
 	t_vec3		dir;	//	unit vector pointing out of the camera
 	t_vec3		right;	//	unit vector pointing up relative to the camera
 	t_vec3		up;		//	unit vector pointing right relative to the camera
+	t_vec3		point_def;
+	t_vec3		dir_def;
 	int			fov;
 }				t_camera;
 
@@ -118,6 +121,7 @@ typedef struct s_scene
 	t_render	rend;
 	t_ambient	amb;
 	t_camera	cam;
+	t_camera	cam_defaults;
 	t_light		light;
 	t_sphere	*sphs;
 	t_plane		*plns;

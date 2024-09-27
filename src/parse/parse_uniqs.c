@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:47:58 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 16:33:47 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:05:27 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	orient_camera(t_camera *cam)
 void	parse_camera(char *input, t_scene *scene)
 {
 	char	**items;
+
 	if (scene->cam.lock++)
 		scene->valid = false;
 	if (!input || !*input)
@@ -57,6 +58,8 @@ void	parse_camera(char *input, t_scene *scene)
 		if (set_unit_vec3(scene->cam.dir, items[2]))
 			scene->valid = false;
 		ft_free_string_list(items);
+		vec3_set_a(scene->cam.point_def, scene->cam.point);
+		vec3_set_a(scene->cam.dir_def, scene->cam.dir);
 		orient_camera(&scene->cam);
 	}
 }

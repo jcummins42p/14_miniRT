@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/27 11:39:41 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:27:07 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,53 @@ void	shade_pixel_distance(t_color *pixel_color, float distance)
 }
 
 //	first, shades pixel colour towards black inversely proprtional to luminence
+//	then the colour is dim
 void	shade_pixel_ambient(t_color *pixel_color, t_scene *scene)
 {
 	*pixel_color = color_addition(*pixel_color, 0x000000, 1 - scene->amb.lum);
 	*pixel_color = color_subtract(*pixel_color, color_invert(scene->amb.hue), scene->amb.lum);
 }
 
-t_color	cast_ray(t_scene *scene, t_ray *ray)
+void	shade_pixel_dirlight(t_color *pixel_color, t_color light_color, float distance)
+{
+	*pixel_color = color_subtract(*pixel_color, color_invert(light_color), 1 - (distance / 100));
+}
+
+t_color	cast_light_ray(t_scene *scene, t_ray *ray, float *light_t)
+{
+	float	temp_t;
+
+	temp_t = INFINITY;
+	intersect_planes(scene, ray, &temp_t);
+	if (temp_t < *light_t)
+		return (0);
+	intersect_spheres(scene, ray, &temp_t);
+	if (temp_t < *light_t)
+		return (0);
+	return (scene->light.hue);
+}
+
+t_color	prep_light_ray(t_scene *scene, t_vec3 bounce_point)
+{
+	float		light_t;
+	t_color		light_color;
+	t_ray		ray;
+
+	vec3_set_a(ray.bounce, bounce_point);
+	ray.origin = &ray.bounce;
+	vec3_a_to_b(ray.dir, bounce_point, scene->light.point);
+	vec3_normalize(ray.udir, ray.dir);
+	light_t = vec3_length(ray.dir);
+	light_color = cast_light_ray(scene, &ray, &light_t);
+	/*if (light_color > 0)*/
+		/*shade_pixel_distance(&light_color, (DARK * log(light_t / (BRIGHT))));*/
+	return (light_color);
+}
+
+t_color	cast_cam_ray(t_scene *scene, t_ray *ray)
 {
 	t_color	pixel_color;
+	t_color	light_color;
 	t_color	temp_color;
 	float	closest_t;
 	float	temp_t;
@@ -84,13 +122,16 @@ t_color	cast_ray(t_scene *scene, t_ray *ray)
 	{
 		shade_pixel_ambient(&pixel_color, scene);
 		shade_pixel_distance(&pixel_color, (DARK * log(closest_t / (BRIGHT))));
+		vec3_position(ray->bounce, *ray->origin, ray->udir, closest_t);
+		light_color = prep_light_ray(scene, ray->bounce);
+		shade_pixel_dirlight(&pixel_color, light_color, closest_t);
 	}
 	else
 		pixel_color = 0x000000;
 	return (pixel_color);
 }
 
-void	prep_ray(t_mlx *mlx, t_scene *scene, int x, int y)
+void	prep_cam_ray(t_mlx *mlx, t_scene *scene, int x, int y)
 {
 	t_color		pixel_color;
 	t_ray		ray;
@@ -101,9 +142,8 @@ void	prep_ray(t_mlx *mlx, t_scene *scene, int x, int y)
 	norm_device_coords(ndc, x, y);
 	project_viewport(viewport, ndc, scene->cam.fov, mlx->aspect_ratio);
 	set_ray_direction(ray.dir, viewport, scene->cam);
-	vec3_normalize(ray.dir, ray.dir);
-
-	pixel_color = cast_ray(scene, &ray);
+	vec3_normalize(ray.udir, ray.dir);
+	pixel_color = cast_cam_ray(scene, &ray);
 	pixel_put_img(scene->img, x, y, pixel_color);
 }
 
@@ -113,7 +153,7 @@ void	render_row(t_mlx *mlx, t_scene *scene, int y)
 
 	x = 0;
 	while (x < RES_W)
-		prep_ray(mlx, scene, x++, y);
+		prep_cam_ray(mlx, scene, x++, y);
 }
 
 int	img_init(t_mlx *mlx, t_img *img)

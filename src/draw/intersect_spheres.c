@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:56:52 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 16:10:57 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:21:39 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_color	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t)
 	t_vec3		oc;	//	points from cam origin to the sphere center
 
 	vec3_a_to_b(oc, *ray->origin, sphere->center);
-	eq.a = dot_product(ray->dir, ray->dir);
-	eq.b = 2 * dot_product(oc, ray->dir);
+	eq.a = dot_product(ray->udir, ray->udir);
+	eq.b = 2 * dot_product(oc, ray->udir);
 	eq.c = dot_product(oc, oc) - (sphere->radius * sphere->radius);
 	eq.discriminant = eq.b * eq.b - 4 * eq.a * eq.c;
 	if (eq.discriminant < 0)

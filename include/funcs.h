@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 17:26:00 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:08:47 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ float	fl_abs(float f);
 void	cross_product(t_vec3 product, t_vec3 a, t_vec3 b);
 float	dot_product(t_vec3 a, t_vec3 b);
 
-//
+//	vector_maths.c
+void	vec3_position(t_vec3 dest, t_vec3 origin, t_vec3 unit, float magnitude);
+void	vec3_set_a(t_vec3 a, t_vec3 b);
 void	vec3_a_to_b(t_vec3 dir_out, t_vec3 point_a, t_vec3 point_b);
 float	vec3_length(t_vec3 vec);
 void	vec3_normalize(t_vec3 unit, t_vec3 direction);

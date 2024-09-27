@@ -6,11 +6,25 @@
 /*   By: jcummins <jcummins@student.42prague.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 14:47:37 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:49:44 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+void	vec3_set_a(t_vec3 a, t_vec3 b)
+{
+	a[_X] = b[_X];
+	a[_Y] = b[_Y];
+	a[_Z] = b[_Z];
+}
+
+void	vec3_position(t_vec3 dest, t_vec3 origin, t_vec3 unit, float magnitude)
+{
+	dest[_X] = origin[_X] + (unit[_X] * magnitude);
+	dest[_Y] = origin[_Y] + (unit[_Y] * magnitude);
+	dest[_Z] = origin[_Z] + (unit[_Z] * magnitude);
+}
 
 void	vec3_a_to_b(t_vec3 dir_out, t_vec3 point_a, t_vec3 point_b)
 {
