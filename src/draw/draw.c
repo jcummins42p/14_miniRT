@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/27 11:28:09 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:39:41 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	norm_device_coords(t_vec2 ndc, int x, int y)
 //	where ymax it the distance from the middle of the screen to the top
 void	project_viewport(t_vec2 project, t_vec2 ndc, int fov, float aspect)
 {
-	project[_X] = 0 - (ndc[_X] * aspect * tan(fov / 2.0));
-	project[_Y] = 0 - (ndc[_Y] * tan(fov / 2.0));
+	project[_X] = (ndc[_X] * aspect * fl_abs(tan(fov / 2.0)));
+	project[_Y] = (ndc[_Y] * fl_abs(tan(fov / 2.0)));
 }
 
 void	set_ray_direction(t_vec3 dir, t_vec2 plane, t_camera cam)
@@ -51,8 +51,10 @@ void	shade_pixel_distance(t_color *pixel_color, float distance)
 	*pixel_color = color_addition(*pixel_color, 0x000000, distance);
 }
 
+//	first, shades pixel colour towards black inversely proprtional to luminence
 void	shade_pixel_ambient(t_color *pixel_color, t_scene *scene)
 {
+	*pixel_color = color_addition(*pixel_color, 0x000000, 1 - scene->amb.lum);
 	*pixel_color = color_subtract(*pixel_color, color_invert(scene->amb.hue), scene->amb.lum);
 }
 
