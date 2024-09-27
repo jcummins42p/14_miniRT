@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/27 16:27:07 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/27 17:19:05 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,14 @@ void	shade_pixel_ambient(t_color *pixel_color, t_scene *scene)
 
 void	shade_pixel_dirlight(t_color *pixel_color, t_color light_color, float distance)
 {
-	*pixel_color = color_subtract(*pixel_color, color_invert(light_color), 1 - (distance / 100));
+	*pixel_color = color_addition(*pixel_color, light_color, (1 - distance / 100));
+	/**pixel_color = color_subtract(*pixel_color, color_invert(light_color), 1 - (distance / 10));*/
 }
 
 t_color	cast_light_ray(t_scene *scene, t_ray *ray, float *light_t)
 {
 	float	temp_t;
+	t_color	light_color;
 
 	temp_t = INFINITY;
 	intersect_planes(scene, ray, &temp_t);
@@ -75,7 +77,9 @@ t_color	cast_light_ray(t_scene *scene, t_ray *ray, float *light_t)
 	intersect_spheres(scene, ray, &temp_t);
 	if (temp_t < *light_t)
 		return (0);
-	return (scene->light.hue);
+	light_color = scene->light.hue;
+	light_color = color_addition(light_color, 0x000000, 1 - scene->light.lum);
+	return (light_color);
 }
 
 t_color	prep_light_ray(t_scene *scene, t_vec3 bounce_point)
@@ -120,10 +124,10 @@ t_color	cast_cam_ray(t_scene *scene, t_ray *ray)
 	}
 	if (pixel_color >= 0)
 	{
+		light_color = prep_light_ray(scene, ray->bounce);
 		shade_pixel_ambient(&pixel_color, scene);
 		shade_pixel_distance(&pixel_color, (DARK * log(closest_t / (BRIGHT))));
 		vec3_position(ray->bounce, *ray->origin, ray->udir, closest_t);
-		light_color = prep_light_ray(scene, ray->bounce);
 		shade_pixel_dirlight(&pixel_color, light_color, closest_t);
 	}
 	else
