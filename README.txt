@@ -22,6 +22,11 @@ Camera controls are currently limited to axis aligned movement. The algorithms
 needed to change normal vectors require some complex numbers and I have not yet
 looked closely into them. This is also required for the shape transformations.
 
+There are two rays cast per pixel:
+	the first from the camera to get the colour of the first object it meeets
+	the second from that meeting point towards the light source, to get the
+	brightness and distance of the spot light.
+
 Controls:
 	camera left	=	cam.point[_X]-- 	= numpad 4
 	camera right =	cam.point[_X]++		= numpad 6
@@ -37,10 +42,10 @@ colour and distance of the first shape it meets. This is then shaded for ambient
 light and depth.
 
 Things to do for mandatory, increasing order of estimated difficulty:
-	Change depth shading to get rid of magic number - define macro?
 	Correct ambient light calculation
-	Add secondary ray from point of contact to light source.
+	Reconcile ambient and directional light to work correctly together
 	Add cylinder maths
+	Add calculation to direction light so that it shades based on angle
 
 Things to increase performance
 	Add bsp tree culling
@@ -48,4 +53,4 @@ Things to increase performance
 
 Fun bonus things
 	maybe we can add multithreading to split up the image and speed up rendering
-
+	but those function are forbidden in the mandatory section at least.
