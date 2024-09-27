@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 18:34:25 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:28:09 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void	norm_device_coords(t_vec2 ndc, int x, int y)
 }
 
 //	uses the ndc vector to generate co-ordinate for that x,y on the virtual
-//	screen.
+//	screen. The relationship between fov (theta) and distance to image plane:
+//	tan(theta/2) = ymax / d
+//	where ymax it the distance from the middle of the screen to the top
 void	project_viewport(t_vec2 project, t_vec2 ndc, int fov, float aspect)
 {
 	project[_X] = 0 - (ndc[_X] * aspect * tan(fov / 2.0));
@@ -52,7 +54,6 @@ void	shade_pixel_distance(t_color *pixel_color, float distance)
 void	shade_pixel_ambient(t_color *pixel_color, t_scene *scene)
 {
 	*pixel_color = color_subtract(*pixel_color, color_invert(scene->amb.hue), scene->amb.lum);
-	/**pixel_color = color_addition(*pixel_color, scene->amb.hue, scene->amb.lum);*/
 }
 
 t_color	cast_ray(t_scene *scene, t_ray *ray)
@@ -79,8 +80,8 @@ t_color	cast_ray(t_scene *scene, t_ray *ray)
 	}
 	if (pixel_color >= 0)
 	{
-		shade_pixel_distance(&pixel_color, log(closest_t / (scene->amb.lum * 300)));
 		shade_pixel_ambient(&pixel_color, scene);
+		shade_pixel_distance(&pixel_color, (DARK * log(closest_t / (BRIGHT))));
 	}
 	else
 		pixel_color = 0x000000;

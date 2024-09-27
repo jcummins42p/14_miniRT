@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:55:57 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 17:25:21 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:27:45 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ t_color	color_subtract(t_color original, t_color target, float ratio)
 		return (target);
 	color_int_to_vector(ori, original);
 	color_int_to_vector(end, target);
-	out[_R] = fmin(fmax(0, (ori[0] - (int)((end[_R] - ori[_R]) * ratio))), 255);
-	out[_G] = fmin(fmax(0, (ori[1] - (int)((end[_G] - ori[_G]) * ratio))), 255);
-	out[_B] = fmin(fmax(0, (ori[2] - (int)((end[_B] - ori[_B]) * ratio))), 255);
+	out[_R] = fmin(fmax(0, (ori[0] - (int)(end[_R] * ratio))), 255);
+	out[_G] = fmin(fmax(0, (ori[1] - (int)(end[_G] * ratio))), 255);
+	out[_B] = fmin(fmax(0, (ori[2] - (int)(end[_B] * ratio))), 255);
 
 	return (color_vector_to_int(out));
 }
