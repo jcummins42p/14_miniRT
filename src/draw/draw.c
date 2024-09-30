@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/29 08:42:05 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/30 12:15:55 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ t_color	cast_cam_ray(t_scene *scene, t_ray *ray)
 	closest_t = INFINITY;
 	temp_t = INFINITY;
 	pixel_color = -1;
-	temp_color = intersect_light(scene, ray, &temp_t);
+	temp_color = intersect_lights(scene, ray, &temp_t);
 	{
 		closest_t = temp_t;
 		pixel_color = temp_color;

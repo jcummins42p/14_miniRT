@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/27 16:08:47 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/30 12:16:13 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,14 @@ int		color_invert(t_color original);
 t_color	color_addition(t_color original, t_color target, float ratio);
 t_color	color_subtract(t_color original, t_color target, float ratio);
 
-//	intersections_planes.c
-int		intersect_planes(t_scene *scene, t_ray *ray, float *t);
-int		intersect_spheres(t_scene *scene, t_ray *ray, float *t);
+//	intersect_light.c
+int		intersect_lights(t_scene *scene, t_ray *ray, float *t);
 
-//	intersections_spheres.c
+//	intersect_planes.c
+int		intersect_planes(t_scene *scene, t_ray *ray, float *t);
+
+//	intersect_spheres.c
+int		intersect_spheres(t_scene *scene, t_ray *ray, float *t);
 
 //	utils_mlx.c
 int		set_mlx(t_mlx *mlx, t_rt *rt);
@@ -71,7 +74,7 @@ int		k_press(int keysym, t_mlx *mlx);
 
 //	parse_attributes.c
 int		set_color(char *input);
-void	zero_vector(t_vec3 vec);
+void	zero_vec3(t_vec3 vec);
 void	print_color(char *pre, char *mid, char *post, int color);
 void	set_vec3(t_vec3 vec, char *input);
 int		set_unit_vec3(t_vec3 vec, char *input);

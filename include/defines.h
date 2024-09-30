@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:16:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/27 11:18:03 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/30 12:18:00 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 # define DARK 0.4
 # define BRIGHT 20
+
+# define LIGHT_RAD 2	//	The default radius of a light source (drawn as sphere)
 
 # define KDEF "\x1B[0m"
 # define KRED "\x1B[31m"
