@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/30 14:49:12 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:40:42 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,35 @@ void	set_ray_direction(t_vec3 dir, t_vec2 plane, t_camera cam)
 
 void	shade_pixel_distance(t_color *pixel_color, float distance)
 {
-	*pixel_color = color_addition(*pixel_color, 0x000000, distance);
+	*pixel_color = color_shift(*pixel_color, 0x000000, distance);
 }
 
 //	first, shades pixel colour towards black inversely proprtional to luminence
 //	then the colour is dim
-void	shade_pixel_ambient(t_color *pixel_color, t_scene *scene)
+void	shade_light_ambient(t_color *light_color, t_scene *scene)
 {
-	*pixel_color = color_addition(*pixel_color, 0x000000, 1 - scene->amb.lum);
-	*pixel_color = color_subtract(*pixel_color, color_invert(scene->amb.hue), scene->amb.lum);
+	*light_color = color_shift(*light_color, 0x000000, 1 - scene->amb.lum);
+	/**pixel_color = color_subtract(*pixel_color, color_invert(scene->amb.hue), scene->amb.lum);*/
 }
 
-void	shade_pixel_dirlight(t_color *pixel_color, t_color light_color, float distance)
+t_color	combine_lights(t_color light_color, t_ambient amb)
 {
-	*pixel_color = color_addition(*pixel_color, light_color, (distance / 100));
-	/**pixel_color = color_subtract(*pixel_color, color_invert(light_color), 1 - (distance / 10));*/
+	t_color	amb_color;
+
+	amb_color = color_shift(amb.hue, 0x000000, 1 - amb.lum);
+	return (color_addition(light_color, amb_color));
+}
+
+void	shade_pixel_dirlight(t_scene *scene, t_color *pixel_color, t_color light_color)
+{
+	/*float	ratio;*/
+
+	(void)scene;
+	/*ratio = 1;*/
+	/*(void)distance;*/
+	/**pixel_color = color_illuminate(*pixel_color, light_color, ratio);*/
+	/**pixel_color = color_shift(*pixel_color, light_color, (distance / 100));*/
+	*pixel_color = color_subtract(*pixel_color, color_invert(light_color), 1);
 }
 
 t_color	cast_light_ray(t_scene *scene, t_ray *ray, float *light_t)
@@ -78,7 +92,7 @@ t_color	cast_light_ray(t_scene *scene, t_ray *ray, float *light_t)
 	if (temp_t < *light_t)
 		return (0);
 	light_color = scene->light.hue;
-	light_color = color_addition(light_color, 0x000000, 1 - scene->light.lum);
+	light_color = color_shift(light_color, 0x000000, 1 - scene->light.lum);
 	return (light_color);
 }
 
@@ -95,8 +109,8 @@ t_color	prep_light_ray(t_scene *scene, t_vec3 bounce_point)
 	vec3_normalize(ray.udir, ray.dir);
 	light_t = vec3_length(ray.dir);
 	light_color = cast_light_ray(scene, &ray, &light_t);
-	/*if (light_color > 0)*/
-		/*shade_pixel_distance(&light_color, (DARK * log(light_t / (BRIGHT))));*/
+	if (light_color > 0)
+		shade_pixel_distance(&light_color, (DARK * log(light_t / (BRIGHT))));
 	return (light_color);
 }
 
@@ -111,6 +125,8 @@ t_color	cast_cam_ray(t_scene *scene, t_ray *ray)
 	closest_t = INFINITY;
 	temp_t = INFINITY;
 	pixel_color = -1;
+	scene->select_type[ray->y][ray->x] = SEL_NONE;
+	scene->screen_object[ray->y][ray->x] = NULL;
 	temp_color = intersect_spheres(scene, ray, &temp_t);
 	if (temp_t < closest_t)
 	{
@@ -126,16 +142,16 @@ t_color	cast_cam_ray(t_scene *scene, t_ray *ray)
 	temp_color = intersect_lights(scene, ray, &temp_t);
 	if (temp_t < closest_t)
 	{
-		closest_t = 0;
+		closest_t = 0;	//	setting closest distance to 0 for lights keeps brightness max
 		pixel_color = temp_color;
 	}
 	if (pixel_color >= 0)
 	{
-		light_color = prep_light_ray(scene, ray->bounce);
-		/*shade_pixel_ambient(&pixel_color, scene);*/
-		/*shade_pixel_distance(&pixel_color, (DARK * log(closest_t / (BRIGHT))));*/
 		vec3_position(ray->bounce, *ray->origin, ray->udir, closest_t);
-		shade_pixel_dirlight(&pixel_color, light_color, closest_t);
+		light_color = prep_light_ray(scene, ray->bounce);
+		light_color = combine_lights(light_color, scene->amb);
+		shade_pixel_dirlight(scene, &pixel_color, light_color);
+		pixel_color = color_shift(pixel_color, 0x000000, (closest_t / 100));
 	}
 	else
 		pixel_color = 0x000000;

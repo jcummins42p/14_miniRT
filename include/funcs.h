@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/30 12:16:13 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:23:12 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 void	color_int_to_vector(t_rgb rgb, t_color color);
 int		color_vector_to_int(t_rgb rgb);
 int		color_invert(t_color original);
-t_color	color_addition(t_color original, t_color target, float ratio);
+t_color	color_illuminate(t_color original, t_color target, float ratio);
+t_color	color_shift(t_color original, t_color target, float ratio);
 t_color	color_subtract(t_color original, t_color target, float ratio);
+t_color	color_addition(t_color original, t_color target);
 
 //	intersect_light.c
 int		intersect_lights(t_scene *scene, t_ray *ray, float *t);
