@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/25 12:26:31 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/30 11:21:01 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	set_color(char *input) // assumes csv RGB
 	return (color);
 }
 
-void	zero_vector(t_vec3 vec)
+void	zero_vec3(t_vec3 vec)
 {
 	int	i;
 

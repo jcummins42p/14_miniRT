@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:58:24 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/26 18:27:58 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:35:54 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@
 # include "enums.h"
 # include "structs.h"
 # include "funcs.h"
-
-# define RES_H	900
-# define RES_W	1800
 
 # define XK_KP_0	0xffb0
 # define XK_KP_1	0xffb1

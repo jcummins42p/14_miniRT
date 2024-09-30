@@ -6,14 +6,32 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:38:24 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 20:28:57 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:38:45 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
+void	init_object_selection(t_scene *scene)
+{
+	int	y;
+	int x;
+
+	x = 0;
+	y = 0;
+	while (y < RES_H)
+	{
+		while (x < RES_W)
+			scene->screen_object[y][x++] = NULL;
+		x = 0;
+		y++;
+	}
+	scene->selected = NULL;
+}
+
 void	init_scene(t_scene *scene, char *filename, int id)
 {
+	init_object_selection(scene);
 	scene->fname = ft_strdup(filename);
 	scene->img = malloc(sizeof(t_img));
 	scene->id = id;

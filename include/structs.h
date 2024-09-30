@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/27 15:50:49 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:08:47 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_quadratic
 
 typedef struct s_ray
 {
+	int			x;
+	int			y;
 	t_vec3		*origin;
 	t_vec3		bounce;
 	t_vec3		dir;
@@ -117,6 +119,9 @@ typedef struct s_render
 typedef struct s_scene
 {
 	char		*fname;
+	void		*screen_object[RES_H][RES_W];	//	each pixel stores the object in it
+	int			select_type[RES_H][RES_W];
+	void		*selected;
 	t_img		*img;
 	t_render	rend;
 	t_ambient	amb;
