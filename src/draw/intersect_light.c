@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:14:47 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/30 12:18:11 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:20:48 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,15 @@ t_color	intersect_lights(t_scene *scene, t_ray *ray, float *t)
 	float	temp_t;
 	int		i;
 
-	i = -1;
+	i = 0;
 	temp_color = -1;
 	pixel_color = -1;
 	temp_t = *t;
-	while (++i < scene->n_spheres)
+	temp_color = intersect_light(&scene->light, ray, &temp_t);
+	if ((temp_color >= 0) && temp_t < *t)
 	{
-		temp_color = intersect_light(&scene->light, ray, &temp_t);
-		if ((temp_color >= 0) && temp_t < *t)
-		{
-			pixel_color = temp_color;
-			*t = temp_t;
-		}
-		temp_color = -1;
+		pixel_color = temp_color;
+		*t = temp_t;
 	}
 	return (pixel_color);
 }
