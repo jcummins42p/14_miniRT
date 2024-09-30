@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:14:47 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/30 13:20:48 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:38:16 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ t_color	intersect_lights(t_scene *scene, t_ray *ray, float *t)
 	if ((temp_color >= 0) && temp_t < *t)
 	{
 		pixel_color = temp_color;
+		/*scene->screen_object[ray->y][ray->x]= &scene->light;*/
 		*t = temp_t;
 	}
 	return (pixel_color);

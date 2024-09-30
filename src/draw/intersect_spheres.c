@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:56:52 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/27 15:21:39 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:45:14 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,15 @@ t_color	intersect_spheres(t_scene *scene, t_ray *ray, float *t)
 	while (++i < scene->n_spheres)
 	{
 		temp_color = intersect_sphere(&scene->sphs[i], ray, &temp_t);
+		if (scene->selected && &scene->sphs[i] == scene->selected)
+		{
+			temp_color = 0xFFFFFF;
+		}
 		if ((temp_color >= 0) && temp_t < *t)
 		{
 			pixel_color = temp_color;
+			if (ray->origin == &scene->cam.point)
+				scene->screen_object[ray->y][ray->x] = &scene->sphs[i];
 			*t = temp_t;
 		}
 		temp_color = -1;

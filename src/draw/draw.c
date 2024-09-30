@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/30 13:28:44 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:49:12 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ t_color	prep_light_ray(t_scene *scene, t_vec3 bounce_point)
 	t_color		light_color;
 	t_ray		ray;
 
+	light_t = INFINITY;
 	vec3_set_a(ray.bounce, bounce_point);
 	ray.origin = &ray.bounce;
 	vec3_a_to_b(ray.dir, bounce_point, scene->light.point);
@@ -148,6 +149,8 @@ void	prep_cam_ray(t_mlx *mlx, t_scene *scene, int x, int y)
 	t_vec2		ndc;
 	t_vec2		viewport;
 
+	ray.x = x;
+	ray.y = y;
 	ray.origin = &scene->cam.point;
 	norm_device_coords(ndc, x, y);
 	project_viewport(viewport, ndc, scene->cam.fov, mlx->aspect_ratio);
