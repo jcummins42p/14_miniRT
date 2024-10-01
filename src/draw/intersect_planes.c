@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:24:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/30 14:37:55 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:05:13 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,11 @@ t_color	intersect_planes(t_scene *scene, t_ray *ray, float *t)
 		if ((temp_color >= 0) && temp_t < *t)
 		{
 			pixel_color = temp_color;
-			/*scene->screen_object[ray->y][ray->x]= &scene->plns[i];*/
+			if (ray->origin == &scene->cam.point)
+			{
+				scene->screen_object[ray->y][ray->x] = &scene->plns[i];
+				scene->select_type[ray->y][ray->x] = SEL_PLANE;
+			}
 			*t = temp_t;
 		}
 		temp_color = -1;

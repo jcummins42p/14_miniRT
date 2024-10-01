@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/30 16:08:47 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:01:07 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct s_scene
 	void		*screen_object[RES_H][RES_W];	//	each pixel stores the object in it
 	int			select_type[RES_H][RES_W];
 	void		*selected;
+	int			sel_type;
 	t_img		*img;
 	t_render	rend;
 	t_ambient	amb;

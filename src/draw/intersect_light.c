@@ -5,37 +5,79 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
-/*   Created: 2024/09/24 15:24:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/29 10:54:27 by jcummins         ###   ########.fr       */
-=======
 /*   Created: 2024/09/30 11:14:47 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/30 14:38:16 by jcummins         ###   ########.fr       */
->>>>>>> 390bd6aa2ba8de1d84a8447af4ebbc089e6e8c27
+/*   Updated: 2024/10/01 12:06:01 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+t_color	intersect_light(t_light *light, t_ray *ray, float *t)
+{
+	float		temp_t;
+	t_quadratic	eq;
+	t_vec3		oc;	//	points from cam origin to the sphere center
 
-<<<<<<< HEAD
+	vec3_a_to_b(oc, *ray->origin, light->point);
+	eq.a = dot_product(ray->udir, ray->udir);
+	eq.b = 2 * dot_product(oc, ray->udir);
+	eq.c = dot_product(oc, oc) - (LIGHT_RAD * LIGHT_RAD * light->lum);
+	eq.discriminant = eq.b * eq.b - 4 * eq.a * eq.c;
+	if (eq.discriminant < 0)
+		return (-1);
+	temp_t = (eq.b - sqrt(eq.discriminant)) / (2 * eq.a);
+	if (temp_t > EPSILON && temp_t < *t)
+	{
+		*t = temp_t;
+		return (light->hue);
+	}
+	return (-1);
+}
+
+//	currently this function is redundant since we only have one light source
+//	but it will be useful when there are multiple
+t_color	intersect_lights(t_scene *scene, t_ray *ray, float *t)
+{
+	t_color	temp_color;
+	t_color	pixel_color;
+	float	temp_t;
+	int		i;
+
+	i = 0;
+	temp_color = -1;
+	pixel_color = -1;
+	temp_t = *t;
+	temp_color = intersect_light(&scene->light, ray, &temp_t);
+	if ((temp_color >= 0) && temp_t < *t)
+	{
+		pixel_color = temp_color;
+		if (ray->origin == &scene->cam.point)
+		{
+			scene->screen_object[ray->y][ray->x] = &scene->light;
+			scene->select_type[ray->y][ray->x] = SEL_LIGHT;
+		}
+		*t = temp_t;
+	}
+	return (pixel_color);
+}
+
 //	allocates value magnitude t to float pointer if direction vector is aligned
 //	with unit vector, and returns 0 if t is a valid solution.
-int	get_t(t_vec3 dir_vec, t_vec3 unit_vec, float *t)
-{
-	t_vec3	t;
-	int		dimension;
+/*int	get_t(t_vec3 dir_vec, t_vec3 unit_vec, float *t)*/
+/*{*/
+	/*t_vec3	t;*/
+	/*int		dimension;*/
 
-	dimension = -1;
-	zero_vector(t);
-	while (++dimension < 3)
-	{
-		if (dir_vec[dimension] > EPSILON && unit_vec[dimension] > EPSILON)
-			t[dimension] = (dir_vec[dimension] / unit_vec[dimension]);
-	}
-	dimension = -1;
-	while (++dimension < 3)
+	/*dimension = -1;*/
+	/*zero_vector(t);*/
+	/*while (++dimension < 3)*/
+	/*{*/
+		/*if (dir_vec[dimension] > EPSILON && unit_vec[dimension] > EPSILON)*/
+			/*t[dimension] = (dir_vec[dimension] / unit_vec[dimension]);*/
+	/*}*/
+	/*dimension = -1;*/
+	/*while (++dimension < 3)*/
 
-}
+/*}*/
 
 //	the dot (or scalar) product of two parallel vectors equals the product of
 //	their magnitudes.
@@ -99,47 +141,3 @@ int	get_t(t_vec3 dir_vec, t_vec3 unit_vec, float *t)
 	/*return (0);*/
 /*}*/
 
-t_color	intersect_light(t_light *light, t_ray *ray, float *t)
-{
-	float		temp_t;
-	t_quadratic	eq;
-	t_vec3		oc;	//	points from cam origin to the sphere center
-
-	vec3_a_to_b(oc, *ray->origin, light->point);
-	eq.a = dot_product(ray->udir, ray->udir);
-	eq.b = 2 * dot_product(oc, ray->udir);
-	eq.c = dot_product(oc, oc) - (LIGHT_RAD * LIGHT_RAD * light->lum);
-	eq.discriminant = eq.b * eq.b - 4 * eq.a * eq.c;
-	if (eq.discriminant < 0)
-		return (-1);
-	temp_t = (eq.b - sqrt(eq.discriminant)) / (2 * eq.a);
-	if (temp_t > EPSILON && temp_t < *t)
-	{
-		*t = temp_t;
-		return (light->hue);
-	}
-	return (-1);
-}
-
-//	currently this function is redundant since we only have one light source
-//	but it will be useful when there are multiple
-t_color	intersect_lights(t_scene *scene, t_ray *ray, float *t)
-{
-	t_color	temp_color;
-	t_color	pixel_color;
-	float	temp_t;
-	int		i;
-
-	i = 0;
-	temp_color = -1;
-	pixel_color = -1;
-	temp_t = *t;
-	temp_color = intersect_light(&scene->light, ray, &temp_t);
-	if ((temp_color >= 0) && temp_t < *t)
-	{
-		pixel_color = temp_color;
-		/*scene->screen_object[ray->y][ray->x]= &scene->light;*/
-		*t = temp_t;
-	}
-	return (pixel_color);
-}

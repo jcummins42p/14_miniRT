@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/30 15:10:57 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:01:00 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,8 @@ void	m_select_object(t_mlx *mlx, int x, int y)
 
 	scene = mlx->rt->scenes[mlx->rt->curr_scene];
 	scene->selected = scene->screen_object[y][x];
-	printf("Rendering scene with new selection\n");
 	mlx->rt->scenes[mlx->rt->curr_scene]->selected = scene->selected;
-	printf("Selection is %p\n", mlx->rt->scenes[mlx->rt->curr_scene]->selected);
+	mlx->rt->scenes[mlx->rt->curr_scene]->sel_type = scene->select_type[y][x];
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
