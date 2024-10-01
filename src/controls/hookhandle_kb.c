@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 12:14:36 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/01 16:29:34 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	kp_scene_change(t_mlx *mlx, int newscene)
 
 int	k_select(int keysym, t_mlx *mlx)
 {
-	static int newscene;
+	static int	newscene;
 
 	if (keysym == XK_KP_Add || keysym == XK_KP_Subtract)
 		newscene = kp_scene_select(keysym, mlx, newscene);
@@ -78,105 +78,13 @@ int	k_select(int keysym, t_mlx *mlx)
 
 void	toggle_scan(t_mlx *mlx)
 {
-	int i;
+	int	i;
 
 	i = mlx->rt->curr_scene;
 	if (mlx->rt->scenes[i]->rend.scan)
 		mlx->rt->scenes[i]->rend.scan = false;
 	else
 		mlx->rt->scenes[i]->rend.scan = true;
-}
-
-void	k_move_light(int keysym, t_scene *scene)
-{
-	float		z_dir;
-	t_light		*light;
-
-	light = scene->selected;
-	z_dir = scene->cam.dir[_Z];
-	if (keysym == 65362)
-		light->point[_Y] += 1;
-	else if (keysym == 65364)
-		light->point[_Y] -= 1;
-	else if (keysym == 65432)
-		light->point[_X] += 1 * z_dir;
-	else if (keysym == 65430)
-		light->point[_X] -= 1 * z_dir;
-	else if (keysym == 65431)
-		light->point[_Z] += 1 * z_dir;
-	else if (keysym == 65433)
-		light->point[_Z] -= 1 * z_dir;
-}
-
-void	k_move_plane(int keysym, t_scene *scene)
-{
-	float	z_dir;
-	t_plane	*plane;
-
-	plane = scene->selected;
-	z_dir = scene->cam.dir[_Z];
-	if (keysym == 65362)
-		plane->anch[_Y] += 1;
-	else if (keysym == 65364)
-		plane->anch[_Y] -= 1;
-	else if (keysym == 65432)
-		plane->anch[_X] += 1 * z_dir;
-	else if (keysym == 65430)
-		plane->anch[_X] -= 1 * z_dir;
-	else if (keysym == 65431)
-		plane->anch[_Z] += 1 * z_dir;
-	else if (keysym == 65433)
-		plane->anch[_Z] -= 1 * z_dir;
-}
-
-void	k_move_sphere(int keysym, t_scene *scene)
-{
-	float		z_dir;
-	t_sphere	*sphere;
-
-	sphere = scene->selected;
-	z_dir = scene->cam.dir[_Z];
-	if (keysym == 65362)
-		sphere->center[_Y] += 1;
-	else if (keysym == 65364)
-		sphere->center[_Y] -= 1;
-	else if (keysym == 65432)
-		sphere->center[_X] += 1 * z_dir;
-	else if (keysym == 65430)
-		sphere->center[_X] -= 1 * z_dir;
-	else if (keysym == 65431)
-		sphere->center[_Z] += 1 * z_dir;
-	else if (keysym == 65433)
-		sphere->center[_Z] -= 1 * z_dir;
-}
-
-void	k_directional_controls(int keysym, t_mlx *mlx)
-{
-	float	z_dir;
-
-	if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_SPHERE)
-		k_move_sphere(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
-	else if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_LIGHT)
-		k_move_light(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
-	else if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_PLANE)
-		k_move_plane(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
-	else
-	{
-		z_dir = mlx->rt->scenes[mlx->rt->curr_scene]->cam.dir[_Z];
-		if (keysym == 65362)
-			mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Y] += 1;
-		else if (keysym == 65364)
-			mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Y] -= 1;
-		else if (keysym == 65432)
-			mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_X] += 1 * z_dir;
-		else if (keysym == 65430)
-			mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_X] -= 1 * z_dir;
-		else if (keysym == 65431)
-			mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Z] += 1 * z_dir;
-		else if (keysym == 65433)
-			mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Z] -= 1 * z_dir;
-	}
-	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
 void	k_redraw(t_mlx *mlx, int redraw)
@@ -197,7 +105,6 @@ void	k_cam_pan(t_mlx *mlx, int keysym, t_camera *cam)
 	angles[1] = "-1,0,0";
 	angles[2] = "0,0,-1";
 	angles[3] = "1,0,0";
-
 	if (keysym == 65429)
 		curr++;
 	else if (keysym == 65434)
@@ -219,29 +126,10 @@ void	reset_cam_default(t_mlx *mlx, t_camera *cam)
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
-void	k_light_move(int keysym, t_mlx *mlx)
-{
-	float	z_dir;
-
-	z_dir = mlx->rt->scenes[mlx->rt->curr_scene]->cam.dir[_Z];
-	if (keysym == 65362)
-		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Y] += 1;
-	else if (keysym == 65364)
-		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Y] -= 1;
-	else if (keysym == 65432)
-		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_X] += 1 * z_dir;
-	else if (keysym == 65430)
-		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_X] -= 1 * z_dir;
-	else if (keysym == 65431)
-		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Z] += 1 * z_dir;
-	else if (keysym == 65433)
-		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Z] -= 1 * z_dir;
-	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
-}
-
 void	k_deselect(t_mlx *mlx)
 {
 	mlx->rt->scenes[mlx->rt->curr_scene]->selected = NULL;
+	mlx->rt->scenes[mlx->rt->curr_scene]->sel_type = SEL_CAM;
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
@@ -250,18 +138,16 @@ int	k_press(int keysym, t_mlx *mlx)
 	printf("k_press %d\n", keysym);
 	if (keysym == XK_Escape)
 		mlx_loop_end(mlx->mlx);
-	else if ((keysym >= 65361 && keysym <= 65364)
-			|| keysym == 65433 || keysym == 65431
-			|| keysym == 65430 || keysym == 65432)
+	else if (keysym == XK_KP_5)
+		reset_cam_default(mlx, &mlx->rt->scenes[mlx->rt->curr_scene]->cam);
+	else if (keysym >= XK_KP_0 && keysym <= XK_KP_9)
 		k_directional_controls(keysym, mlx);
 	else if (keysym == 65429 || keysym == 65434)
 		k_cam_pan(mlx, keysym, &mlx->rt->scenes[mlx->rt->curr_scene]->cam);
-	else if (keysym == 65437)
-		reset_cam_default(mlx, &mlx->rt->scenes[mlx->rt->curr_scene]->cam);
-	else if (keysym == 65439)
+	else if (keysym == XK_KP_Delete)
 		k_deselect(mlx);
-	else if (keysym == XK_KP_Add || keysym == XK_KP_Subtract || keysym == XK_KP_Enter)
+	else if (keysym == XK_KP_Add || keysym == XK_KP_Subtract
+		|| keysym == XK_KP_Enter)
 		k_select(keysym, mlx);
-	/*ft_printf("Keypress: %d\n", keysym);*/
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:56:52 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/30 16:10:12 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/01 16:05:04 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_color	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t)
 {
 	float		temp_t;
 	t_quadratic	eq;
-	t_vec3		oc;	//	points from cam origin to the sphere center
+	t_vec3		oc;
 
 	vec3_a_to_b(oc, *ray->origin, sphere->center);
 	eq.a = dot_product(ray->udir, ray->udir);
@@ -53,9 +53,7 @@ t_color	intersect_spheres(t_scene *scene, t_ray *ray, float *t)
 	{
 		temp_color = intersect_sphere(&scene->sphs[i], ray, &temp_t);
 		if (scene->selected && &scene->sphs[i] == scene->selected)
-		{
 			temp_color = 0xFFFFFF;
-		}
 		if ((temp_color >= 0) && temp_t < *t)
 		{
 			pixel_color = temp_color;

@@ -6,12 +6,25 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/30 18:23:12 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:55:06 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCS_H
 # define FUNCS_H
+
+//	draw.c
+void	pixel_put_img(t_img *img, int x, int y, int color);
+
+//	ray_utils.c
+void	norm_device_coords(t_vec2 ndc, int x, int y);
+void	project_viewport(t_vec2 project, t_vec2 ndc, int fov, float aspect);
+void	set_ray_direction(t_vec3 dir, t_vec2 plane, t_camera cam);
+
+//	pixel_shaders.c
+int		shade_pixel_distance(t_color pixel_color, float distance);
+int		combine_lights(t_color light_color, t_ambient amb);
+int	illuminate_pixel(t_color pixel_color, t_color light_color);
 
 //	draw_color.c
 void	color_int_to_vector(t_rgb rgb, t_color color);
@@ -30,6 +43,12 @@ int		intersect_planes(t_scene *scene, t_ray *ray, float *t);
 
 //	intersect_spheres.c
 int		intersect_spheres(t_scene *scene, t_ray *ray, float *t);
+
+//	cast_light_ray.c
+t_color	prep_light_ray(t_scene *scene, t_vec3 bounce_point);
+
+//	cast_cam_ray.c
+void	prep_cam_ray(t_mlx *mlx, t_scene *scene, int x, int y);
 
 //	utils_mlx.c
 int		set_mlx(t_mlx *mlx, t_rt *rt);
@@ -70,6 +89,7 @@ int		b_press(int button, int x, int y, t_mlx *mlx);
 int		b_release(int button, void *vars);
 
 //	hookhandle_kb.c
+void	k_directional_controls(int keysym, t_mlx *mlx);
 int		k_no_event(void *vars);
 int		k_release(int keysym, void *vars);
 int		k_press(int keysym, t_mlx *mlx);

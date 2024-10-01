@@ -6,15 +6,15 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:45:11 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/25 13:47:18 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/01 16:09:26 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int		ft_listcount(char **list)
+int	ft_listcount(char **list)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (!list)
@@ -87,7 +87,7 @@ void	parse_cylinder(char *input, t_scene *scene)
 	int		i;
 
 	i = 0;
-	if (!input || !*input)
+	if (input && *input)
 		printf("Error: NULL string passed to parse_plane, init to default\n");
 	else
 	{
