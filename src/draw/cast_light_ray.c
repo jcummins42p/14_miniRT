@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:33:38 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 19:57:46 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/01 20:50:59 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_color	cast_light_ray(t_scene *scene, t_ray *ray, float *light_t)
 	if (temp_t < *light_t)
 		return (0);
 	light_color = scene->light.hue;
-	light_color = color_shift(light_color, 0x000000, 1 - scene->light.lum);
+	/*light_color = color_shift(light_color, 0x000000, 1 - scene->light.lum);*/
 	return (light_color);
 }
 
@@ -43,6 +43,6 @@ t_color	prep_light_ray(t_scene *scene, t_vec3 bounce_point)
 	light_t = vec3_length(ray.dir);
 	light_color = cast_light_ray(scene, &ray, &light_t);
 	if (light_color > 0)
-		light_color = shade_pixel_distance(light_color, light_t);
+		light_color = shade_light_distance(light_color, light_t, scene->light.lum);
 	return (light_color);
 }

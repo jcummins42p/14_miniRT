@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 19:30:22 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/01 20:49:42 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	set_ray_direction(t_vec3 dir, t_vec2 plane, t_camera cam);
 
 //	pixel_shaders.c
 int		shade_pixel_distance(t_color pixel_color, float distance);
+int		shade_light_distance(t_color pixel_color, float distance, float lum);
 int		combine_lights(t_color light_color, t_ambient amb);
 int	illuminate_pixel(t_color pixel_color, t_color light_color);
 

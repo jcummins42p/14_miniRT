@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:40:08 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 15:57:43 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/01 20:55:26 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,15 @@
 int	shade_pixel_distance(t_color pixel_color, float distance)
 {
 	/*return (color_shift(pixel_color, 0x000000, distance / 150));*/
-	return (color_shift(pixel_color, 0x000000, (DARK * log(distance / (BRIGHT)))));
+	return (color_shift(pixel_color, 0x000000, (DARK * log(distance / (BRIGHT * 2)))));
+	/*return (color_shift(pixel_color, 0x000000, (1 / (distance * distance))));*/
+}
+
+int	shade_light_distance(t_color pixel_color, float distance, float lum)
+{
+	/*return (color_shift(pixel_color, 0x000000, distance / 150));*/
+	return (color_shift(pixel_color, 0x000000, (DARK * log(distance / (BRIGHT * 2 * lum)))));
+	/*return (color_shift(pixel_color, 0x000000, (1 / (distance * distance))));*/
 }
 
 //	creates single combined light value from directional and ambient lights
