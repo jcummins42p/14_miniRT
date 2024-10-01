@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 15:55:06 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:30:22 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int		b_press(int button, int x, int y, t_mlx *mlx);
 int		b_release(int button, void *vars);
 
 //	hookhandle_kb.c
+void	k_cam_pan(int keysym, t_camera *cam);
 void	k_directional_controls(int keysym, t_mlx *mlx);
 int		k_no_event(void *vars);
 int		k_release(int keysym, void *vars);

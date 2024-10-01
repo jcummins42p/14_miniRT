@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 16:29:34 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:41:55 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	kp_scene_change(t_mlx *mlx, int newscene)
 		printf("Unable to render invalid scene\n");
 }
 
-int	k_select(int keysym, t_mlx *mlx)
+int	k_scene_select(int keysym, t_mlx *mlx)
 {
 	static int	newscene;
 
@@ -96,7 +96,7 @@ void	k_redraw(t_mlx *mlx, int redraw)
 		display_hud(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
-void	k_cam_pan(t_mlx *mlx, int keysym, t_camera *cam)
+void	k_cam_pan(int keysym, t_camera *cam)
 {
 	char		*angles[4];
 	static int	curr;
@@ -105,9 +105,9 @@ void	k_cam_pan(t_mlx *mlx, int keysym, t_camera *cam)
 	angles[1] = "-1,0,0";
 	angles[2] = "0,0,-1";
 	angles[3] = "1,0,0";
-	if (keysym == 65429)
+	if (keysym == XK_KP_7)
 		curr++;
-	else if (keysym == 65434)
+	else if (keysym == XK_KP_9)
 		curr--;
 	if (curr < 0)
 		curr = 3;
@@ -115,7 +115,6 @@ void	k_cam_pan(t_mlx *mlx, int keysym, t_camera *cam)
 		curr = 0;
 	set_vec3(cam->dir, angles[curr]);
 	orient_camera(cam);
-	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
 void	reset_cam_default(t_mlx *mlx, t_camera *cam)
@@ -126,7 +125,7 @@ void	reset_cam_default(t_mlx *mlx, t_camera *cam)
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
-void	k_deselect(t_mlx *mlx)
+void	k_object_deselect(t_mlx *mlx)
 {
 	mlx->rt->scenes[mlx->rt->curr_scene]->selected = NULL;
 	mlx->rt->scenes[mlx->rt->curr_scene]->sel_type = SEL_CAM;
@@ -140,14 +139,12 @@ int	k_press(int keysym, t_mlx *mlx)
 		mlx_loop_end(mlx->mlx);
 	else if (keysym == XK_KP_5)
 		reset_cam_default(mlx, &mlx->rt->scenes[mlx->rt->curr_scene]->cam);
-	else if (keysym >= XK_KP_0 && keysym <= XK_KP_9)
+	else if (keysym >= XK_KP_7 && keysym <= XK_KP_0)
 		k_directional_controls(keysym, mlx);
-	else if (keysym == 65429 || keysym == 65434)
-		k_cam_pan(mlx, keysym, &mlx->rt->scenes[mlx->rt->curr_scene]->cam);
 	else if (keysym == XK_KP_Delete)
-		k_deselect(mlx);
+		k_object_deselect(mlx);
 	else if (keysym == XK_KP_Add || keysym == XK_KP_Subtract
 		|| keysym == XK_KP_Enter)
-		k_select(keysym, mlx);
+		k_scene_select(keysym, mlx);
 	return (0);
 }

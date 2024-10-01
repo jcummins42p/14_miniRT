@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:14:47 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 12:06:01 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/01 20:21:51 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_color	intersect_light(t_light *light, t_ray *ray, float *t)
 	vec3_a_to_b(oc, *ray->origin, light->point);
 	eq.a = dot_product(ray->udir, ray->udir);
 	eq.b = 2 * dot_product(oc, ray->udir);
-	eq.c = dot_product(oc, oc) - (LIGHT_RAD * LIGHT_RAD * light->lum);
+	eq.c = dot_product(oc, oc) - (LIGHT_RAD * light->lum);
 	eq.discriminant = eq.b * eq.b - 4 * eq.a * eq.c;
 	if (eq.discriminant < 0)
 		return (-1);
