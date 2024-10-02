@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:16:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/02 14:28:56 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:44:52 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define EPSILON 0.000001
 
 # define RES_H	900
-# define RES_W	1800
+# define RES_W	1200
 
 # define DARK 0.4
 # define BRIGHT 20

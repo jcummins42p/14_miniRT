@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/02 16:54:25 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:58:30 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,22 @@ void	highlight_selected(t_scene *scene, int x, int y, int radius)
 	/**(unsigned int *)dst = color;*/
 /*}*/
 
-void	post_process(t_scene *scene, int x, int y)
+void	post_process(t_scene *scene)
 {
-	highlight_selected(scene, x, y, HIGHLIGHT_RAD);
+	int x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (y < RES_H)
+	{
+		x = 0;
+		while (x < RES_W)
+		{
+			highlight_selected(scene, x++, y, HIGHLIGHT_RAD);
+		}
+		y++;
+	}
 	/*add_light_bloom(scene);*/
 }
 
@@ -67,27 +80,26 @@ void	render_row(t_mlx *mlx, t_scene *scene, int y)
 	while (x < RES_W)
 	{
 		prep_cam_ray(mlx, scene, x, y);
-		post_process(scene, x, y);
 		x++;
 	}
 }
 
 void	*render_row_mt(void *data)
 {
+	t_render_queue	*render;
 	t_mlx	*mlx;
 	t_scene	*scene;
 	int		x;
 	int		y;
 
-	mlx = (t_mlx *)data;
+	render = (t_render_queue *)data;
+	mlx = render->mlx;
+	y = render->y;
 	scene = mlx->rt->scenes[mlx->rt->curr_scene];
-	y = mlx->y;
-	pthread_mutex_unlock(&mlx->mutex);
 	x = 0;
 	while (x < RES_W)
 	{
 		prep_cam_ray(mlx, scene, x, y);
-		post_process(scene, x, y);
 		x++;
 	}
 	return (NULL);
@@ -108,13 +120,18 @@ int	img_init(t_mlx *mlx, t_img *img)
 
 void	render_scene(t_mlx *mlx, t_scene *scene)
 {
-	static int	renders;
-	int			y;
-	pthread_t	thread_id[RES_H];
+	t_render_queue	renders[RES_H];
+	int				y;
+	pthread_t		thread_id[RES_H];
 
-	pthread_mutex_init(&mlx->mutex, NULL);
+	/*pthread_mutex_init(&mlx->mutex, NULL);*/
+	/*mlx->y = 0;*/
 	y = 0;
-	mlx->y = 0;
+	while (y > RES_H)
+	{
+		renders[y].mlx = mlx;
+		renders[y].y = y;
+	}
 	y = 0;
 	if (!scene->valid)
 		return ;
@@ -122,18 +139,16 @@ void	render_scene(t_mlx *mlx, t_scene *scene)
 		return ;
 	while (y < RES_H)
 	{
-		pthread_mutex_lock(&mlx->mutex);
-		mlx->y = y;
-		pthread_create(&thread_id[y++], NULL, &render_row_mt, mlx);
-		pthread_mutex_lock(&mlx->mutex);
-		pthread_mutex_unlock(&mlx->mutex);
+		/*mlx->y = y;*/
+		pthread_create(&thread_id[y], NULL, &render_row_mt, &renders[y]);
+		y++;
+		/*pthread_mutex_lock(&mlx->mutex);*/
+		/*pthread_mutex_unlock(&mlx->mutex);*/
 		/*render_row(mlx, scene, y++);*/
 	}
-	pthread_mutex_lock(&mlx->mutex);
-	pthread_mutex_unlock(&mlx->mutex);
+	/*post_process(scene);*/
 	while (y >= 0)
 		pthread_join(thread_id[y--], NULL);
-	printf("Finished render %d\n", renders++);
 	if (!scene->rend.scan)
 	{
 		mlx_put_image_to_window(mlx->mlx, mlx->win, scene->img->img, 0, 0);

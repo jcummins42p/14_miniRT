@@ -6,7 +6,7 @@
 #    By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 18:08:59 by jcummins          #+#    #+#              #
-#    Updated: 2024/10/02 16:22:03 by jcummins         ###   ########.fr        #
+#    Updated: 2024/10/02 18:19:17 by jcummins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,8 @@ $(NAME): $(OBJS) $(LIB_PATH) $(MLX_PATH) $(HEADERS)
 sanitize-thread: $(OBJS) $(LIB_PATH) $(MLX_PATH) $(HEADERS)
 	$(CC) $(CFLAGS) -fsanitize=thread $^ -o $@ -L$(LIB_DIR) -L$(MLX_DIR) $(MLXFLAGS)
 
+sanitize-addr: $(OBJS) $(LIB_PATH) $(MLX_PATH) $(HEADERS)
+	$(CC) $(CFLAGS) -fsanitize=address $^ -o $@ -L$(LIB_DIR) -L$(MLX_DIR) $(MLXFLAGS)
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	@mkdir -p $(@D)
