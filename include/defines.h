@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:16:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 17:02:53 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/02 12:06:12 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@
 # define KWHT "\x1B[37m"
 
 # define XCOL_BLK 0x000000
-# define XCOL_BLK 0x000000
+# define XCOL_WHT 0xFFFFFF
 
 #endif

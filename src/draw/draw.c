@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 15:41:11 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/02 12:14:15 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,18 @@ void	render_row(t_mlx *mlx, t_scene *scene, int y)
 
 	x = 0;
 	while (x < RES_W)
-		prep_cam_ray(mlx, scene, x++, y);
+	{
+		prep_cam_ray(mlx, scene, x, y);
+		if (scene->selected && (scene->screen_object[y][x] != scene->selected) &&
+			(scene->screen_object[y + 2][x + 2] == scene->selected
+			|| scene->screen_object[y - 2][x - 2] == scene->selected
+			|| scene->screen_object[y + 2][x - 2] == scene->selected
+			|| scene->screen_object[y - 2][x + 2] == scene->selected))
+		{
+			pixel_put_img(scene->img, x, y, XCOL_WHT);
+		}
+		x++;
+	}
 }
 
 int	img_init(t_mlx *mlx, t_img *img)

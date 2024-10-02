@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:35:34 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 16:03:39 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/02 12:16:33 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ t_color	cast_cam_ray(t_scene *scene, t_ray *ray)
 	}
 	temp_color = intersect_lights(scene, ray, &temp_t);
 	if (temp_t < closest_t)
-	{
-		closest_t = 0;
-		pixel_color = temp_color;
-	}
+		return (scene->light.hue);
 	if (pixel_color >= 0)
 	{
 		vec3_position(ray->bounce, *ray->origin, ray->udir, closest_t);
@@ -52,7 +49,7 @@ t_color	cast_cam_ray(t_scene *scene, t_ray *ray)
 		pixel_color = shade_pixel_distance(pixel_color, closest_t);
 	}
 	else
-		pixel_color = 0x000000;
+		pixel_color = XCOL_BLK;
 	return (pixel_color);
 }
 
