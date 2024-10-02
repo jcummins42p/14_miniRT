@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/02 16:10:00 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:54:25 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,38 +81,14 @@ void	*render_row_mt(void *data)
 
 	mlx = (t_mlx *)data;
 	scene = mlx->rt->scenes[mlx->rt->curr_scene];
-	pthread_mutex_lock(&mlx->mutex);
 	y = mlx->y;
 	pthread_mutex_unlock(&mlx->mutex);
 	x = 0;
-	if (y == 0)
+	while (x < RES_W)
 	{
-		while ( y < RES_H / 2)
-		{
-			x = 0;
-			while (x < RES_W)
-			{
-				prep_cam_ray(mlx, scene, x, y);
-				/*post_process(scene, x, y);*/
-				x++;
-			}
-			y++;
-		}
-	}
-	else if (y == 1)
-	{
-		y = RES_H / 2;
-		while ( y < RES_H / 2)
-		{
-			x = 0;
-			while (x < RES_W)
-			{
-				prep_cam_ray(mlx, scene, x, y);
-				/*post_process(scene, x, y);*/
-				x++;
-			}
-			y++;
-		}
+		prep_cam_ray(mlx, scene, x, y);
+		post_process(scene, x, y);
+		x++;
 	}
 	return (NULL);
 }
@@ -132,28 +108,32 @@ int	img_init(t_mlx *mlx, t_img *img)
 
 void	render_scene(t_mlx *mlx, t_scene *scene)
 {
+	static int	renders;
 	int			y;
 	pthread_t	thread_id[RES_H];
 
 	pthread_mutex_init(&mlx->mutex, NULL);
-	pthread_mutex_unlock(&mlx->mutex);
 	y = 0;
 	mlx->y = 0;
+	y = 0;
 	if (!scene->valid)
 		return ;
 	if (img_init(mlx, scene->img))
 		return ;
-	while (y < 2)
+	while (y < RES_H)
 	{
 		pthread_mutex_lock(&mlx->mutex);
 		mlx->y = y;
-		pthread_mutex_unlock(&mlx->mutex);
 		pthread_create(&thread_id[y++], NULL, &render_row_mt, mlx);
+		pthread_mutex_lock(&mlx->mutex);
+		pthread_mutex_unlock(&mlx->mutex);
 		/*render_row(mlx, scene, y++);*/
 	}
-	printf("Finished render\n");
+	pthread_mutex_lock(&mlx->mutex);
+	pthread_mutex_unlock(&mlx->mutex);
 	while (y >= 0)
 		pthread_join(thread_id[y--], NULL);
+	printf("Finished render %d\n", renders++);
 	if (!scene->rend.scan)
 	{
 		mlx_put_image_to_window(mlx->mlx, mlx->win, scene->img->img, 0, 0);
