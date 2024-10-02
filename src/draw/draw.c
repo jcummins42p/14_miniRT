@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/02 17:13:40 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/02 18:07:05 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,19 @@ void	highlight_selected(t_scene *scene, int x, int y, int radius)
 	/**(unsigned int *)dst = color;*/
 /*}*/
 
-void	post_process(t_scene *scene, int x, int y)
+void	post_process(t_scene *scene)
 {
-	highlight_selected(scene, x, y, HIGHLIGHT_RAD);
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < RES_H)
+	{
+		x = 0;
+		while (x < RES_W)
+			highlight_selected(scene, x++, y, 1);
+		y++;
+	}
 	/*add_light_bloom(scene);*/
 }
 
@@ -67,7 +77,7 @@ void	render_row(t_mlx *mlx, t_scene *scene, int y)
 	while (x < RES_W)
 	{
 		prep_cam_ray(mlx, scene, x, y);
-		post_process(scene, x, y);
+		// post_process(scene, x, y);
 		x++;
 	}
 }
@@ -82,13 +92,13 @@ void	*render_row_mt(void *data)
 	mlx = (t_mlx *)data;
 	scene = mlx->rt->scenes[mlx->rt->curr_scene];
 	height = 0;
-	while (height < RES_H / 4)
+	while (height < RES_H / 10)
 	{
 		width = 0;
 		while (width < RES_W)
 		{
 			prep_cam_ray(mlx, scene, width, height);
-			post_process(scene, width, height);
+			// post_process(scene, width, height);
 			width++;
 		}
 		height++;
@@ -105,14 +115,14 @@ void	*render_row_mt_2(void *data)
 
 	mlx = (t_mlx *)data;
 	scene = mlx->rt->scenes[mlx->rt->curr_scene];
-	height = RES_H / 4;
-	while (height < RES_H / 2)
+	height = RES_H / 10;
+	while (height < RES_H / 5)
 	{
 		width = 0;
 		while (width < RES_W)
 		{
 			prep_cam_ray(mlx, scene, width, height);
-			post_process(scene, width, height);
+			// post_process(scene, width, height);
 			width++;
 		}
 		height++;
@@ -131,14 +141,14 @@ void	*render_row_mt_3(void *data)
 
 	mlx = (t_mlx *)data;
 	scene = mlx->rt->scenes[mlx->rt->curr_scene];
-	height = RES_H / 2;
-	while (height < (3 * RES_H) / 4)
+	height = RES_H / 5;
+	while (height < (3 * RES_H) / 10)
 	{
 		width = 0;
 		while (width < RES_W)
 		{
 			prep_cam_ray(mlx, scene, width, height);
-			post_process(scene, width, height);
+			// post_process(scene, width, height);
 			width++;
 		}
 		height++;
@@ -156,14 +166,14 @@ void	*render_row_mt_4(void *data)
 
 	mlx = (t_mlx *)data;
 	scene = mlx->rt->scenes[mlx->rt->curr_scene];
-	height = (3 * RES_H) / 4;
-	while (height < RES_H)
+	height = (3 * RES_H) / 10;
+	while (height < (2 * RES_H) / 5)
 	{
 		width = 0;
 		while (width < RES_W)
 		{
 			prep_cam_ray(mlx, scene, width, height);
-			post_process(scene, width, height);
+			// post_process(scene, width, height);
 			width++;
 		}
 		height++;
@@ -171,6 +181,151 @@ void	*render_row_mt_4(void *data)
 	return (NULL);
 }
 
+void	*render_row_mt_5(void *data)
+{
+	t_mlx	*mlx;
+	t_scene	*scene;
+	int		height;
+	int		width;
+
+	mlx = (t_mlx *)data;
+	scene = mlx->rt->scenes[mlx->rt->curr_scene];
+	height = (2 * RES_H) / 5;
+	while (height < RES_H / 2)
+	{
+		width = 0;
+		while (width < RES_W)
+		{
+			prep_cam_ray(mlx, scene, width, height);
+			// post_process(scene, width, height);
+			width++;
+		}
+		height++;
+	}
+	return (NULL);
+}
+
+void	*render_row_mt_6(void *data)
+{
+	t_mlx	*mlx;
+	t_scene	*scene;
+	int		height;
+	int		width;
+
+	mlx = (t_mlx *)data;
+	scene = mlx->rt->scenes[mlx->rt->curr_scene];
+	height = RES_H / 2;
+	while (height < (3 * RES_H) / 5)
+	{
+		width = 0;
+		while (width < RES_W)
+		{
+			prep_cam_ray(mlx, scene, width, height);
+			// post_process(scene, width, height);
+			width++;
+		}
+		height++;
+	}
+	return (NULL);
+}
+
+void	*render_row_mt_7(void *data)
+{
+	t_mlx	*mlx;
+	t_scene	*scene;
+	int		height;
+	int		width;
+
+	mlx = (t_mlx *)data;
+	scene = mlx->rt->scenes[mlx->rt->curr_scene];
+	height = (3 * RES_H) / 5;
+	while (height < (7 * RES_H) / 10)
+	{
+		width = 0;
+		while (width < RES_W)
+		{
+			prep_cam_ray(mlx, scene, width, height);
+			// post_process(scene, width, height);
+			width++;
+		}
+		height++;
+	}
+	return (NULL);
+}
+
+
+void	*render_row_mt_8(void *data)
+{
+	t_mlx	*mlx;
+	t_scene	*scene;
+	int		height;
+	int		width;
+
+	mlx = (t_mlx *)data;
+	scene = mlx->rt->scenes[mlx->rt->curr_scene];
+	height = (7 * RES_H) / 10;
+	while (height < (4 * RES_H) / 5)
+	{
+		width = 0;
+		while (width < RES_W)
+		{
+			prep_cam_ray(mlx, scene, width, height);
+			// post_process(scene, width, height);
+			width++;
+		}
+		height++;
+	}
+	return (NULL);
+}
+
+void	*render_row_mt_9(void *data)
+{
+	t_mlx	*mlx;
+	t_scene	*scene;
+	int		height;
+	int		width;
+
+	mlx = (t_mlx *)data;
+	scene = mlx->rt->scenes[mlx->rt->curr_scene];
+	height = (4 * RES_H) / 5;
+	while (height < (9 * RES_H) / 10)
+	{
+		width = 0;
+		while (width < RES_W)
+		{
+			prep_cam_ray(mlx, scene, width, height);
+			// post_process(scene, width, height);
+			width++;
+		}
+		height++;
+	}
+	return (NULL);
+}
+
+
+void	*render_row_mt_10(void *data)
+{
+	t_mlx	*mlx;
+	t_scene	*scene;
+	int		height;
+	int		width;
+
+	mlx = (t_mlx *)data;
+	scene = mlx->rt->scenes[mlx->rt->curr_scene];
+	height = (9 * RES_H) / 10;
+	while (height < RES_H)
+	{
+		width = 0;
+		while (width < RES_W)
+		{
+			prep_cam_ray(mlx, scene, width, height);
+			// post_process(scene, width, height);
+			width++;
+		}
+		height++;
+	}
+	return (NULL);
+}
 
 int	img_init(t_mlx *mlx, t_img *img)
 {
@@ -188,7 +343,7 @@ int	img_init(t_mlx *mlx, t_img *img)
 void	render_scene(t_mlx *mlx, t_scene *scene)
 {
 	int			y;
-	pthread_t	thread_id[4];
+	pthread_t	thread_id[10];
 	pthread_mutex_init(&mlx->mutex, NULL);
 
 	y = 0;
@@ -196,7 +351,7 @@ void	render_scene(t_mlx *mlx, t_scene *scene)
 		return ;
 	if (img_init(mlx, scene->img))
 		return ;
-	while (y < 4)
+	while (y < 11)
 	{
 		if (y == 0)
 			pthread_create(&thread_id[y++], NULL, &render_row_mt, mlx);
@@ -204,10 +359,23 @@ void	render_scene(t_mlx *mlx, t_scene *scene)
 			pthread_create(&thread_id[y++], NULL, &render_row_mt_2, mlx);
 		else if (y == 2)
 			pthread_create(&thread_id[y++], NULL, &render_row_mt_3, mlx);
-		else
+		else if (y == 3)
 			pthread_create(&thread_id[y++], NULL, &render_row_mt_4, mlx);
+		else if (y == 4)
+			pthread_create(&thread_id[y++], NULL, &render_row_mt_5, mlx);
+		else if (y == 5)
+			pthread_create(&thread_id[y++], NULL, &render_row_mt_6, mlx);
+		else if (y == 6)
+			pthread_create(&thread_id[y++], NULL, &render_row_mt_7, mlx);
+		else if (y == 7)
+			pthread_create(&thread_id[y++], NULL, &render_row_mt_8, mlx);
+		else if (y == 8)
+			pthread_create(&thread_id[y++], NULL, &render_row_mt_9, mlx);
+		else 
+			pthread_create(&thread_id[y++], NULL, &render_row_mt_10, mlx);
 		/*render_row(mlx, scene, y++);*/
 	}
+	post_process(scene);
 	printf("Finished render\n");
 	y -= 1;
 	while (y >= 0)
