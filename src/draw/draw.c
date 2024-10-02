@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/02 18:58:30 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/02 20:22:17 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ void	render_row(t_mlx *mlx, t_scene *scene, int y)
 void	*render_row_mt(void *data)
 {
 	t_render_queue	*render;
-	t_mlx	*mlx;
-	t_scene	*scene;
-	int		x;
-	int		y;
+	t_mlx			*mlx;
+	t_scene			*scene;
+	int				x;
+	int				y;
 
 	render = (t_render_queue *)data;
 	mlx = render->mlx;
@@ -120,18 +120,21 @@ int	img_init(t_mlx *mlx, t_img *img)
 
 void	render_scene(t_mlx *mlx, t_scene *scene)
 {
-	t_render_queue	renders[RES_H];
+	t_render_queue	*renders;
 	int				y;
 	pthread_t		thread_id[RES_H];
 
 	/*pthread_mutex_init(&mlx->mutex, NULL);*/
 	/*mlx->y = 0;*/
 	y = 0;
-	while (y > RES_H)
+	renders = malloc(sizeof(t_render_queue) * RES_H);
+	while (y < RES_H)
 	{
 		renders[y].mlx = mlx;
 		renders[y].y = y;
+		y++;
 	}
+	printf("Created %d structs\n", y);
 	y = 0;
 	if (!scene->valid)
 		return ;
