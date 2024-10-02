@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/02 16:54:25 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:13:40 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,22 +76,101 @@ void	*render_row_mt(void *data)
 {
 	t_mlx	*mlx;
 	t_scene	*scene;
-	int		x;
-	int		y;
+	int		height;
+	int		width;
 
 	mlx = (t_mlx *)data;
 	scene = mlx->rt->scenes[mlx->rt->curr_scene];
-	y = mlx->y;
-	pthread_mutex_unlock(&mlx->mutex);
-	x = 0;
-	while (x < RES_W)
+	height = 0;
+	while (height < RES_H / 4)
 	{
-		prep_cam_ray(mlx, scene, x, y);
-		post_process(scene, x, y);
-		x++;
+		width = 0;
+		while (width < RES_W)
+		{
+			prep_cam_ray(mlx, scene, width, height);
+			post_process(scene, width, height);
+			width++;
+		}
+		height++;
 	}
 	return (NULL);
 }
+
+void	*render_row_mt_2(void *data)
+{
+	t_mlx	*mlx;
+	t_scene	*scene;
+	int		height;
+	int		width;
+
+	mlx = (t_mlx *)data;
+	scene = mlx->rt->scenes[mlx->rt->curr_scene];
+	height = RES_H / 4;
+	while (height < RES_H / 2)
+	{
+		width = 0;
+		while (width < RES_W)
+		{
+			prep_cam_ray(mlx, scene, width, height);
+			post_process(scene, width, height);
+			width++;
+		}
+		height++;
+	}
+	return (NULL);
+}
+
+
+
+void	*render_row_mt_3(void *data)
+{
+	t_mlx	*mlx;
+	t_scene	*scene;
+	int		height;
+	int		width;
+
+	mlx = (t_mlx *)data;
+	scene = mlx->rt->scenes[mlx->rt->curr_scene];
+	height = RES_H / 2;
+	while (height < (3 * RES_H) / 4)
+	{
+		width = 0;
+		while (width < RES_W)
+		{
+			prep_cam_ray(mlx, scene, width, height);
+			post_process(scene, width, height);
+			width++;
+		}
+		height++;
+	}
+	return (NULL);
+}
+
+
+void	*render_row_mt_4(void *data)
+{
+	t_mlx	*mlx;
+	t_scene	*scene;
+	int		height;
+	int		width;
+
+	mlx = (t_mlx *)data;
+	scene = mlx->rt->scenes[mlx->rt->curr_scene];
+	height = (3 * RES_H) / 4;
+	while (height < RES_H)
+	{
+		width = 0;
+		while (width < RES_W)
+		{
+			prep_cam_ray(mlx, scene, width, height);
+			post_process(scene, width, height);
+			width++;
+		}
+		height++;
+	}
+	return (NULL);
+}
+
 
 int	img_init(t_mlx *mlx, t_img *img)
 {
@@ -108,32 +187,31 @@ int	img_init(t_mlx *mlx, t_img *img)
 
 void	render_scene(t_mlx *mlx, t_scene *scene)
 {
-	static int	renders;
 	int			y;
-	pthread_t	thread_id[RES_H];
-
+	pthread_t	thread_id[4];
 	pthread_mutex_init(&mlx->mutex, NULL);
-	y = 0;
-	mlx->y = 0;
+
 	y = 0;
 	if (!scene->valid)
 		return ;
 	if (img_init(mlx, scene->img))
 		return ;
-	while (y < RES_H)
+	while (y < 4)
 	{
-		pthread_mutex_lock(&mlx->mutex);
-		mlx->y = y;
-		pthread_create(&thread_id[y++], NULL, &render_row_mt, mlx);
-		pthread_mutex_lock(&mlx->mutex);
-		pthread_mutex_unlock(&mlx->mutex);
+		if (y == 0)
+			pthread_create(&thread_id[y++], NULL, &render_row_mt, mlx);
+		else if (y == 1)
+			pthread_create(&thread_id[y++], NULL, &render_row_mt_2, mlx);
+		else if (y == 2)
+			pthread_create(&thread_id[y++], NULL, &render_row_mt_3, mlx);
+		else
+			pthread_create(&thread_id[y++], NULL, &render_row_mt_4, mlx);
 		/*render_row(mlx, scene, y++);*/
 	}
-	pthread_mutex_lock(&mlx->mutex);
-	pthread_mutex_unlock(&mlx->mutex);
+	printf("Finished render\n");
+	y -= 1;
 	while (y >= 0)
 		pthread_join(thread_id[y--], NULL);
-	printf("Finished render %d\n", renders++);
 	if (!scene->rend.scan)
 	{
 		mlx_put_image_to_window(mlx->mlx, mlx->win, scene->img->img, 0, 0);
