@@ -6,12 +6,14 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:05:00 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/30 16:11:36 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:44:46 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENUMS_H
 # define ENUMS_H
+
+typedef pthread_mutex_t	t_mutex;
 
 enum e_lock
 {

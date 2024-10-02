@@ -6,11 +6,13 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:14:47 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 20:21:51 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:41:09 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+//	eq.a will always equal 1 in this equation so has been optimized out
 t_color	intersect_light(t_light *light, t_ray *ray, float *t)
 {
 	float		temp_t;
@@ -18,13 +20,12 @@ t_color	intersect_light(t_light *light, t_ray *ray, float *t)
 	t_vec3		oc;	//	points from cam origin to the sphere center
 
 	vec3_a_to_b(oc, *ray->origin, light->point);
-	eq.a = dot_product(ray->udir, ray->udir);
 	eq.b = 2 * dot_product(oc, ray->udir);
 	eq.c = dot_product(oc, oc) - (LIGHT_RAD * light->lum);
-	eq.discriminant = eq.b * eq.b - 4 * eq.a * eq.c;
+	eq.discriminant = eq.b * eq.b - 4 * eq.c;
 	if (eq.discriminant < 0)
 		return (-1);
-	temp_t = (eq.b - sqrt(eq.discriminant)) / (2 * eq.a);
+	temp_t = (eq.b - sqrt(eq.discriminant)) / 2;
 	if (temp_t > EPSILON && temp_t < *t)
 	{
 		*t = temp_t;

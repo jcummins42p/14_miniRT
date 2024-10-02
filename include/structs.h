@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 12:01:07 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:06:07 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef float	t_vec3[3];
 typedef float	t_vec2[2];
 typedef int		t_color;
 typedef int		t_rgb[3];
+typedef int		t_pixel[2];
 
 typedef struct s_quadratic
 {
@@ -121,6 +122,7 @@ typedef struct s_scene
 	char		*fname;
 	void		*screen_object[RES_H][RES_W];	//	each pixel stores the object in it
 	int			select_type[RES_H][RES_W];
+	t_pixel		light_point;
 	void		*selected;
 	int			sel_type;
 	t_img		*img;
@@ -156,6 +158,8 @@ typedef struct s_mlx
 	void	*win;
 	t_rt	*rt;
 	float	aspect_ratio;
+	int		y;
+	t_mutex	mutex;
 }				t_mlx;
 
 #endif
