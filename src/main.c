@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 11:15:05 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:20:17 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		exit_error(NULL, "Error: Wrong number of arguments\n", ERR_ARGC);
+	if (check_format(argc, argv))
+		exit_error(NULL, "Error: Wrong format\n", ERR_ARGC);
 	if (set_mlx(&mlx, &rt))
 		exit_error(&mlx, "Error: Failure to initialize mlx\n", ERR_ARGC);
 	if (set_rt(argc, argv, &rt))

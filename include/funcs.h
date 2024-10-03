@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funcs.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 20:49:42 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:25:22 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ t_color	prep_light_ray(t_scene *scene, t_vec3 bounce_point);
 
 //	cast_cam_ray.c
 void	prep_cam_ray(t_mlx *mlx, t_scene *scene, int x, int y);
+
+//	check_format.c
+int	check_format(int argc, char **argv);
 
 //	utils_mlx.c
 int		set_mlx(t_mlx *mlx, t_rt *rt);

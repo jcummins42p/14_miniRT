@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_light.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:14:47 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/02 20:00:46 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 18:26:10 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
