@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/02 20:22:17 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:01:16 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,10 @@ void	render_scene(t_mlx *mlx, t_scene *scene)
 	/*pthread_mutex_init(&mlx->mutex, NULL);*/
 	/*mlx->y = 0;*/
 	y = 0;
-	renders = malloc(sizeof(t_render_queue) * RES_H);
+	renders = malloc(sizeof(t_render_queue) * RES_H + 1);
 	while (y < RES_H)
 	{
+		thread_id[y] = 0;
 		renders[y].mlx = mlx;
 		renders[y].y = y;
 		y++;
@@ -149,12 +150,13 @@ void	render_scene(t_mlx *mlx, t_scene *scene)
 		/*pthread_mutex_unlock(&mlx->mutex);*/
 		/*render_row(mlx, scene, y++);*/
 	}
-	/*post_process(scene);*/
-	while (y >= 0)
-		pthread_join(thread_id[y--], NULL);
+	post_process(scene);
+	while (--y >= 0)
+		pthread_join(thread_id[y], NULL);
 	if (!scene->rend.scan)
 	{
 		mlx_put_image_to_window(mlx->mlx, mlx->win, scene->img->img, 0, 0);
 		mlx_destroy_image(mlx->mlx, scene->img->img);
 	}
+	free(renders);
 }
