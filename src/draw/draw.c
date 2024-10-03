@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 13:32:51 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:59:05 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,25 +144,24 @@ void	render_scene_mt(t_mlx *mlx, t_scene *scene)
 	int				y;
 	pthread_t		thread_id[RES_H];
 
-	y = 0;
-	renders = malloc(sizeof(t_render_queue) * RES_H + 1);
-	while (y < RES_H)
-	{
-		thread_id[y] = 0;
-		renders[y].mlx = mlx;
-		renders[y].y = y;
-		y++;
-	}
 	if (!scene->valid)
 		return ;
 	if (img_init(mlx, scene->img))
 		return ;
 	y = -1;
+	renders = malloc(sizeof(t_render_queue) * RES_H + 1);
+	while (++y < RES_H)
+	{
+		thread_id[y] = 0;
+		renders[y].mlx = mlx;
+		renders[y].y = y;
+	}
+	y = -1;
 	while (++y < RES_H)
 		pthread_create(&thread_id[y], NULL, &render_row_mt, &renders[y]);
 	while (--y >= 0)
 		pthread_join(thread_id[y], NULL);
-	/*post_process(scene);*/
+	post_process(scene);
 	if (!scene->rend.scan)
 	{
 		mlx_put_image_to_window(mlx->mlx, mlx->win, scene->img->img, 0, 0);
