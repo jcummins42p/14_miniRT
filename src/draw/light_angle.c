@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 21:17:48 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:13:03 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_color	light_angle_sphere(t_scene *scene, t_ray *ray)
 	dot_prod = dot_product(light, normal);
 	if (dot_prod > 0)
 		return (XCOL_BLK);
-	return (color_shift(sphere->color, XCOL_BLK, (dot_prod)));
+	return (color_shift(XCOL_BLK, sphere->color, (0 - dot_prod)));
 }
 
 t_color light_angle(t_scene *scene, t_ray *ray, int light_color)
