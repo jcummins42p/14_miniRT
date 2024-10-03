@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_spheres.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:56:52 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/02 12:17:21 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:49:37 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,28 @@
 //	results in rendering the far side of the sphere.
 t_color	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t)
 {
+	float		light_angle;
 	float		temp_t;
 	t_quadratic	eq;
 	t_vec3		oc;
+	t_vec3		normal;
 
 	vec3_a_to_b(oc, *ray->origin, sphere->center);
-	eq.a = dot_product(ray->udir, ray->udir);
 	eq.b = 2 * dot_product(oc, ray->udir);
 	eq.c = dot_product(oc, oc) - (sphere->radius * sphere->radius);
-	eq.discriminant = eq.b * eq.b - 4 * eq.a * eq.c;
+	eq.discriminant = eq.b * eq.b - 4 * eq.c;
 	if (eq.discriminant < 0)
 		return (-1);
-	temp_t = (eq.b - sqrt(eq.discriminant)) / (2 * eq.a);
-	if (temp_t > 0.001 && temp_t < *t)
+	temp_t = (eq.b - sqrt(eq.discriminant)) / 2;
+	if (temp_t > 1 && temp_t < *t)
 	{
 		*t = temp_t;
-		return (sphere->color);
+		vec3_a_to_b(normal, sphere->center, ray->bounce);
+		vec3_normalize(normal, normal);
+		light_angle = dot_product(ray->udir, normal);
+		if (light_angle > 0)
+			return (XCOL_BLK);
+		return (color_shift(sphere->color, XCOL_BLK, (light_angle)));
 	}
 	return (-1);
 }

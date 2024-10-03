@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cast_light_ray.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:33:38 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 20:50:59 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:40:39 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
+//	this is where calculations for light direction vs normal direction need to go
 t_color	cast_light_ray(t_scene *scene, t_ray *ray, float *light_t)
 {
 	float	temp_t;
@@ -25,7 +26,6 @@ t_color	cast_light_ray(t_scene *scene, t_ray *ray, float *light_t)
 	if (temp_t < *light_t)
 		return (0);
 	light_color = scene->light.hue;
-	/*light_color = color_shift(light_color, 0x000000, 1 - scene->light.lum);*/
 	return (light_color);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_move.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:18:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 20:30:26 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:05:17 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ void	k_move_sphere(int keysym, t_scene *scene)
 		sphere->center[_Z] += 1 * z_dir;
 	else if (keysym == XK_KP_2)
 		sphere->center[_Z] -= 1 * z_dir;
+	else if (keysym == XK_KP_9)
+		sphere->radius += 0.05;
+	else if (keysym == XK_KP_7)
+		sphere->radius -= 0.05;
 }
 
 void	k_move_camera(int keysym, t_scene *scene)
