@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:35:34 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/02 12:16:33 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 20:53:46 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ t_color	cast_cam_ray(t_scene *scene, t_ray *ray)
 	{
 		vec3_position(ray->bounce, *ray->origin, ray->udir, closest_t);
 		light_color = prep_light_ray(scene, ray->bounce);
+
+		light_color = light_angle(scene, ray, light_color);
+		// modulate light based on angle of normal to light source
+
 		light_color = combine_lights(light_color, scene->amb);
 		pixel_color = illuminate_pixel(pixel_color, light_color);
 		pixel_color = shade_pixel_distance(pixel_color, closest_t);

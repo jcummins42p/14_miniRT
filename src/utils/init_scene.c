@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:38:24 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/02 18:30:53 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 21:21:29 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	init_object_selection(t_scene *scene)
 void	init_scene(t_scene *scene, char *filename, int id)
 {
 	init_object_selection(scene);
-	pthread_mutex_init(&scene->mutex, NULL);
 	scene->fname = ft_strdup(filename);
 	scene->img = malloc(sizeof(t_img));
 	scene->id = id;

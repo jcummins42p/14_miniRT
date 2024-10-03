@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:24:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 12:05:13 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 21:08:26 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_color	intersect_plane(t_plane *plane, t_ray *ray, float *t)
 		if (temp_t > 0.001 && temp_t < *t)
 		{
 			*t = temp_t;
+			ray->object_type = SEL_PLANE;
+			ray->object = plane;
 			return (plane->color);
 		}
 	}

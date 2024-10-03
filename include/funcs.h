@@ -6,12 +6,14 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 17:25:22 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/03 20:59:27 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCS_H
 # define FUNCS_H
+
+t_color light_angle(t_scene *scene, t_ray *ray, int light_color);
 
 //	draw.c
 void	pixel_put_img(t_img *img, int x, int y, int color);

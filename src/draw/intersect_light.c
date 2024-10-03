@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:14:47 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 18:26:10 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/03 21:20:59 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ t_color	intersect_lights(t_scene *scene, t_ray *ray, float *t)
 		pixel_color = temp_color;
 		if (ray->origin == &scene->cam.point)
 		{
-			pthread_mutex_lock(&scene->mutex);
 			scene->screen_object[ray->y][ray->x] = &scene->light;
 			scene->select_type[ray->y][ray->x] = SEL_LIGHT;
-			pthread_mutex_unlock(&scene->mutex);
 		}
 		*t = temp_t;
 	}

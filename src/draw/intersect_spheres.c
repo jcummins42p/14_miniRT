@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:56:52 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 19:49:37 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/03 21:02:32 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@
 //	results in rendering the far side of the sphere.
 t_color	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t)
 {
-	float		light_angle;
 	float		temp_t;
 	t_quadratic	eq;
 	t_vec3		oc;
-	t_vec3		normal;
 
 	vec3_a_to_b(oc, *ray->origin, sphere->center);
 	eq.b = 2 * dot_product(oc, ray->udir);
@@ -34,12 +32,9 @@ t_color	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t)
 	if (temp_t > 1 && temp_t < *t)
 	{
 		*t = temp_t;
-		vec3_a_to_b(normal, sphere->center, ray->bounce);
-		vec3_normalize(normal, normal);
-		light_angle = dot_product(ray->udir, normal);
-		if (light_angle > 0)
-			return (XCOL_BLK);
-		return (color_shift(sphere->color, XCOL_BLK, (light_angle)));
+		ray->object_type = SEL_SPHERE;
+		ray->object = sphere;
+		return (sphere->color);
 	}
 	return (-1);
 }

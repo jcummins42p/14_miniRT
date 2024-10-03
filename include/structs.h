@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 13:32:39 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 20:48:14 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_ray
 {
 	int			x;
 	int			y;
+	void		*object;
+	int			object_type;
 	t_vec3		*origin;
 	t_vec3		bounce;
 	t_vec3		dir;
