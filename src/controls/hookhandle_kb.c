@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 19:41:55 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:36:38 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,14 @@ void	toggle_scan(t_mlx *mlx)
 		mlx->rt->scenes[i]->rend.scan = true;
 }
 
+void	toggle_bool(bool *current)
+{
+	if (*current)
+		*current = false;
+	else
+		*current = true;
+}
+
 void	k_redraw(t_mlx *mlx, int redraw)
 {
 	if (redraw == 2)
@@ -146,5 +154,7 @@ int	k_press(int keysym, t_mlx *mlx)
 	else if (keysym == XK_KP_Add || keysym == XK_KP_Subtract
 		|| keysym == XK_KP_Enter)
 		k_scene_select(keysym, mlx);
+	else if (keysym == XK_m)
+		toggle_bool(&mlx->multithread);
 	return (0);
 }

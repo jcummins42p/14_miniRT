@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:12:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 19:37:31 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:40:50 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@
 # define XK_KP_Subtract	0xffad
 # define XK_KP_Add		0xffab
 
-# ifdef XK_LATIN1
-# define XK_LATIN1
+# ifndef XK_LATIN1
+#  define XK_LATIN1
 
 #  define XK_space                         0x0020  /* U+0020 SPACE */
 #  define XK_exclam                        0x0021  /* U+0021 EXCLAMATION MARK */

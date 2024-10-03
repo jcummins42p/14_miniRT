@@ -6,7 +6,7 @@
 #    By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 18:08:59 by jcummins          #+#    #+#              #
-#    Updated: 2024/10/03 11:22:06 by jcummins         ###   ########.fr        #
+#    Updated: 2024/10/03 13:20:26 by jcummins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ clean:
 
 fclean: clean
 	@echo "Removing all object files and executable"
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) sanitize-thread sanitize-addr
 
 re:	fclean all
 

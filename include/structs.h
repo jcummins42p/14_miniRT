@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/02 18:53:12 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:32:39 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ typedef struct s_mlx
 	float	aspect_ratio;
 	int		y;
 	t_mutex	mutex;
+	bool	multithread;
 }				t_mlx;
 
 typedef struct s_render_queue
