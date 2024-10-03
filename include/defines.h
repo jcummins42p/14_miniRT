@@ -6,12 +6,14 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:16:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/02 18:44:52 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:22:14 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
+
+# define MULTITHREAD 1
 
 # define DEBUGMODE 1
 # define EPSILON 0.000001

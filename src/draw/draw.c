@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 11:01:16 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:18:51 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,14 +118,32 @@ int	img_init(t_mlx *mlx, t_img *img)
 	return (0);
 }
 
-void	render_scene(t_mlx *mlx, t_scene *scene)
+void	render_scene_st(t_mlx *mlx, t_scene *scene)
+{
+	int				y;
+
+	y = 0;
+	if (!scene->valid)
+		return ;
+	if (img_init(mlx, scene->img))
+		return ;
+	y = -1;
+	while (++y < RES_H)
+		render_row(mlx, scene, y);
+	post_process(scene);
+	if (!scene->rend.scan)
+	{
+		mlx_put_image_to_window(mlx->mlx, mlx->win, scene->img->img, 0, 0);
+		mlx_destroy_image(mlx->mlx, scene->img->img);
+	}
+}
+
+void	render_scene_mt(t_mlx *mlx, t_scene *scene)
 {
 	t_render_queue	*renders;
 	int				y;
 	pthread_t		thread_id[RES_H];
 
-	/*pthread_mutex_init(&mlx->mutex, NULL);*/
-	/*mlx->y = 0;*/
 	y = 0;
 	renders = malloc(sizeof(t_render_queue) * RES_H + 1);
 	while (y < RES_H)
@@ -135,28 +153,28 @@ void	render_scene(t_mlx *mlx, t_scene *scene)
 		renders[y].y = y;
 		y++;
 	}
-	printf("Created %d structs\n", y);
-	y = 0;
 	if (!scene->valid)
 		return ;
 	if (img_init(mlx, scene->img))
 		return ;
-	while (y < RES_H)
-	{
-		/*mlx->y = y;*/
+	y = -1;
+	while (++y < RES_H)
 		pthread_create(&thread_id[y], NULL, &render_row_mt, &renders[y]);
-		y++;
-		/*pthread_mutex_lock(&mlx->mutex);*/
-		/*pthread_mutex_unlock(&mlx->mutex);*/
-		/*render_row(mlx, scene, y++);*/
-	}
-	post_process(scene);
 	while (--y >= 0)
 		pthread_join(thread_id[y], NULL);
+	post_process(scene);
 	if (!scene->rend.scan)
 	{
 		mlx_put_image_to_window(mlx->mlx, mlx->win, scene->img->img, 0, 0);
 		mlx_destroy_image(mlx->mlx, scene->img->img);
 	}
 	free(renders);
+}
+
+void	render_scene(t_mlx *mlx, t_scene *scene)
+{
+	if (MULTITHREAD)
+		render_scene_mt(mlx, scene);
+	else
+		render_scene_st(mlx, scene);
 }
