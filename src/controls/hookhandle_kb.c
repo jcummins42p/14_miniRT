@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 13:36:38 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/04 10:32:57 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,16 @@ void	k_object_deselect(t_mlx *mlx)
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
+void	k_select_light(t_mlx *mlx)
+{
+	t_scene	*scene;
+
+	scene = mlx->rt->scenes[mlx->rt->curr_scene];
+	mlx->rt->scenes[mlx->rt->curr_scene]->selected = &scene->light;
+	mlx->rt->scenes[mlx->rt->curr_scene]->sel_type = SEL_LIGHT;
+	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
+}
+
 int	k_press(int keysym, t_mlx *mlx)
 {
 	printf("k_press %d\n", keysym);
@@ -156,5 +166,7 @@ int	k_press(int keysym, t_mlx *mlx)
 		k_scene_select(keysym, mlx);
 	else if (keysym == XK_m)
 		toggle_bool(&mlx->multithread);
+	else if (keysym == XK_l)
+		k_select_light(mlx);
 	return (0);
 }

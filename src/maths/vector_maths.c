@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/27 15:49:44 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/04 10:03:57 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ float	vec3_length(t_vec3 vec)
 	return (sqrtf((vec[_X] * vec[_X])
 			+ (vec[_Y] * vec[_Y])
 			+ (vec[_Z] * vec[_Z])));
+}
+
+void	vec3_invert(t_vec3 vec)
+{
+	vec[_X] = 0 - vec[_X];
+	vec[_Y] = 0 - vec[_Y];
+	vec[_Z] = 0 - vec[_Z];
 }
 
 //	stores the unit vector of 'direction' in 'unit'

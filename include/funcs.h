@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 20:59:27 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/04 10:08:21 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	vec3_set_a(t_vec3 a, t_vec3 b);
 void	vec3_a_to_b(t_vec3 dir_out, t_vec3 point_a, t_vec3 point_b);
 float	vec3_length(t_vec3 vec);
 void	vec3_normalize(t_vec3 unit, t_vec3 direction);
+void	vec3_invert(t_vec3 vec);
 void	vec3_scaleize(t_vec3 scalar, t_vec3 unit, float magnitude);
 
 //	bounding_aa.c
