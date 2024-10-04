@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 10:07:30 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:10:04 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ t_color	light_angle_plane(t_scene *scene, t_ray *ray, int light_color)
 	dot_prod = dot_product(ray->udir, plane->norm);
 	if (dot_prod > 0)
 		vec3_invert(plane->norm);
-	plane = (t_plane *)ray->object;
 	vec3_a_to_b(light, scene->light.point, ray->bounce);
 	vec3_normalize(light, light);
 	dot_prod = dot_product(light, plane->norm);
 	if (dot_prod > 0)
 		return (XCOL_BLK);
-	return (color_shift(light_color, XCOL_BLK, (dot_prod)));
+	return (color_shift(XCOL_BLK, light_color, (0 - dot_prod)));
 }
 
 t_color	light_angle_sphere(t_scene *scene, t_ray *ray, int light_color)
