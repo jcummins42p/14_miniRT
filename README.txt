@@ -28,29 +28,36 @@ There are two rays cast per pixel:
 	brightness and distance of the spot light.
 
 Controls:
-	camera left	=	cam.point[_X]-- 	= numpad 4
-	camera right =	cam.point[_X]++		= numpad 6
-	camera forward	com.dir[_Z] = 1		= numpad 8
-	camera backward	com.dir[_Z] = -1	= numpad 2
+	Click an object to select it - selected object highlighted in white.
+	To select light position (with directional controls below) - press p
+	To select light values (
+
+Positional Controls:
+	left			cam.point[_X]-- 	= numpad 4
+	right 			cam.point[_X]++		= numpad 6
+	away from cam	com.dir[_Z] = 1		= numpad 8
+	towards cam		com.dir[_Z] = -1	= numpad 2
+	down			cam.point[_Y]-- 	= numpad 1
+	up				cam.point[_Y]++ 	= numpad 3
 	camera turn 90 degrees left			= numpad 7
 	camera turn 90 degrees right		= numpad 9
-	camera down	=	cam.point[_Y]-- 	= arrow down
-	camera up	=	cam.point[_Y]++ 	= arrow up
 
-Currently there is only a single ray being drawn for each pixel, returning the
-colour and distance of the first shape it meets. This is then shaded for ambient
-light and depth.
+Color Controls:
+	Increase hue red component			= numpad 7
+	Decrease hue red component			= numpad 1
+	Increase hue green component		= numpad 8
+	Decrease hue green component		= numpad 2
+	Increase hue blue component			= numpad 9
+	Decrease hue blue component			= numpad 3
+	Decrease luminosity					= numpad 4
+	Increase luminosity					= numpad 6
 
-Things to do for mandatory, increasing order of estimated difficulty:
-	Correct ambient light calculation
-	Reconcile ambient and directional light to work correctly together
+Mandatory:
 	Add cylinder maths
-	Add calculation to direction light so that it shades based on angle
 
-Things to increase performance
+Bonus:
+	Specular reflections
+
+Performance:
 	Add bsp tree culling
 	Finish calculating bounding boxes for cylinders (capsules is easier)
-
-Fun bonus things
-	maybe we can add multithreading to split up the image and speed up rendering
-	but those function are forbidden in the mandatory section at least.

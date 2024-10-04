@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:03:37 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 13:45:12 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/04 13:50:31 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ void	k_control_ambient(int keysym, t_scene *scene)
 	ambient = &scene->amb;
 	color_int_to_vector(temp_color, ambient->hue);
 	if (keysym == XK_KP_7)
-		color_alter_vector(temp_color, _R, 10);
+		color_alter_vector(temp_color, _R, 25);
 	else if (keysym == XK_KP_1)
-		color_alter_vector(temp_color, _R, -10);
+		color_alter_vector(temp_color, _R, -25);
 	else if (keysym == XK_KP_8)
-		color_alter_vector(temp_color, _G, 10);
+		color_alter_vector(temp_color, _G, 25);
 	else if (keysym == XK_KP_2)
-		color_alter_vector(temp_color, _G, -10);
+		color_alter_vector(temp_color, _G, -25);
 	else if (keysym == XK_KP_9)
-		color_alter_vector(temp_color, _B, 10);
+		color_alter_vector(temp_color, _B, 25);
 	else if (keysym == XK_KP_3)
-		color_alter_vector(temp_color, _B, -10);
+		color_alter_vector(temp_color, _B, -25);
 	else if (keysym == XK_KP_4)
 		ambient->lum -= 0.1;
 	else if (keysym == XK_KP_6)
@@ -61,17 +61,17 @@ void	k_control_light(int keysym, t_scene *scene)
 	light = &scene->light;
 	color_int_to_vector(temp_color, light->hue);
 	if (keysym == XK_KP_7)
-		color_alter_vector(temp_color, _R, 10);
+		color_alter_vector(temp_color, _R, 25);
 	else if (keysym == XK_KP_1)
-		color_alter_vector(temp_color, _R, -10);
+		color_alter_vector(temp_color, _R, -25);
 	else if (keysym == XK_KP_8)
-		color_alter_vector(temp_color, _G, 10);
+		color_alter_vector(temp_color, _G, 25);
 	else if (keysym == XK_KP_2)
-		color_alter_vector(temp_color, _G, -10);
+		color_alter_vector(temp_color, _G, -25);
 	else if (keysym == XK_KP_9)
-		color_alter_vector(temp_color, _B, 10);
+		color_alter_vector(temp_color, _B, 25);
 	else if (keysym == XK_KP_3)
-		color_alter_vector(temp_color, _B, -10);
+		color_alter_vector(temp_color, _B, -25);
 	else if (keysym == XK_KP_4)
 		light->lum -= 0.1;
 	else if (keysym == XK_KP_6)

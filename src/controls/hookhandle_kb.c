@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 13:46:19 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/04 13:53:57 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,13 +140,16 @@ void	k_deselect_object(t_mlx *mlx)
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
-void	k_select_light(t_mlx *mlx)
+void	k_select_light(int keysym, t_mlx *mlx)
 {
 	t_scene	*scene;
 
 	scene = mlx->rt->scenes[mlx->rt->curr_scene];
 	mlx->rt->scenes[mlx->rt->curr_scene]->selected = &scene->light;
-	mlx->rt->scenes[mlx->rt->curr_scene]->sel_type = SEL_LIGHT_VALS;
+	if (keysym == XK_p)
+		mlx->rt->scenes[mlx->rt->curr_scene]->sel_type = SEL_LIGHT;
+	else
+		mlx->rt->scenes[mlx->rt->curr_scene]->sel_type = SEL_LIGHT_VALS;
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
@@ -175,9 +178,9 @@ int	k_press(int keysym, t_mlx *mlx)
 		k_select_scene(keysym, mlx);
 	else if (keysym == XK_m)
 		toggle_bool(&mlx->multithread);
-	else if (keysym == XK_l)
-		k_select_light(mlx);
 	else if (keysym == XK_a)
 		k_select_ambient(mlx);
+	else if (keysym == XK_p || keysym == XK_l)
+		k_select_light(keysym, mlx);
 	return (0);
 }
