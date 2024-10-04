@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 10:08:21 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/04 13:33:32 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ t_color	color_illuminate(t_color original, t_color target, float ratio);
 t_color	color_shift(t_color original, t_color target, float ratio);
 t_color	color_subtract(t_color original, t_color target, float ratio);
 t_color	color_addition(t_color original, t_color target);
+
+// interscet cylinder.c
+t_color	intersect_cylinders(t_scene *scene, t_ray *ray, float *t);
 
 //	intersect_light.c
 int		intersect_lights(t_scene *scene, t_ray *ray, float *t);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_cam_ray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:35:34 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 09:48:36 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/04 13:54:09 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ t_color	cast_cam_ray(t_scene *scene, t_ray *ray)
 		pixel_color = temp_color;
 	}
 	temp_color = intersect_planes(scene, ray, &temp_t);
+	if (temp_t < closest_t)
+	{
+		closest_t = temp_t;
+		pixel_color = temp_color;
+	}
+	temp_color = intersect_cylinders(scene, ray, &temp_t);
 	if (temp_t < closest_t)
 	{
 		closest_t = temp_t;
