@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:56:52 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 21:02:32 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/04 12:38:52 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_color	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t)
 	if (eq.discriminant < 0)
 		return (-1);
 	temp_t = (eq.b - sqrt(eq.discriminant)) / 2;
-	if (temp_t > 1 && temp_t < *t)
+	if (temp_t > EPSILON && temp_t < *t)
 	{
 		*t = temp_t;
 		ray->object_type = SEL_SPHERE;
@@ -53,8 +53,6 @@ t_color	intersect_spheres(t_scene *scene, t_ray *ray, float *t)
 	while (++i < scene->n_spheres)
 	{
 		temp_color = intersect_sphere(&scene->sphs[i], ray, &temp_t);
-		/*if (scene->selected && &scene->sphs[i] == scene->selected)*/
-			/*temp_color = 0xFFFFFF;*/
 		if ((temp_color >= 0) && temp_t < *t)
 		{
 			pixel_color = temp_color;

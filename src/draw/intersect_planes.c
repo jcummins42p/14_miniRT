@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:24:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 21:08:26 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/04 12:39:13 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_color	intersect_plane(t_plane *plane, t_ray *ray, float *t)
 	{
 		vec3_a_to_b(cam_to_anch, *ray->origin, plane->anch);
 		temp_t = dot_product(cam_to_anch, plane->norm) / (denominator);
-		if (temp_t > 0.001 && temp_t < *t)
+		if (temp_t > EPSILON && temp_t < *t)
 		{
 			*t = temp_t;
 			ray->object_type = SEL_PLANE;

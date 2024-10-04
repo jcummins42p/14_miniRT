@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 11:10:04 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:23:11 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_color	light_angle_plane(t_scene *scene, t_ray *ray, int light_color)
 	dot_prod = dot_product(light, plane->norm);
 	if (dot_prod > 0)
 		return (XCOL_BLK);
-	return (color_shift(XCOL_BLK, light_color, (0 - dot_prod)));
+	return (color_shift(XCOL_BLK, light_color, (log((0 - dot_prod) * 10)) + 0.1));
 }
 
 t_color	light_angle_sphere(t_scene *scene, t_ray *ray, int light_color)

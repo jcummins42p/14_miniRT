@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:16:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 19:12:32 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/04 12:42:27 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define MULTITHREAD 1
 
 # define DEBUGMODE 1
-# define EPSILON 0.000001
+# define EPSILON 0.00001
 
 # define RES_H	900
 # define RES_W	1200
