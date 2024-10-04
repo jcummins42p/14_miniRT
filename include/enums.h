@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:05:00 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/02 15:44:46 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/04 13:44:18 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ enum e_select_type
 	SEL_SPHERE,
 	SEL_PLANE,
 	SEL_CYLINDER,
-	SEL_LIGHT
+	SEL_LIGHT,
+	SEL_LIGHT_VALS,
+	SEL_AMBIENT
 };
 
 enum e_errcode

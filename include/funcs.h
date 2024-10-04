@@ -6,12 +6,15 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 10:08:21 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/04 13:43:01 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCS_H
 # define FUNCS_H
+
+void	k_control_ambient(int keysym, t_scene *scene);
+void	k_control_light(int keysym, t_scene *scene);
 
 t_color light_angle(t_scene *scene, t_ray *ray, int light_color);
 

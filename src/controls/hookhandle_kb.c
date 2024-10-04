@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 10:32:57 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/04 13:46:19 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	k_release(int keysym, void *vars)
 	return (0);
 }
 
-int	kp_scene_select(int keysym, t_mlx *mlx, int newscene)
+int	kp_select_scene(int keysym, t_mlx *mlx, int newscene)
 {
 	t_rt	*rt;
 
@@ -45,7 +45,7 @@ int	kp_scene_select(int keysym, t_mlx *mlx, int newscene)
 	return (newscene);
 }
 
-void	kp_scene_change(t_mlx *mlx, int newscene)
+void	kp_change_scene(t_mlx *mlx, int newscene)
 {
 	if (mlx->rt->scenes[newscene]->valid)
 	{
@@ -57,14 +57,14 @@ void	kp_scene_change(t_mlx *mlx, int newscene)
 		printf("Unable to render invalid scene\n");
 }
 
-int	k_scene_select(int keysym, t_mlx *mlx)
+int	k_select_scene(int keysym, t_mlx *mlx)
 {
 	static int	newscene;
 
 	if (keysym == XK_KP_Add || keysym == XK_KP_Subtract)
-		newscene = kp_scene_select(keysym, mlx, newscene);
+		newscene = kp_select_scene(keysym, mlx, newscene);
 	else if (keysym == XK_KP_Enter)
-		kp_scene_change(mlx, newscene);
+		kp_change_scene(mlx, newscene);
 	else if (newscene >= 0 && newscene < mlx->rt->n_scenes)
 	{
 		printf("Acessing scene %d\n", newscene);
@@ -133,7 +133,7 @@ void	reset_cam_default(t_mlx *mlx, t_camera *cam)
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
-void	k_object_deselect(t_mlx *mlx)
+void	k_deselect_object(t_mlx *mlx)
 {
 	mlx->rt->scenes[mlx->rt->curr_scene]->selected = NULL;
 	mlx->rt->scenes[mlx->rt->curr_scene]->sel_type = SEL_CAM;
@@ -146,8 +146,17 @@ void	k_select_light(t_mlx *mlx)
 
 	scene = mlx->rt->scenes[mlx->rt->curr_scene];
 	mlx->rt->scenes[mlx->rt->curr_scene]->selected = &scene->light;
-	mlx->rt->scenes[mlx->rt->curr_scene]->sel_type = SEL_LIGHT;
+	mlx->rt->scenes[mlx->rt->curr_scene]->sel_type = SEL_LIGHT_VALS;
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
+}
+
+void	k_select_ambient(t_mlx *mlx)
+{
+	t_scene	*scene;
+
+	scene = mlx->rt->scenes[mlx->rt->curr_scene];
+	mlx->rt->scenes[mlx->rt->curr_scene]->selected = &scene->amb;
+	mlx->rt->scenes[mlx->rt->curr_scene]->sel_type = SEL_AMBIENT;
 }
 
 int	k_press(int keysym, t_mlx *mlx)
@@ -160,13 +169,15 @@ int	k_press(int keysym, t_mlx *mlx)
 	else if (keysym >= XK_KP_7 && keysym <= XK_KP_0)
 		k_directional_controls(keysym, mlx);
 	else if (keysym == XK_KP_Delete)
-		k_object_deselect(mlx);
+		k_deselect_object(mlx);
 	else if (keysym == XK_KP_Add || keysym == XK_KP_Subtract
 		|| keysym == XK_KP_Enter)
-		k_scene_select(keysym, mlx);
+		k_select_scene(keysym, mlx);
 	else if (keysym == XK_m)
 		toggle_bool(&mlx->multithread);
 	else if (keysym == XK_l)
 		k_select_light(mlx);
+	else if (keysym == XK_a)
+		k_select_ambient(mlx);
 	return (0);
 }

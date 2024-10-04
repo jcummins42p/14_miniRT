@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:18:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 19:05:17 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/04 13:44:41 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,9 @@ void	k_directional_controls(int keysym, t_mlx *mlx)
 		k_move_plane(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
 	else if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_CAM)
 		k_move_camera(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
+	else if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_AMBIENT)
+		k_control_ambient(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
+	else if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_LIGHT_VALS)
+		k_control_light(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
