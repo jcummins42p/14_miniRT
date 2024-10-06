@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_shapes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:45:11 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 16:09:26 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/06 17:15:41 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	parse_sphere(char *input, t_scene *scene)
 
 	i = 0;
 	if (!input || !*input)
-		printf("Error: NULL string passed to parse_plane, init to default\n");
+		printf("Error: NULL string passed to parse_sphere, init to default\n");
 	else
 	{
 		while (scene->sphs[i].id >= 0)
@@ -87,8 +87,8 @@ void	parse_cylinder(char *input, t_scene *scene)
 	int		i;
 
 	i = 0;
-	if (input && *input)
-		printf("Error: NULL string passed to parse_plane, init to default\n");
+	if (!input || !*input)
+		printf("Error: NULL string passed to parse_cylinder, init to default\n");
 	else
 	{
 		while (scene->cyls[i].id >= 0)

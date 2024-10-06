@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_angle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 11:23:11 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/05 19:06:42 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ t_color light_angle(t_scene *scene, t_ray *ray, int light_color)
 		return (light_angle_sphere(scene, ray, light_color));
 	//	planes not working yet
 	if (ray->object_type == SEL_PLANE)
+		return (light_angle_plane(scene, ray, light_color));
+	if (ray->object_type == SEL_CYLINDER)
 		return (light_angle_plane(scene, ray, light_color));
 	else
 		return (light_color);

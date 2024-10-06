@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:33:38 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 14:18:55 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/05 17:26:29 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_color	cast_light_ray(t_scene *scene, t_ray *ray, float *light_t)
 	if ((temp_t + EPSILON) < *light_t)
 		return (0);
 	intersect_cylinders(scene, ray, &temp_t);
-	if ((temp_t) < *light_t)
+	if ((temp_t + EPSILON) < *light_t)
 		return (0);
 	light_color = scene->light.hue;
 	return (light_color);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_shapes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:59:15 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 20:29:35 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/06 16:56:36 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
