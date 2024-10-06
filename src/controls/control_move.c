@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:18:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 13:44:41 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/06 18:03:17 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,31 @@ void	k_move_sphere(int keysym, t_scene *scene)
 		sphere->radius -= 0.05;
 }
 
+void	k_move_cylinder(int keysym, t_scene *scene)
+{
+	float		z_dir;
+	t_cylinder	*cylinder;
+
+	cylinder = scene->selected;
+	z_dir = scene->cam.dir[_Z];
+	if (keysym == XK_KP_3)
+		cylinder->center[_Y] += 1;
+	else if (keysym == XK_KP_1)
+		cylinder->center[_Y] -= 1;
+	else if (keysym == XK_KP_6)
+		cylinder->center[_X] += 1 * z_dir;
+	else if (keysym == XK_KP_4)
+		cylinder->center[_X] -= 1 * z_dir;
+	else if (keysym == XK_KP_8)
+		cylinder->center[_Z] += 1 * z_dir;
+	else if (keysym == XK_KP_2)
+		cylinder->center[_Z] -= 1 * z_dir;
+	else if (keysym == XK_KP_9)
+		cylinder->diamtr += 0.05;
+	else if (keysym == XK_KP_7)
+		cylinder->diamtr -= 0.05;
+}
+
 void	k_move_camera(int keysym, t_scene *scene)
 {
 	float		z_dir;
@@ -117,6 +142,8 @@ void	k_directional_controls(int keysym, t_mlx *mlx)
 		k_move_light(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
 	else if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_PLANE)
 		k_move_plane(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
+	else if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_CYLINDER)
+		k_move_cylinder(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
 	else if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_CAM)
 		k_move_camera(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
 	else if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_AMBIENT)
