@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:16:50 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/06 18:22:07 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/07 20:27:37 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_color intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 
 	float radius = cylinder->diamtr / 2;
 	eq.a = dot_product(ray->udir, ray->udir) - d_dot_axis * d_dot_axis;
-	eq.b = 2 * (dot_product(oc, ray->udir) - d_dot_axis * oc_dot_axis);
+	eq.b = 2 * (d_dot_axis * oc_dot_axis -dot_product(oc, ray->udir) );
 	eq.c = dot_product(oc, oc) - oc_dot_axis * oc_dot_axis - radius * radius;
 
 	// Calculate discriminant
@@ -50,8 +50,8 @@ t_color intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 		return (-1);  // No intersection
 
 	float sqrt_discriminant = sqrt(eq.discriminant);
-	float t1 = 0 - (-eq.b - sqrt_discriminant) / (2 * eq.a);
-	float t2 = 0 - (-eq.b + sqrt_discriminant) / (2 * eq.a);
+	float t1 = (-eq.b - sqrt_discriminant) / (2 * eq.a);
+	float t2 = (-eq.b + sqrt_discriminant) / (2 * eq.a);
 
 	t_vec3 intersection_point;
 
@@ -68,20 +68,20 @@ t_color intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 			return (cylinder->color);
 		}
 	}
-
+	(void)t2;
 	// Check the second intersection
-	if (t2 > EPSILON && t2 < *t)
-	{
-		vec3_scale_add(intersection_point, *ray->origin, ray->udir, t2);
-		float height_at_t2 = dot_product(cylinder->axis, intersection_point) - dot_product(cylinder->axis, cylinder->center);
-		if (height_at_t2 >= 0 && height_at_t2 <= cylinder->height)
-		{
-			*t = t2;
-			ray->object_type = SEL_CYLINDER;
-			ray->object = cylinder;
-			return (cylinder->color);
-		}
-	}
+	// if (t2 > EPSILON && t2 < *t)
+	// {
+	// 	vec3_scale_add(intersection_point, *ray->origin, ray->udir, t2);
+	// 	float height_at_t2 = dot_product(cylinder->axis, intersection_point) - dot_product(cylinder->axis, cylinder->center);
+	// 	if (height_at_t2 >= 0 && height_at_t2 <= cylinder->height)
+	// 	{
+	// 		*t = t2;
+	// 		ray->object_type = SEL_CYLINDER;
+	// 		ray->object = cylinder;
+	// 		return (cylinder->color);
+	// 	}
+	// }
 
 	return (-1);  // No valid intersection on the sides
 }
@@ -98,25 +98,7 @@ t_color intersect_cylinder_caps(t_cylinder *cylinder, t_ray *ray, float *t)
 	vec3_scale_add(top_cap_center, cylinder->center, cylinder->axis, cylinder->height);
 	vec3_scale_add(bottom_cap_center, cylinder->center, cylinder->axis, 0);
 
-	// Check intersection with the bottom cap (plane)
-	float denom_bottom = dot_product(ray->udir, cylinder->axis);
-	if (fabs(denom_bottom) > EPSILON) // Ensure the ray is not parallel to the cap
-	{
-		float t_bottom = (dot_product(cylinder->axis, bottom_cap_center) - dot_product(cylinder->axis, *ray->origin)) / denom_bottom;
-		if (t_bottom > EPSILON && t_bottom < *t)
-		{
-			vec3_scale_add(intersection_point, *ray->origin, ray->udir, t_bottom);
-			t_vec3 point_to_center;
-			vec3_a_to_b(point_to_center, bottom_cap_center, intersection_point);
-			if (vec3_length(point_to_center) <= radius)  // Check if within the cap radius
-			{
-				*t = t_bottom;
-				ray->object_type = SEL_CYLINDER;
-				ray->object = cylinder;
-				return (cylinder->color);
-			}
-		}
-	}
+
 
 	// Check intersection with the top cap (plane)
 	float denom_top = dot_product(ray->udir, cylinder->axis);
@@ -138,6 +120,25 @@ t_color intersect_cylinder_caps(t_cylinder *cylinder, t_ray *ray, float *t)
 		}
 	}
 
+	// Check intersection with the bottom cap (plane)
+	float denom_bottom = dot_product(ray->udir, cylinder->axis);
+	if (fabs(denom_bottom) > EPSILON) // Ensure the ray is not parallel to the cap
+	{
+		float t_bottom = (dot_product(cylinder->axis, bottom_cap_center) - dot_product(cylinder->axis, *ray->origin)) / denom_bottom;
+		if (t_bottom > EPSILON && t_bottom < *t)
+		{
+			vec3_scale_add(intersection_point, *ray->origin, ray->udir, t_bottom);
+			t_vec3 point_to_center;
+			vec3_a_to_b(point_to_center, bottom_cap_center, intersection_point);
+			if (vec3_length(point_to_center) <= radius)  // Check if within the cap radius
+			{
+				*t = t_bottom;
+				ray->object_type = SEL_CYLINDER;
+				ray->object = cylinder;
+				return (cylinder->color);
+			}
+		}
+	}
 	return (-1);  // No valid intersection on the caps
 }
 
@@ -178,7 +179,6 @@ t_color intersect_cylinders(t_scene *scene, t_ray *ray, float *t)
 			pixel_color = temp_color;
 			if (ray->origin == &scene->cam.point)
 			{
-				// Fixed object assignment for cylinders, not spheres
 				scene->screen_object[ray->y][ray->x] = &scene->cyls[i]; 
 				scene->select_type[ray->y][ray->x] = SEL_CYLINDER;
 			}
