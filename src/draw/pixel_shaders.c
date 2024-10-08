@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:40:08 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 11:40:02 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/07 18:06:35 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	shade_pixel_distance(t_color pixel_color, float distance)
 int	shade_light_distance(t_color pixel_color, float distance, float lum)
 {
 	/*return (color_shift(pixel_color, 0x000000, distance / 150));*/
-	return (color_shift(pixel_color, 0x000000, ((1 - lum) * (1 - lum) * DARK * log(distance * distance / (2 * BRIGHT * lum * lum * lum * 2)))));
+	return (color_shift(pixel_color, 0x000000, ((1 - lum) * DARK * log(distance * distance / (2 * BRIGHT * lum * 2)))));
 	/*return (color_shift(pixel_color, 0x000000, (1 / (distance * distance))));*/
 }
 
