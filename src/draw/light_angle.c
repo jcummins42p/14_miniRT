@@ -6,11 +6,63 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/05 19:06:42 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/08 17:59:49 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+static void vec3_scale_add(t_vec3 dest, t_vec3 base, t_vec3 direction, float magnitude)
+{
+	// Scale the direction vector by the given magnitude
+	t_vec3 scaled_direction;
+	vec3_scaleize(scaled_direction, direction, magnitude);
+
+	// Add the scaled direction to the base vector
+	dest[_X] = base[_X] + scaled_direction[_X];
+	dest[_Y] = base[_Y] + scaled_direction[_Y];
+	dest[_Z] = base[_Z] + scaled_direction[_Z];
+}
+
+t_color light_angle_cylinder(t_scene *scene, t_ray *ray, int light_color)
+{
+	t_cylinder	*cylinder;
+	float		dot_prod;
+	t_vec3		light;
+	t_vec3		point_on_axis;
+	t_vec3		normal;
+
+	cylinder = (t_cylinder *)ray->object;
+
+	// Calculate the projection of the intersection point onto the cylinder's axis
+	t_vec3 intersection_to_center;
+	vec3_a_to_b(intersection_to_center, cylinder->center, ray->bounce);
+	float projection_length = dot_product(intersection_to_center, cylinder->axis);
+
+	// Calculate the closest point on the cylinder's axis to the intersection point
+	vec3_scale_add(point_on_axis, cylinder->center, cylinder->axis, projection_length);
+
+	// Calculate the normal vector at the intersection point on the cylinder's surface
+	vec3_a_to_b(normal, point_on_axis, ray->bounce);
+	vec3_normalize(normal, normal);
+
+	// Adjust the normal direction based on the ray direction
+	dot_prod = dot_product(ray->udir, normal);
+	if (dot_prod > 0)
+		vec3_invert(normal);
+
+	// Calculate the light vector
+	vec3_a_to_b(light, scene->light.point, ray->bounce);
+	vec3_normalize(light, light);
+
+	// Calculate the dot product of the light direction and the normal
+	dot_prod = dot_product(light, normal);
+	if (dot_prod > 0)
+		return (XCOL_BLK);
+
+	return (color_shift(XCOL_BLK, light_color, (log((0 - dot_prod) * 10)) + 0.1));
+}
+
 
 t_color	light_angle_plane(t_scene *scene, t_ray *ray, int light_color)
 {
@@ -56,7 +108,7 @@ t_color light_angle(t_scene *scene, t_ray *ray, int light_color)
 	if (ray->object_type == SEL_PLANE)
 		return (light_angle_plane(scene, ray, light_color));
 	if (ray->object_type == SEL_CYLINDER)
-		return (light_angle_plane(scene, ray, light_color));
+		return (light_angle_cylinder(scene, ray, light_color));
 	else
 		return (light_color);
 }

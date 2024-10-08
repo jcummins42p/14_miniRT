@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:16:50 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/07 20:27:37 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/08 17:38:06 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void vec3_scale_add(t_vec3 dest, t_vec3 base, t_vec3 direction, float magnitude)
 	dest[_Z] = base[_Z] + scaled_direction[_Z];
 }
 
-
 // Function to check intersection with the curved sides of the cylinder
 t_color intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 {
@@ -39,7 +38,7 @@ t_color intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 	float oc_dot_axis = dot_product(oc, cylinder->axis);
 
 	float radius = cylinder->diamtr / 2;
-	eq.a = dot_product(ray->udir, ray->udir) - d_dot_axis * d_dot_axis;
+	eq.a = dot_product(ray->udir, ray->udir) - (d_dot_axis * d_dot_axis);
 	eq.b = 2 * (d_dot_axis * oc_dot_axis -dot_product(oc, ray->udir) );
 	eq.c = dot_product(oc, oc) - oc_dot_axis * oc_dot_axis - radius * radius;
 
@@ -97,8 +96,6 @@ t_color intersect_cylinder_caps(t_cylinder *cylinder, t_ray *ray, float *t)
 	// Calculate the centers of the top and bottom caps
 	vec3_scale_add(top_cap_center, cylinder->center, cylinder->axis, cylinder->height);
 	vec3_scale_add(bottom_cap_center, cylinder->center, cylinder->axis, 0);
-
-
 
 	// Check intersection with the top cap (plane)
 	float denom_top = dot_product(ray->udir, cylinder->axis);
