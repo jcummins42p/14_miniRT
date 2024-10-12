@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/08 17:59:49 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/12 16:04:50 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,10 @@ t_color light_angle(t_scene *scene, t_ray *ray, int light_color)
 	//	planes not working yet
 	if (ray->object_type == SEL_PLANE)
 		return (light_angle_plane(scene, ray, light_color));
-	if (ray->object_type == SEL_CYLINDER)
+	if (ray->object_type == SEL_CYLINDER_SIDE)
 		return (light_angle_cylinder(scene, ray, light_color));
+	if (ray->object_type == SEL_CYLINDER_CAP)
+		return (light_angle_plane(scene, ray, light_color));
 	else
 		return (light_color);
 }

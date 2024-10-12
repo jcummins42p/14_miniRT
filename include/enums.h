@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enums.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:05:00 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 13:44:18 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/12 16:05:34 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ enum e_select_type
 	SEL_CAM,
 	SEL_SPHERE,
 	SEL_PLANE,
-	SEL_CYLINDER,
+	SEL_CYLINDER_CAP,
+	SEL_CYLINDER_SIDE,
 	SEL_LIGHT,
 	SEL_LIGHT_VALS,
 	SEL_AMBIENT

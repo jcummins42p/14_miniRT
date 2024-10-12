@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:16:50 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/08 17:38:06 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/12 16:06:51 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_color intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 	float oc_dot_axis = dot_product(oc, cylinder->axis);
 
 	float radius = cylinder->diamtr / 2;
-	eq.a = dot_product(ray->udir, ray->udir) - (d_dot_axis * d_dot_axis);
+	eq.a = 1 - d_dot_axis * d_dot_axis;
 	eq.b = 2 * (d_dot_axis * oc_dot_axis -dot_product(oc, ray->udir) );
 	eq.c = dot_product(oc, oc) - oc_dot_axis * oc_dot_axis - radius * radius;
 
@@ -50,7 +50,6 @@ t_color intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 
 	float sqrt_discriminant = sqrt(eq.discriminant);
 	float t1 = (-eq.b - sqrt_discriminant) / (2 * eq.a);
-	float t2 = (-eq.b + sqrt_discriminant) / (2 * eq.a);
 
 	t_vec3 intersection_point;
 
@@ -62,27 +61,13 @@ t_color intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 		if (height_at_t1 >= 0 && height_at_t1 <= cylinder->height)
 		{
 			*t = t1;
-			ray->object_type = SEL_CYLINDER;
+			ray->object_type = SEL_CYLINDER_SIDE;
 			ray->object = cylinder;
 			return (cylinder->color);
 		}
 	}
-	(void)t2;
-	// Check the second intersection
-	// if (t2 > EPSILON && t2 < *t)
-	// {
-	// 	vec3_scale_add(intersection_point, *ray->origin, ray->udir, t2);
-	// 	float height_at_t2 = dot_product(cylinder->axis, intersection_point) - dot_product(cylinder->axis, cylinder->center);
-	// 	if (height_at_t2 >= 0 && height_at_t2 <= cylinder->height)
-	// 	{
-	// 		*t = t2;
-	// 		ray->object_type = SEL_CYLINDER;
-	// 		ray->object = cylinder;
-	// 		return (cylinder->color);
-	// 	}
-	// }
 
-	return (-1);  // No valid intersection on the sides
+	return (-1);
 }
 
 // Function to check intersection with the cylinder caps (top and bottom)
@@ -110,7 +95,7 @@ t_color intersect_cylinder_caps(t_cylinder *cylinder, t_ray *ray, float *t)
 			if (vec3_length(point_to_center) <= radius)  // Check if within the cap radius
 			{
 				*t = t_top;
-				ray->object_type = SEL_CYLINDER;
+				ray->object_type = SEL_CYLINDER_CAP;
 				ray->object = cylinder;
 				return (cylinder->color);
 			}
@@ -130,7 +115,7 @@ t_color intersect_cylinder_caps(t_cylinder *cylinder, t_ray *ray, float *t)
 			if (vec3_length(point_to_center) <= radius)  // Check if within the cap radius
 			{
 				*t = t_bottom;
-				ray->object_type = SEL_CYLINDER;
+				ray->object_type = SEL_CYLINDER_CAP;
 				ray->object = cylinder;
 				return (cylinder->color);
 			}
@@ -177,7 +162,7 @@ t_color intersect_cylinders(t_scene *scene, t_ray *ray, float *t)
 			if (ray->origin == &scene->cam.point)
 			{
 				scene->screen_object[ray->y][ray->x] = &scene->cyls[i]; 
-				scene->select_type[ray->y][ray->x] = SEL_CYLINDER;
+				// scene->select_type[ray->y][ray->x] = SEL_CYLINDER;
 			}
 			*t = temp_t;
 		}
