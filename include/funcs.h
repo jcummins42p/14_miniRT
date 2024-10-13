@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/05 18:07:28 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/12 16:32:05 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ float	vec3_length(t_vec3 vec);
 void	vec3_normalize(t_vec3 unit, t_vec3 direction);
 void	vec3_invert(t_vec3 vec);
 void	vec3_scaleize(t_vec3 scalar, t_vec3 unit, float magnitude);
+void	vec3_scale_add(t_vec3 dest, t_vec3 base, t_vec3 direction, float magnitude);
 
 //	bounding_aa.c
 void	aa_bound_sphere(t_sphere *sphere);

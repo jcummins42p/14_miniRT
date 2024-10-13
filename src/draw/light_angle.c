@@ -6,23 +6,11 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/12 16:04:50 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/12 16:33:00 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-static void vec3_scale_add(t_vec3 dest, t_vec3 base, t_vec3 direction, float magnitude)
-{
-	// Scale the direction vector by the given magnitude
-	t_vec3 scaled_direction;
-	vec3_scaleize(scaled_direction, direction, magnitude);
-
-	// Add the scaled direction to the base vector
-	dest[_X] = base[_X] + scaled_direction[_X];
-	dest[_Y] = base[_Y] + scaled_direction[_Y];
-	dest[_Z] = base[_Z] + scaled_direction[_Z];
-}
 
 t_color light_angle_cylinder(t_scene *scene, t_ray *ray, int light_color)
 {

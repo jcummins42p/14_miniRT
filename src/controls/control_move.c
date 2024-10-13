@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:18:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/12 16:11:06 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/13 18:40:21 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,27 +111,44 @@ void	k_move_cylinder(int keysym, t_scene *scene)
 	else if (keysym == XK_KP_7)
 		cylinder->diamtr -= 0.05;
 }
-
-void	k_move_camera(int keysym, t_scene *scene)
+void k_move_camera(int keysym, t_scene *scene)
 {
-	float		z_dir;
+	t_vec3 move_dir;
+	t_camera *cam = &scene->cam;
 
-	z_dir = scene->cam.dir[_Z];
-	if (keysym == XK_KP_3)
-		scene->cam.point[_Y] += 1;
-	else if (keysym == XK_KP_1)
-		scene->cam.point[_Y] -= 1;
-	else if (keysym == XK_KP_6)
-		scene->cam.point[_X] += 1 * z_dir;
-	else if (keysym == XK_KP_4)
-		scene->cam.point[_X] -= 1 * z_dir;
-	else if (keysym == XK_KP_8)
-		scene->cam.point[_Z] += 1 * z_dir;
-	else if (keysym == XK_KP_2)
-		scene->cam.point[_Z] -= 1 * z_dir;
+	if (keysym == XK_KP_3)		// Move up
+		cam->point[_Y] += 1;
+	else if (keysym == XK_KP_1)   // Move down
+		cam->point[_Y] -= 1;
+	else if (keysym == XK_KP_6)   // Move right
+	{
+		vec3_set_a(move_dir, cam->right);
+		cam->point[_X] += move_dir[_X];
+		cam->point[_Y] += move_dir[_Y];
+		cam->point[_Z] += move_dir[_Z];
+	}
+	else if (keysym == XK_KP_4)   // Move left
+	{
+		vec3_set_a(move_dir, cam->right);
+		vec3_a_to_b(cam->point, move_dir, cam->point);
+	}
+	else if (keysym == XK_KP_8)   // Move forward
+	{
+		vec3_set_a(move_dir, cam->dir);
+		cam->point[_X] += move_dir[_X];
+		cam->point[_Y] += move_dir[_Y];
+		cam->point[_Z] += move_dir[_Z];
+	}
+	else if (keysym == XK_KP_2)   // Move backward
+	{
+		vec3_set_a(move_dir, cam->dir);
+		vec3_a_to_b(cam->point, move_dir, cam->point);
+	}
 	else if (keysym == XK_KP_7 || keysym == XK_KP_9)
 		k_cam_pan(keysym, &scene->cam);
 }
+
+
 
 void	k_directional_controls(int keysym, t_mlx *mlx)
 {

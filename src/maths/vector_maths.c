@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   vector_maths.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.c      +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 10:03:57 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/13 19:49:32 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+void vec3_scale_add(t_vec3 dest, t_vec3 base, t_vec3 direction, float magnitude)
+{
+	// Scale the direction vector by the given magnitude
+	t_vec3	scaled_direction;
+
+	vec3_scaleize(scaled_direction, direction, magnitude);
+	dest[_X] = base[_X] + scaled_direction[_X];
+	dest[_Y] = base[_Y] + scaled_direction[_Y];
+	dest[_Z] = base[_Z] + scaled_direction[_Z];
+}
+
 
 void	vec3_set_a(t_vec3 a, t_vec3 b)
 {
