@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/08 17:21:04 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:06:11 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 typedef float	t_vec3[3];
 typedef float	t_vec2[2];
-typedef int		t_color;
 typedef int		t_rgb[3];
 typedef int		t_pixel[2];
 
@@ -45,7 +44,7 @@ typedef struct s_ambient
 {
 	int			lock;
 	float		lum;
-	t_color		hue;
+	int		hue;
 }				t_ambient;
 
 typedef struct s_camera
@@ -65,7 +64,7 @@ typedef struct s_light
 	int			lock;
 	t_vec3		point;
 	float		lum;
-	t_color		hue;
+	int		hue;
 }				t_light;
 
 typedef struct s_bbox
@@ -81,7 +80,7 @@ typedef struct s_sphere
 	float		diamtr;
 	float		radius;
 	int			id;
-	t_color		color;
+	int		color;
 }				t_sphere;
 
 typedef struct s_plane
@@ -90,7 +89,7 @@ typedef struct s_plane
 	t_vec3		anch;
 	t_vec3		norm;
 	int			id;
-	t_color		color;
+	int		color;
 }				t_plane;
 
 typedef struct s_cylinder
@@ -101,7 +100,7 @@ typedef struct s_cylinder
 	float		diamtr;
 	float		height;
 	int			id;
-	t_color		color;
+	int		color;
 }				t_cylinder;
 
 typedef struct s_img
@@ -141,7 +140,7 @@ typedef struct s_scene
 	int			n_cylinders;
 	int			n_planes;
 	int			n_spheres;
-	t_color		sky;
+	int			sky;
 	t_mutex		mutex;
 	bool		valid;
 }				t_scene;

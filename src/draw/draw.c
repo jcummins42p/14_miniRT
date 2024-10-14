@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/08 17:03:19 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:13:32 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,15 @@ void	highlight_selected(t_scene *scene, int x, int y, int radius)
 {
 	if (!scene->selected || scene->screen_object[y][x] == scene->selected)
 		return ;
-	radius = safe_screenspace_radius(x, y, radius);
+	/*radius = safe_screenspace_radius(x, y, radius);*/
+	if (x + radius > RES_W || y + radius > RES_H)
+		return ;
 	if (scene->screen_object[y + radius][x + radius] == scene->selected
 		|| scene->screen_object[y - radius][x + radius] == scene->selected
 		|| scene->screen_object[y + radius][x - radius] == scene->selected
 		|| scene->screen_object[y - radius][x - radius] == scene->selected)
 	pixel_put_img(scene->img, x, y, XCOL_WHT);
 }
-
-/*void	add_light_bloom(t_scene *scene)*/
-/*{*/
-	/*char	*dst;*/
-
-	/*dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));*/
-	/**(unsigned int *)dst = color;*/
-/*}*/
 
 void	post_process(t_scene *scene)
 {
@@ -89,18 +83,17 @@ void	*render_row_mt(void *data)
 	t_render_queue	*render;
 	t_mlx			*mlx;
 	t_scene			*scene;
-	int				x;
-	int				y;
+	int				coords[2];
 
 	render = (t_render_queue *)data;
 	mlx = render->mlx;
-	y = render->y;
+	coords[_Y] = render->y;
 	scene = mlx->rt->scenes[mlx->rt->curr_scene];
-	x = 0;
-	while (x < RES_W)
+	coords[_X] = 0;
+	while (coords[_X] < RES_W)
 	{
-		prep_cam_ray(mlx, scene, x, y);
-		x++;
+		prep_cam_ray(mlx, scene, coords[_X], coords[_Y]);
+		coords[_X]++;
 	}
 	return (NULL);
 }

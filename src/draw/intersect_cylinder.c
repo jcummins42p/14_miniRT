@@ -6,13 +6,13 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:16:50 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/13 16:58:58 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/14 20:18:39 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_color intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
+int intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 {
 	t_quadratic	eq;
 	t_vec3		oc;
@@ -54,7 +54,7 @@ t_color intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 	return (-1);
 }
 
-t_color intersect_cylinder_caps(t_cylinder *cylinder, t_ray *ray, float *t)
+int intersect_cylinder_caps(t_cylinder *cylinder, t_ray *ray, float *t)
 {
 	t_vec3	top_cap_center;
 	t_vec3	bottom_cap_center;
@@ -108,9 +108,9 @@ t_color intersect_cylinder_caps(t_cylinder *cylinder, t_ray *ray, float *t)
 	return (-1);
 }
 
-t_color intersect_cylinder(t_cylinder *cylinder, t_ray *ray, float *t)
+int intersect_cylinder(t_cylinder *cylinder, t_ray *ray, float *t)
 {
-	t_color color;
+	int color;
 
 	color = intersect_cylinder_sides(cylinder, ray, t);
 	if (color != -1)
@@ -121,10 +121,10 @@ t_color intersect_cylinder(t_cylinder *cylinder, t_ray *ray, float *t)
 	return (-1);
 }
 
-t_color intersect_cylinders(t_scene *scene, t_ray *ray, float *t)
+int intersect_cylinders(t_scene *scene, t_ray *ray, float *t)
 {
-	t_color	temp_color;
-	t_color	pixel_color;
+	int	temp_color;
+	int	pixel_color;
 	float	temp_t;
 	int		i;
 

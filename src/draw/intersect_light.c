@@ -6,14 +6,14 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:14:47 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/08 17:41:54 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/14 20:18:09 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
 //	eq.a will always equal 1 in this equation so has been optimized out
-t_color	intersect_light(t_light *light, t_ray *ray, float *t)
+int	intersect_light(t_light *light, t_ray *ray, float *t)
 {
 	float		temp_t;
 	t_quadratic	eq;
@@ -36,10 +36,10 @@ t_color	intersect_light(t_light *light, t_ray *ray, float *t)
 
 //	currently this function is redundant since we only have one light source
 //	but it will be useful when there are multiple
-t_color	intersect_lights(t_scene *scene, t_ray *ray, float *t)
+int	intersect_lights(t_scene *scene, t_ray *ray, float *t)
 {
-	t_color	temp_color;
-	t_color	pixel_color;
+	int	temp_color;
+	int	pixel_color;
 	float	temp_t;
 
 	temp_color = -1;
@@ -91,7 +91,7 @@ t_color	intersect_lights(t_scene *scene, t_ray *ray, float *t)
 //	A single solution t must exist for all components of the direction vector
 //	L - C = cam_to_light direction vector
 //	so t = cam_to_light direction vector / ray unit vector
-/*t_color	intersect_light(t_light *light, t_ray *ray, float *t)*/
+/*int	intersect_light(t_light *light, t_ray *ray, float *t)*/
 /*{*/
 	/*float		temp_t;*/
 	/*t_vec3		cam_to_light;*/

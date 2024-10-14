@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:56:52 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 13:17:33 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/14 20:17:34 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 //	temp_t = (eq.b + sqrt(eq.discriminant)) / (2 * eq.a);
 //	because we need the negative square root - positive root
 //	results in rendering the far side of the sphere.
-t_color	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t)
+int	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t)
 {
 	float		temp_t;
 	t_quadratic	eq;
@@ -39,10 +39,10 @@ t_color	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t)
 	return (-1);
 }
 
-t_color	intersect_spheres(t_scene *scene, t_ray *ray, float *t)
+int	intersect_spheres(t_scene *scene, t_ray *ray, float *t)
 {
-	t_color	temp_color;
-	t_color	pixel_color;
+	int	temp_color;
+	int	pixel_color;
 	float	temp_t;
 	int		i;
 
