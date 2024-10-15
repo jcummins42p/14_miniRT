@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/15 13:19:39 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:23:28 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,9 +167,9 @@ void	k_adjust_shine_plane(int keysym, t_plane *plane)
 	if (!plane)
 		return ;
 	if (keysym == XK_comma)
-		plane->shine = plane->shine / 2;
+		plane->shine -= 8;
 	else if (keysym == XK_period)
-		plane->shine = plane->shine * 2;
+		plane->shine += 8;
 	if (plane->shine < 2)
 		plane->shine = 2;
 	else if (plane->shine > 256)
@@ -181,9 +181,9 @@ void	k_adjust_shine_sphere(int keysym, t_sphere *sphere)
 	if (!sphere)
 		return ;
 	if (keysym == XK_comma)
-		sphere->shine = sphere->shine / 2;
+		sphere->shine -= 8;
 	else if (keysym == XK_period)
-		sphere->shine = sphere->shine * 2;
+		sphere->shine += 8;
 	if (sphere->shine < 2)
 		sphere->shine = 2;
 	else if (sphere->shine > 256)
