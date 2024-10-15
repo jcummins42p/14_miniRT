@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:35:34 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/15 13:27:10 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:23:55 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,25 @@ int	cast_cam_ray(t_scene *scene, t_ray *ray)
 	scene->select_type[ray->y][ray->x] = SEL_NONE;
 	scene->screen_object[ray->y][ray->x] = NULL;
 	temp_color = intersect_spheres(scene, ray, &temp_t);
-	if (temp_t < closest_t)
+	if ((temp_t + EPSILON) < closest_t)
 	{
 		closest_t = temp_t;
 		pixel_color = temp_color;
 	}
 	temp_color = intersect_planes(scene, ray, &temp_t);
-	if (temp_t < closest_t)
+	if ((temp_t + EPSILON) < closest_t)
 	{
 		closest_t = temp_t;
 		pixel_color = temp_color;
 	}
 	temp_color = intersect_cylinders(scene, ray, &temp_t);
-	if (temp_t < closest_t)
+	if ((temp_t + EPSILON) < closest_t)
 	{
 		closest_t = temp_t;
 		pixel_color = temp_color;
 	}
 	temp_color = intersect_lights(scene, ray, &temp_t);
-	if (temp_t < closest_t)
+	if ((temp_t + EPSILON) < closest_t)
 		return (scene->light.hue);
 	if (pixel_color >= 0)
 	{

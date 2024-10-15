@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:16:50 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/14 20:18:39 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:12:18 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,17 @@ int intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 	float d_dot_axis = dot_product(ray->udir, cylinder->axis);
 	float oc_dot_axis = dot_product(oc, cylinder->axis);
 
-	float radius = cylinder->diamtr / 2;
 	eq.a = 1 - d_dot_axis * d_dot_axis;
 	eq.b = 2 * (d_dot_axis * oc_dot_axis -dot_product(oc, ray->udir) );
-	eq.c = dot_product(oc, oc) - oc_dot_axis * oc_dot_axis - radius * radius;
+	eq.c = dot_product(oc, oc) - oc_dot_axis * oc_dot_axis - cylinder->radius * cylinder->radius;
 
 	// Calculate discriminant
 	eq.discriminant = eq.b * eq.b - 4 * eq.a * eq.c;
 	if (eq.discriminant < 0)
 		return (-1);  // No intersection
 
-	float sqrt_discriminant = sqrt(eq.discriminant);
-	float t1 = (-eq.b - sqrt_discriminant) / (2 * eq.a);
+	/*float sqrt_discriminant = sqrt(eq.discriminant);*/
+	float t1 = (-eq.b - sqrt(eq.discriminant)) / (2 * eq.a);
 
 	t_vec3 intersection_point;
 
@@ -123,8 +122,8 @@ int intersect_cylinder(t_cylinder *cylinder, t_ray *ray, float *t)
 
 int intersect_cylinders(t_scene *scene, t_ray *ray, float *t)
 {
-	int	temp_color;
-	int	pixel_color;
+	int		temp_color;
+	int		pixel_color;
 	float	temp_t;
 	int		i;
 
@@ -140,7 +139,7 @@ int intersect_cylinders(t_scene *scene, t_ray *ray, float *t)
 			pixel_color = temp_color;
 			if (ray->origin == &scene->cam.point)
 			{
-				scene->screen_object[ray->y][ray->x] = &scene->cyls[i]; 
+				scene->screen_object[ray->y][ray->x] = &scene->cyls[i];
 				scene->select_type[ray->y][ray->x] = SEL_CYLINDER_SIDE;
 			}
 			*t = temp_t;

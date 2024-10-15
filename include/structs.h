@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/15 13:21:57 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:05:30 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_cylinder
 	t_vec3		center;
 	t_vec3		axis;
 	float		diamtr;
+	float		radius;
 	float		height;
 	int			id;
 	int			color;
