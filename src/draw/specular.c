@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 09:54:25 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/15 13:32:28 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:01:24 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	specular_plane(t_scene *scene, t_ray *ray, int *pixel_color)
 	vec3_a_to_b(light, scene->light.point, ray->bounce);
 	vec3_normalize(light, light);
 	vec3_surface_reflection(reflect, light, plane->norm);
-	coincidence = dot_product(scene->cam.dir, reflect);
-	if (coincidence < 0)
+	coincidence = dot_product(ray->udir, reflect);
+	if (coincidence < EPSILON)
 		return ;
 	coincidence = powf(coincidence, plane->shine);
 	*pixel_color = color_shift(*pixel_color, scene->light.hue, coincidence);
@@ -58,8 +58,8 @@ void	specular_sphere(t_scene *scene, t_ray *ray, int *pixel_color)
 	vec3_normalize(light, light);
 	vec3_normalize(normal, normal);
 	vec3_surface_reflection(reflect, light, normal);
-	coincidence = dot_product(scene->cam.dir, reflect);
-	if (coincidence < 0)
+	coincidence = dot_product(ray->udir, reflect);
+	if (coincidence < EPSILON)
 		return ;
 	coincidence = powf(coincidence, sphere->shine);
 	*pixel_color = color_shift(*pixel_color, scene->light.hue, coincidence);
