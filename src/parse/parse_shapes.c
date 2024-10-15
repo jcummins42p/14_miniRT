@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:45:11 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/06 17:15:41 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/15 12:58:11 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	parse_sphere(char *input, t_scene *scene)
 		scene->sphs[i].id = i;
 		set_vec3(scene->sphs[i].center, items[1]);
 		scene->sphs[i].diamtr = ft_atof(items[2]);
+		scene->sphs[i].shine = 128;
 		scene->sphs[i].radius = scene->sphs[i].diamtr / 2;
 		scene->sphs[i].color = set_color(items[3]);
 		aa_bound_sphere(&scene->sphs[i]);
@@ -77,6 +78,7 @@ void	parse_plane(char *input, t_scene *scene)
 		if (set_unit_vec3(scene->plns[i].norm, items[2]))
 			scene->valid = false;
 		scene->plns[i].color = set_color(items[3]);
+		scene->plns[i].shine = 128;
 		ft_free_string_list(items);
 	}
 }
@@ -106,6 +108,7 @@ void	parse_cylinder(char *input, t_scene *scene)
 		scene->cyls[i].diamtr = ft_atof(items[3]);
 		scene->cyls[i].height = ft_atof(items[4]);
 		scene->cyls[i].color = set_color(items[5]);
+		scene->cyls[i].shine = 128;
 		aa_bound_capsule(&scene->cyls[i]);
 		ft_free_string_list(items);
 	}

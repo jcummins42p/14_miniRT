@@ -6,13 +6,13 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/12 16:33:00 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/15 09:38:45 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_color light_angle_cylinder(t_scene *scene, t_ray *ray, int light_color)
+int light_angle_cylinder(t_scene *scene, t_ray *ray, int light_color)
 {
 	t_cylinder	*cylinder;
 	float		dot_prod;
@@ -52,7 +52,7 @@ t_color light_angle_cylinder(t_scene *scene, t_ray *ray, int light_color)
 }
 
 
-t_color	light_angle_plane(t_scene *scene, t_ray *ray, int light_color)
+int	light_angle_plane(t_scene *scene, t_ray *ray, int light_color)
 {
 	t_plane		*plane;
 	float		dot_prod;
@@ -70,7 +70,7 @@ t_color	light_angle_plane(t_scene *scene, t_ray *ray, int light_color)
 	return (color_shift(XCOL_BLK, light_color, (log((0 - dot_prod) * 10)) + 0.1));
 }
 
-t_color	light_angle_sphere(t_scene *scene, t_ray *ray, int light_color)
+int	light_angle_sphere(t_scene *scene, t_ray *ray, int light_color)
 {
 	t_sphere	*sphere;
 	float		dot_prod;
@@ -88,7 +88,7 @@ t_color	light_angle_sphere(t_scene *scene, t_ray *ray, int light_color)
 	return (color_shift(XCOL_BLK, light_color, (0 - (dot_prod))));
 }
 
-t_color light_angle(t_scene *scene, t_ray *ray, int light_color)
+int light_angle(t_scene *scene, t_ray *ray, int light_color)
 {
 	if (ray->object_type == SEL_SPHERE)
 		return (light_angle_sphere(scene, ray, light_color));

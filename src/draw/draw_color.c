@@ -6,13 +6,13 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:55:57 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/30 18:25:49 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/15 09:38:11 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	color_int_to_vector(t_rgb rgb, t_color color)
+void	color_int_to_vector(t_rgb rgb, int color)
 {
 	rgb[_R] = (color >> 16) & 0xFF;
 	rgb[_G] = (color >> 8) & 0xFF;
@@ -30,7 +30,7 @@ int	color_vector_to_int(t_rgb rgb)
 	return (color);
 }
 
-t_color color_invert(t_color original)
+int color_invert(int original)
 {
 	t_rgb	ori;
 	t_rgb	inv;
@@ -43,7 +43,7 @@ t_color color_invert(t_color original)
 }
 
 //	for direct light illuminating a color?
-t_color	color_illuminate(t_color original, t_color target, float ratio)
+int	color_illuminate(int original, int target, float ratio)
 {
 	t_rgb	ori;
 	t_rgb	end;
@@ -62,7 +62,7 @@ t_color	color_illuminate(t_color original, t_color target, float ratio)
 	return (color_vector_to_int(out));
 }
 
-t_color	color_subtract(t_color original, t_color target, float ratio)
+int	color_subtract(int original, int target, float ratio)
 {
 	t_rgb	ori;
 	t_rgb	end;
@@ -81,7 +81,7 @@ t_color	color_subtract(t_color original, t_color target, float ratio)
 	return (color_vector_to_int(out));
 }
 
-t_color	color_addition(t_color original, t_color target)
+int	color_addition(int original, int target)
 {
 	t_rgb	ori;
 	t_rgb	end;
@@ -97,7 +97,7 @@ t_color	color_addition(t_color original, t_color target)
 }
 
 //	shifts 'original' to 'target' by a ratio: 0 is all original, 1 is all target
-t_color	color_shift(t_color original, t_color target, float ratio)
+int	color_shift(int original, int target, float ratio)
 {
 	t_rgb	ori;
 	t_rgb	end;

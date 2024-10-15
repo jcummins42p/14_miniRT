@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 13:53:57 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:19:39 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,50 @@ void	k_select_ambient(t_mlx *mlx)
 	mlx->rt->scenes[mlx->rt->curr_scene]->sel_type = SEL_AMBIENT;
 }
 
+void	k_adjust_shine_plane(int keysym, t_plane *plane)
+{
+	if (!plane)
+		return ;
+	if (keysym == XK_comma)
+		plane->shine = plane->shine / 2;
+	else if (keysym == XK_period)
+		plane->shine = plane->shine * 2;
+	if (plane->shine < 2)
+		plane->shine = 2;
+	else if (plane->shine > 256)
+		plane->shine = 256;
+}
+
+void	k_adjust_shine_sphere(int keysym, t_sphere *sphere)
+{
+	if (!sphere)
+		return ;
+	if (keysym == XK_comma)
+		sphere->shine = sphere->shine / 2;
+	else if (keysym == XK_period)
+		sphere->shine = sphere->shine * 2;
+	if (sphere->shine < 2)
+		sphere->shine = 2;
+	else if (sphere->shine > 256)
+		sphere->shine = 256;
+}
+
+void	k_adjust_shine(int keysym, t_mlx *mlx)
+{
+	void	*sel_obj;
+	int		sel_type;
+
+	sel_type = mlx->rt->scenes[mlx->rt->curr_scene]->sel_type;
+	sel_obj = mlx->rt->scenes[mlx->rt->curr_scene]->selected;
+	if (sel_type < SEL_SPHERE || sel_type > SEL_CYLINDER_SIDE)
+		return ;
+	else if (sel_type == SEL_SPHERE)
+		k_adjust_shine_sphere(keysym, sel_obj);
+	else if (sel_type == SEL_PLANE)
+		k_adjust_shine_plane(keysym, sel_obj);
+	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
+}
+
 int	k_press(int keysym, t_mlx *mlx)
 {
 	printf("k_press %d\n", keysym);
@@ -182,5 +226,7 @@ int	k_press(int keysym, t_mlx *mlx)
 		k_select_ambient(mlx);
 	else if (keysym == XK_p || keysym == XK_l)
 		k_select_light(keysym, mlx);
+	else if (keysym == XK_period || keysym == XK_comma)
+		k_adjust_shine(keysym, mlx);
 	return (0);
 }

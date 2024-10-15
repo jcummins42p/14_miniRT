@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/14 19:06:11 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:21:57 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ typedef float	t_vec3[3];
 typedef float	t_vec2[2];
 typedef int		t_rgb[3];
 typedef int		t_pixel[2];
+
+typedef union u_col
+{
+	char		c[3];
+	int			i;
+}				t_col;
 
 typedef struct s_quadratic
 {
@@ -80,7 +86,8 @@ typedef struct s_sphere
 	float		diamtr;
 	float		radius;
 	int			id;
-	int		color;
+	int			color;
+	int			shine;
 }				t_sphere;
 
 typedef struct s_plane
@@ -89,7 +96,8 @@ typedef struct s_plane
 	t_vec3		anch;
 	t_vec3		norm;
 	int			id;
-	int		color;
+	int			color;
+	int			shine;
 }				t_plane;
 
 typedef struct s_cylinder
@@ -100,7 +108,8 @@ typedef struct s_cylinder
 	float		diamtr;
 	float		height;
 	int			id;
-	int		color;
+	int			color;
+	int			shine;
 }				t_cylinder;
 
 typedef struct s_img

@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:33:38 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/14 19:15:31 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/15 11:28:14 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@
 int	cast_light_ray(t_scene *scene, t_ray *ray, float *light_t)
 {
 	float	temp_t;
-	int	light_color;
+	int		light_color;
 
+	light_color = 0;
 	temp_t = INFINITY;
 	intersect_planes(scene, ray, &temp_t);
 	if ((temp_t + EPSILON) < *light_t)
-		return (0);
+		return (light_color);
 	intersect_spheres(scene, ray, &temp_t);
 	if ((temp_t + EPSILON) < *light_t)
-		return (0);
+		return (light_color);
 	intersect_cylinders(scene, ray, &temp_t);
 	if ((temp_t + EPSILON) < *light_t)
-		return (0);
+		return (light_color);
 	light_color = scene->light.hue;
 	return (light_color);
 }
@@ -35,7 +36,7 @@ int	cast_light_ray(t_scene *scene, t_ray *ray, float *light_t)
 int	prep_light_ray(t_scene *scene, t_vec3 bounce_point)
 {
 	float		light_t;
-	int		light_color;
+	int			light_color;
 	t_ray		ray;
 
 	light_t = INFINITY;
