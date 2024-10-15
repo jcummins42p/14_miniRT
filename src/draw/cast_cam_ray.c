@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:35:34 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/15 15:23:55 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:42:11 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	cast_cam_ray(t_scene *scene, t_ray *ray)
 	{
 		vec3_position(ray->bounce, *ray->origin, ray->udir, closest_t);
 		light_color = prep_light_ray(scene, ray->bounce);
-		light_color = light_angle(scene, ray, light_color);
 		temp_color = light_color;
+		light_color = light_angle(scene, ray, light_color);
 		// modulate light based on angle of normal to light source
 
 		light_color = combine_lights(light_color, scene->amb);
