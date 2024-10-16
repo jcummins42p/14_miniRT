@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hookhandle_kb.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/15 14:23:28 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:51:00 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,8 @@ int	k_press(int keysym, t_mlx *mlx)
 		mlx_loop_end(mlx->mlx);
 	else if (keysym == XK_KP_5)
 		reset_cam_default(mlx, &mlx->rt->scenes[mlx->rt->curr_scene]->cam);
-	else if (keysym >= XK_KP_7 && keysym <= XK_KP_0)
+	else if ((keysym >= XK_KP_7 && keysym <= XK_KP_0) 
+				|| keysym == 101 || keysym == 113 || keysym == 119 || keysym == 97 || keysym == 115 || keysym == 100)
 		k_directional_controls(keysym, mlx);
 	else if (keysym == XK_KP_Delete)
 		k_deselect_object(mlx);

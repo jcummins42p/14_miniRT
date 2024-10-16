@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   XK_defines.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:12:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 14:07:27 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:11:13 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@
 # define XK_KP_7                          65429
 # define XK_KP_8                          65431
 # define XK_KP_9                          65434
+# define XK_KP_Q                             113
+# define XK_KP_W                             119
+# define XK_KP_E                             101
+# define XK_KP_A                             97
+# define XK_KP_S                             115
+# define XK_KP_D                             100
+
 
 # define XK_KP_Subtract	0xffad
 # define XK_KP_Add		0xffab

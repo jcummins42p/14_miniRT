@@ -6,7 +6,11 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/10/16 17:38:04 by jcummins         ###   ########.fr       */
+=======
+/*   Updated: 2024/10/16 17:14:58 by akretov          ###   ########.fr       */
+>>>>>>> f78a323 (trying to add quaternion)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +132,10 @@ void	k_directional_controls(int keysym, t_mlx *mlx);
 int		k_no_event(void *vars);
 int		k_release(int keysym, void *vars);
 int		k_press(int keysym, t_mlx *mlx);
+
+//	quaternion.c
+void	rotate_vector_by_quaternion(t_vec3 vector, t_quaternion q);
+t_quaternion axis_angle_to_quaternion(t_vec3 axis, float angle);
 
 //	parse_attributes.c
 int		set_color(char *input);

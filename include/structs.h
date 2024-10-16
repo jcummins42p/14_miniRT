@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/15 17:05:30 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:13:53 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@ typedef float	t_vec3[3];
 typedef float	t_vec2[2];
 typedef int		t_rgb[3];
 typedef int		t_pixel[2];
+
+
+typedef struct s_quaternion
+{
+    float w;   // Real part
+    float x;   // i component
+    float y;   // j component
+    float z;   // k component
+} t_quaternion;
+
+
 
 typedef union u_col
 {
