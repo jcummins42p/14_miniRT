@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/15 09:38:45 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/16 14:11:15 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int light_angle_cylinder(t_scene *scene, t_ray *ray, int light_color)
 	if (dot_prod > 0)
 		return (XCOL_BLK);
 
-	return (color_shift(XCOL_BLK, light_color, (log((0 - dot_prod) * 10)) + 0.1));
+	return (color_shift(XCOL_BLK, light_color, ((0 - dot_prod))));
 }
 
 
@@ -67,7 +67,7 @@ int	light_angle_plane(t_scene *scene, t_ray *ray, int light_color)
 	dot_prod = dot_product(light, plane->norm);
 	if (dot_prod > 0)
 		return (XCOL_BLK);
-	return (color_shift(XCOL_BLK, light_color, (log((0 - dot_prod) * 10)) + 0.1));
+	return (color_shift(XCOL_BLK, light_color, (0 - (dot_prod * 10))));
 }
 
 int	light_angle_sphere(t_scene *scene, t_ray *ray, int light_color)
