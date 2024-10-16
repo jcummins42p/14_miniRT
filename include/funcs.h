@@ -6,11 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/16 17:38:04 by jcummins         ###   ########.fr       */
-=======
-/*   Updated: 2024/10/16 17:14:58 by akretov          ###   ########.fr       */
->>>>>>> f78a323 (trying to add quaternion)
+/*   Updated: 2024/10/16 17:58:46 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
