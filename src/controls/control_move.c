@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:18:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/16 18:08:04 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/16 18:22:05 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,10 @@ void k_move_camera(int keysym, t_scene *scene)
 	t_vec3 move_dir;
 	t_camera *cam = &scene->cam;
 
+	t_vec3 y_axis = {0, 1, 0};  // Rotate around Y-axis
+	t_vec3 x_axis = {1, 0, 0};  // Rotate around X-axis
+	t_vec3 z_axis = {0, 0, 1};  // Rotate around Z-axis
+
 	if (keysym == XK_KP_3)		// Move up
 		cam->point[_Y] += 1;
 	else if (keysym == XK_KP_1)   // Move down
@@ -173,6 +177,26 @@ void k_move_camera(int keysym, t_scene *scene)
 	}
 	else if (keysym == XK_KP_7 || keysym == XK_KP_9)
 		k_cam_pan(keysym, &scene->cam);
+	else if (keysym == XK_KP_Q) {
+		t_quaternion q = axis_angle_to_quaternion(y_axis, -0.1);
+		rotate_vector_by_quaternion(scene->cam.dir, q); // Rotate left around Y-axis
+	} else if (keysym == XK_KP_E) {
+		t_quaternion q = axis_angle_to_quaternion(y_axis, 0.1);
+		rotate_vector_by_quaternion(scene->cam.dir, q);  // Rotate right around Y-axis
+	} else if (keysym == XK_KP_W) {
+		t_quaternion q = axis_angle_to_quaternion(x_axis, -0.1);
+		rotate_vector_by_quaternion(scene->cam.dir, q);  // Tilt forward around X-axis
+	} else if (keysym == XK_KP_S) {
+		t_quaternion q = axis_angle_to_quaternion(x_axis, 0.1);
+		rotate_vector_by_quaternion(scene->cam.dir, q);  // Tilt backward around X-axis
+	} else if (keysym == XK_KP_A) {
+		t_quaternion q = axis_angle_to_quaternion(z_axis, -0.1);
+		rotate_vector_by_quaternion(scene->cam.dir, q);  // Rotate left around Z-axis
+	} else if (keysym == XK_KP_D) {
+		t_quaternion q = axis_angle_to_quaternion(z_axis, 0.1);
+		rotate_vector_by_quaternion(scene->cam.dir, q);  // Rotate right around Z-axis
+	}
+	orient_camera(&scene->cam);
 }
 
 
