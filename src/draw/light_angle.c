@@ -6,13 +6,13 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/16 14:11:15 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/16 14:30:18 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int light_angle_cylinder(t_scene *scene, t_ray *ray, int light_color)
+float light_angle_cylinder(t_scene *scene, t_ray *ray)
 {
 	t_cylinder	*cylinder;
 	float		dot_prod;
@@ -44,36 +44,38 @@ int light_angle_cylinder(t_scene *scene, t_ray *ray, int light_color)
 	vec3_normalize(light, light);
 
 	// Calculate the dot product of the light direction and the normal
-	dot_prod = dot_product(light, normal);
-	if (dot_prod > 0)
-		return (XCOL_BLK);
-
-	return (color_shift(XCOL_BLK, light_color, ((0 - dot_prod))));
+	return (dot_product(light, normal));
 }
 
+float	light_angle_cyltop(t_scene *scene, t_ray *ray)
+{
+	t_cylinder	*cylinder;
+	t_vec3		light;
 
-int	light_angle_plane(t_scene *scene, t_ray *ray, int light_color)
+	cylinder = (t_cylinder *)ray->object;
+	if (dot_product(ray->udir, cylinder->axis) > 0)
+		vec3_invert(cylinder->axis);
+	vec3_a_to_b(light, scene->light.point, ray->bounce);
+	vec3_normalize(light, light);
+	return (dot_product(light, cylinder->axis) * 10);
+}
+
+float	light_angle_plane(t_scene *scene, t_ray *ray)
 {
 	t_plane		*plane;
-	float		dot_prod;
 	t_vec3		light;
 
 	plane = (t_plane *)ray->object;
-	dot_prod = dot_product(ray->udir, plane->norm);
-	if (dot_prod > 0)
+	if (dot_product(ray->udir, plane->norm) > 0)
 		vec3_invert(plane->norm);
 	vec3_a_to_b(light, scene->light.point, ray->bounce);
 	vec3_normalize(light, light);
-	dot_prod = dot_product(light, plane->norm);
-	if (dot_prod > 0)
-		return (XCOL_BLK);
-	return (color_shift(XCOL_BLK, light_color, (0 - (dot_prod * 10))));
+	return (dot_product(light, plane->norm) * 10);
 }
 
-int	light_angle_sphere(t_scene *scene, t_ray *ray, int light_color)
+float	light_angle_sphere(t_scene *scene, t_ray *ray)
 {
 	t_sphere	*sphere;
-	float		dot_prod;
 	t_vec3		normal;
 	t_vec3		light;
 
@@ -82,23 +84,25 @@ int	light_angle_sphere(t_scene *scene, t_ray *ray, int light_color)
 	vec3_a_to_b(light, scene->light.point, ray->bounce);
 	vec3_normalize(light, light);
 	vec3_normalize(normal, normal);
-	dot_prod = dot_product(light, normal);
-	if (dot_prod > 0)
-		return (XCOL_BLK);
-	return (color_shift(XCOL_BLK, light_color, (0 - (dot_prod))));
+	return (dot_product(light, normal));
 }
 
-int light_angle(t_scene *scene, t_ray *ray, int light_color)
+int	light_angle(t_scene *scene, t_ray *ray, int light_color)
 {
+	float	light_angle;
+
 	if (ray->object_type == SEL_SPHERE)
-		return (light_angle_sphere(scene, ray, light_color));
-	//	planes not working yet
-	if (ray->object_type == SEL_PLANE)
-		return (light_angle_plane(scene, ray, light_color));
-	if (ray->object_type == SEL_CYLINDER_SIDE)
-		return (light_angle_cylinder(scene, ray, light_color));
-	if (ray->object_type == SEL_CYLINDER_CAP)
-		return (light_angle_plane(scene, ray, light_color));
+		light_angle = light_angle_sphere(scene, ray);
+	else if (ray->object_type == SEL_PLANE)
+		light_angle = light_angle_plane(scene, ray);
+	else if (ray->object_type == SEL_CYLINDER_SIDE)
+		light_angle = light_angle_cylinder(scene, ray);
+	else if (ray->object_type == SEL_CYLINDER_CAP)
+		light_angle = light_angle_cyltop(scene, ray);
 	else
-		return (light_color);
+		light_angle = 1;
+	if (light_angle > 0)
+		return (XCOL_BLK);
+	else
+		return (color_shift(XCOL_BLK, light_color, (0 - light_angle)));
 }
