@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/16 14:30:18 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:32:52 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,30 @@
 
 float light_angle_cylinder(t_scene *scene, t_ray *ray)
 {
-	t_cylinder	*cylinder;
 	float		dot_prod;
 	t_vec3		light;
-	t_vec3		point_on_axis;
 	t_vec3		normal;
 
-	cylinder = (t_cylinder *)ray->object;
-
-	// Calculate the projection of the intersection point onto the cylinder's axis
-	t_vec3 intersection_to_center;
-	vec3_a_to_b(intersection_to_center, cylinder->center, ray->bounce);
-	float projection_length = dot_product(intersection_to_center, cylinder->axis);
-
-	// Calculate the closest point on the cylinder's axis to the intersection point
-	vec3_scale_add(point_on_axis, cylinder->center, cylinder->axis, projection_length);
-
-	// Calculate the normal vector at the intersection point on the cylinder's surface
-	vec3_a_to_b(normal, point_on_axis, ray->bounce);
-	vec3_normalize(normal, normal);
-
-	// Adjust the normal direction based on the ray direction
+	get_cylinder_normal(normal, (t_cylinder *)ray->object, ray);
 	dot_prod = dot_product(ray->udir, normal);
 	if (dot_prod > 0)
 		vec3_invert(normal);
-
-	// Calculate the light vector
 	vec3_a_to_b(light, scene->light.point, ray->bounce);
 	vec3_normalize(light, light);
-
-	// Calculate the dot product of the light direction and the normal
 	return (dot_product(light, normal));
 }
 
 float	light_angle_cyltop(t_scene *scene, t_ray *ray)
 {
-	t_cylinder	*cylinder;
 	t_vec3		light;
+	t_vec3		normal;
 
-	cylinder = (t_cylinder *)ray->object;
-	if (dot_product(ray->udir, cylinder->axis) > 0)
-		vec3_invert(cylinder->axis);
+	vec3_set_a(normal, ((t_cylinder *)ray->object)->axis);
+	if (dot_product(ray->udir, normal) > 0)
+		vec3_invert(normal);
 	vec3_a_to_b(light, scene->light.point, ray->bounce);
 	vec3_normalize(light, light);
-	return (dot_product(light, cylinder->axis) * 10);
+	return (dot_product(light, normal) * 2);
 }
 
 float	light_angle_plane(t_scene *scene, t_ray *ray)
@@ -70,7 +50,7 @@ float	light_angle_plane(t_scene *scene, t_ray *ray)
 		vec3_invert(plane->norm);
 	vec3_a_to_b(light, scene->light.point, ray->bounce);
 	vec3_normalize(light, light);
-	return (dot_product(light, plane->norm) * 10);
+	return ((dot_product(light, plane->norm) * 100));
 }
 
 float	light_angle_sphere(t_scene *scene, t_ray *ray)

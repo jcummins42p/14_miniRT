@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:18:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/13 18:40:21 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/16 15:54:56 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	k_move_cylinder(int keysym, t_scene *scene)
 		cylinder->diamtr += 0.05;
 	else if (keysym == XK_KP_7)
 		cylinder->diamtr -= 0.05;
+	cylinder->radius = cylinder->diamtr / 2;
 }
 void k_move_camera(int keysym, t_scene *scene)
 {

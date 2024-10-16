@@ -6,25 +6,11 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 09:54:25 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/15 14:19:02 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:40:14 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-//	R = L - 2(L.N)N
-//	results in a unit vector showing the reflection direction
-void	vec3_surface_reflection(t_vec3 reflect, t_vec3 light, t_vec3 norm)
-{
-	t_vec3	light_u;
-	float	dot_LN;
-
-	vec3_normalize(light_u, light);
-	dot_LN = dot_product(light, norm);
-	vec3_scaleize(reflect, norm, 2 * dot_LN);
-	vec3_a_to_b(reflect, light_u, reflect);
-	vec3_normalize(reflect, reflect);
-}
 
 void	specular_plane(t_scene *scene, t_ray *ray, int *pixel_color)
 {
@@ -41,6 +27,44 @@ void	specular_plane(t_scene *scene, t_ray *ray, int *pixel_color)
 	if (coincidence < 0)
 		return ;
 	coincidence = (plane->shine / 100.0) * powf(coincidence, plane->shine);
+	*pixel_color = color_shift(*pixel_color, scene->light.hue, coincidence);
+}
+
+void	specular_cyltop(t_scene *scene, t_ray *ray, int *pixel_color)
+{
+	t_cylinder	*cylinder;
+	float		coincidence;
+	t_vec3		light;
+	t_vec3		reflect;
+
+	cylinder = (t_cylinder *)ray->object;
+	vec3_a_to_b(light, scene->light.point, ray->bounce);
+	vec3_normalize(light, light);
+	vec3_surface_reflection(reflect, light, cylinder->axis);
+	coincidence = dot_product(ray->udir, reflect);
+	if (coincidence < 0)
+		return ;
+	coincidence = (cylinder->shine / 100.0) * powf(coincidence, cylinder->shine);
+	*pixel_color = color_shift(*pixel_color, scene->light.hue, coincidence);
+}
+
+void	specular_cylinder(t_scene *scene, t_ray *ray, int *pixel_color)
+{
+	t_cylinder	*cylinder;
+	float		coincidence;
+	t_vec3		normal;
+	t_vec3		light;
+	t_vec3		reflect;
+
+	cylinder = (t_cylinder *)ray->object;
+	get_cylinder_normal(normal, cylinder, ray);
+	vec3_a_to_b(light, scene->light.point, ray->bounce);
+	vec3_normalize(light, light);
+	vec3_surface_reflection(reflect, light, normal);
+	coincidence = dot_product(ray->udir, reflect);
+	if (coincidence < 0)
+		return ;
+	coincidence = (cylinder->shine / 100.0) * powf(coincidence, cylinder->shine);
 	*pixel_color = color_shift(*pixel_color, scene->light.hue, coincidence);
 }
 
@@ -71,4 +95,8 @@ void	specular_pass(t_scene *scene, t_ray *ray, int *pixel_color)
 		specular_sphere(scene, ray, pixel_color);
 	else if (ray->object_type == SEL_PLANE)
 		specular_plane(scene, ray, pixel_color);
+	else if (ray->object_type == SEL_CYLINDER_CAP)
+		specular_cyltop(scene, ray, pixel_color);
+	else if (ray->object_type == SEL_CYLINDER_SIDE)
+		specular_cylinder(scene, ray, pixel_color);
 }

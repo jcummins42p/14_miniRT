@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/15 11:11:55 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:38:04 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,10 @@ float	fl_abs(float f);
 //	vector_products.c
 void	cross_product(t_vec3 product, t_vec3 a, t_vec3 b);
 float	dot_product(t_vec3 a, t_vec3 b);
+
+//	vector_normals.c
+void	vec3_surface_reflection(t_vec3 reflect, t_vec3 light, t_vec3 norm);
+void 	get_cylinder_normal(t_vec3 normal, t_cylinder *cylinder, t_ray *ray);
 
 //	vector_maths.c
 void	vec3_position(t_vec3 dest, t_vec3 origin, t_vec3 unit, float magnitude);
