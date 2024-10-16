@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:35:34 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/15 19:42:11 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:18:57 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,9 @@ int	cast_cam_ray(t_scene *scene, t_ray *ray)
 		light_color = prep_light_ray(scene, ray->bounce);
 		temp_color = light_color;
 		light_color = light_angle(scene, ray, light_color);
-		// modulate light based on angle of normal to light source
-
 		light_color = combine_lights(light_color, scene->amb);
 		pixel_color = illuminate_pixel(pixel_color, light_color);
-		if (temp_color > 0)
+		if (temp_color >= 0)
 			specular_pass(scene, ray, &pixel_color);
 		pixel_color = shade_pixel_distance(pixel_color, closest_t);
 	}

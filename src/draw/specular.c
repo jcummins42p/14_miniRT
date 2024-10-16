@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 09:54:25 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/16 17:41:31 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:55:51 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	specular_plane(t_scene *scene, t_ray *ray, int *pixel_color)
 	plane = (t_plane *)ray->object;
 	vec3_a_to_b(light, scene->light.point, ray->bounce);
 	vec3_normalize(light, light);
+	if (dot_product(ray->udir, plane->norm) > 0)
+		return ;
 	vec3_surface_reflection(reflect, light, plane->norm);
 	coincidence = dot_product(ray->udir, reflect);
 	if (coincidence < 0)
@@ -40,6 +42,8 @@ void	specular_cyltop(t_scene *scene, t_ray *ray, int *pixel_color)
 	cylinder = (t_cylinder *)ray->object;
 	vec3_a_to_b(light, scene->light.point, ray->bounce);
 	vec3_normalize(light, light);
+	/*if (dot_product(scene->cam.dir, cylinder->axis) > 0 && dot_product(ray->udir, cylinder->axis) > 0)*/
+		/*return ;*/
 	vec3_surface_reflection(reflect, light, cylinder->axis);
 	coincidence = dot_product(ray->udir, reflect);
 	if (coincidence < 0)
@@ -78,9 +82,9 @@ void	specular_sphere(t_scene *scene, t_ray *ray, int *pixel_color)
 
 	sphere = (t_sphere *)ray->object;
 	vec3_a_to_b(normal, sphere->center, ray->bounce);
+	vec3_normalize(normal, normal);
 	vec3_a_to_b(light, scene->light.point, ray->bounce);
 	vec3_normalize(light, light);
-	vec3_normalize(normal, normal);
 	vec3_surface_reflection(reflect, light, normal);
 	coincidence = dot_product(ray->udir, reflect);
 	if (coincidence < 0)

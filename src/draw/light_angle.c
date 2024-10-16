@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/16 16:32:52 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:15:48 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ float	light_angle_cyltop(t_scene *scene, t_ray *ray)
 		vec3_invert(normal);
 	vec3_a_to_b(light, scene->light.point, ray->bounce);
 	vec3_normalize(light, light);
-	return (dot_product(light, normal) * 2);
+	return (dot_product(light, normal) * 10);
 }
 
 float	light_angle_plane(t_scene *scene, t_ray *ray)
@@ -50,7 +50,7 @@ float	light_angle_plane(t_scene *scene, t_ray *ray)
 		vec3_invert(plane->norm);
 	vec3_a_to_b(light, scene->light.point, ray->bounce);
 	vec3_normalize(light, light);
-	return ((dot_product(light, plane->norm) * 100));
+	return ((dot_product(light, plane->norm) * 10));
 }
 
 float	light_angle_sphere(t_scene *scene, t_ray *ray)
