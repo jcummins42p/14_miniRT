@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:38:11 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/01 15:47:08 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:44:35 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,14 @@ void	norm_device_coords(t_vec2 ndc, int x, int y)
 //	screen. The relationship between fov (theta) and distance to image plane:
 //	tan(theta/2) = ymax / d
 //	where ymax it the distance from the middle of the screen to the top
-void	project_viewport(t_vec2 project, t_vec2 ndc, int fov, float aspect)
+void project_viewport(t_vec2 project, t_vec2 ndc, int fov, float aspect)
 {
-	project[_X] = (ndc[_X] * aspect * fl_abs(tan(fov / 2.0)));
-	project[_Y] = (ndc[_Y] * fl_abs(tan(fov / 2.0)));
+	// Convert FOV from degrees to radians
+	float fov_rad = fov * (M_PI / 180.0f); 
+
+	// Calculate the projection
+	project[_X] = ndc[_X] * aspect * fabs(tan(fov_rad / 2.0f));
+	project[_Y] = ndc[_Y] * fabs(tan(fov_rad / 2.0f));
 }
 
 void	set_ray_direction(t_vec3 dir, t_vec2 plane, t_camera cam)
