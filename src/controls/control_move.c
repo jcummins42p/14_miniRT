@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:18:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/16 17:58:23 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/16 18:08:04 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void	k_move_cylinder(int keysym, t_scene *scene)
 		t_quaternion q = axis_angle_to_quaternion(z_axis, 0.1);
 		rotate_vector_by_quaternion(cylinder->axis, q);  // Rotate right around Z-axis
 	}
+	cylinder->radius = cylinder->diamtr / 2;
 }
 
 void k_move_camera(int keysym, t_scene *scene)
