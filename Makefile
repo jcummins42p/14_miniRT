@@ -6,7 +6,7 @@
 #    By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 18:08:59 by jcummins          #+#    #+#              #
-#    Updated: 2024/10/08 19:27:53 by jcummins         ###   ########.fr        #
+#    Updated: 2024/10/10 16:55:12 by jcummins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ HEADER_DIR = include
 B_HEADER_DIR = include_bonus
 
 SRC_DIR = src
-B_SRC_DIR = src
+B_SRC_DIR = src_bonus
 
 OBJ_DIR = obj
-B_OBJ_DIR = obj
+B_OBJ_DIR = obj_bonus
 
 CC = cc
 CFLAGS = -g -Werror -Wextra -Wall -pedantic -I$(HEADER_DIR) -Imlx_linux
@@ -36,7 +36,7 @@ SRCS = $(shell find $(SRC_DIR) -name '*.c')
 B_SRCS = $(shell find $(B_SRC_DIR) -name '*.c')
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-B_OBJS = $(SRCS:$(B_SRC_DIR)/%.c=$(B_OBJ_DIR)/%.o)
+B_OBJS = $(B_SRCS:$(B_SRC_DIR)/%.c=$(B_OBJ_DIR)/%.o)
 
 all: $(NAME)
 

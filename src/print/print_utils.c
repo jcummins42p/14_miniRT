@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 15:57:27 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 20:30:05 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/11 18:41:26 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	print_color(char *pre, char *mid, char *post, int color)
 
 	if (!pre || !mid || ! post)
 		return ;
-	rgb[0] = (color >> 16) & 0xFF;
-	rgb[1] = (color >> 8) & 0xFF;
-	rgb[2] = color & 0xFF;
+	rgb[_R] = (color >> 16) & 0xFF;
+	rgb[_G] = (color >> 8) & 0xFF;
+	rgb[_B] = color & 0xFF;
 	printf(KDEF "%s", pre);
-	printf("\033[38;2;%d;%d;%dm", rgb[0], rgb[1], rgb[2]);
+	printf("\033[38;2;%d;%d;%dm", rgb[_R], rgb[_G], rgb[_B]);
 	if (!mid || !*mid)
 		printf("0x%06x", color);
 	else
@@ -33,5 +33,5 @@ void	print_color(char *pre, char *mid, char *post, int color)
 void	print_vec3(char *message, t_vec3 vec)
 {
 	printf("%s", message);
-	printf("%.1f,%.1f,%-8.1f", vec[0], vec[1], vec[2]);
+	printf("%.1f,%.1f,%-8.1f", vec[_X], vec[_Y], vec[_Z]);
 }
