@@ -6,25 +6,13 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/08 17:59:49 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/15 09:38:45 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static void vec3_scale_add(t_vec3 dest, t_vec3 base, t_vec3 direction, float magnitude)
-{
-	// Scale the direction vector by the given magnitude
-	t_vec3 scaled_direction;
-	vec3_scaleize(scaled_direction, direction, magnitude);
-
-	// Add the scaled direction to the base vector
-	dest[_X] = base[_X] + scaled_direction[_X];
-	dest[_Y] = base[_Y] + scaled_direction[_Y];
-	dest[_Z] = base[_Z] + scaled_direction[_Z];
-}
-
-t_color light_angle_cylinder(t_scene *scene, t_ray *ray, int light_color)
+int light_angle_cylinder(t_scene *scene, t_ray *ray, int light_color)
 {
 	t_cylinder	*cylinder;
 	float		dot_prod;
@@ -64,7 +52,7 @@ t_color light_angle_cylinder(t_scene *scene, t_ray *ray, int light_color)
 }
 
 
-t_color	light_angle_plane(t_scene *scene, t_ray *ray, int light_color)
+int	light_angle_plane(t_scene *scene, t_ray *ray, int light_color)
 {
 	t_plane		*plane;
 	float		dot_prod;
@@ -82,7 +70,7 @@ t_color	light_angle_plane(t_scene *scene, t_ray *ray, int light_color)
 	return (color_shift(XCOL_BLK, light_color, (log((0 - dot_prod) * 10)) + 0.1));
 }
 
-t_color	light_angle_sphere(t_scene *scene, t_ray *ray, int light_color)
+int	light_angle_sphere(t_scene *scene, t_ray *ray, int light_color)
 {
 	t_sphere	*sphere;
 	float		dot_prod;
@@ -100,15 +88,17 @@ t_color	light_angle_sphere(t_scene *scene, t_ray *ray, int light_color)
 	return (color_shift(XCOL_BLK, light_color, (0 - (dot_prod))));
 }
 
-t_color light_angle(t_scene *scene, t_ray *ray, int light_color)
+int light_angle(t_scene *scene, t_ray *ray, int light_color)
 {
 	if (ray->object_type == SEL_SPHERE)
 		return (light_angle_sphere(scene, ray, light_color));
 	//	planes not working yet
 	if (ray->object_type == SEL_PLANE)
 		return (light_angle_plane(scene, ray, light_color));
-	if (ray->object_type == SEL_CYLINDER)
+	if (ray->object_type == SEL_CYLINDER_SIDE)
 		return (light_angle_cylinder(scene, ray, light_color));
+	if (ray->object_type == SEL_CYLINDER_CAP)
+		return (light_angle_plane(scene, ray, light_color));
 	else
 		return (light_color);
 }

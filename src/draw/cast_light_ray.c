@@ -6,36 +6,37 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:33:38 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/08 17:49:49 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/15 15:20:02 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
 //	this is where calculations for light direction vs normal direction need to go
-t_color	cast_light_ray(t_scene *scene, t_ray *ray, float *light_t)
+int	cast_light_ray(t_scene *scene, t_ray *ray, float *light_t)
 {
 	float	temp_t;
-	t_color	light_color;
+	int		light_color;
 
+	light_color = 0;
 	temp_t = INFINITY;
 	intersect_planes(scene, ray, &temp_t);
 	if ((temp_t + EPSILON) < *light_t)
-		return (0);
+		return (light_color);
 	intersect_spheres(scene, ray, &temp_t);
 	if ((temp_t + EPSILON) < *light_t)
-		return (0);
+		return (light_color);
 	intersect_cylinders(scene, ray, &temp_t);
 	if ((temp_t + EPSILON) < *light_t)
-		return (0);
+		return (light_color);
 	light_color = scene->light.hue;
 	return (light_color);
 }
 
-t_color	prep_light_ray(t_scene *scene, t_vec3 bounce_point)
+int	prep_light_ray(t_scene *scene, t_vec3 bounce_point)
 {
 	float		light_t;
-	t_color		light_color;
+	int			light_color;
 	t_ray		ray;
 
 	light_t = INFINITY;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jcummins <jcummins@student.42.fr>          +#+  +:+       +#+         #
+#    By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 18:08:59 by jcummins          #+#    #+#              #
-#    Updated: 2024/10/10 16:55:12 by jcummins         ###   ########.fr        #
+#    Updated: 2024/10/16 11:48:40 by jcummins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

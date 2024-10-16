@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_attributes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/30 11:21:01 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/08 19:52:57 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ int	set_color(char *input) // assumes csv RGB
 
 	color = 0;
 	items = NULL;
-	if (!input || !input[0] || !input[1] || !input[2])
+	if (!input)
 		return (0);
 	items = ft_split(input, ',');
+	printf("%s, %s, %s\n", items[0], items[1], items[2]);
+	if (!(items && items[0] && items[1] && items[2]))
+		return (-1);
 	color += ft_atoi(items[0]) << 16;
 	color += ft_atoi(items[1]) << 8;
 	color += ft_atoi(items[2]);

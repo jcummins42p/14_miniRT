@@ -6,51 +6,33 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:16:50 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/08 17:38:06 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/15 17:12:18 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void vec3_scale_add(t_vec3 dest, t_vec3 base, t_vec3 direction, float magnitude)
+int intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 {
-	// Scale the direction vector by the given magnitude
-	t_vec3 scaled_direction;
-	vec3_scaleize(scaled_direction, direction, magnitude);
+	t_quadratic	eq;
+	t_vec3		oc;
 
-	// Add the scaled direction to the base vector
-	dest[_X] = base[_X] + scaled_direction[_X];
-	dest[_Y] = base[_Y] + scaled_direction[_Y];
-	dest[_Z] = base[_Z] + scaled_direction[_Z];
-}
-
-// Function to check intersection with the curved sides of the cylinder
-t_color intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
-{
-	t_quadratic eq;
-	t_vec3 oc;
-		
-	// Vector from ray origin to cylinder center
 	vec3_a_to_b(oc, *ray->origin, cylinder->center);
-
 	// Calculate the coefficients of the quadratic equation
 	float d_dot_axis = dot_product(ray->udir, cylinder->axis);
 	float oc_dot_axis = dot_product(oc, cylinder->axis);
 
-	float radius = cylinder->diamtr / 2;
-	eq.a = dot_product(ray->udir, ray->udir) - (d_dot_axis * d_dot_axis);
+	eq.a = 1 - d_dot_axis * d_dot_axis;
 	eq.b = 2 * (d_dot_axis * oc_dot_axis -dot_product(oc, ray->udir) );
-	eq.c = dot_product(oc, oc) - oc_dot_axis * oc_dot_axis - radius * radius;
+	eq.c = dot_product(oc, oc) - oc_dot_axis * oc_dot_axis - cylinder->radius * cylinder->radius;
 
 	// Calculate discriminant
 	eq.discriminant = eq.b * eq.b - 4 * eq.a * eq.c;
-
 	if (eq.discriminant < 0)
 		return (-1);  // No intersection
 
-	float sqrt_discriminant = sqrt(eq.discriminant);
-	float t1 = (-eq.b - sqrt_discriminant) / (2 * eq.a);
-	float t2 = (-eq.b + sqrt_discriminant) / (2 * eq.a);
+	/*float sqrt_discriminant = sqrt(eq.discriminant);*/
+	float t1 = (-eq.b - sqrt(eq.discriminant)) / (2 * eq.a);
 
 	t_vec3 intersection_point;
 
@@ -62,34 +44,20 @@ t_color intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 		if (height_at_t1 >= 0 && height_at_t1 <= cylinder->height)
 		{
 			*t = t1;
-			ray->object_type = SEL_CYLINDER;
+			ray->object_type = SEL_CYLINDER_SIDE;
 			ray->object = cylinder;
 			return (cylinder->color);
 		}
 	}
-	(void)t2;
-	// Check the second intersection
-	// if (t2 > EPSILON && t2 < *t)
-	// {
-	// 	vec3_scale_add(intersection_point, *ray->origin, ray->udir, t2);
-	// 	float height_at_t2 = dot_product(cylinder->axis, intersection_point) - dot_product(cylinder->axis, cylinder->center);
-	// 	if (height_at_t2 >= 0 && height_at_t2 <= cylinder->height)
-	// 	{
-	// 		*t = t2;
-	// 		ray->object_type = SEL_CYLINDER;
-	// 		ray->object = cylinder;
-	// 		return (cylinder->color);
-	// 	}
-	// }
 
-	return (-1);  // No valid intersection on the sides
+	return (-1);
 }
 
-// Function to check intersection with the cylinder caps (top and bottom)
-t_color intersect_cylinder_caps(t_cylinder *cylinder, t_ray *ray, float *t)
+int intersect_cylinder_caps(t_cylinder *cylinder, t_ray *ray, float *t)
 {
-	t_vec3 top_cap_center, bottom_cap_center;
-	t_vec3 intersection_point;
+	t_vec3	top_cap_center;
+	t_vec3	bottom_cap_center;
+	t_vec3	intersection_point;
 
 	float radius = cylinder->diamtr / 2;
 
@@ -110,7 +78,7 @@ t_color intersect_cylinder_caps(t_cylinder *cylinder, t_ray *ray, float *t)
 			if (vec3_length(point_to_center) <= radius)  // Check if within the cap radius
 			{
 				*t = t_top;
-				ray->object_type = SEL_CYLINDER;
+				ray->object_type = SEL_CYLINDER_CAP;
 				ray->object = cylinder;
 				return (cylinder->color);
 			}
@@ -130,37 +98,32 @@ t_color intersect_cylinder_caps(t_cylinder *cylinder, t_ray *ray, float *t)
 			if (vec3_length(point_to_center) <= radius)  // Check if within the cap radius
 			{
 				*t = t_bottom;
-				ray->object_type = SEL_CYLINDER;
+				ray->object_type = SEL_CYLINDER_CAP;
 				ray->object = cylinder;
 				return (cylinder->color);
 			}
 		}
 	}
-	return (-1);  // No valid intersection on the caps
+	return (-1);
 }
 
-// Main function to check intersection with the entire cylinder (sides + caps)
-t_color intersect_cylinder(t_cylinder *cylinder, t_ray *ray, float *t)
+int intersect_cylinder(t_cylinder *cylinder, t_ray *ray, float *t)
 {
-	t_color color;
+	int color;
 
-	// First, check intersection with the curved sides of the cylinder
 	color = intersect_cylinder_sides(cylinder, ray, t);
 	if (color != -1)
 		return (color);
-
-	// If no intersection on the sides, check the caps
 	color = intersect_cylinder_caps(cylinder, ray, t);
 	if (color != -1)
 		return (color);
-
-	return (-1);  // No valid intersection
+	return (-1);
 }
 
-t_color intersect_cylinders(t_scene *scene, t_ray *ray, float *t)
+int intersect_cylinders(t_scene *scene, t_ray *ray, float *t)
 {
-	t_color	temp_color;
-	t_color	pixel_color;
+	int		temp_color;
+	int		pixel_color;
 	float	temp_t;
 	int		i;
 
@@ -176,8 +139,8 @@ t_color intersect_cylinders(t_scene *scene, t_ray *ray, float *t)
 			pixel_color = temp_color;
 			if (ray->origin == &scene->cam.point)
 			{
-				scene->screen_object[ray->y][ray->x] = &scene->cyls[i]; 
-				scene->select_type[ray->y][ray->x] = SEL_CYLINDER;
+				scene->screen_object[ray->y][ray->x] = &scene->cyls[i];
+				scene->select_type[ray->y][ray->x] = SEL_CYLINDER_SIDE;
 			}
 			*t = temp_t;
 		}
