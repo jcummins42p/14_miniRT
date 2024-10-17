@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:38:24 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 19:11:53 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 19:22:38 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	init_scene(t_scene *scene, char *filename, int id)
 {
 	init_object_selection(scene);
 	init_scene_shape_data(scene);
+	init_scene_vectors(scene);
 	scene->fname = ft_strdup(filename);
 	if (!scene->fname)
 		return (1);
