@@ -6,20 +6,12 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/16 17:58:46 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/17 12:35:24 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCS_H
 # define FUNCS_H
-
-//	experimental union color functions, duplicates of the existing color func-
-//	tions that use unions instead of integers and character array conversions
-t_col	color_invert_u(t_col input);
-t_col	color_illuminate_u(t_col in, t_col light, float ratio);
-t_col	color_subtract_u(t_col in, t_col sub, float ratio);
-t_col	color_addition_u(t_col in, t_col add);
-t_col	color_shift_u(t_col a, t_col b, float ratio);
 
 void	k_control_ambient(int keysym, t_scene *scene);
 void	k_control_light(int keysym, t_scene *scene);
@@ -42,11 +34,6 @@ int		shade_pixel_distance(int pixel_color, float distance);
 int		shade_light_distance(int pixel_color, float distance, float lum);
 int		combine_lights(int light_color, t_ambient amb);
 int		illuminate_pixel(int pixel_color, int lighint);
-
-t_col	shade_pixel_distance_u(t_col pixel_color, float distance);
-t_col	shade_light_distance_u(t_col pixel_color, float distance, float lum);
-t_col	combine_lights_u(t_col light_color, t_ambient amb);
-t_col	illuminate_pixel_u(t_col pixel_color, t_col light_color);
 
 //	draw_color.c
 void	color_int_to_vector(t_rgb rgb, int color);

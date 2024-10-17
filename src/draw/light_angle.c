@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/16 19:15:48 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:16:40 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	light_angle(t_scene *scene, t_ray *ray, int light_color)
 {
 	float	light_angle;
 
+	if (light_color < 0)
+		return (-1);
 	if (ray->object_type == SEL_SPHERE)
 		light_angle = light_angle_sphere(scene, ray);
 	else if (ray->object_type == SEL_PLANE)
@@ -82,7 +84,7 @@ int	light_angle(t_scene *scene, t_ray *ray, int light_color)
 	else
 		light_angle = 1;
 	if (light_angle > 0)
-		return (XCOL_BLK);
+		return (-1);
 	else
 		return (color_shift(XCOL_BLK, light_color, (0 - light_angle)));
 }

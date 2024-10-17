@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:14:47 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/14 20:18:09 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:57:23 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	intersect_light(t_light *light, t_ray *ray, float *t)
 //	but it will be useful when there are multiple
 int	intersect_lights(t_scene *scene, t_ray *ray, float *t)
 {
-	int	temp_color;
-	int	pixel_color;
+	int		temp_color;
+	int		pixel_color;
 	float	temp_t;
 
 	temp_color = -1;

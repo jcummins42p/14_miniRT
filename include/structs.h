@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/16 17:13:53 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/17 12:43:46 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,7 @@ typedef struct s_quaternion
     float x;   // i component
     float y;   // j component
     float z;   // k component
-} t_quaternion;
-
-
-
-typedef union u_col
-{
-	char		c[3];
-	int			i;
-}				t_col;
+}				t_quaternion;
 
 typedef struct s_quadratic
 {
@@ -49,8 +41,13 @@ typedef struct s_ray
 {
 	int			x;
 	int			y;
-	void		*object;
-	int			object_type;
+	int			pixel_color;	// final pixel color after processing
+	void		*object;		// pointer to object at bounce point
+	int			object_type;	// object type at bounce point
+	float		object_t;		// distance from cam to object bounce point
+	int			object_color;	// color of object at bounce point
+	float		light_t;		// distance from light source to bounce point
+	int			light_color;	// hue of light source at bounce point
 	t_vec3		*origin;
 	t_vec3		bounce;
 	t_vec3		dir;
@@ -61,7 +58,7 @@ typedef struct s_ambient
 {
 	int			lock;
 	float		lum;
-	int		hue;
+	int			hue;
 }				t_ambient;
 
 typedef struct s_camera
@@ -81,7 +78,7 @@ typedef struct s_light
 	int			lock;
 	t_vec3		point;
 	float		lum;
-	int		hue;
+	int			hue;
 }				t_light;
 
 typedef struct s_bbox

@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/14 19:13:32 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:50:49 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	render_row(t_mlx *mlx, t_scene *scene, int y)
 	x = 0;
 	while (x < RES_W)
 	{
+		scene->select_type[y][x] = SEL_NONE;
+		scene->screen_object[y][x] = NULL;
 		prep_cam_ray(mlx, scene, x, y);
 		x++;
 	}
