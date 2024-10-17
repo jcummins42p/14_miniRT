@@ -6,12 +6,16 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 17:31:54 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 19:11:30 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCS_H
 # define FUNCS_H
+
+void	k_move_plane(int keysym, t_scene *scene);
+void	k_move_sphere(int keysym, t_scene *scene);
+void	k_move_cylinder(int keysym, t_scene *scene);
 
 void	k_control_ambient(int keysym, t_scene *scene);
 void	k_control_light(int keysym, t_scene *scene);
@@ -197,8 +201,8 @@ void	parse(t_rt *rt);
 
 //	init.c
 void	init_object_selection(t_scene *scene);
-void	init_scene(t_scene *scene, char *filename, int id);
-void	init_scenes(t_rt *rt, char **argv);
+int		init_scene(t_scene *scene, char *filename, int id);
+int		init_scenes(t_rt *rt, char **argv);
 void	init_spheres(t_scene *scene);
 void	init_planes(t_scene *scene);
 void	init_cylinders(t_scene *scene);

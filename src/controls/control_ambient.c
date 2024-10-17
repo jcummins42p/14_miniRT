@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:03:37 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 13:50:31 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:42:00 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@ void	color_alter_vector(t_rgb color, int component, float amount)
 
 void	k_control_ambient(int keysym, t_scene *scene)
 {
-	t_ambient	*ambient;
 	t_rgb		temp_color;
 
-	ambient = &scene->amb;
-	color_int_to_vector(temp_color, ambient->hue);
+	color_int_to_vector(temp_color, scene->amb.hue);
 	if (keysym == XK_KP_7)
 		color_alter_vector(temp_color, _R, 25);
 	else if (keysym == XK_KP_1)
@@ -43,23 +41,21 @@ void	k_control_ambient(int keysym, t_scene *scene)
 	else if (keysym == XK_KP_3)
 		color_alter_vector(temp_color, _B, -25);
 	else if (keysym == XK_KP_4)
-		ambient->lum -= 0.1;
+		scene->amb.lum -= 0.1;
 	else if (keysym == XK_KP_6)
-		ambient->lum += 0.1;
-	if (ambient->lum > 1)
-		ambient->lum = 1;
-	if (ambient->lum < 0)
-		ambient->lum = 0;
-	ambient->hue = color_vector_to_int(temp_color);
+		scene->amb.lum += 0.1;
+	if (scene->amb.lum > 1)
+		scene->amb.lum = 1;
+	if (scene->amb.lum < 0)
+		scene->amb.lum = 0;
+	scene->amb.hue = color_vector_to_int(temp_color);
 }
 
 void	k_control_light(int keysym, t_scene *scene)
 {
-	t_light	*light;
 	t_rgb	temp_color;
 
-	light = &scene->light;
-	color_int_to_vector(temp_color, light->hue);
+	color_int_to_vector(temp_color, scene->light.hue);
 	if (keysym == XK_KP_7)
 		color_alter_vector(temp_color, _R, 25);
 	else if (keysym == XK_KP_1)
@@ -73,12 +69,12 @@ void	k_control_light(int keysym, t_scene *scene)
 	else if (keysym == XK_KP_3)
 		color_alter_vector(temp_color, _B, -25);
 	else if (keysym == XK_KP_4)
-		light->lum -= 0.1;
+		scene->light.lum -= 0.1;
 	else if (keysym == XK_KP_6)
-		light->lum += 0.1;
-	if (light->lum > 1)
-		light->lum = 1;
-	if (light->lum < 0)
-		light->lum = 0;
-	light->hue = color_vector_to_int(temp_color);
+		scene->light.lum += 0.1;
+	if (scene->light.lum > 1)
+		scene->light.lum = 1;
+	if (scene->light.lum < 0)
+		scene->light.lum = 0;
+	scene->light.hue = color_vector_to_int(temp_color);
 }

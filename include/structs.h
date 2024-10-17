@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 13:42:49 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 19:03:37 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ typedef struct s_scene
 	t_plane		*plns;
 	t_cylinder	*cyls;
 	t_vec3		project;	//	used as 2d coordinates of projection plane
+	t_vec3		axis[3];
 	int			id;
 	int			n_cylinders;
 	int			n_planes;
