@@ -6,12 +6,15 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 19:14:28 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 19:58:44 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCS_H
 # define FUNCS_H
+
+void	rotate_quaternion(t_scene *scene, int axis, float incr);
+void	k_rotate(t_scene *scene, int keysym);
 
 void	k_move_plane(int keysym, t_scene *scene);
 void	k_move_sphere(int keysym, t_scene *scene);
@@ -108,6 +111,7 @@ int		color_vector_to_int(t_rgb rgb);
 int	calculate_quadratic(t_cylinder *cylinder, t_ray *ray, t_quadratic	*eq);
 
 //	vectormaths.c
+void	toggle_bool(bool *current);
 float	fl_abs(float f);
 
 //	vector_products.c

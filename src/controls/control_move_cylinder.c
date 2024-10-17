@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:56:43 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/17 19:20:10 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 20:01:13 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,7 @@ static void resize_cylinder(t_cylinder *cylinder, int keysym)
 		cylinder->height += 0.05f;
 	else if (keysym == XK_KP_D)
 		cylinder->height -= 0.05f;
-
 	cylinder->radius = cylinder->diamtr / 2;
-}
-
-static void rotate_cylinder(t_scene *scene, t_cylinder *cylinder, int keysym)
-{
-	t_quaternion q;
-	/*t_vec3 y_axis = {0, 1, 0};*/
-	/*t_vec3 x_axis = {1, 0, 0};*/
-
-	if (keysym == XK_KP_Q)
-		q = axis_angle_to_quaternion(scene->axis[1], 0.1f);
-	else if (keysym == XK_KP_E)
-		q = axis_angle_to_quaternion(scene->axis[1], -0.1f);
-	else if (keysym == XK_KP_W)
-		q = axis_angle_to_quaternion(scene->axis[0], -0.1f);
-	else if (keysym == XK_KP_S)
-		q = axis_angle_to_quaternion(scene->axis[0], 0.1f);
-	else
-		return ;
-	rotate_vector_by_quaternion(cylinder->axis, q);
 }
 
 void k_move_cylinder(int keysym, t_scene *scene)
@@ -70,5 +50,5 @@ void k_move_cylinder(int keysym, t_scene *scene)
 	z_dir = scene->cam.dir[_Z];
 	move_cylinder(cylinder, keysym, z_dir);
 	resize_cylinder(cylinder, keysym);
-	rotate_cylinder(scene, cylinder, keysym);
+	k_rotate(scene, keysym);
 }
