@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:37:47 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/17 16:46:35 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/17 17:08:26 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_cap_intersection(t_vec3 cap_center, t_ray *ray,
 
 	t_cap = (dot_product(cylinder->axis, cap_center) - 
 			dot_product(cylinder->axis, *ray->origin)) / denom;
-	if (t_cap > EPSILON && t_cap < *t)
+	if (t_cap > EPSILON + 0.1 && t_cap < *t)
 	{
 		vec3_scale_add(intersection_point, *ray->origin, ray->udir, t_cap);
 		vec3_a_to_b(point_to_center, cap_center, intersection_point);

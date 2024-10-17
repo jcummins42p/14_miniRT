@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:16:50 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/17 16:38:25 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/17 17:07:58 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	intersect_cyl_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 int	intersect_cylinder(t_cylinder *cylinder, t_ray *ray, float *t)
 {
 	int	color;
+
 
 	color = intersect_cyl_sides(cylinder, ray, t);
 	if (color != -1)
