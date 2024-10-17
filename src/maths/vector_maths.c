@@ -6,15 +6,15 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/13 19:49:32 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/17 16:12:34 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void vec3_scale_add(t_vec3 dest, t_vec3 base, t_vec3 direction, float magnitude)
+// Scale the direction vector by the given magnitude
+void	vec3_scale_add(t_vec3 dest, t_vec3 base, t_vec3 direction, float magnitude)
 {
-	// Scale the direction vector by the given magnitude
 	t_vec3	scaled_direction;
 
 	vec3_scaleize(scaled_direction, direction, magnitude);
@@ -22,7 +22,6 @@ void vec3_scale_add(t_vec3 dest, t_vec3 base, t_vec3 direction, float magnitude)
 	dest[_Y] = base[_Y] + scaled_direction[_Y];
 	dest[_Z] = base[_Z] + scaled_direction[_Z];
 }
-
 
 void	vec3_set_a(t_vec3 a, t_vec3 b)
 {
@@ -51,21 +50,6 @@ void	vec3_scaleize(t_vec3 scalar, t_vec3 unit, float magnitude)
 	scalar[_Y] = unit[_Y] * magnitude;
 	scalar[_Z] = unit[_Z] * magnitude;
 }
-
-float	vec3_length(t_vec3 vec)
-{
-	return (sqrtf((vec[_X] * vec[_X])
-			+ (vec[_Y] * vec[_Y])
-			+ (vec[_Z] * vec[_Z])));
-}
-
-void	vec3_invert(t_vec3 vec)
-{
-	vec[_X] = 0 - vec[_X];
-	vec[_Y] = 0 - vec[_Y];
-	vec[_Z] = 0 - vec[_Z];
-}
-
 //	stores the unit vector of 'direction' in 'unit'
 void	vec3_normalize(t_vec3 unit, t_vec3 direction)
 {
