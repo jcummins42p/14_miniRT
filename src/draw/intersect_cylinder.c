@@ -6,12 +6,11 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:16:50 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/17 16:11:58 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/17 16:15:45 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include <float.h>
 
 int intersect_cyl_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 {

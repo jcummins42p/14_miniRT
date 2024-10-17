@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:58:24 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 13:37:12 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:15:39 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@
 # include "enums.h"
 # include "structs.h"
 # include "funcs.h"
+#include <float.h>
 
 #endif
