@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:35:34 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 15:27:37 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:36:19 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	prep_cam_ray(t_mlx *mlx, t_scene *scene, int x, int y)
 	t_vec2		ndc;
 	t_vec2		viewport;
 
+	scene->select_type[y][x] = SEL_NONE;
+	scene->screen_object[y][x] = NULL;
 	init_cam_ray(scene, &ray, x, y);
 	norm_device_coords(ndc, x, y);
 	project_viewport(viewport, ndc, scene->cam.fov, mlx->aspect_ratio);

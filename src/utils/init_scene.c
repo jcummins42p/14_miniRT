@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:38:24 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 21:21:29 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:40:02 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_object_selection(t_scene *scene)
 {
 	int	y;
-	int x;
+	int	x;
 
 	x = 0;
 	y = 0;
@@ -65,48 +65,4 @@ void	init_scenes(t_rt *rt, char **argv)
 	i = -1;
 	while (++i < rt->n_scenes)
 		init_scene(rt->scenes[i], argv[i + 1], i);
-}
-
-void	init_spheres(t_scene *scene)
-{
-	int	i;
-
-	i = -1;
-	while (++i < scene->n_spheres)
-	{
-		scene->sphs[i].id = -1;
-		set_vec3(scene->sphs[i].center, "0,0,42");
-		scene->sphs[i].diamtr = 42.0;
-		scene->sphs[i].color = 0x424242;
-	}
-}
-
-void	init_planes(t_scene *scene)
-{
-	int	i;
-
-	i = -1;
-	while (++i < scene->n_planes)
-	{
-		scene->plns[i].id = -1;
-		set_vec3(scene->plns[i].anch, "0,0,-42");
-		set_vec3(scene->plns[i].norm, "0,0,0.42");
-		scene->plns[i].color = 0x424242;
-	}
-}
-
-void	init_cylinders(t_scene *scene)
-{
-	int	i;
-
-	i = -1;
-	while (++i < scene->n_cylinders)
-	{
-		scene->cyls[i].id = -1;
-		set_vec3(scene->cyls[i].center, "0,0,42");
-		set_vec3(scene->cyls[i].axis, "0,0,0.42");
-		scene->cyls[i].diamtr = 0.42;
-		scene->cyls[i].height = 0.42;
-		scene->cyls[i].color = 0x424242;
-	}
 }

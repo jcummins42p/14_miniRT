@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 16:03:32 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:27:13 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,7 @@ void	preparse(t_rt *rt);
 void	parse(t_rt *rt);
 
 //	init.c
+void	init_object_selection(t_scene *scene);
 void	init_scene(t_scene *scene, char *filename, int id);
 void	init_scenes(t_rt *rt, char **argv);
 void	init_spheres(t_scene *scene);
