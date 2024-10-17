@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 15:51:44 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:03:32 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,9 @@ void	post_process(t_scene *scene);
 
 //	draw.c
 int		render_scene(t_mlx *mlx, t_scene *scene);
+
+//	render_scene_mt.c
+int		render_scene_mt(t_mlx *mlx, t_scene *scene);
 
 //	hud.c
 void	display_hud(t_mlx *mlx, t_scene *scene);
