@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:58:24 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 16:15:39 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/17 17:18:15 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@
 # include "enums.h"
 # include "structs.h"
 # include "funcs.h"
-#include <float.h>
+# include <float.h>
 
 #endif

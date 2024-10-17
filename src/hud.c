@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hud.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.c      +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:41:50 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 20:31:27 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:41:11 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,26 @@ void	display_hud_background(t_mlx *mlx)
 	}
 }
 
+void	fill_array(int *y)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 20)
+		y[i] = 40 + 10 * i;
+}
+
 void	display_hud(t_mlx *mlx, t_scene *scene)
 {
 	int		yi;
-	int		y[20] = {60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260};
-	int		x = 50;
+	int		y[20];
+	int		x;
 	char	*id;
 
 	yi = 0;
+	x = 50;
 	id = ft_itoa(scene->id);
+	fill_array(y);
 	display_hud_background(mlx);
 	mlx_string_put(mlx->mlx, mlx->win, x, y[yi], 0xFFFFFF, "Scene #");
 	mlx_string_put(mlx->mlx, mlx->win, x + 45, y[yi++], 0xFFFFFF, id);
