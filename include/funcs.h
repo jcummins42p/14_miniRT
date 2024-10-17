@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 16:48:41 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/17 17:31:54 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,21 @@
 
 void	k_control_ambient(int keysym, t_scene *scene);
 void	k_control_light(int keysym, t_scene *scene);
+
+//	control_scenes.c
+int		k_select_scene(int keysym, t_mlx *mlx);
+
+//	control_shine.c
+void	k_adjust_shine(int keysym, t_mlx *mlx);
+
+//	control_camera.c
+void 	reset_cam_default(t_mlx *mlx, t_camera *cam);
+void	k_cam_pan(int keysym, t_camera *cam);
+
+//	control_kb_select.c
+void	k_deselect_object(t_mlx *mlx);
+void	k_select_light(int keysym, t_mlx *mlx);
+void	k_select_ambient(t_mlx *mlx);
 
 int light_angle(t_scene *scene, t_ray *ray, int lighint);
 

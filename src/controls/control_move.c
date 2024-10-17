@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:18:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/16 18:32:46 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/17 17:35:05 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,9 @@ void	k_move_cylinder(int keysym, t_scene *scene)
 	float		z_dir;
 	t_cylinder	*cylinder;
 
-
 	t_vec3 y_axis = {0, 1, 0};  // Rotate around Y-axis
 	t_vec3 x_axis = {1, 0, 0};  // Rotate around X-axis
 	t_vec3 z_axis = {0, 0, 1};  // Rotate around Z-axis
-
-
 	cylinder = scene->selected;
 	z_dir = scene->cam.dir[_Z];
 	if (keysym == XK_KP_3)
@@ -145,7 +142,7 @@ void k_move_camera(int keysym, t_scene *scene)
 
 	t_vec3 y_axis = {0, 1, 0};  // Rotate around Y-axis
 	t_vec3 x_axis = {1, 0, 0};  // Rotate around X-axis
-	// t_vec3 z_axis = {0, 0, 1};  // Rotate around Z-axis
+	t_vec3 z_axis = {0, 0, 1};  // Rotate around Z-axis
 
 	if (keysym == XK_KP_3)		// Move up
 		cam->point[_Y] += 1;
@@ -189,18 +186,13 @@ void k_move_camera(int keysym, t_scene *scene)
 	} else if (keysym == XK_KP_S) {
 		t_quaternion q = axis_angle_to_quaternion(x_axis, 0.1);
 		rotate_vector_by_quaternion(scene->cam.dir, q);  // Tilt backward around X-axis
-	} else if (keysym == XK_KP_D) {
-		scene->cam.fov += 0.0001;
-	} else if (keysym == XK_KP_A) {
-		scene->cam.fov -= 0.0001;
-	}
-	// } else if (keysym == XK_KP_A) {
-	// 	t_quaternion q = axis_angle_to_quaternion(z_axis, -0.1);
-	// 	rotate_vector_by_quaternion(scene->cam.dir, q);  // Rotate left around Z-axis
-	// } else if (keysym == XK_KP_D) {
-	// 	t_quaternion q = axis_angle_to_quaternion(z_axis, 0.1);
-	// 	rotate_vector_by_quaternion(scene->cam.dir, q);  // Rotate right around Z-axis
-	// }
+	 } else if (keysym == XK_KP_A) {
+		 t_quaternion q = axis_angle_to_quaternion(z_axis, -0.1);
+		 rotate_vector_by_quaternion(scene->cam.dir, q);  // Rotate left around Z-axis
+	 } else if (keysym == XK_KP_D) {
+		 t_quaternion q = axis_angle_to_quaternion(z_axis, 0.1);
+		 rotate_vector_by_quaternion(scene->cam.dir, q);  // Rotate right around Z-axis
+	 }
 	orient_camera(&scene->cam);
 }
 
@@ -215,7 +207,7 @@ void	k_directional_controls(int keysym, t_mlx *mlx)
 		k_move_light(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
 	else if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_PLANE)
 		k_move_plane(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
-	else if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_CYLINDER_CAP 
+	else if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_CYLINDER_CAP
 			|| mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_CYLINDER_SIDE)
 		k_move_cylinder(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
 	else if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_CAM)
