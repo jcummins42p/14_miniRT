@@ -6,13 +6,13 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:16:50 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/15 17:12:18 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:18:45 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
+int intersect_cyl_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 {
 	t_quadratic	eq;
 	t_vec3		oc;
@@ -53,7 +53,7 @@ int intersect_cylinder_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 	return (-1);
 }
 
-int intersect_cylinder_caps(t_cylinder *cylinder, t_ray *ray, float *t)
+int intersect_cyl_caps(t_cylinder *cylinder, t_ray *ray, float *t)
 {
 	t_vec3	top_cap_center;
 	t_vec3	bottom_cap_center;
@@ -111,16 +111,16 @@ int intersect_cylinder(t_cylinder *cylinder, t_ray *ray, float *t)
 {
 	int color;
 
-	color = intersect_cylinder_sides(cylinder, ray, t);
+	color = intersect_cyl_sides(cylinder, ray, t);
 	if (color != -1)
 		return (color);
-	color = intersect_cylinder_caps(cylinder, ray, t);
+	color = intersect_cyl_caps(cylinder, ray, t);
 	if (color != -1)
 		return (color);
 	return (-1);
 }
 
-int intersect_cylinders(t_scene *scene, t_ray *ray, float *t)
+void intersect_cylinders(t_scene *scene, t_ray *ray, float *t, int *col)
 {
 	int		temp_color;
 	int		pixel_color;
@@ -143,8 +143,8 @@ int intersect_cylinders(t_scene *scene, t_ray *ray, float *t)
 				scene->select_type[ray->y][ray->x] = SEL_CYLINDER_SIDE;
 			}
 			*t = temp_t;
+			*col = temp_color;
 		}
 		temp_color = -1;
 	}
-	return (pixel_color);
 }

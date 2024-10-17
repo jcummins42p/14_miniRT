@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 12:35:24 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:23:59 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,22 @@ int		illuminate_pixel(int pixel_color, int lighint);
 void	color_int_to_vector(t_rgb rgb, int color);
 int		color_vector_to_int(t_rgb rgb);
 int		color_invert(int original);
-int	color_illuminate(int original, int target, float ratio);
-int	color_shift(int original, int target, float ratio);
-int	color_subtract(int original, int target, float ratio);
-int	color_addition(int original, int target);
+int		color_illuminate(int original, int target, float ratio);
+int		color_shift(int original, int target, float ratio);
+int		color_subtract(int original, int target, float ratio);
+int		color_addition(int original, int target);
 
 // interscet cylinder.c
-int	intersect_cylinders(t_scene *scene, t_ray *ray, float *t);
+void	intersect_cylinders(t_scene *scene, t_ray *ray, float *t, int *col);
 
 //	intersect_light.c
-int		intersect_lights(t_scene *scene, t_ray *ray, float *t);
+void	intersect_lights(t_scene *scene, t_ray *ray, float *t, int *col);
 
 //	intersect_planes.c
-int		intersect_planes(t_scene *scene, t_ray *ray, float *t);
+void	intersect_planes(t_scene *scene, t_ray *ray, float *t, int *col);
 
 //	intersect_spheres.c
-int		intersect_spheres(t_scene *scene, t_ray *ray, float *t);
+void	intersect_spheres(t_scene *scene, t_ray *ray, float *t, int *col);
 
 //	cast_light_ray.c
 int		prep_light_ray(t_scene *scene, t_vec3 bounce_point);

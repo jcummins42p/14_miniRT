@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:14:47 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 12:57:23 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:33:10 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	intersect_light(t_light *light, t_ray *ray, float *t)
 
 //	currently this function is redundant since we only have one light source
 //	but it will be useful when there are multiple
-int	intersect_lights(t_scene *scene, t_ray *ray, float *t)
+void	intersect_lights(t_scene *scene, t_ray *ray, float *t, int *col)
 {
 	int		temp_color;
 	int		pixel_color;
@@ -48,95 +48,13 @@ int	intersect_lights(t_scene *scene, t_ray *ray, float *t)
 	temp_color = intersect_light(&scene->light, ray, &temp_t);
 	if ((temp_color >= 0) && temp_t < *t)
 	{
-		pixel_color = temp_color;
 		if (ray->origin == &scene->cam.point)
 		{
 			scene->screen_object[ray->y][ray->x] = &scene->light;
 			scene->select_type[ray->y][ray->x] = SEL_LIGHT;
+			ray->object_type = SEL_LIGHT;
 		}
+		*col = temp_color;
 		*t = temp_t;
 	}
-	return (pixel_color);
 }
-
-//	allocates value magnitude t to float pointer if direction vector is aligned
-//	with unit vector, and returns 0 if t is a valid solution.
-/*int	get_t(t_vec3 dir_vec, t_vec3 unit_vec, float *t)*/
-/*{*/
-	/*t_vec3	t;*/
-	/*int		dimension;*/
-
-	/*dimension = -1;*/
-	/*zero_vector(t);*/
-	/*while (++dimension < 3)*/
-	/*{*/
-		/*if (dir_vec[dimension] > EPSILON && unit_vec[dimension] > EPSILON)*/
-			/*t[dimension] = (dir_vec[dimension] / unit_vec[dimension]);*/
-	/*}*/
-	/*dimension = -1;*/
-	/*while (++dimension < 3)*/
-
-/*}*/
-
-//	the dot (or scalar) product of two parallel vectors equals the product of
-//	their magnitudes.
-//	We know the unit vector of the camera ray and full euclidean from camera
-//	to light.
-//	C (camera position) - position vector
-//	R (ray direction) - unit vector
-//	L (light position) - position vector
-//	t = time
-//	t = (L - C) / R
-//	for point L to lie on ray R, t must be positive (in front of the camera)
-//	A single solution t must exist for all components of the direction vector
-//	L - C = cam_to_light direction vector
-//	so t = cam_to_light direction vector / ray unit vector
-/*int	intersect_light(t_light *light, t_ray *ray, float *t)*/
-/*{*/
-	/*float		temp_t;*/
-	/*t_vec3		cam_to_light;*/
-	/*float		denominator;*/
-
-	/*denominator = dot_product(ray->udir, plane->norm);*/
-	/*if (fl_abs(denominator) > EPSILON)*/
-	/*{*/
-		/*vec3_a_to_b(cam_to_anch, *ray->origin, plane->anch);*/
-		/*temp_t = dot_product(cam_to_anch, plane->norm) / (denominator);*/
-		/*if (temp_t > 0.001 && temp_t < *t)*/
-		/*{*/
-			/**t = temp_t;*/
-			/*return (plane->color);*/
-		/*}*/
-//	returns t magnitude of euclid_vec given a unit vector, stores it in t
-//	returns 0 if sucessful, 1 if there is not a solution
-/*int	find_magnitude(t_vec3 euclidian, t_vec3 unit, float *t)*/
-/*{*/
-	/*vec3	temp_t;*/
-	/*float	output;*/
-	/*int		valid[3];*/
-	/*int		i;*/
-
-	/*i = 0;*/
-	/*zero_vector(temp_t);*/
-	/*while (i < 3)*/
-	/*{*/
-		/*valid[i] = 0;*/
-		/*if (euclidian[i] > EPSILON)*/
-		/*{*/
-			/*if (unit[i] < EPSILON)*/
-				/*return (1);*/
-			/*temp_t[i] = euclidian[i] / unit[i];*/
-			/*output = temp_t[i];*/
-			/*valid[i] = 1;*/
-		/*}*/
-		/*i++;*/
-	/*}*/
-	/*i = 0;*/
-	/*while (i < 3)*/
-	/*{*/
-		/*if (valid[i] && temp_t[i])*/
-
-	/*}*/
-	/*return (0);*/
-/*}*/
-

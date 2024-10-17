@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:24:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/14 20:17:47 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:13:53 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	intersect_plane(t_plane *plane, t_ray *ray, float *t)
 	return (-1);
 }
 
-int	intersect_planes(t_scene *scene, t_ray *ray, float *t)
+void	intersect_planes(t_scene *scene, t_ray *ray, float *t, int *col)
 {
 	int	temp_color;
 	int	pixel_color;
@@ -63,9 +63,9 @@ int	intersect_planes(t_scene *scene, t_ray *ray, float *t)
 				scene->screen_object[ray->y][ray->x] = &scene->plns[i];
 				scene->select_type[ray->y][ray->x] = SEL_PLANE;
 			}
+			*col = temp_color;
 			*t = temp_t;
 		}
 		temp_color = -1;
 	}
-	return (pixel_color);
 }

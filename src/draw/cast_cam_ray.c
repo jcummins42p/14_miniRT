@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:35:34 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 12:59:48 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:27:47 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,16 @@
 
 float	find_closest_t(t_scene *scene, t_ray *ray, int *pixel_color)
 {
-	int		temp_color;
 	float	temp_t;
 	float	closest_t;
 
 	temp_t	= INFINITY;
 	closest_t = INFINITY;
 	*pixel_color = -1;
-	temp_color = intersect_spheres(scene, ray, &temp_t);
-	/*if ((temp_t + EPSILON) < closest_t)*/
-	/*{*/
-		/*closest_t = temp_t;*/
-		/**pixel_color = temp_color;*/
-	/*}*/
-	temp_color = intersect_planes(scene, ray, &temp_t);
-	/*if ((temp_t + EPSILON) < closest_t)*/
-	/*{*/
-		/*closest_t = temp_t;*/
-		/**pixel_color = temp_color;*/
-	/*}*/
-	temp_color = intersect_cylinders(scene, ray, &temp_t);
-	/*if ((temp_t + EPSILON) < closest_t)*/
-	/*{*/
-		/*closest_t = temp_t;*/
-		/**pixel_color = temp_color;*/
-	/*}*/
-	temp_color = intersect_lights(scene, ray, &temp_t);
-	/*if ((temp_t + EPSILON) < closest_t)*/
-	/*{*/
-		/*closest_t = temp_t;*/
-		/**pixel_color = temp_color;*/
-	/*}*/
+	intersect_spheres(scene, ray, &temp_t, pixel_color);
+	intersect_planes(scene, ray, &temp_t, pixel_color);
+	intersect_cylinders(scene, ray, &temp_t, pixel_color);
+	intersect_lights(scene, ray, &temp_t, pixel_color);
 	return (temp_t);
 }
 
@@ -55,7 +34,8 @@ int	cast_cam_ray(t_scene *scene, t_ray *ray)
 
 	temp_t = INFINITY;
 	ray->object_t = find_closest_t(scene, ray, &ray->object_color);
-
+	if (ray->object_type == SEL_LIGHT)
+		return (ray->light_color);
 	if (ray->object_color >= 0)
 	{
 		vec3_position(ray->bounce, *ray->origin, ray->udir, ray->object_t);
