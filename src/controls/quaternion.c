@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:10:10 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/16 17:42:16 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/17 17:42:34 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_quaternion quaternion_conjugate(t_quaternion q)
 	return (result);
 }
 
-// Rotate vector by quaternion
 void rotate_vector_by_quaternion(t_vec3 vector, t_quaternion q)
 {
 	t_quaternion	vec_quat;

@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:18:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 17:35:05 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:08:54 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,9 +140,9 @@ void k_move_camera(int keysym, t_scene *scene)
 	t_vec3 move_dir;
 	t_camera *cam = &scene->cam;
 
-	t_vec3 y_axis = {0, 1, 0};  // Rotate around Y-axis
-	t_vec3 x_axis = {1, 0, 0};  // Rotate around X-axis
-	t_vec3 z_axis = {0, 0, 1};  // Rotate around Z-axis
+	t_vec3 y_axis = {0, 1, 0};
+	t_vec3 x_axis = {1, 0, 0};
+	t_vec3 z_axis = {0, 0, 1};
 
 	if (keysym == XK_KP_3)		// Move up
 		cam->point[_Y] += 1;
@@ -151,9 +151,11 @@ void k_move_camera(int keysym, t_scene *scene)
 	else if (keysym == XK_KP_6)   // Move right
 	{
 		vec3_set_a(move_dir, cam->right);
-		cam->point[_X] += move_dir[_X];
-		cam->point[_Y] += move_dir[_Y];
-		cam->point[_Z] += move_dir[_Z];
+		vec3_invert(move_dir);
+		vec3_a_to_b(cam->point, move_dir,cam->point);
+		// cam->point[_X] += move_dir[_X];
+		// cam->point[_Y] += move_dir[_Y];
+		// cam->point[_Z] += move_dir[_Z];
 	}
 	else if (keysym == XK_KP_4)   // Move left
 	{
@@ -163,9 +165,11 @@ void k_move_camera(int keysym, t_scene *scene)
 	else if (keysym == XK_KP_8)   // Move forward
 	{
 		vec3_set_a(move_dir, cam->dir);
-		cam->point[_X] += move_dir[_X];
-		cam->point[_Y] += move_dir[_Y];
-		cam->point[_Z] += move_dir[_Z];
+		vec3_invert(move_dir);
+		vec3_a_to_b(cam->point, move_dir,cam->point);
+		// cam->point[_X] += move_dir[_X];
+		// cam->point[_Y] += move_dir[_Y];
+		// cam->point[_Z] += move_dir[_Z];
 	}
 	else if (keysym == XK_KP_2)   // Move backward
 	{
