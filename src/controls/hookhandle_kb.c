@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 19:32:48 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 20:35:46 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,31 @@ int	k_release(int keysym, void *vars)
 	return (0);
 }
 
-void	k_redraw(t_mlx *mlx, int redraw)
+/*void	k_redraw(t_mlx *mlx, int redraw)*/
+/*{*/
+	/*if (redraw == 2)*/
+		/*print_scene(mlx->rt->scenes[mlx->rt->curr_scene]);*/
+	/*render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);*/
+	/*if (redraw == 2)*/
+		/*display_hud(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);*/
+/*}*/
+
+void	k_fov_controls(t_mlx *mlx, int keysym)
 {
-	if (redraw == 2)
-		print_scene(mlx->rt->scenes[mlx->rt->curr_scene]);
+	int	*fov;
+
+	fov = &mlx->rt->scenes[mlx->rt->curr_scene]->cam.fov;
+	if (keysym == XK_z)
+	{
+		(*fov)++;
+		printf("Increasing fov\n");
+	}
+	else if (keysym == XK_x)
+	{
+		(*fov)--;
+		printf("Reducing fov\n");
+	}
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
-	if (redraw == 2)
-		display_hud(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
 int	k_press(int keysym, t_mlx *mlx)
@@ -58,5 +76,7 @@ int	k_press(int keysym, t_mlx *mlx)
 		|| keysym == XK_KP_Q || keysym == XK_KP_W || keysym == XK_KP_E
 		|| keysym == XK_KP_A || keysym == XK_KP_S || keysym == XK_KP_D)
 		k_directional_controls(keysym, mlx);
+	else if (keysym == XK_z || keysym == XK_x)
+		k_fov_controls(mlx, keysym);
 	return (0);
 }

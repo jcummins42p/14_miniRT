@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:12:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 19:03:27 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/17 20:38:10 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,9 +157,9 @@
 #  define XK_u                             0x0075  /* U+0075 LATIN SMALL LETTER U */
 #  define XK_v                             0x0076  /* U+0076 LATIN SMALL LETTER V */
 #  define XK_w                             0x0077  /* U+0077 LATIN SMALL LETTER W */
-#  define XK_x                             0x0078  /* U+0078 LATIN SMALL LETTER X */
+#  define XK_x                             120  /* U+0078 LATIN SMALL LETTER X */
 #  define XK_y                             0x0079  /* U+0079 LATIN SMALL LETTER Y */
-#  define XK_z                             0x007a  /* U+007A LATIN SMALL LETTER Z */
+#  define XK_z                             121  /* U+007A LATIN SMALL LETTER Z */
 #  define XK_braceleft                     0x007b  /* U+007B LEFT CURLY BRACKET */
 #  define XK_bar                           0x007c  /* U+007C VERTICAL LINE */
 #  define XK_braceright                    0x007d  /* U+007D RIGHT CURLY BRACKET */

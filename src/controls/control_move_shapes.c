@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:18:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 19:17:10 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 20:13:16 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	k_move_plane(int keysym, t_scene *scene)
 		plane->anch[_Z] += 1 * z_dir;
 	else if (keysym == XK_KP_2)
 		plane->anch[_Z] -= 1 * z_dir;
+	else
+		k_rotate(scene, keysym);
 }
 
 void	k_move_sphere(int keysym, t_scene *scene)

@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:18:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 19:59:11 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 20:20:45 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	k_move_light(int keysym, t_scene *scene)
 
 void	rotate_quaternion(t_scene *scene, int axis, float incr)
 {
-	t_quaternion q;
+	t_quaternion	q;
 
 	q = axis_angle_to_quaternion(scene->axis[axis], incr);
 	if (scene->sel_type == SEL_CAM)
@@ -51,7 +51,7 @@ void	rotate_quaternion(t_scene *scene, int axis, float incr)
 	else if (scene->sel_type == SEL_PLANE)
 		rotate_vector_by_quaternion(((t_plane *)scene->selected)->norm, q);
 	else if (scene->sel_type == SEL_CYLINDER_CAP
-			|| scene->sel_type == SEL_CYLINDER_SIDE)
+		|| scene->sel_type == SEL_CYLINDER_SIDE)
 		rotate_vector_by_quaternion(((t_cylinder *)scene->selected)->axis, q);
 }
 
@@ -76,38 +76,30 @@ void	k_rotate(t_scene *scene, int keysym)
 void	k_move_camera(int keysym, t_scene *scene)
 {
 	t_vec3		move_dir;
-	t_camera 	*cam;
 
-	cam = &scene->cam;
+	set_vec3(move_dir, "0,0,0");
 	if (keysym == XK_KP_3)
-		cam->point[_Y] += 1;
+		scene->cam.point[_Y] += 1;
 	else if (keysym == XK_KP_1)
-		cam->point[_Y] -= 1;
+		scene->cam.point[_Y] -= 1;
 	else if (keysym == XK_KP_6)
 	{
-		vec3_set_a(move_dir, cam->right);
+		vec3_set_a(move_dir, scene->cam.right);
 		vec3_invert(move_dir);
-		vec3_a_to_b(cam->point, move_dir,cam->point);
 	}
 	else if (keysym == XK_KP_4)
-	{
-		vec3_set_a(move_dir, cam->right);
-		vec3_a_to_b(cam->point, move_dir, cam->point);
-	}
+		vec3_set_a(move_dir, scene->cam.right);
 	else if (keysym == XK_KP_8)
 	{
-		vec3_set_a(move_dir, cam->dir);
+		vec3_set_a(move_dir, scene->cam.dir);
 		vec3_invert(move_dir);
-		vec3_a_to_b(cam->point, move_dir,cam->point);
 	}
 	else if (keysym == XK_KP_2)
-	{
-		vec3_set_a(move_dir, cam->dir);
-		vec3_a_to_b(cam->point, move_dir, cam->point);
-	}
+		vec3_set_a(move_dir, scene->cam.dir);
 	else
 		k_rotate(scene, keysym);
-	orient_camera(&scene->cam);
+	if (move_dir[0] || move_dir[1] || move_dir[2])
+		vec3_a_to_b(scene->cam.point, move_dir, scene->cam.point);
 }
 
 void	k_directional_controls(int keysym, t_mlx *mlx)
@@ -128,5 +120,6 @@ void	k_directional_controls(int keysym, t_mlx *mlx)
 		k_control_ambient(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
 	else if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_LIGHT_VALS)
 		k_control_light(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
+	orient_camera(&mlx->rt->scenes[mlx->rt->curr_scene]->cam);
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
