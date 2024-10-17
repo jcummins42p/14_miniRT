@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 17:28:48 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:05:41 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,6 @@ int	k_press(int keysym, t_mlx *mlx)
 		mlx_loop_end(mlx->mlx);
 	else if (keysym == XK_KP_5)
 		reset_cam_default(mlx, &mlx->rt->scenes[mlx->rt->curr_scene]->cam);
-	else if ((keysym >= XK_KP_7 && keysym <= XK_KP_0)
-				|| keysym == 101 || keysym == 113 || keysym == 119 || keysym == 97 || keysym == 115 || keysym == 100)
-		k_directional_controls(keysym, mlx);
 	else if (keysym == XK_KP_Delete)
 		k_deselect_object(mlx);
 	else if (keysym == XK_KP_Add || keysym == XK_KP_Subtract
@@ -66,5 +63,8 @@ int	k_press(int keysym, t_mlx *mlx)
 		k_select_light(keysym, mlx);
 	else if (keysym == XK_period || keysym == XK_comma)
 		k_adjust_shine(keysym, mlx);
+	else if ((keysym >= XK_KP_7 && keysym <= XK_KP_0)
+		|| keysym >= 100 || keysym <= 119)
+		k_directional_controls(keysym, mlx);
 	return (0);
 }
