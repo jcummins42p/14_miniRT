@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:40:08 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/15 17:41:01 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:42:02 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 //	darkens pixel towards black if it is further away from the camera
 int	shade_pixel_distance(int pixel_color, float distance)
 {
-
-	return (color_shift(pixel_color, 0x000000, (DARK * log(distance / (BRIGHT * 2)))));
+	return (color_shift(pixel_color, 0x000000,
+			(DARK * log(distance / (BRIGHT * 2)))));
 }
 
 int	shade_light_distance(int pixel_color, float distance, float lum)
 {
-	return (color_shift(pixel_color, 0x000000, ((1 - lum) * DARK * log(distance * distance / (2 * BRIGHT * lum * 2)))));
+	return (color_shift(pixel_color, 0x000000, ((1 - lum)
+				* DARK * log(distance * distance / (2 * BRIGHT)))));
 }
 
 //	creates single combined light value from directional and ambient lights
@@ -29,6 +30,8 @@ int	combine_lights(int light_color, t_ambient amb)
 {
 	int	amb_color;
 
+	if (light_color < 0)
+		light_color = 0;
 	amb_color = color_shift(amb.hue, 0x000000, 1 - amb.lum);
 	return (color_addition(light_color, amb_color));
 }

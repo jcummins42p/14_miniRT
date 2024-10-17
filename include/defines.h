@@ -6,14 +6,14 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:16:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/04 15:07:01 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:15:10 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define MULTITHREAD 1
+# define MULTITHREAD 0
 
 # define DEBUGMODE 1
 # define EPSILON 0.0001

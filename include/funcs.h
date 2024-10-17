@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 13:23:59 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:51:44 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,12 @@ void	cleanup_mlx(t_mlx *mlx);
 int		set_rt(int argc, char **argv, t_rt *rt);
 void	cleanup_rt(t_rt *rt);
 
+//	draw_utils.c
+int		img_init(t_mlx *mlx, t_img *img);
+void	pixel_put_img(t_img *img, int x, int y, int color);
+void	color_int_to_vector(t_rgb rgb, int color);
+int		color_vector_to_int(t_rgb rgb);
+
 //	vectormaths.c
 float	fl_abs(float f);
 
@@ -98,8 +104,11 @@ void	vec3_scale_add(t_vec3 dest, t_vec3 base, t_vec3 direction, float magnitude)
 void	aa_bound_sphere(t_sphere *sphere);
 void	aa_bound_capsule(t_cylinder *cylinder);
 
+//	post_process.c
+void	post_process(t_scene *scene);
+
 //	draw.c
-void	render_scene(t_mlx *mlx, t_scene *scene);
+int		render_scene(t_mlx *mlx, t_scene *scene);
 
 //	hud.c
 void	display_hud(t_mlx *mlx, t_scene *scene);

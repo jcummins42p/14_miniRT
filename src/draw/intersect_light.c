@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:14:47 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 13:33:10 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:33:41 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	intersect_light(t_light *light, t_ray *ray, float *t)
 {
 	float		temp_t;
 	t_quadratic	eq;
-	t_vec3		oc;	//	points from cam origin to the sphere center
+	t_vec3		oc;
 
 	vec3_a_to_b(oc, *ray->origin, light->point);
 	eq.b = 2 * dot_product(oc, ray->udir);
@@ -52,7 +52,7 @@ void	intersect_lights(t_scene *scene, t_ray *ray, float *t, int *col)
 		{
 			scene->screen_object[ray->y][ray->x] = &scene->light;
 			scene->select_type[ray->y][ray->x] = SEL_LIGHT;
-			ray->object_type = SEL_LIGHT;
+			ray->obj_type = SEL_LIGHT;
 		}
 		*col = temp_color;
 		*t = temp_t;

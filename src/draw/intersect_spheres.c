@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:56:52 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 13:11:39 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:43:13 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t)
 	if (temp_t > EPSILON && temp_t < *t)
 	{
 		*t = temp_t;
-		ray->object_type = SEL_SPHERE;
+		ray->obj_type = SEL_SPHERE;
 		ray->object = sphere;
 		return (sphere->color);
 	}

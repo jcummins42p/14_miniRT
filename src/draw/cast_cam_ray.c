@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:35:34 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 13:27:47 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:27:37 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ float	find_closest_t(t_scene *scene, t_ray *ray, int *pixel_color)
 	float	temp_t;
 	float	closest_t;
 
-	temp_t	= INFINITY;
+	temp_t = INFINITY;
 	closest_t = INFINITY;
 	*pixel_color = -1;
 	intersect_spheres(scene, ray, &temp_t, pixel_color);
@@ -29,26 +29,19 @@ float	find_closest_t(t_scene *scene, t_ray *ray, int *pixel_color)
 
 int	cast_cam_ray(t_scene *scene, t_ray *ray)
 {
-	int		temp_color;
-	float	temp_t;
-
-	temp_t = INFINITY;
-	ray->object_t = find_closest_t(scene, ray, &ray->object_color);
-	if (ray->object_type == SEL_LIGHT)
+	ray->obj_t = find_closest_t(scene, ray, &ray->obj_color);
+	if (ray->obj_type == SEL_LIGHT)
 		return (ray->light_color);
-	if (ray->object_color >= 0)
+	if (ray->obj_color >= 0)
 	{
-		vec3_position(ray->bounce, *ray->origin, ray->udir, ray->object_t);
+		vec3_position(ray->bounce, *ray->origin, ray->udir, ray->obj_t);
 		ray->light_color = prep_light_ray(scene, ray->bounce);
 		ray->light_color = light_angle(scene, ray, ray->light_color);
-		temp_color = ray->light_color;
-		if (ray->light_color < 0)
-			ray->light_color = 0;
-		ray->light_color = combine_lights(ray->light_color, scene->amb);
-		ray->pixel_color = illuminate_pixel(ray->object_color, ray->light_color);
-		if (temp_color >= 0)
+		ray->comb_color = combine_lights(ray->light_color, scene->amb);
+		ray->pixel_color = illuminate_pixel(ray->obj_color, ray->comb_color);
+		if (ray->light_color >= 0)
 			specular_pass(scene, ray, &ray->pixel_color);
-		ray->pixel_color = shade_pixel_distance(ray->pixel_color, ray->object_t);
+		ray->pixel_color = shade_pixel_distance(ray->pixel_color, ray->obj_t);
 	}
 	else
 		ray->pixel_color = XCOL_BLK;
@@ -60,8 +53,8 @@ void	init_cam_ray(t_scene *scene, t_ray *ray, int x, int y)
 	ray->x = x;
 	ray->y = y;
 	ray->origin = &scene->cam.point;
-	ray->object_t = INFINITY;
-	ray->object_color = -1;
+	ray->obj_t = INFINITY;
+	ray->obj_color = -1;
 	ray->light_color = -1;
 }
 

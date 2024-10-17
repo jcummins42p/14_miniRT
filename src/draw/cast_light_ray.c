@@ -6,13 +6,12 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:33:38 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 13:20:53 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:46:35 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-//	this is where calculations for light direction vs normal direction need to go
 int	cast_light_ray(t_scene *scene, t_ray *ray, float *light_t)
 {
 	float	temp_t;
@@ -47,6 +46,7 @@ int	prep_light_ray(t_scene *scene, t_vec3 bounce_point)
 	light_t = vec3_length(ray.dir);
 	light_color = cast_light_ray(scene, &ray, &light_t);
 	if (light_color > 0)
-		light_color = shade_light_distance(light_color, light_t, scene->light.lum);
+		light_color
+			= shade_light_distance(light_color, light_t, scene->light.lum);
 	return (light_color);
 }

@@ -6,13 +6,13 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 11:16:40 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:31:02 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-float light_angle_cylinder(t_scene *scene, t_ray *ray)
+float	light_angle_cylinder(t_scene *scene, t_ray *ray)
 {
 	float		dot_prod;
 	t_vec3		light;
@@ -73,13 +73,13 @@ int	light_angle(t_scene *scene, t_ray *ray, int light_color)
 
 	if (light_color < 0)
 		return (-1);
-	if (ray->object_type == SEL_SPHERE)
+	if (ray->obj_type == SEL_SPHERE)
 		light_angle = light_angle_sphere(scene, ray);
-	else if (ray->object_type == SEL_PLANE)
+	else if (ray->obj_type == SEL_PLANE)
 		light_angle = light_angle_plane(scene, ray);
-	else if (ray->object_type == SEL_CYLINDER_SIDE)
+	else if (ray->obj_type == SEL_CYLINDER_SIDE)
 		light_angle = light_angle_cylinder(scene, ray);
-	else if (ray->object_type == SEL_CYLINDER_CAP)
+	else if (ray->obj_type == SEL_CYLINDER_CAP)
 		light_angle = light_angle_cyltop(scene, ray);
 	else
 		light_angle = 1;

@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:24:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 13:13:53 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:36:41 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	intersect_plane(t_plane *plane, t_ray *ray, float *t)
 		if (temp_t > EPSILON && temp_t < *t)
 		{
 			*t = temp_t;
-			ray->object_type = SEL_PLANE;
+			ray->obj_type = SEL_PLANE;
 			ray->object = plane;
 			return (plane->color);
 		}
@@ -43,21 +43,18 @@ int	intersect_plane(t_plane *plane, t_ray *ray, float *t)
 
 void	intersect_planes(t_scene *scene, t_ray *ray, float *t, int *col)
 {
-	int	temp_color;
-	int	pixel_color;
+	int		temp_color;
 	float	temp_t;
 	int		i;
 
 	i = -1;
 	temp_color = -1;
-	pixel_color = -1;
 	temp_t = *t;
 	while (++i < scene->n_planes)
 	{
 		temp_color = intersect_plane(&scene->plns[i], ray, &temp_t);
 		if ((temp_color >= 0) && temp_t < *t)
 		{
-			pixel_color = temp_color;
 			if (ray->origin == &scene->cam.point)
 			{
 				scene->screen_object[ray->y][ray->x] = &scene->plns[i];

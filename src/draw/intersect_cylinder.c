@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:16:50 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/17 13:18:45 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:42:19 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int intersect_cyl_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 		if (height_at_t1 >= 0 && height_at_t1 <= cylinder->height)
 		{
 			*t = t1;
-			ray->object_type = SEL_CYLINDER_SIDE;
+			ray->obj_type = SEL_CYLINDER_SIDE;
 			ray->object = cylinder;
 			return (cylinder->color);
 		}
@@ -78,7 +78,7 @@ int intersect_cyl_caps(t_cylinder *cylinder, t_ray *ray, float *t)
 			if (vec3_length(point_to_center) <= radius)  // Check if within the cap radius
 			{
 				*t = t_top;
-				ray->object_type = SEL_CYLINDER_CAP;
+				ray->obj_type = SEL_CYLINDER_CAP;
 				ray->object = cylinder;
 				return (cylinder->color);
 			}
@@ -98,7 +98,7 @@ int intersect_cyl_caps(t_cylinder *cylinder, t_ray *ray, float *t)
 			if (vec3_length(point_to_center) <= radius)  // Check if within the cap radius
 			{
 				*t = t_bottom;
-				ray->object_type = SEL_CYLINDER_CAP;
+				ray->obj_type = SEL_CYLINDER_CAP;
 				ray->object = cylinder;
 				return (cylinder->color);
 			}

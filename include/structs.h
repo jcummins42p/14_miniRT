@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 12:43:46 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:42:49 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@ typedef struct s_ray
 	int			y;
 	int			pixel_color;	// final pixel color after processing
 	void		*object;		// pointer to object at bounce point
-	int			object_type;	// object type at bounce point
-	float		object_t;		// distance from cam to object bounce point
-	int			object_color;	// color of object at bounce point
+	int			obj_type;	// object type at bounce point
+	float		obj_t;		// distance from cam to object bounce point
+	int			obj_color;	// color of object at bounce point
 	float		light_t;		// distance from light source to bounce point
 	int			light_color;	// hue of light source at bounce point
+	int			comb_color;		// hue of combined direct and ambient light
 	t_vec3		*origin;
 	t_vec3		bounce;
 	t_vec3		dir;
