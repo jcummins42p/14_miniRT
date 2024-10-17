@@ -6,11 +6,12 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:16:50 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/17 13:42:19 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:11:58 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+#include <float.h>
 
 int intersect_cyl_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 {
@@ -57,52 +58,60 @@ int intersect_cyl_caps(t_cylinder *cylinder, t_ray *ray, float *t)
 {
 	t_vec3	top_cap_center;
 	t_vec3	bottom_cap_center;
-	t_vec3	intersection_point;
+	float	closest_t;
+	int		closest_cap;
+	float	denom_top;
+	float	t_top;
+	float	denom_bottom;
+	float	t_bottom;
 
-	float radius = cylinder->diamtr / 2;
-
-	// Calculate the centers of the top and bottom caps
 	vec3_scale_add(top_cap_center, cylinder->center, cylinder->axis, cylinder->height);
 	vec3_scale_add(bottom_cap_center, cylinder->center, cylinder->axis, 0);
-
-	// Check intersection with the top cap (plane)
-	float denom_top = dot_product(ray->udir, cylinder->axis);
+	closest_t = *t;
+	closest_cap = 0;
+	denom_top = dot_product(ray->udir, cylinder->axis);
+	t_top = FLT_MAX;  // Set an initial large value for t_top
 	if (fabs(denom_top) > EPSILON) // Ensure the ray is not parallel to the cap
 	{
-		float t_top = (dot_product(cylinder->axis, top_cap_center) - dot_product(cylinder->axis, *ray->origin)) / denom_top;
-		if (t_top > EPSILON && t_top < *t)
+		t_top = (dot_product(cylinder->axis, top_cap_center) - dot_product(cylinder->axis, *ray->origin)) / denom_top;
+		if (t_top > EPSILON && t_top < closest_t)
 		{
+			t_vec3 intersection_point;
 			vec3_scale_add(intersection_point, *ray->origin, ray->udir, t_top);
 			t_vec3 point_to_center;
 			vec3_a_to_b(point_to_center, top_cap_center, intersection_point);
-			if (vec3_length(point_to_center) <= radius)  // Check if within the cap radius
+			if (vec3_length(point_to_center) <= cylinder->radius)  // Check if within the cap radius
+				{
+					closest_t = t_top;
+					closest_cap = 1;  // Indicate that top cap is the closest so far
+				}
+			}
+		}
+	denom_bottom = dot_product(ray->udir, cylinder->axis);
+	t_bottom = FLT_MAX;  // Set an initial large value for t_bottom
+	if (fabs(denom_bottom) > EPSILON) // Ensure the ray is not parallel to the cap
+	{
+		t_bottom = (dot_product(cylinder->axis, bottom_cap_center) - dot_product(cylinder->axis, *ray->origin)) / denom_bottom;
+		if (t_bottom > EPSILON && t_bottom < closest_t)
+		{
+			t_vec3 intersection_point;
+			vec3_scale_add(intersection_point, *ray->origin, ray->udir, t_bottom);
+			t_vec3 point_to_center;
+			vec3_a_to_b(point_to_center, bottom_cap_center, intersection_point);
+			if (vec3_length(point_to_center) <= cylinder->radius)  // Check if within the cap radius
 			{
-				*t = t_top;
-				ray->obj_type = SEL_CYLINDER_CAP;
-				ray->object = cylinder;
-				return (cylinder->color);
+				closest_t = t_bottom;
+				closest_cap = 2;  // Indicate that bottom cap is the closest so far
 			}
 		}
 	}
 
-	// Check intersection with the bottom cap (plane)
-	float denom_bottom = dot_product(ray->udir, cylinder->axis);
-	if (fabs(denom_bottom) > EPSILON) // Ensure the ray is not parallel to the cap
+	if (closest_cap != 0)  // If a valid cap intersection was found
 	{
-		float t_bottom = (dot_product(cylinder->axis, bottom_cap_center) - dot_product(cylinder->axis, *ray->origin)) / denom_bottom;
-		if (t_bottom > EPSILON && t_bottom < *t)
-		{
-			vec3_scale_add(intersection_point, *ray->origin, ray->udir, t_bottom);
-			t_vec3 point_to_center;
-			vec3_a_to_b(point_to_center, bottom_cap_center, intersection_point);
-			if (vec3_length(point_to_center) <= radius)  // Check if within the cap radius
-			{
-				*t = t_bottom;
-				ray->obj_type = SEL_CYLINDER_CAP;
-				ray->object = cylinder;
-				return (cylinder->color);
-			}
-		}
+		*t = closest_t;
+		ray->obj_type = SEL_CYLINDER_CAP;
+		ray->object = cylinder;
+		return (cylinder->color);  // Return the color of the cylinder cap
 	}
 	return (-1);
 }
