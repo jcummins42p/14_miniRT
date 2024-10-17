@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 16:03:32 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:39:15 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,11 @@ int		color_shift(int original, int target, float ratio);
 int		color_subtract(int original, int target, float ratio);
 int		color_addition(int original, int target);
 
-// interscet cylinder.c
+// intersect_cylinder.c
 void	intersect_cylinders(t_scene *scene, t_ray *ray, float *t, int *col);
+
+// intersect_cylinder_caps.c
+int	intersect_cyl_caps(t_cylinder *cylinder, t_ray *ray, float *t);
 
 //	intersect_light.c
 void	intersect_lights(t_scene *scene, t_ray *ray, float *t, int *col);
@@ -78,6 +81,9 @@ int		img_init(t_mlx *mlx, t_img *img);
 void	pixel_put_img(t_img *img, int x, int y, int color);
 void	color_int_to_vector(t_rgb rgb, int color);
 int		color_vector_to_int(t_rgb rgb);
+
+// quadratic.c
+int	calculate_quadratic(t_cylinder *cylinder, t_ray *ray, t_quadratic	*eq);
 
 //	vectormaths.c
 float	fl_abs(float f);
