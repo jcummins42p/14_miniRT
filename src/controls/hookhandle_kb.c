@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 18:05:41 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 19:04:47 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	k_no_event(void *vars)
 	return (0);
 }
 
-	/*ft_printf("Keyrelease: %d\n", keysym);*/
 int	k_release(int keysym, void *vars)
 {
 	(void) vars;
@@ -64,7 +63,8 @@ int	k_press(int keysym, t_mlx *mlx)
 	else if (keysym == XK_period || keysym == XK_comma)
 		k_adjust_shine(keysym, mlx);
 	else if ((keysym >= XK_KP_7 && keysym <= XK_KP_0)
-		|| keysym >= 100 || keysym <= 119)
+		|| keysym == XK_KP_Q || keysym == XK_KP_W || keysym == XK_KP_E 
+		|| keysym == XK_KP_A || keysym == XK_KP_S || keysym == XK_KP_D)
 		k_directional_controls(keysym, mlx);
 	return (0);
 }

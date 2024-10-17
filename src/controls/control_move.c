@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:18:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 18:08:54 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/17 18:57:49 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,54 +87,6 @@ void	k_move_sphere(int keysym, t_scene *scene)
 		sphere->radius -= 0.05;
 }
 
-void	k_move_cylinder(int keysym, t_scene *scene)
-{
-	float		z_dir;
-	t_cylinder	*cylinder;
-
-	t_vec3 y_axis = {0, 1, 0};  // Rotate around Y-axis
-	t_vec3 x_axis = {1, 0, 0};  // Rotate around X-axis
-	t_vec3 z_axis = {0, 0, 1};  // Rotate around Z-axis
-	cylinder = scene->selected;
-	z_dir = scene->cam.dir[_Z];
-	if (keysym == XK_KP_3)
-		cylinder->center[_Y] += 1;
-	else if (keysym == XK_KP_1)
-		cylinder->center[_Y] -= 1;
-	else if (keysym == XK_KP_6)
-		cylinder->center[_X] += 1 * z_dir;
-	else if (keysym == XK_KP_4)
-		cylinder->center[_X] -= 1 * z_dir;
-	else if (keysym == XK_KP_8)
-		cylinder->center[_Z] += 1 * z_dir;
-	else if (keysym == XK_KP_2)
-		cylinder->center[_Z] -= 1 * z_dir;
-	else if (keysym == XK_KP_9)
-		cylinder->diamtr += 0.05;
-	else if (keysym == XK_KP_7)
-		cylinder->diamtr -= 0.05;
-	else if (keysym == XK_KP_Q) {
-		t_quaternion q = axis_angle_to_quaternion(y_axis, -0.1);
-		rotate_vector_by_quaternion(cylinder->axis, q); // Rotate left around Y-axis
-	} else if (keysym == XK_KP_E) {
-		t_quaternion q = axis_angle_to_quaternion(y_axis, 0.1);
-		rotate_vector_by_quaternion(cylinder->axis, q);  // Rotate right around Y-axis
-	} else if (keysym == XK_KP_W) {
-		t_quaternion q = axis_angle_to_quaternion(x_axis, -0.1);
-		rotate_vector_by_quaternion(cylinder->axis, q);  // Tilt forward around X-axis
-	} else if (keysym == XK_KP_S) {
-		t_quaternion q = axis_angle_to_quaternion(x_axis, 0.1);
-		rotate_vector_by_quaternion(cylinder->axis, q);  // Tilt backward around X-axis
-	} else if (keysym == XK_KP_A) {
-		t_quaternion q = axis_angle_to_quaternion(z_axis, -0.1);
-		rotate_vector_by_quaternion(cylinder->axis, q);  // Rotate left around Z-axis
-	} else if (keysym == XK_KP_D) {
-		t_quaternion q = axis_angle_to_quaternion(z_axis, 0.1);
-		rotate_vector_by_quaternion(cylinder->axis, q);  // Rotate right around Z-axis
-	}
-	cylinder->radius = cylinder->diamtr / 2;
-}
-
 void k_move_camera(int keysym, t_scene *scene)
 {
 	t_vec3 move_dir;
@@ -153,9 +105,6 @@ void k_move_camera(int keysym, t_scene *scene)
 		vec3_set_a(move_dir, cam->right);
 		vec3_invert(move_dir);
 		vec3_a_to_b(cam->point, move_dir,cam->point);
-		// cam->point[_X] += move_dir[_X];
-		// cam->point[_Y] += move_dir[_Y];
-		// cam->point[_Z] += move_dir[_Z];
 	}
 	else if (keysym == XK_KP_4)   // Move left
 	{
@@ -167,9 +116,6 @@ void k_move_camera(int keysym, t_scene *scene)
 		vec3_set_a(move_dir, cam->dir);
 		vec3_invert(move_dir);
 		vec3_a_to_b(cam->point, move_dir,cam->point);
-		// cam->point[_X] += move_dir[_X];
-		// cam->point[_Y] += move_dir[_Y];
-		// cam->point[_Z] += move_dir[_Z];
 	}
 	else if (keysym == XK_KP_2)   // Move backward
 	{
