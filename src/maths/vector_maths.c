@@ -6,28 +6,21 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 16:12:34 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:17:23 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
 // Scale the direction vector by the given magnitude
-void	vec3_scale_add(t_vec3 dest, t_vec3 base, t_vec3 direction, float magnitude)
+void	vec3_scale_add(t_vec3 dest, t_vec3 base, t_vec3 dir, float magnitude)
 {
-	t_vec3	scaled_direction;
+	t_vec3	scaled_dir;
 
-	vec3_scaleize(scaled_direction, direction, magnitude);
-	dest[_X] = base[_X] + scaled_direction[_X];
-	dest[_Y] = base[_Y] + scaled_direction[_Y];
-	dest[_Z] = base[_Z] + scaled_direction[_Z];
-}
-
-void	vec3_set_a(t_vec3 a, t_vec3 b)
-{
-	a[_X] = b[_X];
-	a[_Y] = b[_Y];
-	a[_Z] = b[_Z];
+	vec3_scaleize(scaled_dir, dir, magnitude);
+	dest[_X] = base[_X] + scaled_dir[_X];
+	dest[_Y] = base[_Y] + scaled_dir[_Y];
+	dest[_Z] = base[_Z] + scaled_dir[_Z];
 }
 
 void	vec3_position(t_vec3 dest, t_vec3 origin, t_vec3 unit, float magnitude)
@@ -50,6 +43,7 @@ void	vec3_scaleize(t_vec3 scalar, t_vec3 unit, float magnitude)
 	scalar[_Y] = unit[_Y] * magnitude;
 	scalar[_Z] = unit[_Z] * magnitude;
 }
+
 //	stores the unit vector of 'direction' in 'unit'
 void	vec3_normalize(t_vec3 unit, t_vec3 direction)
 {

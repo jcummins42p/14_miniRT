@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:48:29 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/03 14:08:27 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:37:47 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,3 @@ int	set_mlx(t_mlx *mlx, t_rt *rt)
 	mlx_hook(mlx->win, ON_DESTROY, ButtonPressMask, handle_destroy, mlx);
 	return (0);
 }
-

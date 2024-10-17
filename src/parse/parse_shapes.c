@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:45:11 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/15 17:39:35 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:23:19 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	parse_cylinder(char *input, t_scene *scene)
 
 	i = 0;
 	if (!input || !*input)
-		printf("Error: NULL string passed to parse_cylinder, init to default\n");
+		printf("Error: NULL passed to parse_cylinder, init to default\n");
 	else
 	{
 		while (scene->cyls[i].id >= 0)

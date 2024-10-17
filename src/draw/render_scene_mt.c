@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:01:55 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 16:02:44 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:36:49 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,9 @@ void	*render_row_mt(void *data)
 	mlx = render->mlx;
 	coords[_Y] = render->y;
 	scene = mlx->rt->scenes[mlx->rt->curr_scene];
-	coords[_X] = 0;
-	while (coords[_X] < RES_W)
-	{
+	coords[_X] = -1;
+	while (++coords[_X] < RES_W)
 		prep_cam_ray(mlx, scene, coords[_X], coords[_Y]);
-		coords[_X]++;
-	}
 	return (NULL);
 }
 
