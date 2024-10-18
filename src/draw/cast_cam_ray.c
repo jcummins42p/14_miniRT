@@ -6,14 +6,14 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:35:34 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 16:54:26 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/18 17:02:53 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
 //	could work to make this non-static and called in the light ray routine
-static float find_closest_t(t_scene *scene, t_ray *ray, int *pixel_color)
+static float	find_closest_t(t_scene *scene, t_ray *ray, int *pixel_color)
 {
 	float	temp_t;
 

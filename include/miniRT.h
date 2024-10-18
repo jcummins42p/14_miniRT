@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:58:24 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 16:28:46 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 17:05:40 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,5 @@
 # include "funcs_parse.h"
 # include "funcs_print.h"
 # include "funcs_misc.h"
-
-
-# include <float.h>
 
 #endif
