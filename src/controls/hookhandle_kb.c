@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 15:05:44 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:40:42 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,23 @@ void	k_fov_controls(t_mlx *mlx, int ksym)
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
+int	check_key_cylinder(int ksym, t_mlx *mlx)
+{
+	if 	((ksym >= XK_KP_7 && ksym <= XK_KP_0)
+		|| ksym == XK_KP_Q || ksym == XK_KP_W || ksym == XK_KP_E
+		|| ksym == XK_KP_S || ksym == XK_KP_D
+		|| (ksym == XK_KP_A && (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_CYLINDER_CAP
+		|| mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_CYLINDER_SIDE)))
+		return (1);
+	return (0);
+}
+
 int	k_press(int ksym, t_mlx *mlx)
 {
 	if (ksym == XK_ESCAPE)
 		mlx_loop_end(mlx->mlx);
+	else if (check_key_cylinder(ksym, mlx) == 1)
+		k_directional_controls(ksym, mlx);
 	else if (ksym == XK_KP_5)
 		reset_cam_default(mlx, &mlx->rt->scenes[mlx->rt->curr_scene]->cam);
 	else if (ksym == XK_KP_DELETE)
@@ -56,10 +69,6 @@ int	k_press(int ksym, t_mlx *mlx)
 		k_select_light(ksym, mlx);
 	else if (ksym == XK_PERIOD || ksym == XK_COMMA || ksym == XK_BACKSLASH)
 		k_adjust_shine(ksym, mlx);
-	else if ((ksym >= XK_KP_7 && ksym <= XK_KP_0)
-		|| ksym == XK_KP_Q || ksym == XK_KP_W || ksym == XK_KP_E
-		|| ksym == XK_KP_A || ksym == XK_KP_S || ksym == XK_KP_D)
-		k_directional_controls(ksym, mlx);
 	else if (ksym == XK_Z || ksym == XK_X)
 		k_fov_controls(mlx, ksym);
 	return (0);
