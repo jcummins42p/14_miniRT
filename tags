@@ -1,0 +1,1021 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/nfs/homes/jcummins/Projects/14_miniRT/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+$(BO_DIR)/%.o	lib/Makefile	/^$(BO_DIR)\/%.o: $(BSRC_DIR)\/%.c$/;"	t
+$(B_NAME)	Makefile	/^$(B_NAME): $(B_OBJS) $(LIB_PATH) $(MLX_PATH) $(HEADERS)$/;"	t
+$(B_OBJ_DIR)/%.o	Makefile	/^$(B_OBJ_DIR)\/%.o:	$(B_SRC_DIR)\/%.c$/;"	t
+$(GNLO_DIR)/%.o	lib/Makefile	/^$(GNLO_DIR)\/%.o: $(GNL_DIR)\/%.c$/;"	t
+$(LIB_PATH)	Makefile	/^$(LIB_PATH):$/;"	t
+$(MLX_PATH)	Makefile	/^$(MLX_PATH):$/;"	t
+$(NAME)	Makefile	/^$(NAME): $(OBJS) $(LIB_PATH) $(MLX_PATH) $(HEADERS)$/;"	t
+$(NAME)	lib/Makefile	/^$(NAME): $(OBJS)$/;"	t
+$(NAME)	lib/ft_printf/Makefile	/^$(NAME): $(OBJS)$/;"	t
+$(NAME)	mlx_linux/Makefile.mk	/^$(NAME)	: $(OBJ)$/;"	t
+$(NAME)	mlx_linux/test/Makefile.mk	/^$(NAME): $(OBJ)$/;"	t
+$(OBJ_DIR)/%.o	Makefile	/^$(OBJ_DIR)\/%.o:	$(SRC_DIR)\/%.c$/;"	t
+$(OBJ_DIR)/%.o	mlx_linux/Makefile.mk	/^$(OBJ_DIR)\/%.o: %.c$/;"	t
+$(O_DIR)/%.o	lib/Makefile	/^$(O_DIR)\/%.o:	$(SRC_DIR)\/%.c$/;"	t
+$(PFO_DIR)/%.o	lib/Makefile	/^$(PFO_DIR)\/%.o: $(PF_DIR)\/%.c$/;"	t
+%.o	lib/ft_printf/Makefile	/^%.o:	%.c$/;"	t
+AUTHOR	mlx_linux/man/man1/mlx.1	/^.SH AUTHOR$/;"	s	title:MiniLibX
+AUTHOR	mlx_linux/man/man1/mlx_loop.1	/^.SH AUTHOR$/;"	s	title:MiniLibX
+AUTHOR	mlx_linux/man/man1/mlx_new_image.1	/^.SH AUTHOR$/;"	s	title:MiniLibX
+AUTHOR	mlx_linux/man/man1/mlx_new_window.1	/^.SH AUTHOR$/;"	s	title:MiniLibX
+AUTHOR	mlx_linux/man/man1/mlx_pixel_put.1	/^.SH AUTHOR$/;"	s	title:MiniLibX
+AUTHOR	mlx_linux/man/man3/mlx.3	/^.SH AUTHOR$/;"	s	title:MiniLibX
+AUTHOR	mlx_linux/man/man3/mlx_loop.3	/^.SH AUTHOR$/;"	s	title:MiniLibX
+AUTHOR	mlx_linux/man/man3/mlx_new_image.3	/^.SH AUTHOR$/;"	s	title:MiniLibX
+AUTHOR	mlx_linux/man/man3/mlx_new_window.3	/^.SH AUTHOR$/;"	s	title:MiniLibX
+AUTHOR	mlx_linux/man/man3/mlx_pixel_put.3	/^.SH AUTHOR$/;"	s	title:MiniLibX
+BO_DIR	lib/Makefile	/^BO_DIR = obj_bonus$/;"	m
+BRIGHT	include/defines.h	/^# define BRIGHT /;"	d
+BSRC_DIR	lib/Makefile	/^BSRC_DIR = bonus$/;"	m
+BUFFER_SIZE	include/libft.h	/^#  define BUFFER_SIZE /;"	d
+BUFFER_SIZE	lib/get_next_line/get_next_line_bonus.h	/^#  define BUFFER_SIZE /;"	d
+BUFFER_SIZE	lib/include/get_next_line.h	/^#  define BUFFER_SIZE /;"	d
+BUFFER_SIZE	lib/include/get_next_line_bonus.h	/^#  define BUFFER_SIZE /;"	d
+BUFFER_SIZE	lib/include/libft.h	/^#  define BUFFER_SIZE /;"	d
+B_HEADER_DIR	Makefile	/^B_HEADER_DIR = include_bonus$/;"	m
+B_NAME	Makefile	/^B_NAME = bonus$/;"	m
+B_OBJS	Makefile	/^B_OBJS = $(B_SRCS:$(B_SRC_DIR)\/%.c=$(B_OBJ_DIR)\/%.o)$/;"	m
+B_OBJS	lib/Makefile	/^B_OBJS = $(B_SRCS:$(BSRC_DIR)\/%.c=$(BO_DIR)\/%.o)$/;"	m
+B_OBJ_DIR	Makefile	/^B_OBJ_DIR = obj_bonus$/;"	m
+B_SRCS	Makefile	/^B_SRCS = $(shell find $(B_SRC_DIR) -name '*.c')$/;"	m
+B_SRCS	lib/Makefile	/^B_SRCS = $(shell find $(BSRC_DIR) -name '*.c')$/;"	m
+B_SRC_DIR	Makefile	/^B_SRC_DIR = src_bonus$/;"	m
+CC	Makefile	/^CC = gcc$/;"	m
+CC	lib/Makefile	/^CC = cc$/;"	m
+CC	lib/ft_printf/Makefile	/^CC = cc$/;"	m
+CC	mlx_linux/Makefile.mk	/^	CC = clang$/;"	m
+CC	mlx_linux/Makefile.mk	/^CC	= gcc$/;"	m
+CC	mlx_linux/test/Makefile.mk	/^	CC	= gcc$/;"	m
+CC	mlx_linux/test/Makefile.mk	/^	CC = clang$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -g -Werror -Wextra -Wall -Wunused-result -pedantic -I$(HEADER_DIR) -Imlx_linux$/;"	m
+CFLAGS	lib/Makefile	/^CFLAGS = -g -Werror -Wextra -Wall -pedantic -fPIE -I$(HEADER_DIR)$/;"	m
+CFLAGS	lib/ft_printf/Makefile	/^CFLAGS = -g -Werror -Wextra -Wall$/;"	m
+CFLAGS	mlx_linux/Makefile.mk	/^CFLAGS	= -O3 -I$(INC)$/;"	m
+CFLAGS	mlx_linux/test/Makefile.mk	/^CFLAGS= -I$(INC) -O3 -I.. -g$/;"	m
+COLOR	mlx_linux/man/man1/mlx_pixel_put.1	/^.SH COLOR MANAGEMENT$/;"	s	title:MiniLibX
+COLOR	mlx_linux/man/man3/mlx_pixel_put.3	/^.SH COLOR MANAGEMENT$/;"	s	title:MiniLibX
+DARK	include/defines.h	/^# define DARK /;"	d
+DEBUGMODE	include/defines.h	/^# define DEBUGMODE /;"	d
+DEFINES_H	include/defines.h	/^# define DEFINES_H$/;"	d
+DESCRIPTION	mlx_linux/man/man1/mlx.1	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
+DESCRIPTION	mlx_linux/man/man1/mlx_loop.1	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
+DESCRIPTION	mlx_linux/man/man1/mlx_new_image.1	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
+DESCRIPTION	mlx_linux/man/man1/mlx_new_window.1	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
+DESCRIPTION	mlx_linux/man/man1/mlx_pixel_put.1	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
+DESCRIPTION	mlx_linux/man/man3/mlx.3	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
+DESCRIPTION	mlx_linux/man/man3/mlx_loop.3	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
+DESCRIPTION	mlx_linux/man/man3/mlx_new_image.3	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
+DESCRIPTION	mlx_linux/man/man3/mlx_new_window.3	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
+DESCRIPTION	mlx_linux/man/man3/mlx_pixel_put.3	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
+ENUMS_H	include/enums.h	/^# define ENUMS_H$/;"	d
+ENV_DISPLAY	mlx_linux/mlx_int.h	/^# define ENV_DISPLAY /;"	d
+EOF	mlx_linux/configure	/^cat <<EOF$/;"	h
+EPSILON	include/defines.h	/^# define EPSILON /;"	d
+ERR_ARGC	include/enums.h	/^	ERR_ARGC,$/;"	e	enum:e_errcode
+ERR_ARGV	include/enums.h	/^	ERR_ARGV,$/;"	e	enum:e_errcode
+ERR_MALLOC	include/enums.h	/^	ERR_MALLOC,$/;"	e	enum:e_errcode
+ERR_MLX	include/enums.h	/^	ERR_MLX,$/;"	e	enum:e_errcode
+ERR_NO_TRUECOLOR	mlx_linux/mlx_int.h	/^# define ERR_NO_TRUECOLOR /;"	d
+ERR_NULLPTR	include/enums.h	/^	ERR_NULLPTR,$/;"	e	enum:e_errcode
+ERR_OTHER	include/enums.h	/^	ERR_OTHER$/;"	e	enum:e_errcode
+ERR_PARSE	include/enums.h	/^	ERR_PARSE,$/;"	e	enum:e_errcode
+FT_PRINTF_H	lib/ft_printf/ft_printf.h	/^# define FT_PRINTF_H$/;"	d
+FT_PRINTF_H	lib/include/ft_printf.h	/^# define FT_PRINTF_H$/;"	d
+FUNCS_H	include/funcs.h	/^# define FUNCS_H$/;"	d
+GET_NEXT_LINE_BONUS_H	lib/get_next_line/get_next_line_bonus.h	/^# define GET_NEXT_LINE_BONUS_H$/;"	d
+GET_NEXT_LINE_BONUS_H	lib/include/get_next_line_bonus.h	/^# define GET_NEXT_LINE_BONUS_H$/;"	d
+GET_NEXT_LINE_H	lib/include/get_next_line.h	/^# define GET_NEXT_LINE_H$/;"	d
+GNLO_DIR	lib/Makefile	/^GNLO_DIR = obj_gnl$/;"	m
+GNL_DIR	lib/Makefile	/^GNL_DIR = get_next_line$/;"	m
+GNL_OBJS	lib/Makefile	/^GNL_OBJS = $(GNL_SRCS:$(GNL_DIR)\/%.c=$(GNLO_DIR)\/%.o)$/;"	m
+GNL_SRCS	lib/Makefile	/^GNL_SRCS = $(shell find $(GNL_DIR) -name '*.c')$/;"	m
+GOING	mlx_linux/man/man1/mlx_loop.1	/^.SH GOING FURTHER WITH EVENTS$/;"	s	title:MiniLibX
+GOING	mlx_linux/man/man3/mlx_loop.3	/^.SH GOING FURTHER WITH EVENTS$/;"	s	title:MiniLibX
+HEADER	lib/ft_printf/Makefile	/^HEADER = ft_printf.h$/;"	m
+HEADER_DIR	Makefile	/^HEADER_DIR = include$/;"	m
+HEADER_DIR	lib/Makefile	/^HEADER_DIR = include$/;"	m
+HIGHLIGHT_RAD	include/defines.h	/^# define HIGHLIGHT_RAD /;"	d
+IM1_SX	mlx_linux/test/main.c	/^#define	IM1_SX	/;"	d	file:
+IM1_SY	mlx_linux/test/main.c	/^#define	IM1_SY	/;"	d	file:
+IM3_SX	mlx_linux/test/main.c	/^#define	IM3_SX	/;"	d	file:
+IM3_SY	mlx_linux/test/main.c	/^#define	IM3_SY	/;"	d	file:
+INC	mlx_linux/Makefile.mk	/^INC	=%%%%$/;"	m
+INC	mlx_linux/test/Makefile.mk	/^INC=%%%%$/;"	m
+INCLIB	mlx_linux/test/Makefile.mk	/^INCLIB=$(INC)\/..\/lib$/;"	m
+INCLUDE	mlx_linux/man/man1/mlx.1	/^.SH INCLUDE FILE$/;"	s	title:MiniLibX
+INCLUDE	mlx_linux/man/man3/mlx.3	/^.SH INCLUDE FILE$/;"	s	title:MiniLibX
+KBLU	include/defines.h	/^# define KBLU /;"	d
+KCYN	include/defines.h	/^# define KCYN /;"	d
+KDEF	include/defines.h	/^# define KDEF /;"	d
+KGRN	include/defines.h	/^# define KGRN /;"	d
+KMAG	include/defines.h	/^# define KMAG /;"	d
+KRED	include/defines.h	/^# define KRED /;"	d
+KWHT	include/defines.h	/^# define KWHT /;"	d
+KYEL	include/defines.h	/^# define KYEL /;"	d
+LFLAGS	mlx_linux/test/Makefile.mk	/^LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm$/;"	m
+LIB	Makefile	/^LIB = libft.a$/;"	m
+LIBFT_H	include/libft.h	/^# define LIBFT_H$/;"	d
+LIBFT_H	lib/include/libft.h	/^# define LIBFT_H$/;"	d
+LIBRARY	mlx_linux/man/man1/mlx.1	/^.SH LIBRARY FUNCTIONS$/;"	s	title:MiniLibX
+LIBRARY	mlx_linux/man/man3/mlx.3	/^.SH LIBRARY FUNCTIONS$/;"	s	title:MiniLibX
+LIB_DIR	Makefile	/^LIB_DIR = lib$/;"	m
+LIB_PATH	Makefile	/^LIB_PATH = $(LIB_DIR)\/$(LIB)$/;"	m
+LIGHT_RAD	include/defines.h	/^# define LIGHT_RAD /;"	d
+LINKING	mlx_linux/man/man1/mlx.1	/^.SH LINKING MiniLibX$/;"	s	title:MiniLibX
+LINKING	mlx_linux/man/man3/mlx.3	/^.SH LINKING MiniLibX$/;"	s	title:MiniLibX
+LOCALHOST	mlx_linux/mlx_int.h	/^# define LOCALHOST /;"	d
+LOCKED	include/enums.h	/^	LOCKED$/;"	e	enum:e_lock
+MINIRT_H	include/miniRT.h	/^# define MINIRT_H$/;"	d
+MLX	Makefile	/^MLX = libmlx_Linux.a$/;"	m
+MLXFLAGS	Makefile	/^MLXFLAGS = -lmlx_Linux -lXext -lX11 -lm -lz -lft$/;"	m
+MLX_DIR	Makefile	/^MLX_DIR = mlx_linux$/;"	m
+MLX_H	include/mlx.h	/^# define MLX_H$/;"	d
+MLX_H	mlx_linux/mlx.h	/^# define MLX_H$/;"	d
+MLX_INT_H	mlx_linux/mlx_int.h	/^# define MLX_INT_H$/;"	d
+MLX_MAX_EVENT	mlx_linux/mlx_int.h	/^# define MLX_MAX_EVENT /;"	d
+MLX_PATH	Makefile	/^MLX_PATH = $(MLX_DIR)\/$(MLX)$/;"	m
+MLX_TYPE_SHM	mlx_linux/mlx_int.h	/^# define MLX_TYPE_SHM /;"	d
+MLX_TYPE_SHM_PIXMAP	mlx_linux/mlx_int.h	/^# define MLX_TYPE_SHM_PIXMAP /;"	d
+MLX_TYPE_XIMAGE	mlx_linux/mlx_int.h	/^# define MLX_TYPE_XIMAGE /;"	d
+MULTITHREAD	include/defines.h	/^# define MULTITHREAD /;"	d
+MiniLibX	mlx_linux/man/man1/mlx.1	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
+MiniLibX	mlx_linux/man/man1/mlx_loop.1	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
+MiniLibX	mlx_linux/man/man1/mlx_new_image.1	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
+MiniLibX	mlx_linux/man/man1/mlx_new_window.1	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
+MiniLibX	mlx_linux/man/man1/mlx_pixel_put.1	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
+MiniLibX	mlx_linux/man/man3/mlx.3	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
+MiniLibX	mlx_linux/man/man3/mlx_loop.3	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
+MiniLibX	mlx_linux/man/man3/mlx_new_image.3	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
+MiniLibX	mlx_linux/man/man3/mlx_new_window.3	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
+MiniLibX	mlx_linux/man/man3/mlx_pixel_put.3	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
+NAME	Makefile	/^NAME = miniRT$/;"	m
+NAME	lib/Makefile	/^NAME = libft.a$/;"	m
+NAME	lib/ft_printf/Makefile	/^NAME = libftprintf.a$/;"	m
+NAME	mlx_linux/Makefile.mk	/^NAME		= libmlx.a$/;"	m
+NAME	mlx_linux/man/man1/mlx.1	/^.SH NAME$/;"	s	title:MiniLibX
+NAME	mlx_linux/man/man1/mlx_loop.1	/^.SH NAME$/;"	s	title:MiniLibX
+NAME	mlx_linux/man/man1/mlx_new_image.1	/^.SH NAME$/;"	s	title:MiniLibX
+NAME	mlx_linux/man/man1/mlx_new_window.1	/^.SH NAME$/;"	s	title:MiniLibX
+NAME	mlx_linux/man/man1/mlx_pixel_put.1	/^.SH NAME$/;"	s	title:MiniLibX
+NAME	mlx_linux/man/man3/mlx.3	/^.SH NAME$/;"	s	title:MiniLibX
+NAME	mlx_linux/man/man3/mlx_loop.3	/^.SH NAME$/;"	s	title:MiniLibX
+NAME	mlx_linux/man/man3/mlx_new_image.3	/^.SH NAME$/;"	s	title:MiniLibX
+NAME	mlx_linux/man/man3/mlx_new_window.3	/^.SH NAME$/;"	s	title:MiniLibX
+NAME	mlx_linux/man/man3/mlx_pixel_put.3	/^.SH NAME$/;"	s	title:MiniLibX
+NAME	mlx_linux/test/Makefile.mk	/^NAME= mlx-test$/;"	m
+NAME_UNAME	mlx_linux/Makefile.mk	/^NAME_UNAME	= libmlx_$(UNAME).a$/;"	m
+OBJ	mlx_linux/Makefile.mk	/^OBJ	= $(addprefix $(OBJ_DIR)\/,$(SRC:%.c=%.o))$/;"	m
+OBJ	mlx_linux/test/Makefile.mk	/^OBJ = $(SRC:%.c=%.o)$/;"	m
+OBJS	Makefile	/^OBJS = $(SRCS:$(SRC_DIR)\/%.c=$(OBJ_DIR)\/%.o)$/;"	m
+OBJS	lib/Makefile	/^OBJS = $(SRCS:$(SRC_DIR)\/%.c=$(O_DIR)\/%.o)$/;"	m
+OBJS	lib/ft_printf/Makefile	/^OBJS = $(SRCS:.c=.o)$/;"	m
+OBJ_DIR	Makefile	/^OBJ_DIR = obj$/;"	m
+OBJ_DIR	mlx_linux/Makefile.mk	/^OBJ_DIR = obj$/;"	m
+ON_DESTROY	include/enums.h	/^	ON_DESTROY = 17$/;"	e	enum:e_keypress
+ON_EXPOSE	include/enums.h	/^	ON_EXPOSE = 12,$/;"	e	enum:e_keypress
+ON_KEYDOWN	include/enums.h	/^	ON_KEYDOWN = 2,$/;"	e	enum:e_keypress
+ON_KEYUP	include/enums.h	/^	ON_KEYUP = 3,$/;"	e	enum:e_keypress
+ON_MOUSEDOWN	include/enums.h	/^	ON_MOUSEDOWN = 4,$/;"	e	enum:e_keypress
+ON_MOUSEMOVE	include/enums.h	/^	ON_MOUSEMOVE = 6,$/;"	e	enum:e_keypress
+ON_MOUSEUP	include/enums.h	/^	ON_MOUSEUP = 5,$/;"	e	enum:e_keypress
+O_DIR	lib/Makefile	/^O_DIR = obj$/;"	m
+PFO_DIR	lib/Makefile	/^PFO_DIR = obj_pf$/;"	m
+PF_DIR	lib/Makefile	/^PF_DIR = ft_printf$/;"	m
+PF_OBJS	lib/Makefile	/^PF_OBJS = $(PF_SRCS:$(PF_DIR)\/%.c=$(PFO_DIR)\/%.o)$/;"	m
+PF_SRCS	lib/Makefile	/^PF_SRCS = $(shell find $(PF_DIR) -name '*.c')$/;"	m
+RES_EIGHTH	include/enums.h	/^	RES_EIGHTH,$/;"	e	enum:e_rescode
+RES_FULL	include/enums.h	/^	RES_FULL = 1,$/;"	e	enum:e_rescode
+RES_H	include/defines.h	/^# define RES_H	/;"	d
+RES_HALF	include/enums.h	/^	RES_HALF,$/;"	e	enum:e_rescode
+RES_QUART	include/enums.h	/^	RES_QUART,$/;"	e	enum:e_rescode
+RES_SIXNTH	include/enums.h	/^	RES_SIXNTH,$/;"	e	enum:e_rescode
+RES_W	include/defines.h	/^# define RES_W	/;"	d
+RETURN	mlx_linux/man/man1/mlx.1	/^.SH RETURN VALUES$/;"	s	title:MiniLibX
+RETURN	mlx_linux/man/man1/mlx_new_image.1	/^.SH RETURN VALUES$/;"	s	title:MiniLibX
+RETURN	mlx_linux/man/man1/mlx_new_window.1	/^.SH RETURN VALUES$/;"	s	title:MiniLibX
+RETURN	mlx_linux/man/man3/mlx.3	/^.SH RETURN VALUES$/;"	s	title:MiniLibX
+RETURN	mlx_linux/man/man3/mlx_new_image.3	/^.SH RETURN VALUES$/;"	s	title:MiniLibX
+RETURN	mlx_linux/man/man3/mlx_new_window.3	/^.SH RETURN VALUES$/;"	s	title:MiniLibX
+RETURN	mlx_linux/mlx_xpm.c	/^#define	RETURN	/;"	d	file:
+SEE	mlx_linux/man/man1/mlx.1	/^.SH SEE ALSO$/;"	s	title:MiniLibX
+SEE	mlx_linux/man/man1/mlx_loop.1	/^.SH SEE ALSO$/;"	s	title:MiniLibX
+SEE	mlx_linux/man/man1/mlx_new_image.1	/^.SH SEE ALSO$/;"	s	title:MiniLibX
+SEE	mlx_linux/man/man1/mlx_new_window.1	/^.SH SEE ALSO$/;"	s	title:MiniLibX
+SEE	mlx_linux/man/man1/mlx_pixel_put.1	/^.SH SEE ALSO$/;"	s	title:MiniLibX
+SEE	mlx_linux/man/man3/mlx.3	/^.SH SEE ALSO$/;"	s	title:MiniLibX
+SEE	mlx_linux/man/man3/mlx_loop.3	/^.SH SEE ALSO$/;"	s	title:MiniLibX
+SEE	mlx_linux/man/man3/mlx_new_image.3	/^.SH SEE ALSO$/;"	s	title:MiniLibX
+SEE	mlx_linux/man/man3/mlx_new_window.3	/^.SH SEE ALSO$/;"	s	title:MiniLibX
+SEE	mlx_linux/man/man3/mlx_pixel_put.3	/^.SH SEE ALSO$/;"	s	title:MiniLibX
+SEL_AMBIENT	include/enums.h	/^	SEL_AMBIENT$/;"	e	enum:e_select_type
+SEL_CAM	include/enums.h	/^	SEL_CAM,$/;"	e	enum:e_select_type
+SEL_CYLINDER_CAP	include/enums.h	/^	SEL_CYLINDER_CAP,$/;"	e	enum:e_select_type
+SEL_CYLINDER_SIDE	include/enums.h	/^	SEL_CYLINDER_SIDE,$/;"	e	enum:e_select_type
+SEL_LIGHT	include/enums.h	/^	SEL_LIGHT,$/;"	e	enum:e_select_type
+SEL_LIGHT_VALS	include/enums.h	/^	SEL_LIGHT_VALS,$/;"	e	enum:e_select_type
+SEL_NONE	include/enums.h	/^	SEL_NONE,$/;"	e	enum:e_select_type
+SEL_PLANE	include/enums.h	/^	SEL_PLANE,$/;"	e	enum:e_select_type
+SEL_SPHERE	include/enums.h	/^	SEL_SPHERE,$/;"	e	enum:e_select_type
+SRC	mlx_linux/Makefile.mk	/^SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put.c mlx_loop.c \\$/;"	m
+SRC	mlx_linux/test/Makefile.mk	/^SRC = main.c$/;"	m
+SRCS	Makefile	/^SRCS = $(shell find $(SRC_DIR) -name '*.c')$/;"	m
+SRCS	lib/Makefile	/^SRCS = $(shell find $(SRC_DIR) -name '*.c')$/;"	m
+SRCS	lib/ft_printf/Makefile	/^SRCS = ft_printf.c ft_printf_nformats.c ft_printf_cformats.c$/;"	m
+SRC_DIR	Makefile	/^SRC_DIR = src$/;"	m
+SRC_DIR	lib/Makefile	/^SRC_DIR = mandatory$/;"	m
+STORING	mlx_linux/man/man1/mlx_new_image.1	/^.SH STORING COLOR INSIDE IMAGES$/;"	s	title:MiniLibX
+STORING	mlx_linux/man/man3/mlx_new_image.3	/^.SH STORING COLOR INSIDE IMAGES$/;"	s	title:MiniLibX
+STRUCTS_H	include/structs.h	/^# define STRUCTS_H$/;"	d
+SUCCESS	include/enums.h	/^	SUCCESS,$/;"	e	enum:e_errcode
+SYNOPSYS	mlx_linux/man/man1/mlx.1	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
+SYNOPSYS	mlx_linux/man/man1/mlx_loop.1	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
+SYNOPSYS	mlx_linux/man/man1/mlx_new_image.1	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
+SYNOPSYS	mlx_linux/man/man1/mlx_new_window.1	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
+SYNOPSYS	mlx_linux/man/man1/mlx_pixel_put.1	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
+SYNOPSYS	mlx_linux/man/man3/mlx.3	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
+SYNOPSYS	mlx_linux/man/man3/mlx_loop.3	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
+SYNOPSYS	mlx_linux/man/man3/mlx_new_image.3	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
+SYNOPSYS	mlx_linux/man/man3/mlx_new_window.3	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
+SYNOPSYS	mlx_linux/man/man3/mlx_pixel_put.3	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
+UNAME	mlx_linux/Makefile.mk	/^UNAME = $(shell uname)$/;"	m
+UNAME	mlx_linux/test/Makefile.mk	/^UNAME := $(shell uname)$/;"	m
+UNLOCKED	include/enums.h	/^	UNLOCKED,$/;"	e	enum:e_lock
+WARN_SHM_ATTACH	mlx_linux/mlx_int.h	/^# define WARN_SHM_ATTACH /;"	d
+WIN1_SX	mlx_linux/test/main.c	/^#define	WIN1_SX	/;"	d	file:
+WIN1_SY	mlx_linux/test/main.c	/^#define	WIN1_SY	/;"	d	file:
+X-WINDOW	mlx_linux/man/man1/mlx.1	/^.SH X-WINDOW CONCEPT$/;"	s	title:MiniLibX
+X-WINDOW	mlx_linux/man/man1/mlx_loop.1	/^.SH X-WINDOW EVENTS$/;"	s	title:MiniLibX
+X-WINDOW	mlx_linux/man/man3/mlx.3	/^.SH X-WINDOW CONCEPT$/;"	s	title:MiniLibX
+X-WINDOW	mlx_linux/man/man3/mlx_loop.3	/^.SH X-WINDOW EVENTS$/;"	s	title:MiniLibX
+XCOL_BLK	include/defines.h	/^# define XCOL_BLK /;"	d
+XCOL_WHT	include/defines.h	/^# define XCOL_WHT /;"	d
+XK_0	include/XK_defines.h	/^#  define XK_0 /;"	d
+XK_1	include/XK_defines.h	/^#  define XK_1 /;"	d
+XK_2	include/XK_defines.h	/^#  define XK_2 /;"	d
+XK_3	include/XK_defines.h	/^#  define XK_3 /;"	d
+XK_4	include/XK_defines.h	/^#  define XK_4 /;"	d
+XK_5	include/XK_defines.h	/^#  define XK_5 /;"	d
+XK_6	include/XK_defines.h	/^#  define XK_6 /;"	d
+XK_7	include/XK_defines.h	/^#  define XK_7 /;"	d
+XK_8	include/XK_defines.h	/^#  define XK_8 /;"	d
+XK_9	include/XK_defines.h	/^#  define XK_9 /;"	d
+XK_A	include/XK_defines.h	/^#  define XK_A /;"	d
+XK_AMPERSAND	include/XK_defines.h	/^#  define XK_AMPERSAND /;"	d
+XK_APOSTROPHE	include/XK_defines.h	/^#  define XK_APOSTROPHE /;"	d
+XK_ASCIICIRCUM	include/XK_defines.h	/^#  define XK_ASCIICIRCUM /;"	d
+XK_ASCIITILDE	include/XK_defines.h	/^#  define XK_ASCIITILDE /;"	d
+XK_ASTERISK	include/XK_defines.h	/^#  define XK_ASTERISK /;"	d
+XK_AT	include/XK_defines.h	/^#  define XK_AT /;"	d
+XK_B	include/XK_defines.h	/^#  define XK_B /;"	d
+XK_BACKSLASH	include/XK_defines.h	/^#  define XK_BACKSLASH /;"	d
+XK_BAR	include/XK_defines.h	/^#  define XK_BAR /;"	d
+XK_BRACELEFT	include/XK_defines.h	/^#  define XK_BRACELEFT /;"	d
+XK_BRACERIGHT	include/XK_defines.h	/^#  define XK_BRACERIGHT /;"	d
+XK_BRACKETLEFT	include/XK_defines.h	/^#  define XK_BRACKETLEFT /;"	d
+XK_BRACKETRIGHT	include/XK_defines.h	/^#  define XK_BRACKETRIGHT /;"	d
+XK_C	include/XK_defines.h	/^#  define XK_C /;"	d
+XK_COLON	include/XK_defines.h	/^#  define XK_COLON /;"	d
+XK_COMMA	include/XK_defines.h	/^#  define XK_COMMA /;"	d
+XK_D	include/XK_defines.h	/^#  define XK_D /;"	d
+XK_DEFINES_H	include/XK_defines.h	/^# define XK_DEFINES_H$/;"	d
+XK_DOLLAR	include/XK_defines.h	/^#  define XK_DOLLAR /;"	d
+XK_E	include/XK_defines.h	/^#  define XK_E /;"	d
+XK_EQUAL	include/XK_defines.h	/^#  define XK_EQUAL /;"	d
+XK_EXCLAM	include/XK_defines.h	/^#  define XK_EXCLAM /;"	d
+XK_Escape	include/XK_defines.h	/^# define XK_Escape	/;"	d
+XK_F	include/XK_defines.h	/^#  define XK_F /;"	d
+XK_G	include/XK_defines.h	/^#  define XK_G /;"	d
+XK_GRAVE	include/XK_defines.h	/^#  define XK_GRAVE /;"	d
+XK_GREATER	include/XK_defines.h	/^#  define XK_GREATER /;"	d
+XK_H	include/XK_defines.h	/^#  define XK_H /;"	d
+XK_I	include/XK_defines.h	/^#  define XK_I /;"	d
+XK_J	include/XK_defines.h	/^#  define XK_J /;"	d
+XK_K	include/XK_defines.h	/^#  define XK_K /;"	d
+XK_KP_0	include/XK_defines.h	/^# define XK_KP_0 /;"	d
+XK_KP_1	include/XK_defines.h	/^# define XK_KP_1 /;"	d
+XK_KP_2	include/XK_defines.h	/^# define XK_KP_2 /;"	d
+XK_KP_3	include/XK_defines.h	/^# define XK_KP_3 /;"	d
+XK_KP_4	include/XK_defines.h	/^# define XK_KP_4 /;"	d
+XK_KP_5	include/XK_defines.h	/^# define XK_KP_5 /;"	d
+XK_KP_6	include/XK_defines.h	/^# define XK_KP_6 /;"	d
+XK_KP_7	include/XK_defines.h	/^# define XK_KP_7 /;"	d
+XK_KP_8	include/XK_defines.h	/^# define XK_KP_8 /;"	d
+XK_KP_9	include/XK_defines.h	/^# define XK_KP_9 /;"	d
+XK_KP_A	include/XK_defines.h	/^# define XK_KP_A /;"	d
+XK_KP_ADD	include/XK_defines.h	/^# define XK_KP_ADD	/;"	d
+XK_KP_ADD	include/XK_defines.h	/^# define XK_KP_ADD /;"	d
+XK_KP_BEGIN	include/XK_defines.h	/^# define XK_KP_BEGIN /;"	d
+XK_KP_D	include/XK_defines.h	/^# define XK_KP_D /;"	d
+XK_KP_DECIMAL	include/XK_defines.h	/^# define XK_KP_DECIMAL /;"	d
+XK_KP_DELETE	include/XK_defines.h	/^# define XK_KP_DELETE /;"	d
+XK_KP_DIVIDE	include/XK_defines.h	/^# define XK_KP_DIVIDE /;"	d
+XK_KP_DOWN	include/XK_defines.h	/^# define XK_KP_DOWN /;"	d
+XK_KP_E	include/XK_defines.h	/^# define XK_KP_E /;"	d
+XK_KP_END	include/XK_defines.h	/^# define XK_KP_END /;"	d
+XK_KP_ENTER	include/XK_defines.h	/^# define XK_KP_ENTER /;"	d
+XK_KP_EQUAL	include/XK_defines.h	/^# define XK_KP_EQUAL /;"	d
+XK_KP_F1	include/XK_defines.h	/^# define XK_KP_F1 /;"	d
+XK_KP_F2	include/XK_defines.h	/^# define XK_KP_F2 /;"	d
+XK_KP_F3	include/XK_defines.h	/^# define XK_KP_F3 /;"	d
+XK_KP_F4	include/XK_defines.h	/^# define XK_KP_F4 /;"	d
+XK_KP_HOME	include/XK_defines.h	/^# define XK_KP_HOME /;"	d
+XK_KP_INSERT	include/XK_defines.h	/^# define XK_KP_INSERT /;"	d
+XK_KP_LEFT	include/XK_defines.h	/^# define XK_KP_LEFT /;"	d
+XK_KP_MULTIPLY	include/XK_defines.h	/^# define XK_KP_MULTIPLY /;"	d
+XK_KP_NEXT	include/XK_defines.h	/^# define XK_KP_NEXT /;"	d
+XK_KP_PAGE_DOWN	include/XK_defines.h	/^# define XK_KP_PAGE_DOWN /;"	d
+XK_KP_PAGE_UP	include/XK_defines.h	/^# define XK_KP_PAGE_UP /;"	d
+XK_KP_PRIOR	include/XK_defines.h	/^# define XK_KP_PRIOR /;"	d
+XK_KP_Q	include/XK_defines.h	/^# define XK_KP_Q /;"	d
+XK_KP_RIGHT	include/XK_defines.h	/^# define XK_KP_RIGHT /;"	d
+XK_KP_S	include/XK_defines.h	/^# define XK_KP_S /;"	d
+XK_KP_SEPARATOR	include/XK_defines.h	/^# define XK_KP_SEPARATOR /;"	d
+XK_KP_SPACE	include/XK_defines.h	/^# define XK_KP_SPACE /;"	d
+XK_KP_SUBTRACT	include/XK_defines.h	/^# define XK_KP_SUBTRACT	/;"	d
+XK_KP_SUBTRACT	include/XK_defines.h	/^# define XK_KP_SUBTRACT /;"	d
+XK_KP_TAB	include/XK_defines.h	/^# define XK_KP_TAB /;"	d
+XK_KP_UP	include/XK_defines.h	/^# define XK_KP_UP /;"	d
+XK_KP_W	include/XK_defines.h	/^# define XK_KP_W /;"	d
+XK_L	include/XK_defines.h	/^#  define XK_L /;"	d
+XK_LATIN1	include/XK_defines.h	/^#  define XK_LATIN1$/;"	d
+XK_LESS	include/XK_defines.h	/^#  define XK_LESS /;"	d
+XK_M	include/XK_defines.h	/^#  define XK_M /;"	d
+XK_MINUS	include/XK_defines.h	/^#  define XK_MINUS /;"	d
+XK_N	include/XK_defines.h	/^#  define XK_N /;"	d
+XK_NUMBERSIGN	include/XK_defines.h	/^#  define XK_NUMBERSIGN /;"	d
+XK_O	include/XK_defines.h	/^#  define XK_O /;"	d
+XK_P	include/XK_defines.h	/^#  define XK_P /;"	d
+XK_PARENLEFT	include/XK_defines.h	/^#  define XK_PARENLEFT /;"	d
+XK_PARENRIGHT	include/XK_defines.h	/^#  define XK_PARENRIGHT /;"	d
+XK_PERCENT	include/XK_defines.h	/^#  define XK_PERCENT /;"	d
+XK_PERIOD	include/XK_defines.h	/^#  define XK_PERIOD /;"	d
+XK_PLUS	include/XK_defines.h	/^#  define XK_PLUS /;"	d
+XK_Q	include/XK_defines.h	/^#  define XK_Q /;"	d
+XK_QUESTION	include/XK_defines.h	/^#  define XK_QUESTION /;"	d
+XK_QUOTEDBL	include/XK_defines.h	/^#  define XK_QUOTEDBL /;"	d
+XK_QUOTELEFT	include/XK_defines.h	/^#  define XK_QUOTELEFT /;"	d
+XK_QUOTERIGHT	include/XK_defines.h	/^#  define XK_QUOTERIGHT /;"	d
+XK_R	include/XK_defines.h	/^#  define XK_R /;"	d
+XK_S	include/XK_defines.h	/^#  define XK_S /;"	d
+XK_SEMICOLON	include/XK_defines.h	/^#  define XK_SEMICOLON /;"	d
+XK_SLASH	include/XK_defines.h	/^#  define XK_SLASH /;"	d
+XK_SPACE	include/XK_defines.h	/^#  define XK_SPACE /;"	d
+XK_T	include/XK_defines.h	/^#  define XK_T /;"	d
+XK_U	include/XK_defines.h	/^#  define XK_U /;"	d
+XK_UA	include/XK_defines.h	/^#  define XK_UA /;"	d
+XK_UB	include/XK_defines.h	/^#  define XK_UB /;"	d
+XK_UC	include/XK_defines.h	/^#  define XK_UC /;"	d
+XK_UD	include/XK_defines.h	/^#  define XK_UD /;"	d
+XK_UE	include/XK_defines.h	/^#  define XK_UE /;"	d
+XK_UF	include/XK_defines.h	/^#  define XK_UF /;"	d
+XK_UG	include/XK_defines.h	/^#  define XK_UG /;"	d
+XK_UH	include/XK_defines.h	/^#  define XK_UH /;"	d
+XK_UI	include/XK_defines.h	/^#  define XK_UI /;"	d
+XK_UJ	include/XK_defines.h	/^#  define XK_UJ /;"	d
+XK_UK	include/XK_defines.h	/^#  define XK_UK /;"	d
+XK_UL	include/XK_defines.h	/^#  define XK_UL /;"	d
+XK_UM	include/XK_defines.h	/^#  define XK_UM /;"	d
+XK_UN	include/XK_defines.h	/^#  define XK_UN /;"	d
+XK_UNDERSCORE	include/XK_defines.h	/^#  define XK_UNDERSCORE /;"	d
+XK_UO	include/XK_defines.h	/^#  define XK_UO /;"	d
+XK_UP	include/XK_defines.h	/^#  define XK_UP /;"	d
+XK_UQ	include/XK_defines.h	/^#  define XK_UQ /;"	d
+XK_UR	include/XK_defines.h	/^#  define XK_UR /;"	d
+XK_US	include/XK_defines.h	/^#  define XK_US /;"	d
+XK_UT	include/XK_defines.h	/^#  define XK_UT /;"	d
+XK_UU	include/XK_defines.h	/^#  define XK_UU /;"	d
+XK_UV	include/XK_defines.h	/^#  define XK_UV /;"	d
+XK_UW	include/XK_defines.h	/^#  define XK_UW /;"	d
+XK_UX	include/XK_defines.h	/^#  define XK_UX /;"	d
+XK_UY	include/XK_defines.h	/^#  define XK_UY /;"	d
+XK_UZ	include/XK_defines.h	/^#  define XK_UZ /;"	d
+XK_V	include/XK_defines.h	/^#  define XK_V /;"	d
+XK_W	include/XK_defines.h	/^#  define XK_W /;"	d
+XK_X	include/XK_defines.h	/^#  define XK_X /;"	d
+XK_Y	include/XK_defines.h	/^#  define XK_Y /;"	d
+XK_Z	include/XK_defines.h	/^#  define XK_Z /;"	d
+XPM	mlx_linux/man/man1/mlx_new_image.1	/^.SH XPM IMAGES$/;"	s	title:MiniLibX
+XPM	mlx_linux/man/man3/mlx_new_image.3	/^.SH XPM IMAGES$/;"	s	title:MiniLibX
+X_ShmAttach	mlx_linux/mlx_new_image.c	/^#define	X_ShmAttach	/;"	d	file:
+_B	include/enums.h	/^	_B$/;"	e	enum:e_rgb
+_G	include/enums.h	/^	_G,$/;"	e	enum:e_rgb
+_R	include/enums.h	/^	_R,$/;"	e	enum:e_rgb
+_X	include/enums.h	/^	_X,$/;"	e	enum:e_coords
+_Y	include/enums.h	/^	_Y,$/;"	e	enum:e_coords
+_Z	include/enums.h	/^	_Z$/;"	e	enum:e_coords
+a	include/structs.h	/^	float		a;$/;"	m	struct:s_quadratic	typeref:typename:float
+aa_bound_capsule	src/bounding_aa.c	/^void	aa_bound_capsule(t_cylinder *cylinder)$/;"	f	typeref:typename:void
+aa_bound_sphere	src/bounding_aa.c	/^void	aa_bound_sphere(t_sphere *sphere)$/;"	f	typeref:typename:void
+absolute	lib/mandatory/ft_itoa.c	/^unsigned int	absolute(int n)$/;"	f	typeref:typename:unsigned int
+addr	include/structs.h	/^	char 	*addr;$/;"	m	struct:s_img	typeref:typename:char *
+all	Makefile	/^all: $(NAME)$/;"	t
+all	lib/Makefile	/^all: $(NAME) bonus printf gnl$/;"	t
+all	lib/ft_printf/Makefile	/^all: $(NAME)$/;"	t
+all	mlx_linux/Makefile	/^all	: do_configure$/;"	t
+all	mlx_linux/Makefile.mk	/^all	: $(NAME)$/;"	t
+all	mlx_linux/test/Makefile.mk	/^all: $(NAME)$/;"	t
+alloc_scenes	src/utils/utils_alloc.c	/^t_scene	**alloc_scenes(int n_scenes)$/;"	f	typeref:typename:t_scene **
+alloc_shapes	src/utils/utils_alloc.c	/^int	alloc_shapes(t_rt *rt)$/;"	f	typeref:typename:int
+amb	include/structs.h	/^	t_ambient	amb;$/;"	m	struct:s_scene	typeref:typename:t_ambient
+anch	include/structs.h	/^	t_vec3		anch;$/;"	m	struct:s_plane	typeref:typename:t_vec3
+aspect_ratio	include/structs.h	/^	float	aspect_ratio;$/;"	m	struct:s_mlx	typeref:typename:float
+at_exit	mlx_linux/test/run_tests.sh	/^at_exit() {$/;"	f
+atof_calculate	lib/mandatory/ft_atof.c	/^float	atof_calculate(char *input, int sign, int divisor, bool in_fraction)$/;"	f	typeref:typename:float
+axis	include/structs.h	/^	t_vec3		axis;$/;"	m	struct:s_cylinder	typeref:typename:t_vec3
+axis	include/structs.h	/^	t_vec3		axis[3];$/;"	m	struct:s_scene	typeref:typename:t_vec3[3]
+axis_angle_to_quaternion	src/controls/quaternion.c	/^t_quaternion	axis_angle_to_quaternion(t_vec3 axis, float angle)$/;"	f	typeref:typename:t_quaternion
+b	include/structs.h	/^	float		b;$/;"	m	struct:s_quadratic	typeref:typename:float
+b_no_event	src/controls/hookhandle_mouse.c	/^int	b_no_event(void *vars)$/;"	f	typeref:typename:int
+b_press	src/controls/hookhandle_mouse.c	/^int	b_press(int button, int x, int y, t_mlx *mlx)$/;"	f	typeref:typename:int
+b_release	src/controls/hookhandle_mouse.c	/^int	b_release(int button, void *vars)$/;"	f	typeref:typename:int
+bits_per_pixel	include/structs.h	/^	int		bits_per_pixel;$/;"	m	struct:s_img	typeref:typename:int
+bonus	lib/Makefile	/^bonus: $(OBJS) $(B_OBJS)$/;"	t
+bounce	include/structs.h	/^	t_vec3		bounce;$/;"	m	struct:s_ray	typeref:typename:t_vec3
+bounds	include/structs.h	/^	t_bbox		bounds;$/;"	m	struct:s_cylinder	typeref:typename:t_bbox
+bounds	include/structs.h	/^	t_bbox		bounds;$/;"	m	struct:s_plane	typeref:typename:t_bbox
+bounds	include/structs.h	/^	t_bbox		bounds;$/;"	m	struct:s_sphere	typeref:typename:t_bbox
+bpp	mlx_linux/mlx_int.h	/^	int				bpp;$/;"	m	struct:s_img	typeref:typename:int
+bpp1	mlx_linux/test/main.c	/^int	bpp1;$/;"	v	typeref:typename:int
+bpp2	mlx_linux/test/main.c	/^int	bpp2;$/;"	v	typeref:typename:int
+bpp3	mlx_linux/test/main.c	/^int	bpp3;$/;"	v	typeref:typename:int
+bpp4	mlx_linux/test/main.c	/^int	bpp4;$/;"	v	typeref:typename:int
+c	include/structs.h	/^	float		c;$/;"	m	struct:s_quadratic	typeref:typename:float
+calculate_quadratic	src/maths/quadratic.c	/^int	calculate_quadratic(t_cylinder *cylinder, t_ray *ray, t_quadratic	*eq)$/;"	f	typeref:typename:int
+cam	include/structs.h	/^	t_camera	cam;$/;"	m	struct:s_scene	typeref:typename:t_camera
+cam_defaults	include/structs.h	/^	t_camera	cam_defaults;$/;"	m	struct:s_scene	typeref:typename:t_camera
+cast_cam_ray	src/draw/cast_cam_ray.c	/^int	cast_cam_ray(t_scene *scene, t_ray *ray)$/;"	f	typeref:typename:int
+cast_light_ray	src/draw/cast_light_ray.c	/^int	cast_light_ray(t_scene *scene, t_ray *ray, float *light_t)$/;"	f	typeref:typename:int
+center	include/structs.h	/^	t_vec3		center;$/;"	m	struct:s_cylinder	typeref:typename:t_vec3
+center	include/structs.h	/^	t_vec3		center;$/;"	m	struct:s_sphere	typeref:typename:t_vec3
+check	mlx_linux/Makefile.mk	/^check: all$/;"	t
+check_cap_intersection	src/intersections/intersect_cylinder_caps.c	/^static int	check_cap_intersection(t_vec3 cap_center, t_ray *ray,$/;"	f	typeref:typename:int	file:
+check_format	src/utils/check_format.c	/^int	check_format(int argc, char **argv)$/;"	f	typeref:typename:int
+clean	Makefile	/^clean:$/;"	t
+clean	lib/Makefile	/^clean:$/;"	t
+clean	lib/ft_printf/Makefile	/^clean:$/;"	t
+clean	mlx_linux/Makefile	/^clean	:$/;"	t
+clean	mlx_linux/Makefile.mk	/^clean	:$/;"	t
+clean	mlx_linux/configure	/^clean(){$/;"	f
+clean	mlx_linux/test/Makefile.mk	/^clean:$/;"	t
+cleanup_mlx	src/utils/utils_mlx.c	/^void	cleanup_mlx(t_mlx *mlx)$/;"	f	typeref:typename:void
+cleanup_rt	src/utils/utils_rt.c	/^void	cleanup_rt(t_rt *rt)$/;"	f	typeref:typename:void
+cmap	mlx_linux/mlx_int.h	/^	Colormap	cmap;$/;"	m	struct:s_xvar	typeref:typename:Colormap
+col	mlx_linux/mlx_int.h	/^	int		col;$/;"	m	struct:s_xpm_col	typeref:typename:int
+color	include/structs.h	/^	int			color;$/;"	m	struct:s_cylinder	typeref:typename:int
+color	include/structs.h	/^	int			color;$/;"	m	struct:s_plane	typeref:typename:int
+color	include/structs.h	/^	int			color;$/;"	m	struct:s_sphere	typeref:typename:int
+color	mlx_linux/mlx_int.h	/^	int		color;$/;"	m	struct:s_col_name	typeref:typename:int
+color_addition	src/draw/draw_color.c	/^int	color_addition(int original, int target)$/;"	f	typeref:typename:int
+color_alter_vector	src/controls/control_ambient.c	/^void	color_alter_vector(t_rgb color, int component, float amount)$/;"	f	typeref:typename:void
+color_illuminate	src/draw/draw_color.c	/^int	color_illuminate(int original, int target, float ratio)$/;"	f	typeref:typename:int
+color_int_to_vector	src/draw/draw_utils.c	/^void	color_int_to_vector(t_rgb rgb, int color)$/;"	f	typeref:typename:void
+color_invert	src/draw/draw_color.c	/^int	color_invert(int original)$/;"	f	typeref:typename:int
+color_map_1	mlx_linux/test/main.c	/^int	color_map_1(void *win,int w,int h)$/;"	f	typeref:typename:int
+color_map_2	mlx_linux/test/main.c	/^int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int type)$/;"	f	typeref:typename:int
+color_shift	src/draw/draw_color.c	/^int	color_shift(int original, int target, float ratio)$/;"	f	typeref:typename:int
+color_subtract	src/draw/draw_color.c	/^int	color_subtract(int original, int target, float ratio)$/;"	f	typeref:typename:int
+color_vector_to_int	src/draw/draw_utils.c	/^int	color_vector_to_int(t_rgb rgb)$/;"	f	typeref:typename:int
+comb_color	include/structs.h	/^	int			comb_color;		\/\/ hue of combined direct and ambient light$/;"	m	struct:s_ray	typeref:typename:int
+combine_lights	src/draw/pixel_shaders.c	/^int	combine_lights(int light_color, t_ambient amb)$/;"	f	typeref:typename:int
+content	include/libft.h	/^	void			*content;$/;"	m	struct:s_list	typeref:typename:void *
+content	lib/include/libft.h	/^	void			*content;$/;"	m	struct:s_list	typeref:typename:void *
+create_threads	src/draw/render_scene_mt.c	/^int	create_threads(t_render *renders, int n_threads)$/;"	f	typeref:typename:int
+cross_product	src/maths/vector_products.c	/^void	cross_product(t_vec3 product, t_vec3 a, t_vec3 b)$/;"	f	typeref:typename:void
+curr_scene	include/structs.h	/^	int		curr_scene;$/;"	m	struct:s_rt	typeref:typename:int
+cyls	include/structs.h	/^	t_cylinder	*cyls;$/;"	m	struct:s_scene	typeref:typename:t_cylinder *
+data	mlx_linux/mlx_int.h	/^	char			*data;$/;"	m	struct:s_img	typeref:typename:char *
+data1	mlx_linux/test/main.c	/^char	*data1;$/;"	v	typeref:typename:char *
+data2	mlx_linux/test/main.c	/^char	*data2;$/;"	v	typeref:typename:char *
+data3	mlx_linux/test/main.c	/^char	*data3;$/;"	v	typeref:typename:char *
+data4	mlx_linux/test/main.c	/^char	*data4;$/;"	v	typeref:typename:char *
+dealloc_shapes	src/utils/utils_free.c	/^void	dealloc_shapes(t_scene **scenes, int i)$/;"	f	typeref:typename:void
+decrgb	mlx_linux/mlx_int.h	/^	int			decrgb[6];$/;"	m	struct:s_xvar	typeref:typename:int[6]
+depth	mlx_linux/mlx_int.h	/^	int			depth;$/;"	m	struct:s_xvar	typeref:typename:int
+diamtr	include/structs.h	/^	float		diamtr;$/;"	m	struct:s_cylinder	typeref:typename:float
+diamtr	include/structs.h	/^	float		diamtr;$/;"	m	struct:s_sphere	typeref:typename:float
+dir	include/structs.h	/^	t_vec3		dir;	\/\/	unit vector pointing out of the camera$/;"	m	struct:s_camera	typeref:typename:t_vec3
+dir	include/structs.h	/^	t_vec3		dir;$/;"	m	struct:s_ray	typeref:typename:t_vec3
+dir_def	include/structs.h	/^	t_vec3		dir_def;$/;"	m	struct:s_camera	typeref:typename:t_vec3
+discriminant	include/structs.h	/^	float		discriminant;$/;"	m	struct:s_quadratic	typeref:typename:float
+display	mlx_linux/mlx_int.h	/^	Display		*display;$/;"	m	struct:s_xvar	typeref:typename:Display *
+display_hud	src/hud.c	/^void	display_hud(t_mlx *mlx, t_scene *scene)$/;"	f	typeref:typename:void
+display_hud_background	src/hud.c	/^void	display_hud_background(t_mlx *mlx)$/;"	f	typeref:typename:void
+do_configure	mlx_linux/Makefile	/^do_configure	:$/;"	t
+do_flush	mlx_linux/mlx_int.h	/^	int			do_flush;$/;"	m	struct:s_xvar	typeref:typename:int
+done_threads	include/structs.h	/^	int			done_threads;$/;"	m	struct:s_render	typeref:typename:int
+dot_product	src/maths/vector_products.c	/^float	dot_product(t_vec3 a, t_vec3 b)$/;"	f	typeref:typename:float
+e_coords	include/enums.h	/^enum e_coords$/;"	g
+e_errcode	include/enums.h	/^enum e_errcode$/;"	g
+e_keypress	include/enums.h	/^enum e_keypress$/;"	g
+e_lock	include/enums.h	/^enum e_lock$/;"	g
+e_rescode	include/enums.h	/^enum e_rescode$/;"	g
+e_rgb	include/enums.h	/^enum e_rgb$/;"	g
+e_select_type	include/enums.h	/^enum e_select_type$/;"	g
+end_loop	mlx_linux/mlx_int.h	/^	int 		end_loop;$/;"	m	struct:s_xvar	typeref:typename:int
+endian	include/structs.h	/^	int		endian;$/;"	m	struct:s_img	typeref:typename:int
+endian1	mlx_linux/test/main.c	/^int	endian1;$/;"	v	typeref:typename:int
+endian2	mlx_linux/test/main.c	/^int	endian2;$/;"	v	typeref:typename:int
+endian3	mlx_linux/test/main.c	/^int	endian3;$/;"	v	typeref:typename:int
+endian4	mlx_linux/test/main.c	/^int	endian4;$/;"	v	typeref:typename:int
+errcode	include/structs.h	/^	int		errcode;$/;"	m	struct:s_rt	typeref:typename:int
+exit_error	src/error.c	/^void	exit_error(t_mlx *mlx, char *message, int errcode)$/;"	f	typeref:typename:void
+expose_hook	mlx_linux/mlx_int.h	/^	int					(*expose_hook)();$/;"	m	struct:s_win_list	typeref:typename:int (*)()
+expose_param	mlx_linux/mlx_int.h	/^	void				*expose_param;$/;"	m	struct:s_win_list	typeref:typename:void *
+expose_win1	mlx_linux/test/main.c	/^int	expose_win1(void *p)$/;"	f	typeref:typename:int
+expose_win2	mlx_linux/test/main.c	/^int	expose_win2(void *p)$/;"	f	typeref:typename:int
+extend_line	lib/get_next_line/get_next_line_bonus.c	/^int	extend_line(int fd, char **line)$/;"	f	typeref:typename:int
+fanalyzer	Makefile	/^fanalyzer: $(OBJS) $(LIB_PATH) $(MLX_PATH) $(HEADERS)$/;"	t
+fclean	Makefile	/^fclean: clean$/;"	t
+fclean	lib/Makefile	/^fclean: clean$/;"	t
+fclean	lib/ft_printf/Makefile	/^fclean: clean$/;"	t
+fd	include/structs.h	/^	int		*fd;$/;"	m	struct:s_rt	typeref:typename:int *
+fill_array	src/hud.c	/^void	fill_array(int *y)$/;"	f	typeref:typename:void
+find_closest_t	src/draw/cast_cam_ray.c	/^float	find_closest_t(t_scene *scene, t_ray *ray, int *pixel_color)$/;"	f	typeref:typename:float
+fl_abs	src/maths/math_misc.c	/^float	fl_abs(float f)$/;"	f	typeref:typename:float
+fname	include/structs.h	/^	char		*fname;$/;"	m	struct:s_scene	typeref:typename:char *
+format	lib/ft_printf/ft_printf.c	/^int	format(va_list arg, char c)$/;"	f	typeref:typename:int
+format	mlx_linux/mlx_int.h	/^	int				format;$/;"	m	struct:s_img	typeref:typename:int
+fov	include/structs.h	/^	int			fov;$/;"	m	struct:s_camera	typeref:typename:int
+free_scene	src/utils/utils_free.c	/^void	free_scene(t_scene *scene)$/;"	f	typeref:typename:void
+ft_atof	lib/mandatory/ft_atof.c	/^float	ft_atof(char *input)$/;"	f	typeref:typename:float
+ft_atoi	lib/mandatory/ft_atoi.c	/^int	ft_atoi(const char *nptr)$/;"	f	typeref:typename:int
+ft_atoi_hex	lib/mandatory/ft_atoi_hex.c	/^int	ft_atoi_hex(const char *hex)$/;"	f	typeref:typename:int
+ft_bzero	lib/mandatory/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f	typeref:typename:void
+ft_calloc	lib/mandatory/ft_calloc.c	/^void	*ft_calloc(size_t nmemb, size_t size)$/;"	f	typeref:typename:void *
+ft_free_string_list	lib/mandatory/ft_free_string_list.c	/^void	ft_free_string_list(char **input)$/;"	f	typeref:typename:void
+ft_isalnum	lib/mandatory/ft_isalnum.c	/^int	ft_isalnum(int c)$/;"	f	typeref:typename:int
+ft_isalpha	lib/mandatory/ft_isalpha.c	/^int	ft_isalpha(int c)$/;"	f	typeref:typename:int
+ft_isascii	lib/mandatory/ft_isascii.c	/^int	ft_isascii(int c)$/;"	f	typeref:typename:int
+ft_isdigit	lib/mandatory/ft_isdigit.c	/^int	ft_isdigit(int c)$/;"	f	typeref:typename:int
+ft_isprint	lib/mandatory/ft_isprint.c	/^int	ft_isprint(int c)$/;"	f	typeref:typename:int
+ft_itoa	lib/mandatory/ft_itoa.c	/^char	*ft_itoa(int n)$/;"	f	typeref:typename:char *
+ft_listcount	src/parse/parse_shapes.c	/^int	ft_listcount(char **list)$/;"	f	typeref:typename:int
+ft_lstadd_back	lib/bonus/ft_lstadd_back.c	/^void	ft_lstadd_back(t_list **lst, t_list *new)$/;"	f	typeref:typename:void
+ft_lstadd_front	lib/bonus/ft_lstadd_front.c	/^void	ft_lstadd_front(t_list **lst, t_list *new)$/;"	f	typeref:typename:void
+ft_lstclear	lib/bonus/ft_lstclear.c	/^void	ft_lstclear(t_list **lst, void (*del)(void*))$/;"	f	typeref:typename:void
+ft_lstdelone	lib/bonus/ft_lstdelone.c	/^void	ft_lstdelone(t_list *lst, void (*del)(void*))$/;"	f	typeref:typename:void
+ft_lstiter	lib/bonus/ft_lstiter.c	/^void	ft_lstiter(t_list *lst, void (*f)(void *))$/;"	f	typeref:typename:void
+ft_lstlast	lib/bonus/ft_lstlast.c	/^t_list	*ft_lstlast(t_list *lst)$/;"	f	typeref:typename:t_list *
+ft_lstmap	lib/bonus/ft_lstmap.c	/^t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))$/;"	f	typeref:typename:t_list *
+ft_lstnew	lib/bonus/ft_lstnew.c	/^t_list	*ft_lstnew(void *content)$/;"	f	typeref:typename:t_list *
+ft_lstsize	lib/bonus/ft_lstsize.c	/^int	ft_lstsize(t_list *lst)$/;"	f	typeref:typename:int
+ft_memchr	lib/mandatory/ft_memchr.c	/^void	*ft_memchr(const void *s, int c, size_t n)$/;"	f	typeref:typename:void *
+ft_memcmp	lib/mandatory/ft_memcmp.c	/^int	ft_memcmp(const void *s1, const void *s2, size_t n)$/;"	f	typeref:typename:int
+ft_memcpy	lib/mandatory/ft_memcpy.c	/^void	*ft_memcpy(void *dest, const void *src, size_t n)$/;"	f	typeref:typename:void *
+ft_memmove	lib/mandatory/ft_memmove.c	/^void	*ft_memmove(void *dest, const void *src, size_t n)$/;"	f	typeref:typename:void *
+ft_memset	lib/mandatory/ft_memset.c	/^void	*ft_memset(void *s, int c, size_t n)$/;"	f	typeref:typename:void *
+ft_printf	lib/ft_printf/ft_printf.c	/^int	ft_printf(const char *str, ...)$/;"	f	typeref:typename:int
+ft_putchar_fd	lib/mandatory/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/;"	f	typeref:typename:void
+ft_putendl_fd	lib/mandatory/ft_putendl_fd.c	/^void	ft_putendl_fd(char *s, int fd)$/;"	f	typeref:typename:void
+ft_putnbr_fd	lib/mandatory/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/;"	f	typeref:typename:void
+ft_putstr_fd	lib/mandatory/ft_putstr_fd.c	/^void	ft_putstr_fd(char *s, int fd)$/;"	f	typeref:typename:void
+ft_split	lib/mandatory/ft_split.c	/^char	**ft_split(char const *s, char c)$/;"	f	typeref:typename:char **
+ft_strchr	lib/mandatory/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f	typeref:typename:char *
+ft_strdup	lib/mandatory/ft_strdup.c	/^char	*ft_strdup(const char *s)$/;"	f	typeref:typename:char *
+ft_striteri	lib/mandatory/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, char*))$/;"	f	typeref:typename:void
+ft_strjoin	lib/mandatory/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/;"	f	typeref:typename:char *
+ft_strlcat	lib/mandatory/ft_strlcat.c	/^size_t	ft_strlcat(char *dst, const char *src, size_t size)$/;"	f	typeref:typename:size_t
+ft_strlcpy	lib/mandatory/ft_strlcpy.c	/^size_t	ft_strlcpy(char *dst, const char *src, size_t size)$/;"	f	typeref:typename:size_t
+ft_strlen	lib/mandatory/ft_strlen.c	/^size_t	ft_strlen(const char *s)$/;"	f	typeref:typename:size_t
+ft_strmapi	lib/mandatory/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))$/;"	f	typeref:typename:char *
+ft_strncmp	lib/mandatory/ft_strncmp.c	/^int	ft_strncmp(const char *s1, const char *s2, size_t n)$/;"	f	typeref:typename:int
+ft_strnicmp	lib/mandatory/ft_strnicmp.c	/^int	ft_strnicmp(const char *s1, const char *s2, size_t n)$/;"	f	typeref:typename:int
+ft_strnstr	lib/mandatory/ft_strnstr.c	/^char	*ft_strnstr(const char *big, const char *little, size_t len)$/;"	f	typeref:typename:char *
+ft_strrchr	lib/mandatory/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/;"	f	typeref:typename:char *
+ft_strtrim	lib/mandatory/ft_strtrim.c	/^char	*ft_strtrim(char const *s1, char const *set)$/;"	f	typeref:typename:char *
+ft_substr	lib/mandatory/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start, size_t len)$/;"	f	typeref:typename:char *
+ft_tolower	lib/mandatory/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f	typeref:typename:int
+ft_toupper	lib/mandatory/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f	typeref:typename:int
+gc	mlx_linux/mlx_int.h	/^	GC					gc;$/;"	m	struct:s_win_list	typeref:typename:GC
+gc	mlx_linux/mlx_int.h	/^	GC				gc;$/;"	m	struct:s_img	typeref:typename:GC
+gere_mouse	mlx_linux/test/new_win.c	/^int gere_mouse(int x,int y,int button,void*toto)$/;"	f	typeref:typename:int
+get_buffer	lib/get_next_line/get_next_line_bonus.c	/^char	*get_buffer(int fd)$/;"	f	typeref:typename:char *
+get_cylinder_normal	src/maths/vector_normals.c	/^void	get_cylinder_normal(t_vec3 normal, t_cylinder *cylinder, t_ray *ray)$/;"	f	typeref:typename:void
+get_line	lib/get_next_line/get_next_line_bonus.c	/^char	*get_line(int fd)$/;"	f	typeref:typename:char *
+get_next_line	lib/get_next_line/get_next_line_bonus.c	/^char	*get_next_line(int fd)$/;"	f	typeref:typename:char *
+get_xlib_include_path	mlx_linux/configure	/^get_xlib_include_path(){$/;"	f
+gnl	lib/Makefile	/^gnl:	$(OBJS) $(GNL_OBJS)$/;"	t
+handle_destroy	src/utils/utils_mlx.c	/^int	handle_destroy(t_mlx *mlx)$/;"	f	typeref:typename:int
+height	include/structs.h	/^	float		height;$/;"	m	struct:s_cylinder	typeref:typename:float
+height	mlx_linux/mlx_int.h	/^	int				height;$/;"	m	struct:s_img	typeref:typename:int
+highlight_selected	src/draw/post_process.c	/^void	highlight_selected(t_scene *scene, int x, int y, int radius)$/;"	f	typeref:typename:void
+hook	mlx_linux/mlx_int.h	/^	int		(*hook)();$/;"	m	struct:s_event_list	typeref:typename:int (*)()
+hooks	mlx_linux/mlx_int.h	/^	t_event_list		hooks[MLX_MAX_EVENT];$/;"	m	struct:s_win_list	typeref:typename:t_event_list[]
+hue	include/structs.h	/^	int			hue;$/;"	m	struct:s_ambient	typeref:typename:int
+hue	include/structs.h	/^	int			hue;$/;"	m	struct:s_light	typeref:typename:int
+id	include/structs.h	/^	int			id;$/;"	m	struct:s_cylinder	typeref:typename:int
+id	include/structs.h	/^	int			id;$/;"	m	struct:s_plane	typeref:typename:int
+id	include/structs.h	/^	int			id;$/;"	m	struct:s_scene	typeref:typename:int
+id	include/structs.h	/^	int			id;$/;"	m	struct:s_sphere	typeref:typename:int
+illuminate_pixel	src/draw/pixel_shaders.c	/^int	illuminate_pixel(int pixel_color, int light_color)$/;"	f	typeref:typename:int
+im1	mlx_linux/test/main.c	/^void    *im1;$/;"	v	typeref:typename:void *
+im2	mlx_linux/test/main.c	/^void	*im2;$/;"	v	typeref:typename:void *
+im3	mlx_linux/test/main.c	/^void	*im3;$/;"	v	typeref:typename:void *
+im4	mlx_linux/test/main.c	/^void	*im4;$/;"	v	typeref:typename:void *
+image	mlx_linux/mlx_int.h	/^	XImage			*image;$/;"	m	struct:s_img	typeref:typename:XImage *
+img	include/structs.h	/^	t_img		*img;$/;"	m	struct:s_scene	typeref:typename:t_img *
+img	include/structs.h	/^	void	*img;$/;"	m	struct:s_img	typeref:typename:void *
+img_init	src/draw/draw_utils.c	/^int	img_init(t_mlx *mlx, t_img *img)$/;"	f	typeref:typename:int
+init_cam_ray	src/draw/cast_cam_ray.c	/^void	init_cam_ray(t_scene *scene, t_ray *ray, int x, int y)$/;"	f	typeref:typename:void
+init_cylinders	src/utils/init_shapes.c	/^void	init_cylinders(t_scene *scene)$/;"	f	typeref:typename:void
+init_object_selection	src/utils/init_scene.c	/^void	init_object_selection(t_scene *scene)$/;"	f	typeref:typename:void
+init_planes	src/utils/init_shapes.c	/^void	init_planes(t_scene *scene)$/;"	f	typeref:typename:void
+init_rqueue	src/draw/render_scene_mt.c	/^int	init_rqueue(t_mlx *mlx, t_render **renders)$/;"	f	typeref:typename:int
+init_rt	src/utils/utils_rt.c	/^int	init_rt(t_rt *rt, int argc)$/;"	f	typeref:typename:int
+init_scene	src/utils/init_scene.c	/^int	init_scene(t_scene *scene, char *filename, int id)$/;"	f	typeref:typename:int
+init_scene_shape_data	src/utils/init_scene.c	/^void	init_scene_shape_data(t_scene *scene)$/;"	f	typeref:typename:void
+init_scene_vectors	src/utils/init_scene.c	/^void	init_scene_vectors(t_scene *scene)$/;"	f	typeref:typename:void
+init_scenes	src/utils/init_scene.c	/^int	init_scenes(t_rt *rt, char **argv)$/;"	f	typeref:typename:int
+init_spheres	src/utils/init_shapes.c	/^void	init_spheres(t_scene *scene)$/;"	f	typeref:typename:void
+intersect_cyl_caps	src/intersections/intersect_cylinder_caps.c	/^int	intersect_cyl_caps(t_cylinder *cyl, t_ray *ray, float *t)$/;"	f	typeref:typename:int
+intersect_cyl_sides	src/intersections/intersect_cylinder.c	/^int	intersect_cyl_sides(t_cylinder *cylinder, t_ray *ray, float *t)$/;"	f	typeref:typename:int
+intersect_cylinder	src/intersections/intersect_cylinder.c	/^int	intersect_cylinder(t_cylinder *cylinder, t_ray *ray, float *t)$/;"	f	typeref:typename:int
+intersect_cylinders	src/intersections/intersect_cylinder.c	/^void	intersect_cylinders(t_scene *scene, t_ray *ray, float *t, int *col)$/;"	f	typeref:typename:void
+intersect_light	src/intersections/intersect_light.c	/^int	intersect_light(t_light *light, t_ray *ray, float *t)$/;"	f	typeref:typename:int
+intersect_lights	src/intersections/intersect_light.c	/^void	intersect_lights(t_scene *scene, t_ray *ray, float *t, int *col)$/;"	f	typeref:typename:void
+intersect_plane	src/intersections/intersect_planes.c	/^int	intersect_plane(t_plane *plane, t_ray *ray, float *t)$/;"	f	typeref:typename:int
+intersect_planes	src/intersections/intersect_planes.c	/^void	intersect_planes(t_scene *scene, t_ray *ray, float *t, int *col)$/;"	f	typeref:typename:void
+intersect_sphere	src/intersections/intersect_spheres.c	/^int	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t)$/;"	f	typeref:typename:int
+intersect_spheres	src/intersections/intersect_spheres.c	/^void	intersect_spheres(t_scene *scene, t_ray *ray, float *t, int *col)$/;"	f	typeref:typename:void
+is_complete	lib/get_next_line/get_next_line_utils_bonus.c	/^int	is_complete(char *str)$/;"	f	typeref:typename:int
+is_whitespace	lib/mandatory/ft_atoi.c	/^int	is_whitespace(char c)$/;"	f	typeref:typename:int
+k_adjust_shine	src/controls/control_shine.c	/^void	k_adjust_shine(int keysym, t_mlx *mlx)$/;"	f	typeref:typename:void
+k_adjust_shine_cylinder	src/controls/control_shine.c	/^void	k_adjust_shine_cylinder(int keysym, t_cylinder *cylinder)$/;"	f	typeref:typename:void
+k_adjust_shine_plane	src/controls/control_shine.c	/^void	k_adjust_shine_plane(int keysym, t_plane *plane)$/;"	f	typeref:typename:void
+k_adjust_shine_sphere	src/controls/control_shine.c	/^void	k_adjust_shine_sphere(int keysym, t_sphere *sphere)$/;"	f	typeref:typename:void
+k_cam_pan	src/controls/control_camera.c	/^void	k_cam_pan(int keysym, t_camera *cam)$/;"	f	typeref:typename:void
+k_control_ambient	src/controls/control_ambient.c	/^void	k_control_ambient(int keysym, t_scene *scene)$/;"	f	typeref:typename:void
+k_control_light	src/controls/control_ambient.c	/^void	k_control_light(int keysym, t_scene *scene)$/;"	f	typeref:typename:void
+k_deselect_object	src/controls/control_kb_select.c	/^void	k_deselect_object(t_mlx *mlx)$/;"	f	typeref:typename:void
+k_directional_controls	src/controls/control_move.c	/^void	k_directional_controls(int keysym, t_mlx *mlx)$/;"	f	typeref:typename:void
+k_fov_controls	src/controls/hookhandle_kb.c	/^void	k_fov_controls(t_mlx *mlx, int ksym)$/;"	f	typeref:typename:void
+k_move_camera	src/controls/control_move.c	/^void	k_move_camera(int keysym, t_scene *scene)$/;"	f	typeref:typename:void
+k_move_cylinder	src/controls/control_move_cylinder.c	/^void	k_move_cylinder(int keysym, t_scene *scene)$/;"	f	typeref:typename:void
+k_move_light	src/controls/control_move.c	/^void	k_move_light(int keysym, t_scene *scene)$/;"	f	typeref:typename:void
+k_move_plane	src/controls/control_move_shapes.c	/^void	k_move_plane(int keysym, t_scene *scene)$/;"	f	typeref:typename:void
+k_move_sphere	src/controls/control_move_shapes.c	/^void	k_move_sphere(int keysym, t_scene *scene)$/;"	f	typeref:typename:void
+k_no_event	src/controls/hookhandle_kb.c	/^int	k_no_event(void *vars)$/;"	f	typeref:typename:int
+k_press	src/controls/hookhandle_kb.c	/^int	k_press(int ksym, t_mlx *mlx)$/;"	f	typeref:typename:int
+k_release	src/controls/hookhandle_kb.c	/^int	k_release(int ksym, void *vars)$/;"	f	typeref:typename:int
+k_rotate	src/controls/control_move.c	/^void	k_rotate(t_scene *scene, int keysym)$/;"	f	typeref:typename:void
+k_select_ambient	src/controls/control_kb_select.c	/^void	k_select_ambient(t_mlx *mlx)$/;"	f	typeref:typename:void
+k_select_light	src/controls/control_kb_select.c	/^void	k_select_light(int keysym, t_mlx *mlx)$/;"	f	typeref:typename:void
+k_select_scene	src/controls/control_scenes.c	/^int	k_select_scene(int keysym, t_mlx *mlx)$/;"	f	typeref:typename:int
+key_hook	mlx_linux/mlx_int.h	/^	int					(*key_hook)();$/;"	m	struct:s_win_list	typeref:typename:int (*)()
+key_param	mlx_linux/mlx_int.h	/^	void				*key_param;$/;"	m	struct:s_win_list	typeref:typename:void *
+key_win1	mlx_linux/test/main.c	/^int	key_win1(int key,void *p)$/;"	f	typeref:typename:int
+key_win2	mlx_linux/test/main.c	/^int	key_win2(int key,void *p)$/;"	f	typeref:typename:int
+key_win3	mlx_linux/test/main.c	/^int	key_win3(int key,void *p)$/;"	f	typeref:typename:int
+kp_change_scene	src/controls/control_scenes.c	/^void	kp_change_scene(t_mlx *mlx, int newscene)$/;"	f	typeref:typename:void
+kp_select_scene	src/controls/control_scenes.c	/^int	kp_select_scene(int keysym, t_mlx *mlx, int newscene)$/;"	f	typeref:typename:int
+lcount	lib/mandatory/ft_split.c	/^static unsigned int	lcount(char const *s, char c, int i)$/;"	f	typeref:typename:unsigned int	file:
+light	include/structs.h	/^	t_light		light;$/;"	m	struct:s_scene	typeref:typename:t_light
+light_angle	src/draw/light_angle.c	/^int	light_angle(t_scene *scene, t_ray *ray, int light_color)$/;"	f	typeref:typename:int
+light_angle_cylinder	src/draw/light_angle.c	/^float	light_angle_cylinder(t_scene *scene, t_ray *ray)$/;"	f	typeref:typename:float
+light_angle_cyltop	src/draw/light_angle.c	/^float	light_angle_cyltop(t_scene *scene, t_ray *ray)$/;"	f	typeref:typename:float
+light_angle_plane	src/draw/light_angle.c	/^float	light_angle_plane(t_scene *scene, t_ray *ray)$/;"	f	typeref:typename:float
+light_angle_sphere	src/draw/light_angle.c	/^float	light_angle_sphere(t_scene *scene, t_ray *ray)$/;"	f	typeref:typename:float
+light_color	include/structs.h	/^	int			light_color;	\/\/ hue of light source at bounce point$/;"	m	struct:s_ray	typeref:typename:int
+light_t	include/structs.h	/^	float		light_t;		\/\/ distance from light source to bounce point$/;"	m	struct:s_ray	typeref:typename:float
+line_length	include/structs.h	/^	int		line_length;$/;"	m	struct:s_img	typeref:typename:int
+local_endian	mlx_linux/test/main.c	/^int	local_endian;$/;"	v	typeref:typename:int
+lock	include/structs.h	/^	int			lock;$/;"	m	struct:s_ambient	typeref:typename:int
+lock	include/structs.h	/^	int			lock;$/;"	m	struct:s_camera	typeref:typename:int
+lock	include/structs.h	/^	int			lock;$/;"	m	struct:s_light	typeref:typename:int
+log_error	mlx_linux/configure	/^log_error(){$/;"	f
+log_error	mlx_linux/test/run_tests.sh	/^log_error(){$/;"	f
+log_info	mlx_linux/configure	/^log_info(){$/;"	f
+log_info	mlx_linux/test/run_tests.sh	/^log_info(){$/;"	f
+logging	mlx_linux/configure	/^logging(){$/;"	f
+logging	mlx_linux/test/run_tests.sh	/^logging(){$/;"	f
+loop_hook	mlx_linux/mlx_int.h	/^	int			(*loop_hook)();$/;"	m	struct:s_xvar	typeref:typename:int (*)()
+loop_param	mlx_linux/mlx_int.h	/^	void		*loop_param;$/;"	m	struct:s_xvar	typeref:typename:void *
+lum	include/structs.h	/^	float		lum;$/;"	m	struct:s_ambient	typeref:typename:float
+lum	include/structs.h	/^	float		lum;$/;"	m	struct:s_light	typeref:typename:float
+m_select_object	src/controls/hookhandle_mouse.c	/^void	m_select_object(t_mlx *mlx, int x, int y)$/;"	f	typeref:typename:void
+m_zoom	src/controls/hookhandle_mouse.c	/^void	m_zoom(t_mlx *mlx, int button)$/;"	f	typeref:typename:void
+main	mlx_linux/configure	/^main(){$/;"	f
+main	mlx_linux/test/main.c	/^int	main()$/;"	f	typeref:typename:int
+main	mlx_linux/test/new_win.c	/^int main()$/;"	f	typeref:typename:int
+main	mlx_linux/test/run_tests.sh	/^main(){$/;"	f
+main	src/main.c	/^int	main(int argc, char **argv)$/;"	f	typeref:typename:int
+mask	mlx_linux/mlx_int.h	/^	int		mask;$/;"	m	struct:s_event_list	typeref:typename:int
+max	include/structs.h	/^	t_vec3		max;$/;"	m	struct:s_bbox	typeref:typename:t_vec3
+min	include/structs.h	/^	t_vec3		min;$/;"	m	struct:s_bbox	typeref:typename:t_vec3
+mlx	include/structs.h	/^	t_mlx		*mlx;$/;"	m	struct:s_render	typeref:typename:t_mlx *
+mlx	include/structs.h	/^	void	*mlx;$/;"	m	struct:s_mlx	typeref:typename:void *
+mlx	mlx_linux/test/main.c	/^void	*mlx;$/;"	v	typeref:typename:void *
+mlx	mlx_linux/test/new_win.c	/^void *mlx;$/;"	v	typeref:typename:void *
+mlx_X_error	mlx_linux/mlx_new_image.c	/^int	mlx_X_error;$/;"	v	typeref:typename:int
+mlx_clear_window	mlx_linux/mlx_clear_window.c	/^int		mlx_clear_window(t_xvar *xvar,t_win_list *win)$/;"	f	typeref:typename:int
+mlx_col_name	mlx_linux/mlx_rgb.c	/^struct s_col_name mlx_col_name[] =$/;"	v	typeref:struct:s_col_name[]
+mlx_destroy_display	mlx_linux/mlx_destroy_display.c	/^int	mlx_destroy_display(t_xvar *xvar)$/;"	f	typeref:typename:int
+mlx_destroy_image	mlx_linux/mlx_destroy_image.c	/^int	mlx_destroy_image(t_xvar *xvar, t_img *img)$/;"	f	typeref:typename:int
+mlx_destroy_window	mlx_linux/mlx_destroy_window.c	/^int	mlx_destroy_window(t_xvar *xvar,t_win_list *win)$/;"	f	typeref:typename:int
+mlx_do_key_autorepeatoff	mlx_linux/mlx_hook.c	/^int	mlx_do_key_autorepeatoff(t_xvar *xvar)$/;"	f	typeref:typename:int
+mlx_do_key_autorepeaton	mlx_linux/mlx_hook.c	/^int	mlx_do_key_autorepeaton(t_xvar *xvar)$/;"	f	typeref:typename:int
+mlx_do_sync	mlx_linux/mlx_hook.c	/^int	mlx_do_sync(t_xvar *xvar)$/;"	f	typeref:typename:int
+mlx_expose_hook	mlx_linux/mlx_expose_hook.c	/^int		mlx_expose_hook(t_win_list *win,int (*funct)(),void *param)$/;"	f	typeref:typename:int
+mlx_ext_fullscreen	mlx_linux/mlx_ext_randr.c	/^int			mlx_ext_fullscreen(t_xvar *xvar, t_win_list *win, int fullscreen)$/;"	f	typeref:typename:int
+mlx_flush_event	mlx_linux/mlx_flush_event.c	/^int	mlx_flush_event(t_xvar *xvar)$/;"	f	typeref:typename:int
+mlx_get_color_value	mlx_linux/mlx_get_color_value.c	/^int             mlx_get_color_value(t_xvar *xvar,int color)$/;"	f	typeref:typename:int
+mlx_get_data_addr	mlx_linux/mlx_get_data_addr.c	/^char	*mlx_get_data_addr(t_img *img,int *bits_per_pixel,$/;"	f	typeref:typename:char *
+mlx_get_screen_size	mlx_linux/mlx_screen_size.c	/^int		mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey)$/;"	f	typeref:typename:int
+mlx_hook	mlx_linux/mlx_hook.c	/^int	mlx_hook(t_win_list *win, int x_event, int x_mask, $/;"	f	typeref:typename:int
+mlx_init	mlx_linux/mlx_init.c	/^void	*mlx_init()$/;"	f	typeref:typename:void *
+mlx_int_anti_resize_win	mlx_linux/mlx_int_anti_resize_win.c	/^int	mlx_int_anti_resize_win(t_xvar *xvar,Window win,int w,int h)$/;"	f	typeref:typename:int
+mlx_int_deal_shm	mlx_linux/mlx_init.c	/^int		mlx_int_deal_shm(t_xvar *xvar)$/;"	f	typeref:typename:int
+mlx_int_do_nothing	mlx_linux/mlx_int_do_nothing.c	/^int	mlx_int_do_nothing(void *param)$/;"	f	typeref:typename:int
+mlx_int_egal_img	mlx_linux/mlx_lib_xpm.c	/^int	mlx_int_egal_img(XImage *img1,XImage *img2)$/;"	f	typeref:typename:int
+mlx_int_file_get_rid_comment	mlx_linux/mlx_xpm.c	/^int	mlx_int_file_get_rid_comment(char *ptr, int size)$/;"	f	typeref:typename:int
+mlx_int_get_col_name	mlx_linux/mlx_xpm.c	/^int	mlx_int_get_col_name(char *str,int size)$/;"	f	typeref:typename:int
+mlx_int_get_good_color	mlx_linux/mlx_get_color_value.c	/^int		mlx_int_get_good_color(t_xvar *xvar,int color)$/;"	f	typeref:typename:int
+mlx_int_get_line	mlx_linux/mlx_xpm.c	/^char	*mlx_int_get_line(char *ptr,int *pos,int size)$/;"	f	typeref:typename:char *
+mlx_int_get_text_rgb	mlx_linux/mlx_xpm.c	/^int	mlx_int_get_text_rgb(char *name, char *end)$/;"	f	typeref:typename:int
+mlx_int_get_visual	mlx_linux/mlx_int_get_visual.c	/^int		mlx_int_get_visual(t_xvar *xvar)$/;"	f	typeref:typename:int
+mlx_int_new_image	mlx_linux/mlx_new_image.c	/^void	*mlx_int_new_image(t_xvar *xvar,int width, int height,int format)$/;"	f	typeref:typename:void *
+mlx_int_new_xshm_image	mlx_linux/mlx_new_image.c	/^void	*mlx_int_new_xshm_image(t_xvar *xvar,int width,int height,int format)$/;"	f	typeref:typename:void *
+mlx_int_param_ButtonPress	mlx_linux/mlx_int_param_event.c	/^int	mlx_int_param_ButtonPress(t_xvar *xvar, XEvent *ev, t_win_list *win)$/;"	f	typeref:typename:int
+mlx_int_param_ButtonRelease	mlx_linux/mlx_int_param_event.c	/^int	mlx_int_param_ButtonRelease(t_xvar *xvar, XEvent *ev, t_win_list *win)$/;"	f	typeref:typename:int
+mlx_int_param_Expose	mlx_linux/mlx_int_param_event.c	/^int	mlx_int_param_Expose(t_xvar *xvar, XEvent *ev, t_win_list *win)$/;"	f	typeref:typename:int
+mlx_int_param_KeyPress	mlx_linux/mlx_int_param_event.c	/^int	mlx_int_param_KeyPress(t_xvar *xvar, XEvent *ev, t_win_list *win)$/;"	f	typeref:typename:int
+mlx_int_param_KeyRelease	mlx_linux/mlx_int_param_event.c	/^int	mlx_int_param_KeyRelease(t_xvar *xvar, XEvent *ev, t_win_list *win)$/;"	f	typeref:typename:int
+mlx_int_param_MotionNotify	mlx_linux/mlx_int_param_event.c	/^int	mlx_int_param_MotionNotify(t_xvar *xvar, XEvent *ev, t_win_list *win)$/;"	f	typeref:typename:int
+mlx_int_param_event	mlx_linux/mlx_int_param_event.c	/^int	(*(mlx_int_param_event[]))() =$/;"	v	typeref:typename:int (* ([]))()
+mlx_int_param_generic	mlx_linux/mlx_int_param_event.c	/^int	mlx_int_param_generic(t_xvar *xvar, XEvent *ev, t_win_list *win)$/;"	f	typeref:typename:int
+mlx_int_param_undef	mlx_linux/mlx_int_param_event.c	/^int	mlx_int_param_undef()$/;"	f	typeref:typename:int
+mlx_int_parse_xpm	mlx_linux/mlx_xpm.c	/^void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())$/;"	f	typeref:typename:void *
+mlx_int_rgb_conversion	mlx_linux/mlx_init.c	/^int		mlx_int_rgb_conversion(t_xvar *xvar)$/;"	f	typeref:typename:int
+mlx_int_set_win_event_mask	mlx_linux/mlx_int_set_win_event_mask.c	/^int	mlx_int_set_win_event_mask(t_xvar *xvar)$/;"	f	typeref:typename:int
+mlx_int_static_line	mlx_linux/mlx_xpm.c	/^char	*mlx_int_static_line(char **xpm_data,int *pos,int size)$/;"	f	typeref:typename:char *
+mlx_int_str_str	mlx_linux/mlx_int_str_to_wordtab.c	/^int	mlx_int_str_str(char *str,char *find,int len)$/;"	f	typeref:typename:int
+mlx_int_str_str_cote	mlx_linux/mlx_int_str_to_wordtab.c	/^int	mlx_int_str_str_cote(char *str,char *find,int len)$/;"	f	typeref:typename:int
+mlx_int_str_to_wordtab	mlx_linux/mlx_int_str_to_wordtab.c	/^char	**mlx_int_str_to_wordtab(char *str)$/;"	f	typeref:typename:char **
+mlx_int_wait_first_expose	mlx_linux/mlx_int_wait_first_expose.c	/^int	mlx_int_wait_first_expose(t_xvar *xvar,Window win)$/;"	f	typeref:typename:int
+mlx_int_xpm_f_image	mlx_linux/mlx_lib_xpm.c	/^void		*mlx_int_xpm_f_image(t_xvar *xvar,int *width,int *height,$/;"	f	typeref:typename:void *
+mlx_int_xpm_set_pixel	mlx_linux/mlx_xpm.c	/^int	mlx_int_xpm_set_pixel(t_img *img, char *data, int opp, int col, int x)$/;"	f	typeref:typename:int
+mlx_key_hook	mlx_linux/mlx_key_hook.c	/^int		mlx_key_hook(t_win_list *win,int (*funct)(),void *param)$/;"	f	typeref:typename:int
+mlx_loop	mlx_linux/mlx_loop.c	/^int			mlx_loop(t_xvar *xvar)$/;"	f	typeref:typename:int
+mlx_loop_end	mlx_linux/mlx_loop.c	/^int			mlx_loop_end(t_xvar *xvar)$/;"	f	typeref:typename:int
+mlx_loop_hook	mlx_linux/mlx_loop_hook.c	/^int	mlx_loop_hook(t_xvar *xvar,int (*funct)(),void *param)$/;"	f	typeref:typename:int
+mlx_mouse_get_pos	mlx_linux/mlx_mouse.c	/^int		mlx_mouse_get_pos(t_xvar *xvar, t_win_list *win, \\$/;"	f	typeref:typename:int
+mlx_mouse_hide	mlx_linux/mlx_mouse.c	/^int		mlx_mouse_hide(t_xvar *xvar, t_win_list *win)$/;"	f	typeref:typename:int
+mlx_mouse_hook	mlx_linux/mlx_mouse_hook.c	/^int		mlx_mouse_hook(t_win_list *win,int (*funct)(),void *param)$/;"	f	typeref:typename:int
+mlx_mouse_move	mlx_linux/mlx_mouse.c	/^int		mlx_mouse_move(t_xvar *xvar, t_win_list *win, int x, int y)$/;"	f	typeref:typename:int
+mlx_mouse_show	mlx_linux/mlx_mouse.c	/^int		mlx_mouse_show(t_xvar *xvar, t_win_list *win)$/;"	f	typeref:typename:int
+mlx_new_image	mlx_linux/mlx_new_image.c	/^void	*mlx_new_image(t_xvar *xvar,int width, int height)$/;"	f	typeref:typename:void *
+mlx_new_image2	mlx_linux/mlx_new_image.c	/^void	*mlx_new_image2(t_xvar *xvar,int width, int height)$/;"	f	typeref:typename:void *
+mlx_new_window	mlx_linux/mlx_new_window.c	/^void	*mlx_new_window(t_xvar *xvar,int size_x,int size_y,char *title)$/;"	f	typeref:typename:void *
+mlx_pixel_put	mlx_linux/mlx_pixel_put.c	/^int		mlx_pixel_put(t_xvar *xvar,t_win_list *win,$/;"	f	typeref:typename:int
+mlx_put_image_to_window	mlx_linux/mlx_put_image_to_window.c	/^int	mlx_put_image_to_window(t_xvar *xvar,t_win_list *win,t_img *img,$/;"	f	typeref:typename:int
+mlx_set_font	mlx_linux/mlx_set_font.c	/^void	mlx_set_font(t_xvar *xvar, t_win_list *win, char *name)$/;"	f	typeref:typename:void
+mlx_string_put	mlx_linux/mlx_string_put.c	/^int		mlx_string_put(t_xvar *xvar,t_win_list *win,$/;"	f	typeref:typename:int
+mlx_xpm_file_to_image	mlx_linux/mlx_lib_xpm.c	/^void	*mlx_xpm_file_to_image(t_xvar *xvar,char *filename,$/;"	f	typeref:typename:void *
+mlx_xpm_file_to_image	mlx_linux/mlx_xpm.c	/^void	*mlx_xpm_file_to_image(t_xvar *xvar,char *file,int *width,int *height)$/;"	f	typeref:typename:void *
+mlx_xpm_to_image	mlx_linux/mlx_lib_xpm.c	/^void	*mlx_xpm_to_image(t_xvar *xvar,char **data,int *width,int *height)$/;"	f	typeref:typename:void *
+mlx_xpm_to_image	mlx_linux/mlx_xpm.c	/^void	*mlx_xpm_to_image(t_xvar *xvar,char **xpm_data,int *width,int *height)$/;"	f	typeref:typename:void *
+mouse_hook	mlx_linux/mlx_int.h	/^	int					(*mouse_hook)();$/;"	m	struct:s_win_list	typeref:typename:int (*)()
+mouse_param	mlx_linux/mlx_int.h	/^	void				*mouse_param;$/;"	m	struct:s_win_list	typeref:typename:void *
+mouse_win1	mlx_linux/test/main.c	/^int	mouse_win1(int button,int x,int y, void *p)$/;"	f	typeref:typename:int
+mouse_win2	mlx_linux/test/main.c	/^int	mouse_win2(int button,int x,int y, void *p)$/;"	f	typeref:typename:int
+mouse_win3	mlx_linux/test/main.c	/^int	mouse_win3(int x,int y, void *p)$/;"	f	typeref:typename:int
+move_cylinder	src/controls/control_move_cylinder.c	/^void	move_cylinder(t_cylinder *cylinder, int keysym, float z_dir)$/;"	f	typeref:typename:void
+multithread	include/structs.h	/^	bool	multithread;$/;"	m	struct:s_mlx	typeref:typename:bool
+mutex	include/structs.h	/^	t_mutex	mutex;$/;"	m	struct:s_mlx	typeref:typename:t_mutex
+n_cylinders	include/structs.h	/^	int			n_cylinders;$/;"	m	struct:s_scene	typeref:typename:int
+n_digits	lib/mandatory/ft_itoa.c	/^int	n_digits(unsigned int n)$/;"	f	typeref:typename:int
+n_planes	include/structs.h	/^	int			n_planes;$/;"	m	struct:s_scene	typeref:typename:int
+n_scenes	include/structs.h	/^	int		n_scenes;$/;"	m	struct:s_rt	typeref:typename:int
+n_spheres	include/structs.h	/^	int			n_spheres;$/;"	m	struct:s_scene	typeref:typename:int
+n_threads	include/structs.h	/^	int			n_threads;$/;"	m	struct:s_render	typeref:typename:int
+name	mlx_linux/mlx_int.h	/^	char	*name;$/;"	m	struct:s_col_name	typeref:typename:char *
+name	mlx_linux/mlx_int.h	/^	int		name;$/;"	m	struct:s_xpm_col	typeref:typename:int
+next	include/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list *
+next	lib/include/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list *
+next	mlx_linux/mlx_int.h	/^	struct s_win_list	*next;$/;"	m	struct:s_win_list	typeref:struct:s_win_list *
+norm	include/structs.h	/^	t_vec3		norm;$/;"	m	struct:s_plane	typeref:typename:t_vec3
+norm_device_coords	src/draw/ray_utils.c	/^void	norm_device_coords(t_vec2 ndc, int x, int y)$/;"	f	typeref:typename:void
+obj_color	include/structs.h	/^	int			obj_color;	\/\/ color of object at bounce point$/;"	m	struct:s_ray	typeref:typename:int
+obj_t	include/structs.h	/^	float		obj_t;		\/\/ distance from cam to object bounce point$/;"	m	struct:s_ray	typeref:typename:float
+obj_type	include/structs.h	/^	int			obj_type;	\/\/ object type at bounce point$/;"	m	struct:s_ray	typeref:typename:int
+object	include/structs.h	/^	void		*object;		\/\/ pointer to object at bounce point$/;"	m	struct:s_ray	typeref:typename:void *
+open_scenes	src/utils/utils_rt.c	/^int	open_scenes(t_rt *rt, char **argv)$/;"	f	typeref:typename:int
+orient_camera	src/parse/parse_uniqs.c	/^void	orient_camera(t_camera *cam)$/;"	f	typeref:typename:void
+origin	include/structs.h	/^	t_vec3		*origin;$/;"	m	struct:s_ray	typeref:typename:t_vec3 *
+param	mlx_linux/mlx_int.h	/^	void	*param;$/;"	m	struct:s_event_list	typeref:typename:void *
+parse	src/parse/parse.c	/^void	parse(t_rt *rt)$/;"	f	typeref:typename:void
+parse_ambient	src/parse/parse_uniqs.c	/^void	parse_ambient(char *input, t_scene *scene)$/;"	f	typeref:typename:void
+parse_args	mlx_linux/configure	/^parse_args(){$/;"	f
+parse_camera	src/parse/parse_uniqs.c	/^void	parse_camera(char *input, t_scene *scene)$/;"	f	typeref:typename:void
+parse_cylinder	src/parse/parse_shapes.c	/^void	parse_cylinder(char *input, t_scene *scene)$/;"	f	typeref:typename:void
+parse_file	src/parse/parse.c	/^void	parse_file(int fd, t_scene *scene)$/;"	f	typeref:typename:void
+parse_light	src/parse/parse_uniqs.c	/^void	parse_light(char *input, t_scene *scene)$/;"	f	typeref:typename:void
+parse_plane	src/parse/parse_shapes.c	/^void	parse_plane(char *input, t_scene *scene)$/;"	f	typeref:typename:void
+parse_select	src/parse/parse.c	/^void	parse_select(char *line, t_scene *scene)$/;"	f	typeref:typename:void
+parse_sphere	src/parse/parse_shapes.c	/^void	parse_sphere(char *input, t_scene *scene)$/;"	f	typeref:typename:void
+pix	mlx_linux/mlx_int.h	/^	Pixmap			pix;$/;"	m	struct:s_img	typeref:typename:Pixmap
+pixel_color	include/structs.h	/^	int			pixel_color;	\/\/ final pixel color after processing$/;"	m	struct:s_ray	typeref:typename:int
+pixel_put_img	src/draw/draw_utils.c	/^void	pixel_put_img(t_img *img, int x, int y, int color)$/;"	f	typeref:typename:void
+plns	include/structs.h	/^	t_plane		*plns;$/;"	m	struct:s_scene	typeref:typename:t_plane *
+point	include/structs.h	/^	t_vec3		point;$/;"	m	struct:s_camera	typeref:typename:t_vec3
+point	include/structs.h	/^	t_vec3		point;$/;"	m	struct:s_light	typeref:typename:t_vec3
+point_def	include/structs.h	/^	t_vec3		point_def;$/;"	m	struct:s_camera	typeref:typename:t_vec3
+post_process	src/draw/post_process.c	/^void	post_process(t_scene *scene)$/;"	f	typeref:typename:void
+prep_cam_ray	src/draw/cast_cam_ray.c	/^void	prep_cam_ray(t_mlx *mlx, t_scene *scene, int x, int y)$/;"	f	typeref:typename:void
+prep_light_ray	src/draw/cast_light_ray.c	/^int	prep_light_ray(t_scene *scene, t_vec3 bounce_point)$/;"	f	typeref:typename:int
+preparse	src/parse/preparse.c	/^void	preparse(t_rt *rt)$/;"	f	typeref:typename:void
+preparse_select	src/parse/preparse.c	/^void	preparse_select(char *line, t_scene *scene)$/;"	f	typeref:typename:void
+print_ambient	src/print/print_uniqs.c	/^void	print_ambient(t_ambient *ambient)$/;"	f	typeref:typename:void
+print_camera	src/print/print_uniqs.c	/^void	print_camera(t_camera *camera)$/;"	f	typeref:typename:void
+print_char	lib/ft_printf/ft_printf_cformats.c	/^int	print_char(char chr)$/;"	f	typeref:typename:int
+print_color	src/print/print_utils.c	/^void	print_color(char *pre, char *mid, char *post, int color)$/;"	f	typeref:typename:void
+print_cylinder	src/print/print_shapes.c	/^void	print_cylinder(t_cylinder cylinder)$/;"	f	typeref:typename:void
+print_hex	lib/ft_printf/ft_printf_nformats.c	/^int	print_hex(unsigned int num, int cap)$/;"	f	typeref:typename:int
+print_hex_ptr	lib/ft_printf/ft_printf_nformats.c	/^int	print_hex_ptr(unsigned long long num, int cap)$/;"	f	typeref:typename:int
+print_int	lib/ft_printf/ft_printf_nformats.c	/^int	print_int(int num)$/;"	f	typeref:typename:int
+print_light	src/print/print_uniqs.c	/^void	print_light(t_light *light)$/;"	f	typeref:typename:void
+print_meta	src/print/print_scene.c	/^void	print_meta(t_scene *scene)$/;"	f	typeref:typename:void
+print_plane	src/print/print_shapes.c	/^void	print_plane(t_plane plane)$/;"	f	typeref:typename:void
+print_ptr	lib/ft_printf/ft_printf_nformats.c	/^int	print_ptr(void *ptr)$/;"	f	typeref:typename:int
+print_scene	src/print/print_scene.c	/^void	print_scene(t_scene *scene)$/;"	f	typeref:typename:void
+print_scenes	src/print/print_scene.c	/^void	print_scenes(t_rt *rt)$/;"	f	typeref:typename:void
+print_shapes	src/print/print_shapes.c	/^void	print_shapes(t_scene *scene)$/;"	f	typeref:typename:void
+print_sphere	src/print/print_shapes.c	/^void	print_sphere(t_sphere sphere)$/;"	f	typeref:typename:void
+print_str	lib/ft_printf/ft_printf_cformats.c	/^int	print_str(char *str)$/;"	f	typeref:typename:int
+print_uniqs	src/print/print_uniqs.c	/^void	print_uniqs(t_scene	*scene)$/;"	f	typeref:typename:void
+print_usi	lib/ft_printf/ft_printf_nformats.c	/^int	print_usi(unsigned int num)$/;"	f	typeref:typename:int
+print_vec3	src/print/print_utils.c	/^void	print_vec3(char *message, t_vec3 vec)$/;"	f	typeref:typename:void
+printf	lib/Makefile	/^printf:	$(OBJS) $(PF_OBJS)$/;"	t
+printstr	lib/mandatory/ft_itoa.c	/^char	*printstr(char *s, unsigned int n, int neg)$/;"	f	typeref:typename:char *
+private_cmap	mlx_linux/mlx_int.h	/^	int			private_cmap;$/;"	m	struct:s_xvar	typeref:typename:int
+project	include/structs.h	/^	t_vec3		project;	\/\/	used as 2d coordinates of projection plane$/;"	m	struct:s_scene	typeref:typename:t_vec3
+project_viewport	src/draw/ray_utils.c	/^void	project_viewport(t_vec2 project, t_vec2 ndc, int fov, float aspect)$/;"	f	typeref:typename:void
+pshm_format	mlx_linux/mlx_int.h	/^	int			pshm_format;$/;"	m	struct:s_xvar	typeref:typename:int
+quaternion_conjugate	src/controls/quaternion.c	/^t_quaternion	quaternion_conjugate(t_quaternion q)$/;"	f	typeref:typename:t_quaternion
+quaternion_multiply	src/controls/quaternion.c	/^t_quaternion	quaternion_multiply(t_quaternion q1, t_quaternion q2)$/;"	f	typeref:typename:t_quaternion
+radius	include/structs.h	/^	float		radius;$/;"	m	struct:s_cylinder	typeref:typename:float
+radius	include/structs.h	/^	float		radius;$/;"	m	struct:s_sphere	typeref:typename:float
+re	Makefile	/^re:	fclean all$/;"	t
+re	lib/Makefile	/^re:	fclean all$/;"	t
+re	lib/ft_printf/Makefile	/^re:	fclean all$/;"	t
+re	mlx_linux/Makefile	/^re	: clean all$/;"	t
+re	mlx_linux/test/Makefile.mk	/^re: clean all$/;"	t
+render_row	src/draw/render_scene_st.c	/^void	render_row(t_mlx *mlx, t_scene *scene, int y)$/;"	f	typeref:typename:void
+render_row_mt	src/draw/render_scene_mt.c	/^void	*render_row_mt(void *data)$/;"	f	typeref:typename:void *
+render_scene	src/draw/render_scene_st.c	/^int	render_scene(t_mlx *mlx, t_scene *scene)$/;"	f	typeref:typename:int
+render_scene_mt	src/draw/render_scene_mt.c	/^int	render_scene_mt(t_mlx *mlx, t_scene *scene)$/;"	f	typeref:typename:int
+render_scene_st	src/draw/render_scene_st.c	/^int	render_scene_st(t_mlx *mlx, t_scene *scene)$/;"	f	typeref:typename:int
+reset_cam_default	src/controls/control_camera.c	/^void	reset_cam_default(t_mlx *mlx, t_camera *cam)$/;"	f	typeref:typename:void
+resize_cylinder	src/controls/control_move_cylinder.c	/^void	resize_cylinder(t_cylinder *cylinder, int keysym)$/;"	f	typeref:typename:void
+right	include/structs.h	/^	t_vec3		right;	\/\/	unit vector pointing up relative to the camera$/;"	m	struct:s_camera	typeref:typename:t_vec3
+root	mlx_linux/mlx_int.h	/^	Window		root;$/;"	m	struct:s_xvar	typeref:typename:Window
+rotate_quaternion	src/controls/control_move.c	/^void	rotate_quaternion(t_scene *scene, int axis, float incr)$/;"	f	typeref:typename:void
+rotate_vector_by_quaternion	src/controls/quaternion.c	/^void	rotate_vector_by_quaternion(t_vec3 vector, t_quaternion q)$/;"	f	typeref:typename:void
+rt	include/structs.h	/^	t_rt	*rt;$/;"	m	struct:s_mlx	typeref:typename:t_rt *
+s_ambient	include/structs.h	/^typedef struct s_ambient$/;"	s
+s_bbox	include/structs.h	/^typedef struct s_bbox$/;"	s
+s_camera	include/structs.h	/^typedef struct s_camera$/;"	s
+s_col_name	mlx_linux/mlx_int.h	/^struct	s_col_name$/;"	s
+s_cylinder	include/structs.h	/^typedef struct s_cylinder$/;"	s
+s_event_list	mlx_linux/mlx_int.h	/^typedef struct	s_event_list$/;"	s
+s_img	include/structs.h	/^typedef struct s_img$/;"	s
+s_img	mlx_linux/mlx_int.h	/^typedef struct	s_img$/;"	s
+s_light	include/structs.h	/^typedef struct s_light$/;"	s
+s_list	include/libft.h	/^typedef struct s_list$/;"	s
+s_list	lib/include/libft.h	/^typedef struct s_list$/;"	s
+s_mlx	include/structs.h	/^typedef struct s_mlx$/;"	s
+s_plane	include/structs.h	/^typedef struct s_plane$/;"	s
+s_quadratic	include/structs.h	/^typedef struct s_quadratic$/;"	s
+s_quaternion	include/structs.h	/^typedef struct s_quaternion$/;"	s
+s_ray	include/structs.h	/^typedef struct s_ray$/;"	s
+s_render	include/structs.h	/^typedef struct s_render$/;"	s
+s_rt	include/structs.h	/^typedef struct s_rt$/;"	s
+s_scene	include/structs.h	/^typedef struct s_scene$/;"	s
+s_sphere	include/structs.h	/^typedef struct s_sphere$/;"	s
+s_win_list	mlx_linux/mlx_int.h	/^typedef struct	s_win_list$/;"	s
+s_xpm_col	mlx_linux/mlx_int.h	/^typedef	struct	s_xpm_col$/;"	s
+s_xvar	mlx_linux/mlx_int.h	/^typedef struct	s_xvar$/;"	s
+sanitize-addr	Makefile	/^sanitize-addr: $(OBJS) $(LIB_PATH) $(MLX_PATH) $(HEADERS)$/;"	t
+sanitize-thread	Makefile	/^sanitize-thread: $(OBJS) $(LIB_PATH) $(MLX_PATH) $(HEADERS)$/;"	t
+saved_mode	mlx_linux/mlx_ext_randr.c	/^RRMode	saved_mode = 0;$/;"	v	typeref:typename:RRMode
+scenes	include/structs.h	/^	t_scene	**scenes;$/;"	m	struct:s_rt	typeref:typename:t_scene **
+screen	mlx_linux/mlx_int.h	/^	int			screen;$/;"	m	struct:s_xvar	typeref:typename:int
+screen_object	include/structs.h	/^	void		*screen_object[RES_H][RES_W];	\/\/	each pixel stores the object in it$/;"	m	struct:s_scene	typeref:typename:void * [][]
+sel_type	include/structs.h	/^	int			sel_type;$/;"	m	struct:s_scene	typeref:typename:int
+select_type	include/structs.h	/^	int			select_type[RES_H][RES_W];$/;"	m	struct:s_scene	typeref:typename:int[][]
+selected	include/structs.h	/^	void		*selected;$/;"	m	struct:s_scene	typeref:typename:void *
+set_aa_bounding_boxes	src/bounding_aa.c	/^void	set_aa_bounding_boxes(t_scene *scene)$/;"	f	typeref:typename:void
+set_color	src/parse/parse_attributes.c	/^int	set_color(char *input) \/\/ assumes csv RGB$/;"	f	typeref:typename:int
+set_cylinder_info	src/parse/parse_shapes.c	/^int	set_cylinder_info(char **items, t_cylinder *cylinder)$/;"	f	typeref:typename:int
+set_mlx	src/utils/utils_mlx.c	/^int	set_mlx(t_mlx *mlx, t_rt *rt)$/;"	f	typeref:typename:int
+set_ray_direction	src/draw/ray_utils.c	/^void	set_ray_direction(t_vec3 dir, t_vec2 plane, t_camera cam)$/;"	f	typeref:typename:void
+set_rt	src/utils/utils_rt.c	/^int	set_rt(int argc, char **argv, t_rt *rt)$/;"	f	typeref:typename:int
+set_unit_vec3	src/parse/parse_attributes.c	/^int	set_unit_vec3(t_vec3 vec, char *input)$/;"	f	typeref:typename:int
+set_vec3	src/parse/parse_attributes.c	/^int	set_vec3(t_vec3 vec, char *input)$/;"	f	typeref:typename:int
+shade_light_distance	src/draw/pixel_shaders.c	/^int	shade_light_distance(int pixel_color, float distance, float lum)$/;"	f	typeref:typename:int
+shade_pixel_distance	src/draw/pixel_shaders.c	/^int	shade_pixel_distance(int pixel_color, float distance)$/;"	f	typeref:typename:int
+shine	include/structs.h	/^	int			shine;$/;"	m	struct:s_cylinder	typeref:typename:int
+shine	include/structs.h	/^	int			shine;$/;"	m	struct:s_plane	typeref:typename:int
+shine	include/structs.h	/^	int			shine;$/;"	m	struct:s_sphere	typeref:typename:int
+shm	mlx_linux/mlx_int.h	/^	XShmSegmentInfo	shm;$/;"	m	struct:s_img	typeref:typename:XShmSegmentInfo
+shm_att_pb	mlx_linux/mlx_new_image.c	/^int	shm_att_pb(Display *d,XErrorEvent *ev)$/;"	f	typeref:typename:int
+show	mlx_linux/Makefile.mk	/^show:$/;"	t
+show	mlx_linux/test/Makefile.mk	/^show:$/;"	t
+show_help	mlx_linux/configure	/^show_help(){$/;"	f
+sigint_handler	mlx_linux/test/run_tests.sh	/^sigint_handler(){$/;"	f
+size_line	mlx_linux/mlx_int.h	/^	int				size_line;$/;"	m	struct:s_img	typeref:typename:int
+sky	include/structs.h	/^	int			sky;$/;"	m	struct:s_scene	typeref:typename:int
+sl1	mlx_linux/test/main.c	/^int	sl1;$/;"	v	typeref:typename:int
+sl2	mlx_linux/test/main.c	/^int	sl2;$/;"	v	typeref:typename:int
+sl3	mlx_linux/test/main.c	/^int	sl3;$/;"	v	typeref:typename:int
+sl4	mlx_linux/test/main.c	/^int	sl4;$/;"	v	typeref:typename:int
+so	lib/Makefile	/^so:$/;"	t
+specular	include/structs.h	/^	bool		specular;$/;"	m	struct:s_scene	typeref:typename:bool
+specular_cylinder	src/draw/specular.c	/^void	specular_cylinder(t_scene *scene, t_ray *ray, int *pixel_color)$/;"	f	typeref:typename:void
+specular_cyltop	src/draw/specular.c	/^void	specular_cyltop(t_scene *scene, t_ray *ray, int *pixel_color)$/;"	f	typeref:typename:void
+specular_pass	src/draw/specular.c	/^void	specular_pass(t_scene *scene, t_ray *ray, int *pixel_color)$/;"	f	typeref:typename:void
+specular_plane	src/draw/specular.c	/^void	specular_plane(t_scene *scene, t_ray *ray, int *pixel_color)$/;"	f	typeref:typename:void
+specular_sphere	src/draw/specular.c	/^void	specular_sphere(t_scene *scene, t_ray *ray, int *pixel_color)$/;"	f	typeref:typename:void
+sphs	include/structs.h	/^	t_sphere	*sphs;$/;"	m	struct:s_scene	typeref:typename:t_sphere *
+split_newline	lib/get_next_line/get_next_line_bonus.c	/^char	*split_newline(char *str)$/;"	f	typeref:typename:char *
+strlcpy_is_not_posix	mlx_linux/mlx_xpm.c	/^unsigned int	strlcpy_is_not_posix(char *dest, char *src, unsigned int size)$/;"	f	typeref:typename:unsigned int
+t_ambient	include/structs.h	/^}				t_ambient;$/;"	t	typeref:struct:s_ambient
+t_bbox	include/structs.h	/^}				t_bbox;$/;"	t	typeref:struct:s_bbox
+t_camera	include/structs.h	/^}				t_camera;$/;"	t	typeref:struct:s_camera
+t_cylinder	include/structs.h	/^}				t_cylinder;$/;"	t	typeref:struct:s_cylinder
+t_event_list	mlx_linux/mlx_int.h	/^}				t_event_list;$/;"	t	typeref:struct:s_event_list
+t_img	include/structs.h	/^}				t_img;$/;"	t	typeref:struct:s_img
+t_img	mlx_linux/mlx_int.h	/^}				t_img;$/;"	t	typeref:struct:s_img
+t_light	include/structs.h	/^}				t_light;$/;"	t	typeref:struct:s_light
+t_list	include/libft.h	/^}		t_list;$/;"	t	typeref:struct:s_list
+t_list	lib/include/libft.h	/^}		t_list;$/;"	t	typeref:struct:s_list
+t_mlx	include/structs.h	/^}				t_mlx;$/;"	t	typeref:struct:s_mlx
+t_mutex	include/enums.h	/^typedef pthread_mutex_t	t_mutex;$/;"	t	typeref:typename:pthread_mutex_t
+t_pixel	include/structs.h	/^typedef int		t_pixel[2];$/;"	t	typeref:typename:int[2]
+t_plane	include/structs.h	/^}				t_plane;$/;"	t	typeref:struct:s_plane
+t_quadratic	include/structs.h	/^}				t_quadratic;$/;"	t	typeref:struct:s_quadratic
+t_quaternion	include/structs.h	/^}				t_quaternion;$/;"	t	typeref:struct:s_quaternion
+t_ray	include/structs.h	/^}				t_ray;$/;"	t	typeref:struct:s_ray
+t_render	include/structs.h	/^}				t_render;$/;"	t	typeref:struct:s_render
+t_rgb	include/structs.h	/^typedef int		t_rgb[3];$/;"	t	typeref:typename:int[3]
+t_rt	include/structs.h	/^}				t_rt;$/;"	t	typeref:struct:s_rt
+t_scene	include/structs.h	/^}				t_scene;$/;"	t	typeref:struct:s_scene
+t_sphere	include/structs.h	/^}				t_sphere;$/;"	t	typeref:struct:s_sphere
+t_vec2	include/structs.h	/^typedef float	t_vec2[2];$/;"	t	typeref:typename:float[2]
+t_vec3	include/structs.h	/^typedef float	t_vec3[3];$/;"	t	typeref:typename:float[3]
+t_win_list	mlx_linux/mlx_int.h	/^}				t_win_list;$/;"	t	typeref:struct:s_win_list
+t_xpm_col	mlx_linux/mlx_int.h	/^}				t_xpm_col;$/;"	t	typeref:struct:s_xpm_col
+t_xvar	mlx_linux/mlx_int.h	/^}				t_xvar;$/;"	t	typeref:struct:s_xvar
+test_default_main	mlx_linux/test/run_tests.sh	/^test_default_main(){$/;"	f
+thread_id	include/structs.h	/^	pthread_t	thread_id;$/;"	m	struct:s_render	typeref:typename:pthread_t
+toggle_bool	src/maths/math_misc.c	/^void	toggle_bool(bool *current)$/;"	f	typeref:typename:void
+type	mlx_linux/mlx_int.h	/^	int				type;$/;"	m	struct:s_img	typeref:typename:int
+udir	include/structs.h	/^	t_vec3		udir;$/;"	m	struct:s_ray	typeref:typename:t_vec3
+up	include/structs.h	/^	t_vec3		up;		\/\/	unit vector pointing right relative to the camera$/;"	m	struct:s_camera	typeref:typename:t_vec3
+use_xshm	mlx_linux/mlx_int.h	/^	int			use_xshm;$/;"	m	struct:s_xvar	typeref:typename:int
+valid	include/structs.h	/^	bool		valid;$/;"	m	struct:s_scene	typeref:typename:bool
+vec3_a_to_b	src/maths/vector_maths.c	/^void	vec3_a_to_b(t_vec3 dir_out, t_vec3 point_a, t_vec3 point_b)$/;"	f	typeref:typename:void
+vec3_invert	src/maths/vector_utils.c	/^void	vec3_invert(t_vec3 vec)$/;"	f	typeref:typename:void
+vec3_length	src/maths/vector_utils.c	/^float	vec3_length(t_vec3 vec)$/;"	f	typeref:typename:float
+vec3_normalize	src/maths/vector_maths.c	/^void	vec3_normalize(t_vec3 unit, t_vec3 direction)$/;"	f	typeref:typename:void
+vec3_position	src/maths/vector_maths.c	/^void	vec3_position(t_vec3 dest, t_vec3 origin, t_vec3 unit, float magnitude)$/;"	f	typeref:typename:void
+vec3_scale_add	src/maths/vector_maths.c	/^void	vec3_scale_add(t_vec3 dest, t_vec3 base, t_vec3 dir, float magnitude)$/;"	f	typeref:typename:void
+vec3_scaleize	src/maths/vector_maths.c	/^void	vec3_scaleize(t_vec3 scalar, t_vec3 unit, float magnitude)$/;"	f	typeref:typename:void
+vec3_set_a	src/maths/vector_utils.c	/^void	vec3_set_a(t_vec3 a, t_vec3 b)$/;"	f	typeref:typename:void
+vec3_surface_reflection	src/maths/vector_normals.c	/^void	vec3_surface_reflection(t_vec3 reflect, t_vec3 light, t_vec3 norm)$/;"	f	typeref:typename:void
+visual	mlx_linux/mlx_int.h	/^	Visual		*visual;$/;"	m	struct:s_xvar	typeref:typename:Visual *
+w	include/structs.h	/^    float w;   \/\/ Real part$/;"	m	struct:s_quaternion	typeref:typename:float
+wcount	lib/mandatory/ft_split.c	/^static unsigned int	wcount(char const *s, char c)$/;"	f	typeref:typename:unsigned int	file:
+width	mlx_linux/mlx_int.h	/^	int				width;$/;"	m	struct:s_img	typeref:typename:int
+win	include/structs.h	/^	void	*win;$/;"	m	struct:s_mlx	typeref:typename:void *
+win1	mlx_linux/test/main.c	/^void	*win1;$/;"	v	typeref:typename:void *
+win1	mlx_linux/test/new_win.c	/^void *win1;$/;"	v	typeref:typename:void *
+win2	mlx_linux/test/main.c	/^void    *win2;$/;"	v	typeref:typename:void *
+win2	mlx_linux/test/new_win.c	/^void *win2;$/;"	v	typeref:typename:void *
+win3	mlx_linux/test/main.c	/^void    *win3;$/;"	v	typeref:typename:void *
+win_count	mlx_linux/mlx_loop.c	/^static int	win_count(t_xvar *xvar)$/;"	f	typeref:typename:int	file:
+win_list	mlx_linux/mlx_int.h	/^	t_win_list	*win_list;$/;"	m	struct:s_xvar	typeref:typename:t_win_list *
+window	mlx_linux/mlx_int.h	/^	Window				window;$/;"	m	struct:s_win_list	typeref:typename:Window
+wm_delete_window	mlx_linux/mlx_int.h	/^	Atom		wm_delete_window;$/;"	m	struct:s_xvar	typeref:typename:Atom
+wm_protocols	mlx_linux/mlx_int.h	/^	Atom		wm_protocols;$/;"	m	struct:s_xvar	typeref:typename:Atom
+x	include/structs.h	/^	int			x;$/;"	m	struct:s_ray	typeref:typename:int
+x	include/structs.h	/^    float x;   \/\/ i component$/;"	m	struct:s_quaternion	typeref:typename:float
+xpm1_x	mlx_linux/test/main.c	/^int	xpm1_x;$/;"	v	typeref:typename:int
+xpm1_y	mlx_linux/test/main.c	/^int	xpm1_y;$/;"	v	typeref:typename:int
+y	include/structs.h	/^	int			y;$/;"	m	struct:s_ray	typeref:typename:int
+y	include/structs.h	/^	int			y;$/;"	m	struct:s_render	typeref:typename:int
+y	include/structs.h	/^	int		y;$/;"	m	struct:s_mlx	typeref:typename:int
+y	include/structs.h	/^    float y;   \/\/ j component$/;"	m	struct:s_quaternion	typeref:typename:float
+z	include/structs.h	/^    float z;   \/\/ k component$/;"	m	struct:s_quaternion	typeref:typename:float
+zero_vec3	src/parse/parse_attributes.c	/^void	zero_vec3(t_vec3 vec)$/;"	f	typeref:typename:void

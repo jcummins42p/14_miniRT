@@ -6,7 +6,7 @@
 #    By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 18:08:59 by jcummins          #+#    #+#              #
-#    Updated: 2024/10/18 14:18:44 by jcummins         ###   ########.fr        #
+#    Updated: 2024/10/18 14:21:21 by jcummins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OBJ_DIR = obj
 B_OBJ_DIR = obj_bonus
 
 CC = gcc
-CFLAGS = -g -Werror -Wextra -Wall -pedantic -I$(HEADER_DIR) -Imlx_linux
+CFLAGS = -g -Werror -Wextra -Wall -Wunused-result -pedantic -I$(HEADER_DIR) -Imlx_linux
 MLXFLAGS = -lmlx_Linux -lXext -lX11 -lm -lz -lft
 LIB = libft.a
 MLX = libmlx_Linux.a
