@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 13:34:03 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:07:33 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char **argv)
 	print_scenes(&rt);
 	render_scene(&mlx, rt.scenes[0]);
 	mlx_loop(mlx.mlx);
+	mlx_do_key_autorepeaton(mlx.mlx);
 	cleanup_mlx(&mlx);
 	return (rt.errcode);
 }

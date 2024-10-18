@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 13:30:53 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:12:17 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ typedef float	t_vec2[2];
 typedef int		t_rgb[3];
 typedef int		t_pixel[2];
 
-
 typedef struct s_quaternion
 {
-    float w;   // Real part
-    float x;   // i component
-    float y;   // j component
-    float z;   // k component
+	float	w;
+	float	x;
+	float	y;
+	float	z;
 }				t_quaternion;
 
 typedef struct s_quadratic
@@ -124,17 +123,17 @@ typedef struct s_cylinder
 
 typedef struct s_img
 {
-	void	*img;
-	char 	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
 }				t_img;
 
 typedef struct s_scene
 {
 	char		*fname;
-	void		*screen_object[RES_H][RES_W];	//	each pixel stores the object in it
+	void		*screen_object[RES_H][RES_W];
 	int			select_type[RES_H][RES_W];
 	void		*selected;
 	int			sel_type;
@@ -147,7 +146,7 @@ typedef struct s_scene
 	t_plane		*plns;
 	t_cylinder	*cyls;
 	t_vec3		project;	//	used as 2d coordinates of projection plane
-	t_vec3		axis[3];
+	t_vec3		axis[3];	//	used to store cardinal axes for quaternions
 	int			id;
 	int			n_cylinders;
 	int			n_planes;

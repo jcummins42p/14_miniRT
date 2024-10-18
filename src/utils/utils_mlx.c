@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:48:29 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 13:30:38 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:56:48 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ int	set_mlx(t_mlx *mlx, t_rt *rt)
 	mlx_hook(mlx->win, ButtonPress, ButtonPressMask, b_press, mlx);
 	mlx_hook(mlx->win, ButtonRelease, ButtonReleaseMask, b_release, mlx);
 	mlx_hook(mlx->win, ON_DESTROY, ButtonPressMask, handle_destroy, mlx);
+	mlx_do_key_autorepeatoff(mlx->mlx);
 	return (0);
 }

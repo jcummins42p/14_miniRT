@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:50:05 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 20:05:33 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/18 14:35:29 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ int	set_color(char *input) // assumes csv RGB
 	if (!input)
 		return (0);
 	items = ft_split(input, ',');
+	if (!items || !items[0] || !items[1] || !items[2])
+	{
+		printf("Malloc error setting color: initialize %s to zero\n", input);
+		return (0);
+	}
 	printf("%s, %s, %s\n", items[0], items[1], items[2]);
-	if (!(items && items[0] && items[1] && items[2]))
-		return (-1);
 	color += ft_atoi(items[0]) << 16;
 	color += ft_atoi(items[1]) << 8;
 	color += ft_atoi(items[2]);
@@ -41,27 +44,36 @@ void	zero_vec3(t_vec3 vec)
 		vec[i++] = 0.0;
 }
 
-void	set_vec3(t_vec3 vec, char *input)
+int	set_vec3(t_vec3 vec, char *input)
 {
-	char		**items;
-	int			i;
+	char	**items;
+	int		i;
 
 	i = -1;
 	items = NULL;
 	if (!input || !*input)
-		return ;
+		return (1);
 	items = ft_split(input, ',');
+	if (!items)
+	{
+		printf("Malloc error setting vector: initialize %s to zero\n", input);
+		while (++i < 3)
+			vec[i] = 0;
+		return (1);
+	}
 	while (++i < 3)
 		vec[i] = ft_atof(items[i]);
 	ft_free_string_list(items);
+	return (0);
 }
 
 int	set_unit_vec3(t_vec3 vec, char *input)
 {
 	float	error;
 
-	error = 1;
-	set_vec3(vec, input);
+	error = 1.0;
+	if (set_vec3(vec, input))
+		return (1);
 	error = fl_abs(1 - vec3_length(vec));
 	if (error > EPSILON)
 	{

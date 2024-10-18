@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   funcs.h                                            :+:      :+:    :+:   */
+/*   funcs_draw.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 19:58:44 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:20:06 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,7 @@
 void	rotate_quaternion(t_scene *scene, int axis, float incr);
 void	k_rotate(t_scene *scene, int keysym);
 
-void	k_move_plane(int keysym, t_scene *scene);
-void	k_move_sphere(int keysym, t_scene *scene);
-void	k_move_cylinder(int keysym, t_scene *scene);
-
-void	k_control_ambient(int keysym, t_scene *scene);
-void	k_control_light(int keysym, t_scene *scene);
-
-// control_move_cylinder
-void	k_move_cylinder(int keysym, t_scene *scene);
-
-//	control_scenes.c
-int		k_select_scene(int keysym, t_mlx *mlx);
-
-//	control_shine.c
-void	k_adjust_shine(int keysym, t_mlx *mlx);
-
-//	control_camera.c
-void 	reset_cam_default(t_mlx *mlx, t_camera *cam);
-void	k_cam_pan(int keysym, t_camera *cam);
-
-//	control_kb_select.c
-void	k_deselect_object(t_mlx *mlx);
-void	k_select_light(int keysym, t_mlx *mlx);
-void	k_select_ambient(t_mlx *mlx);
-
-int light_angle(t_scene *scene, t_ray *ray, int lighint);
+int 	light_angle(t_scene *scene, t_ray *ray, int lighint);
 
 //	draw.c
 void	pixel_put_img(t_img *img, int x, int y, int color);
@@ -168,62 +143,11 @@ t_quaternion axis_angle_to_quaternion(t_vec3 axis, float angle);
 int		set_color(char *input);
 void	zero_vec3(t_vec3 vec);
 void	print_color(char *pre, char *mid, char *post, int color);
-void	set_vec3(t_vec3 vec, char *input);
+int		set_vec3(t_vec3 vec, char *input);
 int		set_unit_vec3(t_vec3 vec, char *input);
 void	print_vec3(char *message, t_vec3 vec);
 
 //	parse_uniqs.c
 void	orient_camera(t_camera *camera);
-void	parse_ambient(char *input, t_scene *scene);
-void	parse_camera(char *input, t_scene *scene);
-void	parse_light(char *input, t_scene *scene);
-
-//	print_uniqs.c
-void	print_ambient(t_ambient *ambient);
-void	print_camera(t_camera *camera);
-void	print_light(t_light *light);
-void	print_uniqs(t_scene *scene);
-
-//	print_shapes.c
-void	print_sphere(t_sphere sphere);
-void	print_plane(t_plane plane);
-void	print_cylinder(t_cylinder cylinder);
-void	print_shapes(t_scene *scene);
-
-//	print_scene.c
-void	print_meta(t_scene *scene);
-void	print_scene(t_scene *scene);
-void	print_scenes(t_rt *rt);
-
-//	parse_shapes.c
-void	parse_sphere(char *input, t_scene *scene);
-void	parse_plane(char *input, t_scene *scene);
-void	parse_cylinder(char *input, t_scene *scene);
-
-//	preparse.c
-void	preparse(t_rt *rt);
-
-//	parse.c
-void	parse(t_rt *rt);
-
-//	init.c
-void	init_object_selection(t_scene *scene);
-int		init_scene(t_scene *scene, char *filename, int id);
-int		init_scenes(t_rt *rt, char **argv);
-void	init_spheres(t_scene *scene);
-void	init_planes(t_scene *scene);
-void	init_cylinders(t_scene *scene);
-
-//	error.c
-void	exit_error(t_mlx *mlx, char *message, int errcode);
-
-//	utils_alloc.c
-int		alloc_shapes(t_rt *rt);
-t_scene	**alloc_scenes(int n_scenes);
-
-//	utils_free.c
-void	free_scene(t_scene *scene);
-void	free_rt(t_rt *rt);
-void	dealloc_shapes(t_scene **scenes, int i);
 
 #endif

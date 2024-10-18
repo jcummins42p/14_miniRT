@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 14:00:37 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:05:44 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	k_fov_controls(t_mlx *mlx, int ksym)
 
 int	k_press(int ksym, t_mlx *mlx)
 {
-	if (ksym == XK_Escape)
+	if (ksym == XK_ESCAPE)
 		mlx_loop_end(mlx->mlx);
 	else if (ksym == XK_KP_5)
 		reset_cam_default(mlx, &mlx->rt->scenes[mlx->rt->curr_scene]->cam);
