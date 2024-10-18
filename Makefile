@@ -6,7 +6,7 @@
 #    By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 18:08:59 by jcummins          #+#    #+#              #
-#    Updated: 2024/10/18 16:56:23 by jcummins         ###   ########.fr        #
+#    Updated: 2024/10/18 17:11:42 by jcummins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,12 +43,11 @@ all: $(NAME)
 $(NAME): $(OBJS) $(LIB_PATH) $(MLX_PATH) $(HEADERS)
 	$(CC) $(CFLAGS) $^ -o $@ -L$(LIB_DIR) -L$(MLX_DIR) $(MLXFLAGS)
 
-$(B_NAME): $(B_OBJS) $(LIB_PATH) $(MLX_PATH) $(HEADERS)
+$(B_NAME):
 	@echo "Bonuses incorporated into main executable:"
 	@echo "Toggle specular reflection with '/'"
 	@echo "Toggle multithreading with 'm'"
 	@echo "Browse multiple files with kp + and -"
-	#$(CC) $(CFLAGS) $^ -o $(B_NAME) -L$(LIB_DIR) -L$(MLX_DIR) $(MLXFLAGS)
 
 fanalyzer: $(OBJS) $(LIB_PATH) $(MLX_PATH) $(HEADERS)
 	$(CC) $(CFLAGS) -fanalyzer $^ -o $@ -L$(LIB_DIR) -L$(MLX_DIR) $(MLXFLAGS)
