@@ -6,7 +6,7 @@
 #    By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 18:08:59 by jcummins          #+#    #+#              #
-#    Updated: 2024/10/18 14:21:21 by jcummins         ###   ########.fr        #
+#    Updated: 2024/10/18 16:56:23 by jcummins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ B_SRC_DIR = src_bonus
 OBJ_DIR = obj
 B_OBJ_DIR = obj_bonus
 
-CC = gcc
+CC = cc
 CFLAGS = -g -Werror -Wextra -Wall -Wunused-result -pedantic -I$(HEADER_DIR) -Imlx_linux
 MLXFLAGS = -lmlx_Linux -lXext -lX11 -lm -lz -lft
 LIB = libft.a
@@ -44,7 +44,11 @@ $(NAME): $(OBJS) $(LIB_PATH) $(MLX_PATH) $(HEADERS)
 	$(CC) $(CFLAGS) $^ -o $@ -L$(LIB_DIR) -L$(MLX_DIR) $(MLXFLAGS)
 
 $(B_NAME): $(B_OBJS) $(LIB_PATH) $(MLX_PATH) $(HEADERS)
-	$(CC) $(CFLAGS) $^ -o $(B_NAME) -L$(LIB_DIR) -L$(MLX_DIR) $(MLXFLAGS)
+	@echo "Bonuses incorporated into main executable:"
+	@echo "Toggle specular reflection with '/'"
+	@echo "Toggle multithreading with 'm'"
+	@echo "Browse multiple files with kp + and -"
+	#$(CC) $(CFLAGS) $^ -o $(B_NAME) -L$(LIB_DIR) -L$(MLX_DIR) $(MLXFLAGS)
 
 fanalyzer: $(OBJS) $(LIB_PATH) $(MLX_PATH) $(HEADERS)
 	$(CC) $(CFLAGS) -fanalyzer $^ -o $@ -L$(LIB_DIR) -L$(MLX_DIR) $(MLXFLAGS)
