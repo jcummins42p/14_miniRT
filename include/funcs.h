@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 14:29:39 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:55:02 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		k_select_scene(int keysym, t_mlx *mlx);
 void	k_adjust_shine(int keysym, t_mlx *mlx);
 
 //	control_camera.c
-void 	reset_cam_default(t_mlx *mlx, t_camera *cam);
+void	reset_cam_default(t_mlx *mlx, t_camera *cam);
 void	k_cam_pan(int keysym, t_camera *cam);
 
 //	control_kb_select.c
@@ -41,7 +41,7 @@ void	k_deselect_object(t_mlx *mlx);
 void	k_select_light(int keysym, t_mlx *mlx);
 void	k_select_ambient(t_mlx *mlx);
 
-int light_angle(t_scene *scene, t_ray *ray, int lighint);
+int		light_angle(t_scene *scene, t_ray *ray, int lighint);
 
 //	draw.c
 void	pixel_put_img(t_img *img, int x, int y, int color);
@@ -73,7 +73,7 @@ int		color_addition(int original, int target);
 void	intersect_cylinders(t_scene *scene, t_ray *ray, float *t, int *col);
 
 // intersect_cylinder_caps.c
-int	intersect_cyl_caps(t_cylinder *cylinder, t_ray *ray, float *t);
+int		intersect_cyl_caps(t_cylinder *cylinder, t_ray *ray, float *t);
 
 //	intersect_light.c
 void	intersect_lights(t_scene *scene, t_ray *ray, float *t, int *col);
@@ -91,7 +91,7 @@ int		prep_light_ray(t_scene *scene, t_vec3 bounce_point);
 void	prep_cam_ray(t_mlx *mlx, t_scene *scene, int x, int y);
 
 //	check_format.c
-int	check_format(int argc, char **argv);
+int		check_format(int argc, char **argv);
 
 //	utils_mlx.c
 int		set_mlx(t_mlx *mlx, t_rt *rt);
@@ -108,7 +108,7 @@ void	color_int_to_vector(t_rgb rgb, int color);
 int		color_vector_to_int(t_rgb rgb);
 
 // quadratic.c
-int	calculate_quadratic(t_cylinder *cylinder, t_ray *ray, t_quadratic	*eq);
+int		cacl_quad(t_cylinder *cylinder, t_ray *ray, t_quadratic	*eq);
 
 //	vectormaths.c
 void	toggle_bool(bool *current);
@@ -120,7 +120,7 @@ float	dot_product(t_vec3 a, t_vec3 b);
 
 //	vector_normals.c
 void	vec3_surface_reflection(t_vec3 reflect, t_vec3 light, t_vec3 norm);
-void 	get_cylinder_normal(t_vec3 normal, t_cylinder *cylinder, t_ray *ray);
+void	get_cylinder_normal(t_vec3 normal, t_cylinder *cylinder, t_ray *ray);
 
 //	vector_maths.c
 void	vec3_position(t_vec3 dest, t_vec3 origin, t_vec3 unit, float magnitude);
@@ -161,8 +161,8 @@ int		k_release(int keysym, void *vars);
 int		k_press(int keysym, t_mlx *mlx);
 
 //	quaternion.c
-void	rotate_vector_by_quaternion(t_vec3 vector, t_quaternion q);
-t_quaternion axis_angle_to_quaternion(t_vec3 axis, float angle);
+void	rotate_vector_by_quaternion(t_vec3 vector, t_quat q);
+t_quat	axis_angle_to_quaternion(t_vec3 axis, float angle);
 
 //	parse_attributes.c
 int		set_color(char *input);

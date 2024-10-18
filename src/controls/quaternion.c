@@ -6,15 +6,15 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:10:10 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/17 20:07:21 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/18 16:52:04 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_quaternion	axis_angle_to_quaternion(t_vec3 axis, float angle)
+t_quat	axis_angle_to_quaternion(t_vec3 axis, float angle)
 {
-	t_quaternion	q;
+	t_quat	q;
 	float			half_angle;
 	float			sin_half_angle;
 
@@ -27,9 +27,9 @@ t_quaternion	axis_angle_to_quaternion(t_vec3 axis, float angle)
 	return (q);
 }
 
-t_quaternion	quaternion_multiply(t_quaternion q1, t_quaternion q2)
+t_quat	quaternion_multiply(t_quat q1, t_quat q2)
 {
-	t_quaternion	result;
+	t_quat	result;
 
 	result.w = q1.w * q2.w - q1.x * q2.x - q1.y * q2.y - q1.z * q2.z;
 	result.x = q1.w * q2.x + q1.x * q2.w + q1.y * q2.z - q1.z * q2.y;
@@ -38,9 +38,9 @@ t_quaternion	quaternion_multiply(t_quaternion q1, t_quaternion q2)
 	return (result);
 }
 
-t_quaternion	quaternion_conjugate(t_quaternion q)
+t_quat	quaternion_conjugate(t_quat q)
 {
-	t_quaternion	result;
+	t_quat	result;
 
 	result.w = q.w;
 	result.x = -q.x;
@@ -49,11 +49,11 @@ t_quaternion	quaternion_conjugate(t_quaternion q)
 	return (result);
 }
 
-void	rotate_vector_by_quaternion(t_vec3 vector, t_quaternion q)
+void	rotate_vector_by_quaternion(t_vec3 vector, t_quat q)
 {
-	t_quaternion	vec_quat;
-	t_quaternion	q_conj;
-	t_quaternion	result;
+	t_quat	vec_quat;
+	t_quat	q_conj;
+	t_quat	result;
 
 	vec_quat.w = 0;
 	vec_quat.x = vector[_X];

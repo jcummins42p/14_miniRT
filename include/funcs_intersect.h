@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 16:06:41 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:48:53 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void	intersect_cylinders(t_scene *scene, t_ray *ray, float *t, int *col);
 
 // intersect_cylinder_caps.c
-int	intersect_cyl_caps(t_cylinder *cylinder, t_ray *ray, float *t);
+int		intersect_cyl_caps(t_cylinder *cylinder, t_ray *ray, float *t);
 
 //	intersect_light.c
 void	intersect_lights(t_scene *scene, t_ray *ray, float *t, int *col);

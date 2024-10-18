@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 16:33:01 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:56:37 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	k_select_light(int keysym, t_mlx *mlx);
 void	k_select_ambient(t_mlx *mlx);
 
 //	control_camera.c
-void 	reset_cam_default(t_mlx *mlx, t_camera *cam);
+void	reset_cam_default(t_mlx *mlx, t_camera *cam);
 void	k_cam_pan(int keysym, t_camera *cam);
 
 //	control_hue.c
@@ -58,9 +58,9 @@ int		b_press(int button, int x, int y, t_mlx *mlx);
 int		b_release(int button, void *vars);
 
 //	quaternion.c
-t_quaternion	axis_angle_to_quaternion(t_vec3 axis, float angle);
-t_quaternion	quaternion_multiply(t_quaternion q1, t_quaternion q2);
-t_quaternion	quaternion_conjugate(t_quaternion q);
-void			rotate_vector_by_quaternion(t_vec3 vector, t_quaternion q);
+t_quat	axis_angle_to_quaternion(t_vec3 axis, float angle);
+t_quat	quaternion_multiply(t_quat q1, t_quat q2);
+t_quat	quaternion_conjugate(t_quat q);
+void	rotate_vector_by_quaternion(t_vec3 vector, t_quat q);
 
 #endif

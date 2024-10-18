@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 16:08:22 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:46:34 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	color_int_to_vector(t_rgb rgb, int color);
 int		color_vector_to_int(t_rgb rgb);
 
 //	light_angle.c
-int 	light_angle(t_scene *scene, t_ray *ray, int lighint);
+int		light_angle(t_scene *scene, t_ray *ray, int lighint);
 
 //	pixel_shaders.c
 int		shade_pixel_distance(int pixel_color, float distance);

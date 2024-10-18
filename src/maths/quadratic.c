@@ -6,13 +6,13 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:35:07 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/17 16:35:19 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/18 16:54:17 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	calculate_quadratic(t_cylinder *cylinder, t_ray *ray, t_quadratic	*eq)
+int	cacl_quad(t_cylinder *cylinder, t_ray *ray, t_quadratic	*eq)
 {
 	t_vec3	oc;
 	float	d_dot_axis;

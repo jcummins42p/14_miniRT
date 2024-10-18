@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:16:50 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/18 16:07:15 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:54:14 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	intersect_cyl_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 	t_vec3		intersection_point;
 	float		height_at_t1;
 
-	if (calculate_quadratic(cylinder, ray, &eq))
+	if (cacl_quad(cylinder, ray, &eq))
 		return (-1);
 	t1 = (-eq.b - sqrt(eq.discriminant)) / (2 * eq.a);
 	if (t1 > EPSILON && t1 < *t)
