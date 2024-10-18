@@ -6,13 +6,13 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:16:50 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/18 14:15:01 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:07:15 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	intersect_cyl_sides(t_cylinder *cylinder, t_ray *ray, float *t)
+static int	intersect_cyl_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 {
 	t_quadratic	eq;
 	float		t1;
@@ -38,7 +38,7 @@ int	intersect_cyl_sides(t_cylinder *cylinder, t_ray *ray, float *t)
 	return (-1);
 }
 
-int	intersect_cylinder(t_cylinder *cylinder, t_ray *ray, float *t)
+static int	intersect_cylinder(t_cylinder *cylinder, t_ray *ray, float *t)
 {
 	int	color;
 

@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:24:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 15:36:41 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:07:53 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 //		b) would result in a division by 0 anyway
 //			: so we need to exit at that point.
 //
-int	intersect_plane(t_plane *plane, t_ray *ray, float *t)
+static int	intersect_plane(t_plane *plane, t_ray *ray, float *t)
 {
 	float		temp_t;
 	t_vec3		cam_to_anch;

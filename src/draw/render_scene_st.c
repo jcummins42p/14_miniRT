@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   render_scene_st.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:30 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 16:28:08 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:00:46 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	render_row(t_mlx *mlx, t_scene *scene, int y)
+static void	render_row(t_mlx *mlx, t_scene *scene, int y)
 {
 	int	x;
 
@@ -26,7 +26,7 @@ void	render_row(t_mlx *mlx, t_scene *scene, int y)
 	}
 }
 
-int	render_scene_st(t_mlx *mlx, t_scene *scene)
+static int	render_scene_st(t_mlx *mlx, t_scene *scene)
 {
 	int				y;
 

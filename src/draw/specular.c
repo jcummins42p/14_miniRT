@@ -6,13 +6,13 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 09:54:25 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 13:46:43 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:05:28 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	specular_plane(t_scene *scene, t_ray *ray, int *pixel_color)
+static void	specular_plane(t_scene *scene, t_ray *ray, int *pixel_color)
 {
 	t_plane		*plane;
 	float		incidence;
@@ -32,7 +32,7 @@ void	specular_plane(t_scene *scene, t_ray *ray, int *pixel_color)
 	*pixel_color = color_shift(*pixel_color, scene->light.hue, incidence);
 }
 
-void	specular_cyltop(t_scene *scene, t_ray *ray, int *pixel_color)
+static void	specular_cyltop(t_scene *scene, t_ray *ray, int *pixel_color)
 {
 	t_cylinder	*cylinder;
 	float		incidence;
@@ -50,7 +50,7 @@ void	specular_cyltop(t_scene *scene, t_ray *ray, int *pixel_color)
 	*pixel_color = color_shift(*pixel_color, scene->light.hue, incidence);
 }
 
-void	specular_cylinder(t_scene *scene, t_ray *ray, int *pixel_color)
+static void	specular_cylinder(t_scene *scene, t_ray *ray, int *pixel_color)
 {
 	t_cylinder	*cylinder;
 	float		incidence;
@@ -70,7 +70,7 @@ void	specular_cylinder(t_scene *scene, t_ray *ray, int *pixel_color)
 	*pixel_color = color_shift(*pixel_color, scene->light.hue, incidence);
 }
 
-void	specular_sphere(t_scene *scene, t_ray *ray, int *pixel_color)
+static void	specular_sphere(t_scene *scene, t_ray *ray, int *pixel_color)
 {
 	t_sphere	*sphere;
 	float		incidence;

@@ -6,13 +6,13 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:12:28 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 13:57:14 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:46:24 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	kp_select_scene(int keysym, t_mlx *mlx, int newscene)
+static int	kp_select_scene(int keysym, t_mlx *mlx, int newscene)
 {
 	t_rt	*rt;
 
@@ -31,7 +31,7 @@ int	kp_select_scene(int keysym, t_mlx *mlx, int newscene)
 	return (newscene);
 }
 
-void	kp_change_scene(t_mlx *mlx, int newscene)
+static void	kp_change_scene(t_mlx *mlx, int newscene)
 {
 	if (mlx->rt->scenes[newscene]->valid)
 	{

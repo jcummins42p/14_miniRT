@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 19:16:21 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:47:40 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	b_release(int button, void *vars)
 	return (0);
 }
 
-void	m_select_object(t_mlx *mlx, int x, int y)
+static void	m_select_object(t_mlx *mlx, int x, int y)
 {
 	t_scene	*scene;
 
@@ -37,7 +37,7 @@ void	m_select_object(t_mlx *mlx, int x, int y)
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
-void	m_zoom(t_mlx *mlx, int button)
+static void	m_zoom(t_mlx *mlx, int button)
 {
 	if (button == ON_MOUSEDOWN)
 		mlx->rt->scenes[mlx->rt->curr_scene]->cam.point[_Z]

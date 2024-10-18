@@ -6,13 +6,14 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:35:34 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 14:13:14 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:53:03 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-float	find_closest_t(t_scene *scene, t_ray *ray, int *pixel_color)
+//	could work to make this non-static and called in the light ray routine
+static float find_closest_t(t_scene *scene, t_ray *ray, int *pixel_color)
 {
 	float	temp_t;
 
@@ -25,7 +26,7 @@ float	find_closest_t(t_scene *scene, t_ray *ray, int *pixel_color)
 	return (temp_t);
 }
 
-int	cast_cam_ray(t_scene *scene, t_ray *ray)
+static int	cast_cam_ray(t_scene *scene, t_ray *ray)
 {
 	ray->obj_t = find_closest_t(scene, ray, &ray->obj_color);
 	if (ray->obj_type == SEL_LIGHT)
@@ -46,7 +47,7 @@ int	cast_cam_ray(t_scene *scene, t_ray *ray)
 	return (ray->pixel_color);
 }
 
-void	init_cam_ray(t_scene *scene, t_ray *ray, int x, int y)
+static void	init_cam_ray(t_scene *scene, t_ray *ray, int x, int y)
 {
 	ray->x = x;
 	ray->y = y;

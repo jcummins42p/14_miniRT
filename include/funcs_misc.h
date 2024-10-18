@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   funcs_intersect.h                                  :+:      :+:    :+:   */
+/*   funcs_misc.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:35:02 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 16:06:41 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:33:55 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FUNCS_INTERSECT_H
-# define FUNCS_INTERSECT_H
+#ifndef FUNCS_MISC_H
+# define FUNCS_MISC_H
 
-// intersect_cylinder.c
-void	intersect_cylinders(t_scene *scene, t_ray *ray, float *t, int *col);
+//	check_format.c
+int	check_format(int argc, char **argv);
 
-// intersect_cylinder_caps.c
-int	intersect_cyl_caps(t_cylinder *cylinder, t_ray *ray, float *t);
+void	display_hud(t_mlx *mlx, t_scene *scene);
 
-//	intersect_light.c
-void	intersect_lights(t_scene *scene, t_ray *ray, float *t, int *col);
-
-//	intersect_planes.c
-void	intersect_planes(t_scene *scene, t_ray *ray, float *t, int *col);
-
-//	intersect_spheres.c
-void	intersect_spheres(t_scene *scene, t_ray *ray, float *t, int *col);
+//	utils_mlx.c
+int		set_mlx(t_mlx *mlx, t_rt *rt);
+void	cleanup_mlx(t_mlx *mlx);
 
 #endif

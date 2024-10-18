@@ -6,13 +6,13 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:57:21 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/22 09:45:02 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:16:43 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	parse_select(char *line, t_scene *scene)
+static void	parse_select(char *line, t_scene *scene)
 {
 	if (!ft_strncmp(line, "A", 1))
 		parse_ambient(line, scene);
@@ -28,7 +28,7 @@ void	parse_select(char *line, t_scene *scene)
 		parse_cylinder(line, scene);
 }
 
-void	parse_file(int fd, t_scene *scene)
+static void	parse_file(int fd, t_scene *scene)
 {
 	char	*line;
 

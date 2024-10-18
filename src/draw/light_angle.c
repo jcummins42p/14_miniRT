@@ -6,13 +6,13 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:45:33 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 15:31:02 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:56:51 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-float	light_angle_cylinder(t_scene *scene, t_ray *ray)
+static float	light_angle_cylinder(t_scene *scene, t_ray *ray)
 {
 	float		dot_prod;
 	t_vec3		light;
@@ -27,7 +27,7 @@ float	light_angle_cylinder(t_scene *scene, t_ray *ray)
 	return (dot_product(light, normal));
 }
 
-float	light_angle_cyltop(t_scene *scene, t_ray *ray)
+static float	light_angle_cyltop(t_scene *scene, t_ray *ray)
 {
 	t_vec3		light;
 	t_vec3		normal;
@@ -40,7 +40,7 @@ float	light_angle_cyltop(t_scene *scene, t_ray *ray)
 	return (dot_product(light, normal) * 10);
 }
 
-float	light_angle_plane(t_scene *scene, t_ray *ray)
+static float	light_angle_plane(t_scene *scene, t_ray *ray)
 {
 	t_plane		*plane;
 	t_vec3		light;
@@ -53,7 +53,7 @@ float	light_angle_plane(t_scene *scene, t_ray *ray)
 	return ((dot_product(light, plane->norm) * 10));
 }
 
-float	light_angle_sphere(t_scene *scene, t_ray *ray)
+static float	light_angle_sphere(t_scene *scene, t_ray *ray)
 {
 	t_sphere	*sphere;
 	t_vec3		normal;

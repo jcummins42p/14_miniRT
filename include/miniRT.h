@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:58:24 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 17:18:15 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/18 16:28:46 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,17 @@
 # include "XK_defines.h"
 # include "enums.h"
 # include "structs.h"
-# include "funcs.h"
+
+# include "funcs_utils.h"
+# include "funcs_control.h"
+# include "funcs_draw.h"
+# include "funcs_intersect.h"
+# include "funcs_maths.h"
+# include "funcs_parse.h"
+# include "funcs_print.h"
+# include "funcs_misc.h"
+
+
 # include <float.h>
 
 #endif

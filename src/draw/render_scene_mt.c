@@ -6,13 +6,13 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:01:55 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 13:42:34 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:00:11 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	*render_row_mt(void *data)
+static void	*render_row_mt(void *data)
 {
 	t_render	*render;
 	t_mlx		*mlx;
@@ -29,7 +29,7 @@ void	*render_row_mt(void *data)
 	return (NULL);
 }
 
-int	init_rqueue(t_mlx *mlx, t_render **renders)
+static int	init_rqueue(t_mlx *mlx, t_render **renders)
 {
 	int	y;
 
@@ -49,7 +49,7 @@ int	init_rqueue(t_mlx *mlx, t_render **renders)
 	return (0);
 }
 
-int	create_threads(t_render *renders, int n_threads)
+static int	create_threads(t_render *renders, int n_threads)
 {
 	int	done_threads;
 	int	y;

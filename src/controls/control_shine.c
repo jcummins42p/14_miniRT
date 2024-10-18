@@ -6,13 +6,13 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:15:50 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 13:58:08 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:47:03 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	k_adjust_shine_cylinder(int keysym, t_cylinder *cylinder)
+static void	k_adjust_shine_cylinder(int keysym, t_cylinder *cylinder)
 {
 	if (!cylinder)
 		return ;
@@ -26,7 +26,7 @@ void	k_adjust_shine_cylinder(int keysym, t_cylinder *cylinder)
 		cylinder->shine = 256;
 }
 
-void	k_adjust_shine_plane(int keysym, t_plane *plane)
+static void	k_adjust_shine_plane(int keysym, t_plane *plane)
 {
 	if (!plane)
 		return ;
@@ -40,7 +40,7 @@ void	k_adjust_shine_plane(int keysym, t_plane *plane)
 		plane->shine = 256;
 }
 
-void	k_adjust_shine_sphere(int keysym, t_sphere *sphere)
+static void	k_adjust_shine_sphere(int keysym, t_sphere *sphere)
 {
 	if (!sphere)
 		return ;

@@ -6,13 +6,13 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:56:43 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/17 20:08:00 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/18 15:42:31 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	move_cylinder(t_cylinder *cylinder, int keysym, float z_dir)
+static void	move_cylinder(t_cylinder *cylinder, int keysym, float z_dir)
 {
 	if (keysym == XK_KP_3)
 		cylinder->center[_Y] += 1.0f;
@@ -28,7 +28,7 @@ void	move_cylinder(t_cylinder *cylinder, int keysym, float z_dir)
 		cylinder->center[_Z] -= 1.0f * z_dir;
 }
 
-void	resize_cylinder(t_cylinder *cylinder, int keysym)
+static void	resize_cylinder(t_cylinder *cylinder, int keysym)
 {
 	if (keysym == XK_KP_9)
 		cylinder->diamtr += 0.05f;

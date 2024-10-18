@@ -6,13 +6,13 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:03:37 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 18:42:00 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:35:33 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	color_alter_vector(t_rgb color, int component, float amount)
+static void	color_alter_vector(t_rgb color, int component, float amount)
 {
 	if (component < _R || component > _B)
 		return ;

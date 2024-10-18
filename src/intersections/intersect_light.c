@@ -6,14 +6,14 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:14:47 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 14:15:29 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:07:45 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
 //	eq.a will always equal 1 in this equation so has been optimized out
-int	intersect_light(t_light *light, t_ray *ray, float *t)
+static int	intersect_light(t_light *light, t_ray *ray, float *t)
 {
 	float		temp_t;
 	t_quadratic	eq;

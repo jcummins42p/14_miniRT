@@ -6,13 +6,13 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:45:11 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 16:23:19 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:34:22 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	ft_listcount(char **list)
+static int	ft_listcount(char **list)
 {
 	int	count;
 
@@ -82,7 +82,7 @@ void	parse_plane(char *input, t_scene *scene)
 	}
 }
 
-int	set_cylinder_info(char **items, t_cylinder *cylinder)
+static int	set_cylinder_info(char **items, t_cylinder *cylinder)
 {
 	set_vec3(cylinder->center, items[1]);
 	if (set_unit_vec3(cylinder->axis, items[2]))
@@ -92,7 +92,6 @@ int	set_cylinder_info(char **items, t_cylinder *cylinder)
 	cylinder->height = ft_atof(items[4]);
 	cylinder->color = set_color(items[5]);
 	cylinder->shine = 32;
-	aa_bound_capsule(cylinder);
 	return (0);
 }
 

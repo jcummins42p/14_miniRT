@@ -6,13 +6,13 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:20:10 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 14:20:33 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:58:46 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	highlight_selected(t_scene *scene, int x, int y, int radius)
+static void	highlight_selected(t_scene *scene, int x, int y, int radius)
 {
 	if (!scene->selected || scene->screen_object[y][x] == scene->selected)
 		return ;
@@ -39,9 +39,7 @@ void	post_process(t_scene *scene)
 	{
 		x = 0;
 		while (x < RES_W)
-		{
 			highlight_selected(scene, x++, y, HIGHLIGHT_RAD);
-		}
 		y++;
 	}
 }
