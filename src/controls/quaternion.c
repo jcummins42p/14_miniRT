@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:10:10 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/18 16:52:04 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/18 17:02:24 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_quat	axis_angle_to_quaternion(t_vec3 axis, float angle)
 {
 	t_quat	q;
-	float			half_angle;
-	float			sin_half_angle;
+	float	half_angle;
+	float	sin_half_angle;
 
 	half_angle = angle / 2.0;
 	sin_half_angle = sin(half_angle);
