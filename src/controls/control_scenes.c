@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:12:28 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 17:15:20 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:57:14 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ int	kp_select_scene(int keysym, t_mlx *mlx, int newscene)
 	t_rt	*rt;
 
 	rt = mlx->rt;
-	if (keysym == XK_KP_Add)
+	if (keysym == XK_KP_ADD)
 	{
 		if (newscene < (rt->n_scenes - 1))
 			newscene++;
 	}
-	else if (keysym == XK_KP_Subtract)
+	else if (keysym == XK_KP_SUBTRACT)
 	{
 		if (newscene > 0)
 			newscene--;
@@ -47,9 +47,9 @@ int	k_select_scene(int keysym, t_mlx *mlx)
 {
 	static int	newscene;
 
-	if (keysym == XK_KP_Add || keysym == XK_KP_Subtract)
+	if (keysym == XK_KP_ADD || keysym == XK_KP_SUBTRACT)
 		newscene = kp_select_scene(keysym, mlx, newscene);
-	else if (keysym == XK_KP_Enter)
+	else if (keysym == XK_KP_ENTER)
 		kp_change_scene(mlx, newscene);
 	else if (newscene >= 0 && newscene < mlx->rt->n_scenes)
 	{

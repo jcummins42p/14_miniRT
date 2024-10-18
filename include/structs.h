@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 19:03:37 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:30:53 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,22 +131,14 @@ typedef struct s_img
 	int		endian;
 }				t_img;
 
-typedef struct s_render
-{
-	int		res;
-	bool	scan;
-}				t_render;
-
 typedef struct s_scene
 {
 	char		*fname;
 	void		*screen_object[RES_H][RES_W];	//	each pixel stores the object in it
 	int			select_type[RES_H][RES_W];
-	t_pixel		light_point;
 	void		*selected;
 	int			sel_type;
 	t_img		*img;
-	t_render	rend;
 	t_ambient	amb;
 	t_camera	cam;
 	t_camera	cam_defaults;
@@ -161,8 +153,8 @@ typedef struct s_scene
 	int			n_planes;
 	int			n_spheres;
 	int			sky;
-	t_mutex		mutex;
 	bool		valid;
+	bool		specular;
 }				t_scene;
 
 typedef struct s_rt
@@ -185,10 +177,13 @@ typedef struct s_mlx
 	bool	multithread;
 }				t_mlx;
 
-typedef struct s_render_queue
+typedef struct s_render
 {
-	t_mlx	*mlx;
-	int		y;
-}				t_render_queue;
+	t_mlx		*mlx;
+	pthread_t	thread_id;
+	int			n_threads;
+	int			done_threads;
+	int			y;
+}				t_render;
 
 #endif

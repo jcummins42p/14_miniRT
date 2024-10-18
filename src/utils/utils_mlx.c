@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:48:29 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 16:37:47 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:30:38 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ int	set_mlx(t_mlx *mlx, t_rt *rt)
 		return (3);
 	mlx->rt = rt;
 	mlx->aspect_ratio = RES_W / RES_H;
-	if (MULTITHREAD)
-		mlx->multithread = true;
-	else
-		mlx->multithread = false;
+	mlx->multithread = false;
 	mlx_hook(mlx->win, KeyPress, KeyPressMask, k_press, mlx);
 	mlx_hook(mlx->win, KeyRelease, KeyReleaseMask, k_release, mlx);
 	mlx_hook(mlx->win, ButtonPress, ButtonPressMask, b_press, mlx);

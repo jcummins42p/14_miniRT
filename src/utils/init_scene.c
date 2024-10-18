@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:38:24 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 19:22:38 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:31:41 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	init_scene(t_scene *scene, char *filename, int id)
 		return (1);
 	scene->id = id;
 	scene->valid = true;
+	scene->specular = false;
 	scene->sky = 0x424242;
 	scene->amb.lock = false;
 	scene->amb.lum = 0.42;

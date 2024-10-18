@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:35:34 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 16:36:19 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:13:14 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 float	find_closest_t(t_scene *scene, t_ray *ray, int *pixel_color)
 {
 	float	temp_t;
-	float	closest_t;
 
 	temp_t = INFINITY;
-	closest_t = INFINITY;
 	*pixel_color = -1;
 	intersect_spheres(scene, ray, &temp_t, pixel_color);
 	intersect_planes(scene, ray, &temp_t, pixel_color);
@@ -39,7 +37,7 @@ int	cast_cam_ray(t_scene *scene, t_ray *ray)
 		ray->light_color = light_angle(scene, ray, ray->light_color);
 		ray->comb_color = combine_lights(ray->light_color, scene->amb);
 		ray->pixel_color = illuminate_pixel(ray->obj_color, ray->comb_color);
-		if (ray->light_color >= 0)
+		if (ray->light_color >= 0 && scene->specular)
 			specular_pass(scene, ray, &ray->pixel_color);
 		ray->pixel_color = shade_pixel_distance(ray->pixel_color, ray->obj_t);
 	}

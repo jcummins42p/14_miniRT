@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 20:35:46 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:00:37 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,65 +18,49 @@ int	k_no_event(void *vars)
 	return (0);
 }
 
-int	k_release(int keysym, void *vars)
+int	k_release(int ksym, void *vars)
 {
 	(void) vars;
-	(void) keysym;
+	(void) ksym;
 	return (0);
 }
 
-/*void	k_redraw(t_mlx *mlx, int redraw)*/
-/*{*/
-	/*if (redraw == 2)*/
-		/*print_scene(mlx->rt->scenes[mlx->rt->curr_scene]);*/
-	/*render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);*/
-	/*if (redraw == 2)*/
-		/*display_hud(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);*/
-/*}*/
-
-void	k_fov_controls(t_mlx *mlx, int keysym)
+void	k_fov_controls(t_mlx *mlx, int ksym)
 {
 	int	*fov;
 
 	fov = &mlx->rt->scenes[mlx->rt->curr_scene]->cam.fov;
-	if (keysym == XK_z)
-	{
+	if (ksym == XK_Z)
 		(*fov)++;
-		printf("Increasing fov\n");
-	}
-	else if (keysym == XK_x)
-	{
+	else if (ksym == XK_X)
 		(*fov)--;
-		printf("Reducing fov\n");
-	}
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
-int	k_press(int keysym, t_mlx *mlx)
+int	k_press(int ksym, t_mlx *mlx)
 {
-	printf("k_press %d\n", keysym);
-	if (keysym == XK_Escape)
+	if (ksym == XK_Escape)
 		mlx_loop_end(mlx->mlx);
-	else if (keysym == XK_KP_5)
+	else if (ksym == XK_KP_5)
 		reset_cam_default(mlx, &mlx->rt->scenes[mlx->rt->curr_scene]->cam);
-	else if (keysym == XK_KP_Delete)
+	else if (ksym == XK_KP_DELETE)
 		k_deselect_object(mlx);
-	else if (keysym == XK_KP_Add || keysym == XK_KP_Subtract
-		|| keysym == XK_KP_Enter)
-		k_select_scene(keysym, mlx);
-	else if (keysym == XK_m)
+	else if (ksym == XK_KP_ADD || ksym == XK_KP_SUBTRACT
+		|| ksym == XK_KP_ENTER)
+		k_select_scene(ksym, mlx);
+	else if (ksym == XK_M)
 		toggle_bool(&mlx->multithread);
-	else if (keysym == XK_a)
+	else if (ksym == XK_A)
 		k_select_ambient(mlx);
-	else if (keysym == XK_p || keysym == XK_l)
-		k_select_light(keysym, mlx);
-	else if (keysym == XK_period || keysym == XK_comma)
-		k_adjust_shine(keysym, mlx);
-	else if ((keysym >= XK_KP_7 && keysym <= XK_KP_0)
-		|| keysym == XK_KP_Q || keysym == XK_KP_W || keysym == XK_KP_E
-		|| keysym == XK_KP_A || keysym == XK_KP_S || keysym == XK_KP_D)
-		k_directional_controls(keysym, mlx);
-	else if (keysym == XK_z || keysym == XK_x)
-		k_fov_controls(mlx, keysym);
+	else if (ksym == XK_P || ksym == XK_L)
+		k_select_light(ksym, mlx);
+	else if (ksym == XK_PERIOD || ksym == XK_COMMA || ksym == XK_BACKSLASH)
+		k_adjust_shine(ksym, mlx);
+	else if ((ksym >= XK_KP_7 && ksym <= XK_KP_0)
+		|| ksym == XK_KP_Q || ksym == XK_KP_W || ksym == XK_KP_E
+		|| ksym == XK_KP_A || ksym == XK_KP_S || ksym == XK_KP_D)
+		k_directional_controls(ksym, mlx);
+	else if (ksym == XK_Z || ksym == XK_X)
+		k_fov_controls(mlx, ksym);
 	return (0);
 }

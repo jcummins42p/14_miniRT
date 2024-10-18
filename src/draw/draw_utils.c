@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:39:25 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 15:50:54 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 12:30:37 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int	img_init(t_mlx *mlx, t_img *img)
 {
+	int	y;
+	int	x;
+
+	x = -1;
+	y = -1;
 	img->img = mlx_new_image(mlx->mlx, RES_W, RES_H);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
 				&img->line_length, &img->endian);
@@ -21,6 +26,11 @@ int	img_init(t_mlx *mlx, t_img *img)
 	{
 		printf("Failed to create img\n");
 		return (1);
+	}
+	while (++y < RES_H)
+	{
+		while (++x < RES_W)
+			pixel_put_img(img, x, y, XCOL_WHT);
 	}
 	return (0);
 }

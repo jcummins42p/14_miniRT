@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:49:37 by jcummins          #+#    #+#             */
-/*   Updated: 2024/09/24 20:30:42 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:37:38 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,34 @@ int	open_scenes(t_rt *rt, char **argv)
 	return (0);
 }
 
-void	init_rt(t_rt *rt, int argc)
+int	init_rt(t_rt *rt, int argc)
 {
 	rt->errcode = 0;
 	rt->curr_scene = 0;
 	rt->n_scenes = argc - 1;
 	rt->fd = malloc(sizeof(int) * rt->n_scenes);
+	if (!rt->fd)
+		return (1);
 	rt->scenes = alloc_scenes(rt->n_scenes);
+	if (!rt->scenes)
+		return (1);
+	return (0);
 }
 
 int	set_rt(int argc, char **argv, t_rt *rt)
 {
-	init_rt(rt, argc);
+	if (init_rt(rt, argc))
+		return (1);
 	init_scenes(rt, argv);
 	if (!rt->scenes)
 		return (1);
 	if (open_scenes(rt, argv))
 		return (1);
 	preparse(rt);
-	alloc_shapes(rt);
-	open_scenes(rt, argv);
+	if (alloc_shapes(rt))
+		return (1);
+	if (open_scenes(rt, argv))
+		return (1);
 	parse(rt);
 	return (0);
 }

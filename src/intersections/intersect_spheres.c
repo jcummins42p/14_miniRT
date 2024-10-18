@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:56:52 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 13:43:13 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:13:56 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,11 @@ int	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t)
 void	intersect_spheres(t_scene *scene, t_ray *ray, float *t, int *col)
 {
 	int		temp_color;
-	int		pixel_color;
 	float	temp_t;
 	int		i;
 
 	i = -1;
 	temp_color = -1;
-	pixel_color = -1;
 	temp_t = *t;
 	while (++i < scene->n_spheres)
 	{

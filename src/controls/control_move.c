@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:18:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 20:20:45 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:40:01 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ void	k_move_camera(int keysym, t_scene *scene)
 
 void	k_directional_controls(int keysym, t_mlx *mlx)
 {
-	printf("in directional controls\n");
 	if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_SPHERE)
 		k_move_sphere(keysym, mlx->rt->scenes[mlx->rt->curr_scene]);
 	else if (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_LIGHT)

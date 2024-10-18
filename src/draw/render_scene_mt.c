@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:01:55 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 16:36:49 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:42:34 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	*render_row_mt(void *data)
 {
-	t_render_queue	*render;
-	t_mlx			*mlx;
-	t_scene			*scene;
-	int				coords[2];
+	t_render	*render;
+	t_mlx		*mlx;
+	t_scene		*scene;
+	int			coords[2];
 
-	render = (t_render_queue *)data;
+	render = (t_render *)data;
 	mlx = render->mlx;
 	coords[_Y] = render->y;
 	scene = mlx->rt->scenes[mlx->rt->curr_scene];
@@ -29,12 +29,12 @@ void	*render_row_mt(void *data)
 	return (NULL);
 }
 
-int	init_rqueue(t_mlx *mlx, t_render_queue **renders)
+int	init_rqueue(t_mlx *mlx, t_render **renders)
 {
 	int	y;
 
 	y = -1;
-	*renders = malloc(sizeof(t_render_queue) * RES_H + 1);
+	*renders = malloc(sizeof(t_render) * RES_H + 1);
 	if (!(*renders))
 	{
 		mlx->rt->errcode = ERR_MALLOC;
@@ -42,31 +42,52 @@ int	init_rqueue(t_mlx *mlx, t_render_queue **renders)
 	}
 	while (++y < RES_H)
 	{
+		(*renders)[y].thread_id = 0;
 		(*renders)[y].mlx = mlx;
 		(*renders)[y].y = y;
 	}
 	return (0);
 }
 
+int	create_threads(t_render *renders, int n_threads)
+{
+	int	done_threads;
+	int	y;
+
+	y = -1;
+	done_threads = 0;
+	while (y < RES_H)
+	{
+		while (++y < n_threads + done_threads && y < RES_H)
+		{
+			if (pthread_create(&renders[y].thread_id,
+					NULL, &render_row_mt, &renders[y]))
+				return (1);
+		}
+		while (--y >= done_threads)
+		{
+			if (pthread_join(renders[y].thread_id, NULL))
+				return (1);
+		}
+		done_threads += n_threads;
+		y += n_threads;
+	}
+	return (0);
+}
+
 int	render_scene_mt(t_mlx *mlx, t_scene *scene)
 {
-	t_render_queue	*renders;
-	int				y;
-	pthread_t		thread_id[RES_H];
+	t_render	*renders;
+	int			n_threads;
 
+	n_threads = sysconf(_SC_NPROCESSORS_CONF);
 	renders = NULL;
 	if (!scene->valid
 		|| img_init(mlx, scene->img)
 		|| init_rqueue(mlx, &renders))
 		return (1);
-	y = -1;
-	while (++y < RES_H)
-		thread_id[y] = 0;
-	y = -1;
-	while (++y < RES_H)
-		pthread_create(&thread_id[y], NULL, &render_row_mt, &renders[y]);
-	while (--y >= 0)
-		pthread_join(thread_id[y], NULL);
+	if (create_threads(renders, n_threads))
+		return (1);
 	free(renders);
 	return (0);
 }

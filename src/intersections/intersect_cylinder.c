@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:16:50 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/17 17:31:11 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/18 14:15:01 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,17 @@ int	intersect_cylinder(t_cylinder *cylinder, t_ray *ray, float *t)
 void	intersect_cylinders(t_scene *scene, t_ray *ray, float *t, int *col)
 {
 	int		temp_color;
-	int		pixel_color;
 	float	temp_t;
 	int		i;
 
 	i = -1;
 	temp_color = -1;
-	pixel_color = -1;
 	temp_t = *t;
 	while (++i < scene->n_cylinders)
 	{
 		temp_color = intersect_cylinder(&scene->cyls[i], ray, &temp_t);
 		if ((temp_color >= 0) && temp_t < *t)
 		{
-			pixel_color = temp_color;
 			if (ray->origin == &scene->cam.point)
 			{
 				scene->screen_object[ray->y][ray->x] = &scene->cyls[i];

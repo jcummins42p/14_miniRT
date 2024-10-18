@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:14:47 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 15:33:41 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:15:29 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	intersect_light(t_light *light, t_ray *ray, float *t)
 
 	vec3_a_to_b(oc, *ray->origin, light->point);
 	eq.b = 2 * dot_product(oc, ray->udir);
-	eq.c = dot_product(oc, oc) - (LIGHT_RAD * light->lum);
+	eq.c = dot_product(oc, oc) - (LIGHT_RAD * light->lum / 2);
 	eq.discriminant = eq.b * eq.b - 4 * eq.c;
 	if (eq.discriminant < 0)
 		return (-1);
@@ -39,11 +39,9 @@ int	intersect_light(t_light *light, t_ray *ray, float *t)
 void	intersect_lights(t_scene *scene, t_ray *ray, float *t, int *col)
 {
 	int		temp_color;
-	int		pixel_color;
 	float	temp_t;
 
 	temp_color = -1;
-	pixel_color = -1;
 	temp_t = *t;
 	temp_color = intersect_light(&scene->light, ray, &temp_t);
 	if ((temp_color >= 0) && temp_t < *t)
