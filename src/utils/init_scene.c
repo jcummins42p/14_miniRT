@@ -6,7 +6,7 @@
 /*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 20:38:24 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 13:31:41 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:48:53 by jcummins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	init_object_selection(t_scene *scene)
 		y++;
 	}
 	scene->selected = NULL;
+	scene->sel_type = SEL_CAM;
 }
 
 void	init_scene_shape_data(t_scene *scene)
