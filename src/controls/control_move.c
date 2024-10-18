@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:18:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 13:40:01 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:51:09 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	k_move_light(int keysym, t_scene *scene)
 
 void	rotate_quaternion(t_scene *scene, int axis, float incr)
 {
-	t_quaternion	q;
+	t_quat	q;
 
 	q = axis_angle_to_quaternion(scene->axis[axis], incr);
 	if (scene->sel_type == SEL_CAM)

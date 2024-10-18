@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:05:20 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 15:12:17 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:50:47 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_quaternion
 	float	x;
 	float	y;
 	float	z;
-}				t_quaternion;
+}				t_quat;
 
 typedef struct s_quadratic
 {
