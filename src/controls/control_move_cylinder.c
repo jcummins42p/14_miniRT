@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:56:43 by akretov           #+#    #+#             */
-/*   Updated: 2024/10/17 20:08:00 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/18 16:16:16 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	move_cylinder(t_cylinder *cylinder, int keysym, float z_dir)
 
 void	resize_cylinder(t_cylinder *cylinder, int keysym)
 {
-	if (keysym == XK_KP_9)
-		cylinder->diamtr += 0.05f;
-	else if (keysym == XK_KP_7)
-		cylinder->diamtr -= 0.05f;
-	else if (keysym == XK_KP_A)
-		cylinder->height += 0.05f;
-	else if (keysym == XK_KP_D)
-		cylinder->height -= 0.05f;
+	if (keysym == XK_KP_F)
+		cylinder->diamtr *= 1.1f;
+	else if (keysym == XK_KP_G)
+		cylinder->diamtr *= 0.9f;
+	else if (keysym == XK_KP_R)
+		cylinder->height *= 1.1f;
+	else if (keysym == XK_KP_T)
+		cylinder->height *= 0.9f;
 	cylinder->radius = cylinder->diamtr / 2;
 }
 

@@ -6,7 +6,7 @@
 /*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:32:48 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/18 15:43:12 by akretov          ###   ########.fr       */
+/*   Updated: 2024/10/18 16:17:38 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,19 @@ void	k_fov_controls(t_mlx *mlx, int ksym)
 	render_scene(mlx, mlx->rt->scenes[mlx->rt->curr_scene]);
 }
 
-int	check_key_cylinder(int ksym, t_mlx *mlx)
+int	check_key_object(int ksym, t_mlx *mlx)
 {
-	if 	((ksym >= XK_KP_7 && ksym <= XK_KP_0)
+	t_scene	*scene;
+
+	scene = mlx->rt->scenes[mlx->rt->curr_scene];
+	if ((ksym >= XK_KP_7 && ksym <= XK_KP_0)
 		|| ksym == XK_KP_Q || ksym == XK_KP_W || ksym == XK_KP_E
 		|| ksym == XK_KP_S || ksym == XK_KP_D
-		|| (ksym == XK_KP_A && (mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_CYLINDER_CAP
-		|| mlx->rt->scenes[mlx->rt->curr_scene]->sel_type == SEL_CYLINDER_SIDE)))
+		|| ksym == XK_KP_R || ksym == XK_KP_T
+		|| ksym == XK_KP_F || ksym == XK_KP_G
+		|| (ksym == XK_KP_A && (scene->sel_type == SEL_CYLINDER_CAP
+				|| scene->sel_type == SEL_CYLINDER_SIDE
+				|| scene->sel_type == SEL_CAM)))
 		return (1);
 	return (0);
 }
@@ -52,7 +58,7 @@ int	k_press(int ksym, t_mlx *mlx)
 {
 	if (ksym == XK_ESCAPE)
 		mlx_loop_end(mlx->mlx);
-	else if (check_key_cylinder(ksym, mlx) == 1)
+	else if (check_key_object(ksym, mlx) == 1)
 		k_directional_controls(ksym, mlx);
 	else if (ksym == XK_KP_5)
 		reset_cam_default(mlx, &mlx->rt->scenes[mlx->rt->curr_scene]->cam);

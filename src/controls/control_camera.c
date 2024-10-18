@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_camera.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcummins <jcummins@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: akretov <akretov@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:22:40 by jcummins          #+#    #+#             */
-/*   Updated: 2024/10/17 17:24:22 by jcummins         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:16:43 by akretov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
